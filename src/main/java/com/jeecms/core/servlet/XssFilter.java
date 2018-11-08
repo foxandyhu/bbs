@@ -1,4 +1,4 @@
-package com.jeecms.common.web;
+package com.jeecms.core.servlet;
 
 /**
  * @author Tom
@@ -14,6 +14,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 
+import com.jeecms.common.web.XssHttpServletRequestWrapper;
 import org.apache.commons.lang.StringUtils;
 
 import com.jeecms.core.web.front.URLHelper;
@@ -22,15 +23,19 @@ import com.jeecms.core.web.front.URLHelper;
 public class XssFilter implements Filter {
 	private String excludeUrls;
 	FilterConfig filterConfig = null;
+
+	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
 		this.excludeUrls=filterConfig.getInitParameter("excludeUrls");
 		this.filterConfig = filterConfig;
 	}
 
+	@Override
 	public void destroy() {
 		this.filterConfig = null;
 	}
 
+	@Override
 	public void doFilter(ServletRequest request, ServletResponse response,FilterChain chain) throws IOException, ServletException {
 		if(isExcludeUrl(request)){
 			chain.doFilter(request, response);

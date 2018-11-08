@@ -9,7 +9,7 @@ import static com.jeecms.bbs.Constants.TPL_STYLE_PAGE_TOPIC;
 import static com.jeecms.bbs.Constants.TPL_SUFFIX;
 import static com.jeecms.common.web.Constants.MESSAGE;
 import static com.jeecms.common.web.Constants.UTF8;
-import static com.jeecms.common.web.ProcessTimeFilter.START_TIME;
+import static com.jeecms.core.servlet.ProcessTimeFilter.START_TIME;
 import static com.jeecms.common.web.freemarker.DirectiveUtils.PARAM_TPL_SUB;
 import static com.jeecms.core.action.front.LoginAct.PROCESS_URL;
 

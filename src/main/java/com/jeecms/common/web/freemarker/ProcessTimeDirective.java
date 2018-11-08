@@ -1,6 +1,6 @@
 package com.jeecms.common.web.freemarker;
 
-import static com.jeecms.common.web.ProcessTimeFilter.START_TIME;
+import static com.jeecms.core.servlet.ProcessTimeFilter.START_TIME;
 
 import java.io.IOException;
 import java.io.Writer;

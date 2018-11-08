@@ -27,7 +27,7 @@ public class ContextConfig{
 		ServletListenerRegistrationBean<EventListener> listener=new ServletListenerRegistrationBean<>(new IntrospectorCleanupListener());
 		return listener;
 	}
-	
+
 	@Bean
 	public FilterRegistrationBean delegatingFilterProxy() {
 		FilterRegistrationBean filter=new FilterRegistrationBean();
@@ -117,7 +117,8 @@ public class ContextConfig{
 	public FilterRegistrationBean bbsUserFilterRegistration(BbsUserFilter userFilter) {
 		FilterRegistrationBean filter=new FilterRegistrationBean();
 		filter.setFilter(userFilter);
-		filter.setEnabled(false);	//不注册到FilterChain中
+		//不注册到FilterChain中
+		filter.setEnabled(false);
 		return filter;
 	}
 	
@@ -125,15 +126,17 @@ public class ContextConfig{
 	public FilterRegistrationBean authcFilterRegistration(BbsAuthenticationFilter authcFilter) {
 		FilterRegistrationBean filter=new FilterRegistrationBean(authcFilter);
 		filter.setFilter(authcFilter);
-		filter.setEnabled(false);	//不注册到FilterChain中
+		//不注册到FilterChain中
+		filter.setEnabled(false);
 		return filter;
 	}
-	
+
 	@Bean
 	public FilterRegistrationBean logoutFilterRegistration(BbsLogoutFilter logoutFilter) {
 		FilterRegistrationBean filter=new FilterRegistrationBean(logoutFilter);
 		filter.setFilter(logoutFilter);
-		filter.setEnabled(false);	//不注册到FilterChain中
+		//不注册到FilterChain中
+		filter.setEnabled(false);
 		return filter;
 	}
 }
