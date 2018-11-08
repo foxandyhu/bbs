@@ -76,7 +76,6 @@ public class BbsLiveUserAccount implements Serializable {
 	private Date checkTime;
 
 	@Id
-	@Column(name = "user_id")
 	@OneToOne
 	@JoinColumn(name = "user_id")
 	private BbsUser user;

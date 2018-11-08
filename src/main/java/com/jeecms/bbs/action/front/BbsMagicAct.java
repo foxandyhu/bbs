@@ -63,7 +63,7 @@ public class BbsMagicAct {
 	 * @param model
 	 * @return 道具商店
 	 */
-	@RequestMapping("/magic/shop.jhtml")
+	@RequestMapping("/magic/shop.html")
 	public String magicshop(HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
 		FrontUtils.frontData(request, model, site);
@@ -87,7 +87,7 @@ public class BbsMagicAct {
 	 * @param model
 	 * @return 我的道具
 	 */
-	@RequestMapping("/magic/mybox.jhtml")
+	@RequestMapping("/magic/mybox.html")
 	public String magicmybox(HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
 		FrontUtils.frontData(request, model, site);
@@ -120,7 +120,7 @@ public class BbsMagicAct {
 		return FrontUtils.getTplPath(request, site, TPLDIR_MAGIC, TPL_MAGIC_MYBOX);
 	}
 
-	@RequestMapping("/magic/magiclog.jhtml")
+	@RequestMapping("/magic/magiclog.html")
 	public String magiclog(Integer pageNo, Integer tab, HttpServletRequest request,
 			ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -141,7 +141,7 @@ public class BbsMagicAct {
 		return FrontUtils.getTplPath(request, site, TPLDIR_MAGIC, TPL_MAGIC_LOG);
 	}
 	
-	@RequestMapping("/magic/buyMagiclog.jhtml")
+	@RequestMapping("/magic/buyMagiclog.html")
 	public String buylog(Integer pageNo,Integer tab,HttpServletRequest request,HttpServletResponse response,
 			ModelMap model){
 		CmsSite site = CmsUtils.getSite(request);
@@ -161,7 +161,7 @@ public class BbsMagicAct {
 		FrontUtils.frontData(request, model, site);
 		return FrontUtils.getTplPath(request, site, TPLDIR_MAGIC, TPL_BUY_LOG);
 	}
-	@RequestMapping("/magic/giveMagiclog.jhtml")
+	@RequestMapping("/magic/giveMagiclog.html")
 	public String givelog(Integer pageNo,Integer tab,HttpServletRequest request,HttpServletResponse response,
 			ModelMap model){
 		CmsSite site = CmsUtils.getSite(request);

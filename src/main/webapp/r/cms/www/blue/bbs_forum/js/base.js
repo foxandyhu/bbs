@@ -212,7 +212,7 @@ function postUp(base,postId, operate) {
 }
 //申请好友
 function apply(base,id, val,pid){
-	$.post(base+"/member/applyJson.jhtml",{"u": val},function(data){
+	$.post(base+"/member/applyJson.html",{"u": val},function(data){
 		alert(data.message);	
 		$("#u"+id+"_"+pid).css("iconfont  icon-tongxunlu green");
 	});
@@ -222,7 +222,7 @@ function applyDel(base,id, uid,pid){
 	var r=confirm("确定删除好友吗")
   if (r==true)
     {
-    $.post(base+"/member/delJson.jhtml",{"uid": uid},function(data){
+    $.post(base+"/member/delJson.html",{"uid": uid},function(data){
 		if(data.status==-1){
 			$("#u"+id+"_"+pid).removeClass(" icon-tongxunlu").addClass("icon-tongxunlu1");
 			 alert("删除成功");
@@ -237,7 +237,7 @@ function applyDel(base,id, uid,pid){
 }
 //举报帖子
 function report(base,url){
-	$.post(base+"/member/report.jhtml",{"url": url},function(data){
+	$.post(base+"/member/report.html",{"url": url},function(data){
 		alert("举报成功!");
 	}, "json");
 }
@@ -266,7 +266,7 @@ function forBidden(base,userId,forumId){
 }
 //关注用户 operate 0关注  1取消关注
 function attent(base,userId,operate){
-	$.post(base+"/member/attent.jhtml",{
+	$.post(base+"/member/attent.html",{
 		"userId": userId
 	},function(data){ 
 		if(data.status==0){

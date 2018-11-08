@@ -26,6 +26,9 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * CMS配置
+ */
 @Entity
 @Table(name="jc_config")
 @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)

@@ -1,8 +1,7 @@
 package com.jeecms.common.hibernate4;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.jeecms.common.page.Pagination;
+import com.jeecms.common.util.MyBeanUtils;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -15,10 +14,12 @@ import org.hibernate.transform.ResultTransformer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.util.Assert;
 
-import com.jeecms.common.page.Pagination;
-import com.jeecms.common.util.MyBeanUtils;
+import javax.persistence.EntityManagerFactory;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * hibernate DAO基类
@@ -33,7 +34,7 @@ public abstract class HibernateSimpleDao {
 	/**
 	 * HIBERNATE 的 order 属性
 	 */
-	protected static final String ORDER_ENTRIES = "orderEntries";
+	private static final String ORDER_ENTRIES = "orderEntries";
 
 	/**
 	 * 通过HQL查询对象列表
@@ -67,7 +68,7 @@ public abstract class HibernateSimpleDao {
 	 *            页码
 	 * @param pageSize
 	 *            每页条数
-	 * @return
+	 * @return Pagination
 	 */
 	protected Pagination find(Finder finder, int pageNo, int pageSize) {
 		int totalCount = countQueryResult(finder);
@@ -94,7 +95,7 @@ public abstract class HibernateSimpleDao {
 		int totalCount = countQueryResult(finder,totalHql);
 		Pagination p = new Pagination(pageNo, pageSize, totalCount);
 		if (totalCount < 1) {
-			p.setList(new ArrayList<Object>());
+			p.setList(new ArrayList<>());
 			return p;
 		}
 		Query query = getSession().createQuery(finder.getOrigHql());
@@ -108,7 +109,7 @@ public abstract class HibernateSimpleDao {
 		return p;
 	}
 	
-	protected int countQueryResult(Finder finder,String hql) {
+	private int countQueryResult(Finder finder,String hql) {
 		Query query = getSession().createQuery(hql);
 		finder.setParamsToQuery(query);
 		if (finder.isCacheable()) {
@@ -188,8 +189,6 @@ public abstract class HibernateSimpleDao {
 	 * @param crit
 	 * @param pageNo
 	 * @param pageSize
-	 * @param projection
-	 * @param orders
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
@@ -283,11 +282,20 @@ public abstract class HibernateSimpleDao {
 		return query;
 	}
 
-	protected SessionFactory sessionFactory;
+	private SessionFactory sessionFactory;
 
-	@Autowired
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
+	public SessionFactory getSessionFactory(){
+	    return sessionFactory;
+    }
+
+    @Bean
+    @Autowired
+	public SessionFactory sessionFactory(EntityManagerFactory entityManagerFactory) {
+		if(entityManagerFactory.unwrap(SessionFactory.class)==null){
+			throw new NullPointerException("factory is not a hibernate factory.");
+		}
+		this.sessionFactory = entityManagerFactory.unwrap(SessionFactory.class);
+		return sessionFactory;
 	}
 
 	protected Session getSession() {

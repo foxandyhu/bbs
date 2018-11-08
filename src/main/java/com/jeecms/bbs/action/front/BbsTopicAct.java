@@ -733,7 +733,7 @@ public class BbsTopicAct {
 			}
 			return "redirect:" + forum.getRedirectUrl();
 		}else{
-			return "redirect:/index.jhtml";
+			return "redirect:/index.html";
 		}
 	}
 	
@@ -765,7 +765,7 @@ public class BbsTopicAct {
 			}
 			return "redirect:" + forum.getRedirectUrl();
 		}else{
-			return "redirect:/index.jhtml";
+			return "redirect:/index.html";
 		}
 	}
 	

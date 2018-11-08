@@ -16,7 +16,7 @@
     </style>
     <script>
     	function ajax_delete(id){
-			$.post("ajax_delete_reply.jhtml",{"rid":id},function(data){
+			$.post("ajax_delete_reply.html",{"rid":id},function(data){
 				if(data.success){
 					$("#r"+id).remove();
 				}else{
@@ -31,7 +31,7 @@
     <!--main-->
     <div class="main-wrap">
     <div id="main">
-    <div id="breadCrumb"><img alt="" align="absMiddle" style="cursor: pointer" src="/${res}/bbs_forum/img/home.gif" /> <a href="${base}/">${site.name}</a> &raquo; <a href="${base}/member/index.jhtml">会员中心</a> &raquo;消息回复</div>
+    <div id="breadCrumb"><img alt="" align="absMiddle" style="cursor: pointer" src="/${res}/bbs_forum/img/home.gif" /> <a href="${base}/">${site.name}</a> &raquo; <a href="${base}/member/index.html">会员中心</a> &raquo;消息回复</div>
     <div id="set-wrap">
     <div id="set-side">
     <div id="set-side-wrap">
@@ -72,7 +72,7 @@
 		${msg.sender.username}
 		[/#if]
 		[/#assign]
-		 <form action="sendMsg.jhtml" method="post">
+		 <form action="sendMsg.html" method="post">
 	     	<input type="hidden" name="u" value="${u?trim}"/><br />
 	     	内　容:<textarea name="content" rows="6" cols="70"></textarea><br />
 	     	<input type="hidden" value="${msg.msgType!}" name="msgType"/>

@@ -74,7 +74,7 @@ function hideUserMagicUL(pid){
 	$("#user-magic-"+pid).hide();
 }
 function apply(id, val,pid){
-	$.post("${base}/member/applyJson.jhtml",{"u": val},function(data){
+	$.post("${base}/member/applyJson.html",{"u": val},function(data){
 		$("#u"+id+"_"+pid).html(data.message);
 	});
 }
@@ -141,7 +141,7 @@ function VoteResult(){
           <img alt="" style="display: block; margin: 0.2em 0pt" src="${creater.group.imgPath!}" /> <span class="user-info2" id="showface_0"><span class="user-infoWrap2">
           <div class="c" style="width: 120px; height: 5px"></div>
           积分:${creater.point!}   <a id="u${creater.id}_${post.id}" href="javascript:apply('${creater.id}','${creater.username}','${post.id}')">加为好友</a> <br />
-    UID: <span class="f12">${creater.id}</span>  <a id="msgSendA_${post.id}_${creater.username!}" href="${base}/getsendmsgpage.jhtml?username=${creater.username!}">打招呼</a><br />
+    UID: <span class="f12">${creater.id}</span>  <a id="msgSendA_${post.id}_${creater.username!}" href="${base}/getsendmsgpage.html?username=${creater.username!}">打招呼</a><br />
           精华: ${creater.primeCount!} <br />
           主题:<span class="s1 f12">${creater.topicCount!}</span><br />
           回复:<span class="s2 f12">${creater.replyCount!}</span><br />
@@ -317,7 +317,7 @@ $("a[id^='magica']").each(function(){
 $("a[id^='msgSendA']").each(function(){
 	id=$(this).attr("id");
 	strs=id.split("_");
-	$(this).wBox({title: "打招呼",requestType:"iframe",iframeWH:{width:320,height:50},target:"${base}/getsendmsgpage.jhtml?username="+strs[2]});
+	$(this).wBox({title: "打招呼",requestType:"iframe",iframeWH:{width:320,height:50},target:"${base}/getsendmsgpage.html?username="+strs[2]});
 });
 $("a[id^='reportA']").each(function(){
 	id=$(this).attr("id");

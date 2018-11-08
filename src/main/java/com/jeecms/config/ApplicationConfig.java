@@ -1,6 +1,5 @@
 package com.jeecms.config;
 
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -45,7 +44,7 @@ public class ApplicationConfig {
 	}
 	
 	@Bean
-    public HibernateTransactionManager txManager(SessionFactory sessionFactory) throws SQLException {
+    public HibernateTransactionManager txManager(SessionFactory sessionFactory){
         HibernateTransactionManager hibernateTransactionManager = new HibernateTransactionManager();
         hibernateTransactionManager.setSessionFactory(sessionFactory);
         return hibernateTransactionManager;
@@ -60,12 +59,7 @@ public class ApplicationConfig {
 	
 	@Bean
 	public CommandLineRunner customFreemarkerView(FreeMarkerViewResolver resolver) {
-		return new CommandLineRunner() {
-			@Override
-			public void run(String... args) throws Exception {
-				resolver.setViewClass(SimpleFreeMarkerView.class);	//设置Freemarker解析视图
-			}
-		};
+		return (String ... args) ->resolver.setViewClass(SimpleFreeMarkerView.class);	//设置Freemarker解析视图;
 	}
 	
 	@EventListener

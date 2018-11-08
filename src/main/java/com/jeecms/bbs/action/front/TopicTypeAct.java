@@ -45,7 +45,7 @@ public class TopicTypeAct {
 	/**
 	 * 话题首页
 	 */
-	@RequestMapping(value = "/topicType/userIndex.jhtml", method = RequestMethod.GET)
+	@RequestMapping(value = "/topicType/userIndex.html", method = RequestMethod.GET)
 	public String topicIndex(HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		BbsUser user=CmsUtils.getUser(request);
@@ -59,7 +59,7 @@ public class TopicTypeAct {
 	/**
 	 * 话题广场首页
 	 */
-	@RequestMapping(value = "/topicType/index.jhtml", method = RequestMethod.GET)
+	@RequestMapping(value = "/topicType/index.html", method = RequestMethod.GET)
 	public String topicTypeIndex(HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -71,7 +71,7 @@ public class TopicTypeAct {
 	/**
 	 * 子分类页
 	 */
-	@RequestMapping(value = "/topicType/*.jhtml", method = RequestMethod.GET)
+	@RequestMapping(value = "/topicType/*.html", method = RequestMethod.GET)
 	public String topicTypeChild(HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -95,10 +95,10 @@ public class TopicTypeAct {
 		int len = paths.length;
 		if (len == 3) {
 			if(paths[2].equals(INDEX)){
-				//topicType/path/index.jhtml 主题分类下所有主题列表
+				//topicType/path/index.html 主题分类下所有主题列表
 				return topicType(paths[1],TOPIC_ALL, request, response, model);
 			}else{
-				//topicType/path/top.jhtml  主题分类下精华主题列表
+				//topicType/path/top.html  主题分类下精华主题列表
 				return topicType(paths[1],TOPIC_ESSENCE, request, response, model);
 			}
 		}else {

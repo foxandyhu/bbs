@@ -13,7 +13,7 @@
 function report(){
 	var url=$("#url").val();
     var reason=$("#reason").val();
-	$.post('${base}/member/report.jhtml', {
+	$.post('${base}/member/report.html', {
 		'url':url,
 		'reason':reason
 		}, function(data) {

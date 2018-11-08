@@ -601,10 +601,10 @@ public class BbsPostAct {
 			if(beans[0]!=null){
 				return "redirect:" + beans[0].getRedirectUrl();
 			}else{
-				return "redirect:/index.jhtml";
+				return "redirect:/index.html";
 			}
 		}else{
-			return "redirect:/index.jhtml";
+			return "redirect:/index.html";
 		}
 		
 	}

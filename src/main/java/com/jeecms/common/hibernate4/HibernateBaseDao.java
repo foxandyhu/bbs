@@ -27,7 +27,6 @@ import com.jeecms.common.util.MyBeanUtils;
 public abstract class HibernateBaseDao<T, ID extends Serializable> extends
 		HibernateSimpleDao {
 	/**
-	 * @see Session.get(Class,Serializable)
 	 * @param id
 	 * @return 持久化对象
 	 */
@@ -36,7 +35,6 @@ public abstract class HibernateBaseDao<T, ID extends Serializable> extends
 	}
 
 	/**
-	 * @see Session.get(Class,Serializable,LockMode)
 	 * @param id
 	 *            对象ID
 	 * @param lock
@@ -108,10 +106,10 @@ public abstract class HibernateBaseDao<T, ID extends Serializable> extends
 	 */
 	@SuppressWarnings("unchecked")
 	public T updateByUpdater(Updater<T> updater) {
-		ClassMetadata cm = sessionFactory.getClassMetadata(getEntityClass());
+		ClassMetadata cm = getSessionFactory().getClassMetadata(getEntityClass());
 		T bean = updater.getBean();
 		//T po = (T) getSession().get(getEntityClass(),cm.getIdentifier(bean, POJO));
-		T po = (T) getSession().get(getEntityClass(),cm.getIdentifier(bean,(SessionImplementor) sessionFactory.getCurrentSession()));
+		T po = (T) getSession().get(getEntityClass(),cm.getIdentifier(bean,(SessionImplementor) getSession()));
 		updaterCopyToPersistentObject(updater, po, cm);
 		return po;
 	}

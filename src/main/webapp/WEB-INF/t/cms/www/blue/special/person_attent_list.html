@@ -20,7 +20,7 @@
     <!--main-->
     <div class="main-wrap">
     <div id="main">
-    <div id="breadCrumb"><img alt="" align="absMiddle" style="cursor: pointer" src="/${res}/bbs_forum/img/home.gif" /> <a href="${base}/">${site.name}</a> &raquo; <a href="${base}/member/index.jhtml">会员中心</a> &raquo;我的主题</div>
+    <div id="breadCrumb"><img alt="" align="absMiddle" style="cursor: pointer" src="/${res}/bbs_forum/img/home.gif" /> <a href="${base}/">${site.name}</a> &raquo; <a href="${base}/member/index.html">会员中心</a> &raquo;我的主题</div>
     <div id="set-wrap">
     <div id="set-side">
     <div id="set-side-wrap">
@@ -35,9 +35,9 @@
     <table cellspacing="0" cellpadding="0" border="0">
       <tbody>
         <tr class="tac" id="infolist">
-          <td ><a href="${base}/person/topics.jhtml?userId=${userId!}" style="cursor: pointer">用户主题</a></td>
-          <td ><a href="${base}/person/posts.jhtml?userId=${userId!}" style="cursor: pointer">用户回复</a></td>
-          <td class="current"><a href="${base}/person/attentUsers.jhtml?userId=${userId!}" style="cursor: pointer">他关注的人</a></td>
+          <td ><a href="${base}/person/topics.html?userId=${userId!}" style="cursor: pointer">用户主题</a></td>
+          <td ><a href="${base}/person/posts.html?userId=${userId!}" style="cursor: pointer">用户回复</a></td>
+          <td class="current"><a href="${base}/person/attentUsers.html?userId=${userId!}" style="cursor: pointer">他关注的人</a></td>
         </tr>
       </tbody>
     </table>
@@ -50,7 +50,7 @@
     </tr>
      [#list tag_pagination.list as user]
 	  <tr>
-	    <td><a href="${base}/person/topics.jhtml?userId=${user.id}" target="_blank">${user.realname!user.username!}</a> </td>
+	    <td><a href="${base}/person/topics.html?userId=${user.id}" target="_blank">${user.realname!user.username!}</a> </td>
 	  </tr>
 	  [/#list]
        </tbody>

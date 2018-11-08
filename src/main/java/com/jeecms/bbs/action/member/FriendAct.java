@@ -45,7 +45,7 @@ public class FriendAct {
 	public static final String TPL_NO_LOGIN = "tpl.nologin";
 	public static final String TPL_GET_MSG_SEND = "tpl.msgsendpage";
 
-	@RequestMapping(value = "/member/friendSearch*.jhtml", method = RequestMethod.GET)
+	@RequestMapping(value = "/member/friendSearch*.html", method = RequestMethod.GET)
 	public String search(HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
 		BbsUser user = CmsUtils.getUser(request);
@@ -61,7 +61,7 @@ public class FriendAct {
 				TPLDIR_MEMBER, FRIEND_SEARCH);
 	}
 	
-	@RequestMapping(value = "/member/getSearchFriendJson.jhtml")
+	@RequestMapping(value = "/member/getSearchFriendJson.html")
 	public void getSearchPageJson(Integer https,String kw,HttpServletRequest request,
 			HttpServletResponse response,ModelMap model) throws JSONException{
 		if (https==null) {
@@ -78,7 +78,7 @@ public class FriendAct {
 		ResponseUtils.renderJson(response, jsonArray.toString());
 	}
 	
-	@RequestMapping(value = "/member/getSearchFriend.jhtml")
+	@RequestMapping(value = "/member/getSearchFriend.html")
 	public String getSearchPage(Integer https,String kw,HttpServletRequest request,
 			HttpServletResponse response,ModelMap model) throws JSONException{
 		if (https==null) {
@@ -94,7 +94,7 @@ public class FriendAct {
 		
 	}
 
-	@RequestMapping("/member/suggest.jhtml")
+	@RequestMapping("/member/suggest.html")
 	public String suggest(HttpServletRequest request,
 			HttpServletResponse response, String username, Integer count,
 			ModelMap model) {
@@ -105,7 +105,7 @@ public class FriendAct {
 				TPLDIR_MEMBER, SUGGEST);
 	}
 
-	@RequestMapping(value = "/member/apply.jhtml")
+	@RequestMapping(value = "/member/apply.html")
 	public String apply(HttpServletRequest request,
 			HttpServletResponse response, String u, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -120,7 +120,7 @@ public class FriendAct {
 		return null;
 	}
 
-	@RequestMapping(value = "/member/applyJson.jhtml")
+	@RequestMapping(value = "/member/applyJson.html")
 	public void applyJson(HttpServletRequest request,
 			HttpServletResponse response, String u, ModelMap model)
 			throws JSONException {
@@ -164,7 +164,7 @@ public class FriendAct {
 	 * @param model
 	 * @throws JSONException
 	 */
-	@RequestMapping(value = "/member/delJson.jhtml")
+	@RequestMapping(value = "/member/delJson.html")
 	public void deleteJson(Integer uid,
 			HttpServletRequest request,HttpServletResponse response) throws JSONException{
 		BbsUser user = CmsUtils.getUser(request);
@@ -191,7 +191,7 @@ public class FriendAct {
 		ResponseUtils.renderJson(response, object.toString());
 	}
 
-	@RequestMapping("/getsendmsgpage.jhtml")
+	@RequestMapping("/getsendmsgpage.html")
 	public String getSendMsgPage(String username, HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -205,7 +205,7 @@ public class FriendAct {
 				TPLDIR_MEMBER, TPL_GET_MSG_SEND);
 	}
 
-	@RequestMapping(value = "/member/accept.jhtml")
+	@RequestMapping(value = "/member/accept.html")
 	public String accept(HttpServletRequest request,
 			HttpServletResponse response, Integer id, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -227,7 +227,7 @@ public class FriendAct {
 	 * @param id 申请人编号
 	 * @throws JSONException
 	 */
-	@RequestMapping(value = "/member/acceptAjax.jhtml")
+	@RequestMapping(value = "/member/acceptAjax.html")
 	public void acceptAjax(HttpServletRequest request,HttpServletResponse response,
 			Integer id) throws JSONException{
 		BbsUser user = CmsUtils.getUser(request);
@@ -241,7 +241,7 @@ public class FriendAct {
 		ResponseUtils.renderJson(response, json.toString());
 	}
 
-	@RequestMapping(value = "/member/refuse.jhtml")
+	@RequestMapping(value = "/member/refuse.html")
 	public String refuse(HttpServletRequest request,
 			HttpServletResponse response, Integer id, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -263,7 +263,7 @@ public class FriendAct {
 	 * @param id 申请人编号
 	 * @throws JSONException
 	 */
-	@RequestMapping(value = "/member/refuseAjax.jhtml")
+	@RequestMapping(value = "/member/refuseAjax.html")
 	public void refuseAjax(HttpServletRequest request,HttpServletResponse response,
 			Integer id) throws JSONException{
 		BbsUser user = CmsUtils.getUser(request);
@@ -277,7 +277,7 @@ public class FriendAct {
 		ResponseUtils.renderJson(response, json.toString());
 	}
 
-	@RequestMapping("/member/myfriend*.jhtml")
+	@RequestMapping("/member/myfriend*.html")
 	public String myfriend(Integer pageNo, HttpServletRequest request,
 			ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -293,7 +293,7 @@ public class FriendAct {
 				TPLDIR_MEMBER, MYFRIEND);
 	}
 
-	@RequestMapping("/member/friendApply*.jhtml")
+	@RequestMapping("/member/friendApply*.html")
 	public String friendApply(HttpServletRequest request,
 			ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);

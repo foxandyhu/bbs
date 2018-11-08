@@ -1,16 +1,9 @@
-﻿package com.jeecms.bbs.entity;
+package com.jeecms.bbs.entity;
 
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.Table;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 import org.hibernate.annotations.Any;
 import org.hibernate.annotations.AnyMetaDef;
@@ -61,17 +54,18 @@ public class BbsOperation implements Serializable {
 	@JoinColumn(name="operater_id")
 	private BbsUser operater;
 	
-	@Any(metaColumn=@Column(name="REF_ID"))
+	@Any(metaColumn=@Column(name="REF_TYPE"))
 	@AnyMetaDef(
             idType = "integer",
+            metaType = "string",
             metaValues = {
                     @MetaValue( value="TOPI", targetEntity=BbsTopic.class ),
                     @MetaValue( value="VOTO", targetEntity=BbsVoteTopic.class ),
                     @MetaValue( value="POST", targetEntity=BbsPost.class ),
                     @MetaValue( value="MEMB", targetEntity=BbsUser.class )
-            }, metaType = "string"
+            }
     )
-	@JoinColumn(name="REF_ID")
+    @JoinColumn(name="REF_ID")
 	private Object target;
 
 	public Object getTarget() {

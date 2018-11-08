@@ -13,7 +13,7 @@
 function sendMsg(){
 	var username=$("#username").val();
     var content=$("#content").val();
-	$.post('${base}/member/sendMsgJson.jhtml', {
+	$.post('${base}/member/sendMsgJson.html', {
 		'username':username,
 		'content':content,
 		'msgType':3

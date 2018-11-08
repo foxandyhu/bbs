@@ -17,7 +17,7 @@ Cms.loginSSO('${base}');
   [#if user??]
     欢迎您：${user.username}
     &nbsp;&nbsp;[#if user.group??]【级别：${user.group.name}】[/#if]
-    &nbsp;&nbsp;【<a href="${base}/member/index.jhtml">用户中心</a>】
+    &nbsp;&nbsp;【<a href="${base}/member/index.html">用户中心</a>】
     [#if returnUrl?? && returnUrl?length gt 0]
     &nbsp;&nbsp;【<a href="${base}/logout.jspx?returnUrl=${returnUrl!}">退出</a>】
     [#else]

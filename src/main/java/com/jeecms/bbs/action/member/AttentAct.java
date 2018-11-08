@@ -50,7 +50,7 @@ public class AttentAct {
 	 * @param userId 被关注者ID
 	 * @param operate  0关注 1取消关注
 	 */
-	@RequestMapping(value = "/member/attent.jhtml")
+	@RequestMapping(value = "/member/attent.html")
 	public void userAttent( Integer userId,
 			HttpServletRequest request,HttpServletResponse response, ModelMap model)
 			throws JSONException {
@@ -74,7 +74,7 @@ public class AttentAct {
 	}
 	
 	//查看用户主题列表
-	@RequestMapping(value = "/person/topics*.jhtml")
+	@RequestMapping(value = "/person/topics*.html")
 	public String personTopics(Integer userId, HttpServletRequest request,
 				ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -88,7 +88,7 @@ public class AttentAct {
 	}
 	
 	//用户的帖子回复列表
-	@RequestMapping(value = "/person/posts*.jhtml")
+	@RequestMapping(value = "/person/posts*.html")
 	public String personPosts(Integer userId, HttpServletRequest request,
 				ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -102,7 +102,7 @@ public class AttentAct {
 	}
 	
 	//用户的关注列表
-	@RequestMapping(value = "/person/attentUsers*.jhtml")
+	@RequestMapping(value = "/person/attentUsers*.html")
 	public String personAttents(Integer userId, HttpServletRequest request,
 				ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -120,7 +120,7 @@ public class AttentAct {
 	}
 	
 	//我关注的人
-	@RequestMapping(value = "/member/myAttentUsers*.jhtml")
+	@RequestMapping(value = "/member/myAttentUsers*.html")
 	public String myAttentUsers(HttpServletRequest request,
 			ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -141,7 +141,7 @@ public class AttentAct {
 	}
 	
 	//关注我的人
-	@RequestMapping(value = "/member/myFans*.jhtml")
+	@RequestMapping(value = "/member/myFans*.html")
 	public String myFans(HttpServletRequest request,
 			ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -162,7 +162,7 @@ public class AttentAct {
 	}
 	
 	//我关注的主题
-	@RequestMapping(value = "/member/myAttentTopics*.jhtml")
+	@RequestMapping(value = "/member/myAttentTopics*.html")
 	public String myAttentTopics(HttpServletRequest request,
 			ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);

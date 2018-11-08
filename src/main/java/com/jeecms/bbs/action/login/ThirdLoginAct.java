@@ -322,7 +322,7 @@ public class ThirdLoginAct {
 					if(account!=null){
 						//已绑定直接登陆
 						loginByKey(md5OpenId, request, response, model);
-						return "redirect:index.jhtml";
+						return "redirect:index.html";
 					}else{
 						String userUrl=getWeixinAuthUserUrl()+"&access_token="+access_token+"&openid="+openid;
 						try {

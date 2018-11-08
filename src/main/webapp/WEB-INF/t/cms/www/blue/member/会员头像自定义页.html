@@ -15,7 +15,7 @@
 	$(document).ready(function(){
 		var button = $('#upload-button'), interval;
 		new AjaxUpload(button, {
-			action: '${base}/member/userImgUpload.jhtml', 
+			action: '${base}/member/userImgUpload.html',
 			name: 'uploadfile',
 			onSubmit : function(file, ext){
 				button.text('正在上传');
@@ -92,7 +92,7 @@ border:1px solid #ccc;
         </div>
         <div class="form-box">
              [#include "image_upload.html"/]
-   <form id="jvForm" action="updateUserImg.jhtml" method="post">
+   <form id="jvForm" action="updateUserImg.html" method="post">
 <div class="img-upload">
  <img id="preImg1"   src="/${res}/bbs_forum/images/userImg-all.png"  class="upload-pic"/>
 
@@ -113,7 +113,7 @@ border:1px solid #ccc;
 
 
 
- <input type="hidden" name="nextUrl" value="index.jhtml"/>
+ <input type="hidden" name="nextUrl" value="index.html"/>
 		     <input class="input" type="hidden" maxlength="75" name="id" value="${user.id!}"/>
 	        <input type="submit" value="提交" class="btn-primary"/> 
                   

@@ -35,7 +35,7 @@
         try{
             var tableForm = document.getElementById("tableForm"+id);
             $("#pageNo"+id).val(pageNo);
-            tableForm.action="magiclog.jhtml";
+            tableForm.action="magiclog.html";
             tableForm.onsubmit=null;
             tableForm.submit();
         } catch(e) {
@@ -49,7 +49,7 @@
     <!--main-->
     <div class="main-wrap">
     <div id="main">
-    <div id="breadCrumb"><img alt="" align="absMiddle" style="cursor: pointer" src="/${res}/bbs_forum/img/home.gif" /> <a href="${base}/">${site.name}</a> &raquo; <a href="${base}/member/index.jhtml">会员中心</a> &raquo;我的道具</div>
+    <div id="breadCrumb"><img alt="" align="absMiddle" style="cursor: pointer" src="/${res}/bbs_forum/img/home.gif" /> <a href="${base}/">${site.name}</a> &raquo; <a href="${base}/member/index.html">会员中心</a> &raquo;我的道具</div>
     <div id="set-wrap">
     <div id="set-side">
     <div id="set-side-wrap">
@@ -72,7 +72,7 @@
     </div>
      <div class="set-tab-box" style="height:600px;">
       <div  id="tbc_11" [#if tab??][#if tab==1]class="dis"[#else]class="undis"[/#if][#else]class="dis"[/#if] >
-      	<form id="tableForm1" action="magiclog.jhtml" method="post">
+      	<form id="tableForm1" action="magiclog.html" method="post">
             [#if pagination1.list?size gt 0]
             <table border="0" cellpadding="0" cellspacing="1" >
             <tr>
@@ -106,7 +106,7 @@
             </form>
       </div>
       <div  id="tbc_12" [#if tab??][#if tab==2]class="dis"[#else]class="undis"[/#if][#else]class="undis"[/#if]>
-     	 <form id="tableForm2" action="magiclog.jhtml" method="post">
+     	 <form id="tableForm2" action="magiclog.html" method="post">
             [#if pagination2.list?size gt 0]
             <table border="0" cellpadding="0" cellspacing="1" >
             <tr>
@@ -144,7 +144,7 @@
             </form>
       </div>
       <div  id="tbc_13" [#if tab??][#if tab==3]class="dis"[#else]class="undis"[/#if][#else]class="undis"[/#if]>
-            <form id="tableForm3" action="magiclog.jhtml" method="post">
+            <form id="tableForm3" action="magiclog.html" method="post">
             [#if pagination3.list?size gt 0]
             <table border="0" cellpadding="0" cellspacing="1" >
             <tr>

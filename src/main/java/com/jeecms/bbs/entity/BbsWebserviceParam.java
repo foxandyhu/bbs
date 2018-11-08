@@ -19,24 +19,24 @@ public class BbsWebserviceParam implements Serializable {
 	private static final long serialVersionUID = 509461921500118874L;
 
 	@Column(name="param_name")
-	private java.lang.String paramName;
+	private String paramName;
 	
 	@Column(name="default_value")
-	private java.lang.String defaultValue;
+	private String defaultValue;
 
-	public java.lang.String getParamName () {
+	public String getParamName () {
 		return paramName;
 	}
 
-	public void setParamName (java.lang.String paramName) {
+	public void setParamName (String paramName) {
 		this.paramName = paramName;
 	}
 
-	public java.lang.String getDefaultValue () {
+	public String getDefaultValue () {
 		return defaultValue;
 	}
 
-	public void setDefaultValue (java.lang.String defaultValue) {
+	public void setDefaultValue (String defaultValue) {
 		this.defaultValue = defaultValue;
 	}
 }

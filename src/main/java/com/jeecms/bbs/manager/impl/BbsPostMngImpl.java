@@ -1,4 +1,4 @@
-﻿package com.jeecms.bbs.manager.impl;
+package com.jeecms.bbs.manager.impl;
 
 import java.awt.image.BufferedImage;
 import java.io.File;

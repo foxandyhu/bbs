@@ -4,15 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CollectionTable;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OrderBy;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.annotations.Cache;
@@ -129,6 +121,7 @@ public class BbsWebservice implements Serializable {
 
 	@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 	@OrderBy("priority")
+    @ElementCollection
 	@CollectionTable(name="bbs_webservice_param",joinColumns=@JoinColumn(name="service_id"))
 	private List<BbsWebserviceParam> params;
 

@@ -16,7 +16,7 @@
     </style>
     <script>
     	function ajax_delete(id){
-			$.post("ajax_delete_msg.jhtml",{"mid":id},function(data){
+			$.post("ajax_delete_msg.html",{"mid":id},function(data){
 				if(data.success){
 					$("#m"+id).remove();
 				}else{
@@ -31,7 +31,7 @@
     <!--main-->
     <div class="main-wrap">
     <div id="main">
-    <div id="breadCrumb"><img alt="" align="absMiddle" style="cursor: pointer" src="/${res}/bbs_forum/img/home.gif" /> <a href="${base}/">${site.name}</a> &raquo; <a href="${base}/member/index.jhtml">会员中心</a> &raquo;我的消息</div>
+    <div id="breadCrumb"><img alt="" align="absMiddle" style="cursor: pointer" src="/${res}/bbs_forum/img/home.gif" /> <a href="${base}/">${site.name}</a> &raquo; <a href="${base}/member/index.html">会员中心</a> &raquo;我的消息</div>
     <div id="set-wrap">
     <div id="set-side">
     <div id="set-side-wrap">
@@ -55,7 +55,7 @@
      	[#list tag_pagination.list as msg]
      	<span id="m${msg.id}">
      	[#if msg.sys]
-     		<span style="color:blue">系统消息</span>:${(msg.content)!}　${msg.createTime?string("yyyy-MM-dd HH:mm")}　<a href="reply.jhtml?mid=${msg.id}">查看</a>
+     		<span style="color:blue">系统消息</span>:${(msg.content)!}　${msg.createTime?string("yyyy-MM-dd HH:mm")}　<a href="reply.html?mid=${msg.id}">查看</a>
      		<a href="javascript:ajax_delete('${msg.id}')">删除</a><br/>
      	[#else]
      		[#if msg.sender.id!=user.id]
@@ -63,7 +63,7 @@
 	     	对
 	     	<span style="color:blue">[#if msg.receiver.id==user.id]您[#else]${msg.receiver.username!}[/#if]</span>
 	     	说:
-	     	  [@text_cut s=msg.content append='...' len=20/] 　${msg.createTime?string("yyyy-MM-dd HH:mm")}　[#if msg.sender.id!=user.id]<a href="reply.jhtml?mid=${msg.id}">回打招呼</a>[/#if]
+	     	  [@text_cut s=msg.content append='...' len=20/] 　${msg.createTime?string("yyyy-MM-dd HH:mm")}　[#if msg.sender.id!=user.id]<a href="reply.html?mid=${msg.id}">回打招呼</a>[/#if]
 	     	 <a href="javascript:ajax_delete('${msg.id}')">删除</a><br/>
 	     	 [/#if]
      	[/#if]

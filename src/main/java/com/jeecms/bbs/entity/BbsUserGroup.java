@@ -1,4 +1,4 @@
-﻿package com.jeecms.bbs.entity;
+package com.jeecms.bbs.entity;
 
 import java.io.Serializable;
 import java.util.HashMap;

@@ -1,7 +1,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script type="text/javascript">
 	function applyFriend(username){
-		$.post("${base}/member/applyJson.jhtml",{
+		$.post("${base}/member/applyJson.html",{
 			u:username
 		},function(data){
 			alert(data.message);
@@ -9,7 +9,7 @@
 		})
 	}
 	function accept(id){
-		$.post("${base}/member/acceptAjax.jhtml",{
+		$.post("${base}/member/acceptAjax.html",{
 			id:id
 		},function(data){
 			alert(data.status);
@@ -18,7 +18,7 @@
 	}
 	function refuse(id){
 		alert(id);
-		$.post("${base}/member/refuseAjax.jhtml",{
+		$.post("${base}/member/refuseAjax.html",{
 			id:id
 		},function(data){
 			alert(data.status);

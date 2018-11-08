@@ -27,6 +27,7 @@ public class Attachment implements Serializable{
 	private static final long serialVersionUID = -3955659015127659881L;
 
 	@Id
+    @Column(name = "attachment_id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 

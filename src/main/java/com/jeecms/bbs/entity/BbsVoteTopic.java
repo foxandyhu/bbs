@@ -1,5 +1,6 @@
 package com.jeecms.bbs.entity;
 
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
@@ -9,7 +10,7 @@ import javax.persistence.Entity;
  * 
  */
 @Entity
-@DiscriminatorValue("101")
+@DiscriminatorValue("1")
 public class BbsVoteTopic extends BbsTopic {
 	/**
 	 * @author andy_hulibo@163.com
@@ -19,6 +20,7 @@ public class BbsVoteTopic extends BbsTopic {
 	/**
 	 * 总票数
 	 */
+	@Column(name="total_count")
 	private Integer totalCount;			//总票数
 
 	public void init() {

@@ -50,7 +50,7 @@ public class MessageAct {
 	public static final String TPL_NO_LOGIN = "tpl.nologin";
 	public static final String MY_REMIND = "tpl.myremind";
 
-	@RequestMapping(value = "/member/sendMsg.jhtml", method = RequestMethod.GET)
+	@RequestMapping(value = "/member/sendMsg.html", method = RequestMethod.GET)
 	public String message(String username, Integer type,
 			HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -66,7 +66,7 @@ public class MessageAct {
 				TPLDIR_MEMBER, SEND_MSG);
 	}
 
-	@RequestMapping(value = "/member/sendMsg.jhtml", method = RequestMethod.POST)
+	@RequestMapping(value = "/member/sendMsg.html", method = RequestMethod.POST)
 	public String messageSubmit(HttpServletRequest request,HttpServletResponse response, String u,
 			BbsMessage msg, String content,ModelMap model) throws IOException {
 		CmsSite site = CmsUtils.getSite(request);
@@ -78,7 +78,7 @@ public class MessageAct {
 		if (validateSendMsg(request,false,user, u,msg.getContent(), model)) {
 			bbsMessageMng.sendMsg(user, bbsUserMng.findByUsername(u), msg);
 		}
-		response.sendRedirect("myMsg.jhtml");
+		response.sendRedirect("myMsg.html");
 		return null;
 	}
 	
@@ -91,7 +91,7 @@ public class MessageAct {
 	 * @param response
 	 * @throws JSONException
 	 */
-	@RequestMapping(value = "/member/sendMsgAjax.jhtml")
+	@RequestMapping(value = "/member/sendMsgAjax.html")
 	public void messageSendJson(String u,BbsMessage msg,String content,
 			HttpServletRequest request,HttpServletResponse response) throws JSONException{
 		BbsUser user = CmsUtils.getUser(request);
@@ -124,7 +124,7 @@ public class MessageAct {
 		ResponseUtils.renderJson(response, json.toString());
 	}
 
-	@RequestMapping(value = "/member/sysMsg*.jhtml")
+	@RequestMapping(value = "/member/sysMsg*.html")
 	public String sysMsg(HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
 		BbsUser user = CmsUtils.getUser(request);
@@ -142,7 +142,7 @@ public class MessageAct {
 		return FrontUtils.getTplPath(request, site,TPLDIR_MEMBER, SYS_MSG);
 	}
 	
-	@RequestMapping(value = "/member/sendSysMsg.jhtml", method = RequestMethod.GET)
+	@RequestMapping(value = "/member/sendSysMsg.html", method = RequestMethod.GET)
 	public String sendSysMessage(HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
 		BbsUser user = CmsUtils.getUser(request);
@@ -157,7 +157,7 @@ public class MessageAct {
 		return FrontUtils.getTplPath(request, site,TPLDIR_MEMBER, SEND_SYS_MSG);
 	}
 	
-	@RequestMapping(value = "/member/sendSysMsg.jhtml", method = RequestMethod.POST)
+	@RequestMapping(value = "/member/sendSysMsg.html", method = RequestMethod.POST)
 	public String sysMessageSubmit(HttpServletRequest request,HttpServletResponse response,
 			BbsMessage msg,ModelMap model) throws IOException {
 		CmsSite site = CmsUtils.getSite(request);
@@ -172,7 +172,7 @@ public class MessageAct {
 		return sendSysMessage(request, model);
 	}
 	
-	@RequestMapping(value = "/member/sendMsgJson.jhtml", method = RequestMethod.POST)
+	@RequestMapping(value = "/member/sendMsgJson.html", method = RequestMethod.POST)
 	public void messageJsonSubmit(HttpServletRequest request,HttpServletResponse response, String username,
 			String content,Integer msgType, ModelMap model) throws JSONException {
 		CmsSite site = CmsUtils.getSite(request);
@@ -206,7 +206,7 @@ public class MessageAct {
 	}
 
 	//我的信息
-	@RequestMapping(value = "/member/myMsg*.jhtml")
+	@RequestMapping(value = "/member/myMsg*.html")
 	public String myMsg(HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
 		BbsUser user = CmsUtils.getUser(request);
@@ -234,7 +234,7 @@ public class MessageAct {
 	 * @param response
 	 * @throws JSONException
 	 */
-	@RequestMapping(value = "/member/myMsgJson.jhtml")
+	@RequestMapping(value = "/member/myMsgJson.html")
 	public void myMsgJson(Integer typeId,Integer first,Boolean status,Integer count,
 			HttpServletRequest request,HttpServletResponse response) throws JSONException{
 		BbsUser user = CmsUtils.getUser(request);
@@ -267,7 +267,7 @@ public class MessageAct {
 	
 
 	//我的留言
-	@RequestMapping(value = "/member/myguestbook*.jhtml")
+	@RequestMapping(value = "/member/myguestbook*.html")
 	public String myguestbook(HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
 		BbsUser user = CmsUtils.getUser(request);
@@ -283,7 +283,7 @@ public class MessageAct {
 				TPLDIR_MEMBER, MY_MSG);
 	}
 	//我的提醒
-	@RequestMapping(value = "/member/myremind*.jhtml")
+	@RequestMapping(value = "/member/myremind*.html")
 	public String myremind(HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
 		BbsUser user = CmsUtils.getUser(request);
@@ -299,7 +299,7 @@ public class MessageAct {
 				TPLDIR_MEMBER, MY_REMIND);
 	}
 
-	@RequestMapping(value = "/member/reply*.jhtml")
+	@RequestMapping(value = "/member/reply*.html")
 	public String reply(HttpServletRequest request, Integer mid, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
 		BbsUser user = CmsUtils.getUser(request);
@@ -315,10 +315,10 @@ public class MessageAct {
 			return FrontUtils.getTplPath(request, site,
 					TPLDIR_MEMBER, REPLY);
 		}
-		return "redirect:/member/myMsg.jhtml";
+		return "redirect:/member/myMsg.html";
 	}
 
-	@RequestMapping(value = "/member/ajax_delete_msg.jhtml")
+	@RequestMapping(value = "/member/ajax_delete_msg.html")
 	public void deleteMessage(HttpServletRequest request,
 			HttpServletResponse response, Integer mid, ModelMap model)
 			throws JSONException {
@@ -333,7 +333,7 @@ public class MessageAct {
 		ResponseUtils.renderJson(response, json.toString());
 	}
 
-	@RequestMapping(value = "/member/ajax_delete_reply.jhtml")
+	@RequestMapping(value = "/member/ajax_delete_reply.html")
 	public void deleteReply(HttpServletRequest request,
 			HttpServletResponse response, Integer rid, ModelMap model)
 			throws JSONException {

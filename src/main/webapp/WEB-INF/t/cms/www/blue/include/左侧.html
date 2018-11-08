@@ -3,11 +3,11 @@
     <!--最新动态-->
     <div class="left-panel">
         <ul>
-            <li [#if location?ends_with('/')||location?contains('indexModerator.jhtm')]class="active"[/#if]>
+            <li [#if location?ends_with('/')||location?contains('indexModerator.html')]class="active"[/#if]>
                 <a href="${base}/"><small>NEW</small>最新动态</a>
             </li>
-            <li [#if location?contains('indexRecommend.jhtm')]class="active"[/#if]>
-                <a href="${base}/indexRecommend.jhtml"><small>HOT</small>热门推荐</a>
+            <li [#if location?contains('indexRecommend.html')]class="active"[/#if]>
+                <a href="${base}/indexRecommend.html"><small>HOT</small>热门推荐</a>
             </li>
         </ul>
     </div>
@@ -54,7 +54,7 @@
     </div>
     <!--左侧链接-->
     <div class="more-panel">
-        <a href="${base}/topicType/index.jhtml">
+        <a href="${base}/topicType/index.html">
             <img src="/${res}/bbs_forum/images/icon-topic.png" >
             话题
         </a>

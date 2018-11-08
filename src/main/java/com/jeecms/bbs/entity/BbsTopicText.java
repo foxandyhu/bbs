@@ -27,14 +27,14 @@ public class BbsTopicText implements Serializable{
 	 */
 	private static final long serialVersionUID = -6615323672306064639L;
 
+	@Id
+    @Column(name = "TOPIC_ID")
 	private Integer id;
 
 	@Column(name="TITLE")
 	private String title;
 
-	@Id
 	@OneToOne
-	@Column(name="TOPIC_ID")
 	@JoinColumn(name="TOPIC_ID")
 	private BbsTopic topic;
 

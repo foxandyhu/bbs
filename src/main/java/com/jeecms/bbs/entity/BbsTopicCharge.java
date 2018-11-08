@@ -39,6 +39,8 @@ public class BbsTopicCharge implements Serializable{
 	 */
 	private static final long serialVersionUID = 3845915293067492808L;
 
+    @Id
+    @Column(name="topic_id")
 	private Integer id;
 
 	@Column(name="charge_amount")
@@ -71,11 +73,9 @@ public class BbsTopicCharge implements Serializable{
 	@Column(name="reward_pattern")
 	private Boolean rewardPattern;
 
-	@Id
-	@Column(name="topic_id")
 	@JoinColumn(name="topic_id")
 	@OneToOne(cascade=CascadeType.ALL)
-	private com.jeecms.bbs.entity.BbsTopic topic;
+	private BbsTopic topic;
 
 	public Integer getId () {
 		return id;
@@ -165,11 +165,11 @@ public class BbsTopicCharge implements Serializable{
 		this.rewardPattern = rewardPattern;
 	}
 
-	public com.jeecms.bbs.entity.BbsTopic getTopic () {
+	public BbsTopic getTopic () {
 		return topic;
 	}
 
-	public void setTopic (com.jeecms.bbs.entity.BbsTopic topic) {
+	public void setTopic (BbsTopic topic) {
 		this.topic = topic;
 	}
 	

@@ -18,7 +18,7 @@ import com.jeecms.core.entity.CmsSite;
 public class BbsTopicSearchAct {
 	public static final String SEARCH_RESULT = "tpl.search";
 
-	@RequestMapping(value = "/topic/search*.jhtml")
+	@RequestMapping(value = "/topic/search*.html")
 	public String searchSubmit(HttpServletRequest request,
 			ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);

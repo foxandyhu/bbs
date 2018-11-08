@@ -1,33 +1,33 @@
 <div class="left-panel">
 					<ul class="forum-items">
-						<li [#if location?contains('member/index.jhtml')]class="active"[/#if] >
-							<a href="${base}/member/index.jhtml">
+						<li [#if location?contains('member/index.html')]class="active"[/#if] >
+							<a href="${base}/member/index.html">
 								<i class="iconfont icon-gerenzhongxin font"></i> 个人主页
 							</a>
 						</li>
                         [#if user.moderator]
-                        <li [#if location?contains('member/checkingtopic.jhtml')]class="active"[/#if]>
-							<a href="${base}/member/checkingtopic.jhtml">
+                        <li [#if location?contains('member/checkingtopic.html')]class="active"[/#if]>
+							<a href="${base}/member/checkingtopic.html">
 								<i class="icon-zhuti"></i> 
 								主题审核
 							</a>
 						</li>
                         [/#if]
-						<li [#if location?contains('member/myfriend.jhtml')]class="active"[/#if]>
-							<a href="${base}/member/myfriend.jhtml">
+						<li [#if location?contains('member/myfriend.html')]class="active"[/#if]>
+							<a href="${base}/member/myfriend.html">
 								<i class="iconfont icon-renshu font"></i> 
 								好友
 							</a>
 						</li>
-						<li [#if location?contains('member/myTopicType.jhtml')]class="active"[/#if]>
-							<a href="${base}/member/myTopicType.jhtml">
+						<li [#if location?contains('member/myTopicType.html')]class="active"[/#if]>
+							<a href="${base}/member/myTopicType.html">
 								<i class="iconfont icon-guanzhu font"></i>
 								关注
 							</a>
 
 						</li>
-						<li [#if location?contains('magic/mybox.jhtml')||location?contains('magic/magiclog.jhtml')||location?contains('magic/buyMagiclog.jhtml')||location?contains('magic/giveMagiclog.jhtml')]class="active"[/#if]>
-							<a href="${base}/magic/mybox.jhtml">
+						<li [#if location?contains('magic/mybox.html')||location?contains('magic/magiclog.html')||location?contains('magic/buyMagiclog.html')||location?contains('magic/giveMagiclog.html')]class="active"[/#if]>
+							<a href="${base}/magic/mybox.html">
 								<i class="iconfont icon-daoju1 font"></i>
 								道具
 							</a>
@@ -45,7 +45,7 @@
 							</a>
 						</li>
 						<li [#if location?contains('member/sysMsg')]class="active"[/#if]>
-							<a href="${base}/member/sysMsg.jhtml">
+							<a href="${base}/member/sysMsg.html">
 								<i class="iconfont icon-xitongxiaoxi font"></i>
 								系统消息
 							</a>

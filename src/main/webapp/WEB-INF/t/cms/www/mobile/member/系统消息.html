@@ -20,7 +20,7 @@
     <!--main-->
     <div class="main-wrap">
     <div id="main">
-    <div id="breadCrumb"><img alt="" align="absMiddle" style="cursor: pointer" src="/${res}/bbs_forum/img/home.gif" /> <a href="${base}/">${site.name}</a> &raquo; <a href="${base}/member/index.jhtml">会员中心</a> &raquo;我的消息</div>
+    <div id="breadCrumb"><img alt="" align="absMiddle" style="cursor: pointer" src="/${res}/bbs_forum/img/home.gif" /> <a href="${base}/">${site.name}</a> &raquo; <a href="${base}/member/index.html">会员中心</a> &raquo;我的消息</div>
     <div id="set-wrap">
     <div id="set-side">
     <div id="set-side-wrap">
@@ -42,7 +42,7 @@
      <div class="set-tab-box" style="height:100px;">
      	[#list tag_pagination.list as msg]
      	<div id="m${msg.id}">
-     	<span style="color:blue">系统消息</span>:${(msg.content)!}　${msg.createTime?string("yyyy-MM-dd HH:mm")}　[#if msg.sender??]<a href="reply.jhtml?mid=${msg.id}">[#if msg.sender.id==user.id]继续发送[#else]回复[/#if][/#if]
+     	<span style="color:blue">系统消息</span>:${(msg.content)!}　${msg.createTime?string("yyyy-MM-dd HH:mm")}　[#if msg.sender??]<a href="reply.html?mid=${msg.id}">[#if msg.sender.id==user.id]继续发送[#else]回复[/#if][/#if]
      	</div>
      	[/#list]
     </div>

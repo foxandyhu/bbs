@@ -2,17 +2,14 @@ package com.jeecms.common.web;
 
 import java.io.IOException;
 
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
+import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 
 /**
  * 执行时间过滤器
@@ -20,7 +17,7 @@ import org.slf4j.LoggerFactory;
  * @author tom
  * 
  */
-@WebFilter(filterName="processTime",urlPatterns={"*.do","*.jspx","*.jhtml","*.htm","*.jsp"})
+@WebFilter(filterName="processTime",urlPatterns={"*.do","*.jspx","*.htm","*.jsp"})
 public class ProcessTimeFilter implements Filter {
 	protected final Logger log = LoggerFactory
 			.getLogger(ProcessTimeFilter.class);
@@ -34,6 +31,7 @@ public class ProcessTimeFilter implements Filter {
 
 	public void doFilter(ServletRequest req, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
+        String s[]=WebApplicationContextUtils.getWebApplicationContext(req.getServletContext()).getBeanDefinitionNames();
 		HttpServletRequest request = (HttpServletRequest) req;
 		long time = System.currentTimeMillis();
 		request.setAttribute(START_TIME, time);

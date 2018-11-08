@@ -39,9 +39,9 @@ public class BbsForumDaoImpl extends HibernateBaseDao<BbsForum, Integer>
 	}
 
 	public int countPath(Integer siteId, String path) {
-		String hql = "select count(*) from BbsForum bean where bean.site.id=? and bean.path=?";
-		return ((Number) getSession().createQuery(hql).setParameter(0, siteId)
-				.setParameter(1, path).iterate().next()).intValue();
+		String hql = "select count(*) from BbsForum bean where bean.site.id=:siteId and bean.path=:path";
+		return ((Number) getSession().createQuery(hql).setParameter("siteId", siteId)
+				.setParameter("path", path).iterate().next()).intValue();
 	}
 
 	public BbsForum getByPath(Integer siteId, String path) {

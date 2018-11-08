@@ -1,4 +1,4 @@
-﻿package com.jeecms.bbs.dao.impl;
+package com.jeecms.bbs.dao.impl;
 
 import org.hibernate.Criteria;
 import org.springframework.stereotype.Repository;

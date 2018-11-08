@@ -1,4 +1,4 @@
-﻿package com.jeecms.bbs.manager.impl;
+package com.jeecms.bbs.manager.impl;
 
 import static com.jeecms.bbs.entity.BbsTopic.TOPIC_VOTE;
 import static com.jeecms.bbs.entity.BbsTopic.TOPIC_VOTE_SINGLE;

@@ -76,7 +76,7 @@ public class ShiroConfig {
 			private static final long serialVersionUID = -4794995092802667876L;
 			{
 				put("*.jspx","anon");
-				put("*.jhtml","anon");
+				put("*.html","anon");
 				put("/member/forgot_password.jspx","anon");
 				put("/member/password_reset.jspx","anon");
 				put("/login.jspx","authc");

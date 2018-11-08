@@ -32,7 +32,7 @@
 					<div class="infobox">
 						<div class="touxiang">
 							[#if user.avatar??]<img src="${user.avatar}"/>[#else]<img src="/${res}/bbs_member/img/face/none.gif"/>[/#if]
-							<a href="${base}/member/editUserImg.jhtml">修改头像</a>
+							<a href="${base}/member/editUserImg.html">修改头像</a>
 						</div>
 						<div class="usernamebox">
 							<ul class="top">
@@ -41,13 +41,13 @@
 							</ul>
 							<ul class="bottom">
 								<li>
-									<a href="${base}/member/information.jhtml">
+									<a href="${base}/member/information.html">
 										<span class="iconfont icon-edit"></span>
 										编辑资料
 									</a>
 								</li>
 								<li>
-									<a href="${base}/member/pwd.jhtml">
+									<a href="${base}/member/pwd.html">
 										<span class="iconfont icon-password"></span>
 										修改密码
 									</a>
@@ -70,7 +70,7 @@
 								<span>威望</span>
 							</div>
 							<div class="itmes">
-								<a href="${base}/member/creditManager.jhtml">积分兑换</a>
+								<a href="${base}/member/creditManager.html">积分兑换</a>
 							</div>
 						</div>
 					</div>
@@ -82,10 +82,10 @@
                                       
 					<li class="clearfix top">
 						<div class="card">
-							<a href="${base}/member/index.jhtml">发帖（${user.topicCount}）</a>
+							<a href="${base}/member/index.html">发帖（${user.topicCount}）</a>
 						</div>
 						<div class="active card">
-							<a href="${base}/member/mypost.jhtml">回复（${user.replyCount}）</a>
+							<a href="${base}/member/mypost.html">回复（${user.replyCount}）</a>
 						</div>
 					</li>
 </ul>

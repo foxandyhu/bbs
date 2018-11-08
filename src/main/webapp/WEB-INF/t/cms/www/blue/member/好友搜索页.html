@@ -17,14 +17,14 @@
     </style>
     <script type="text/javascript">
 	function apply(id, val){
-		$.post("apply.jhtml",{"u": val},function(data){
+		$.post("apply.html",{"u": val},function(data){
 			if(data){
 				$("#u"+id).html(data);
 			}
 		});
 	}
     $(function(){
-    	suggest("suggest.jhtml", "kw", "suggest", 10, 600, 30000);
+    	suggest("suggest.html", "kw", "suggest", 10, 600, 30000);
     });
     </script>
   </head>
@@ -33,7 +33,7 @@
     <!--main-->
     <div class="main-wrap">
     <div id="main">
-    <div id="breadCrumb"><img alt="" align="absMiddle" style="cursor: pointer" src="/${res}/bbs_forum/img/home.gif" /> <a href="${base}/">${site.name}</a> &raquo; <a href="${base}/member/index.jhtml">会员中心</a> &raquo;搜索好友</div>
+    <div id="breadCrumb"><img alt="" align="absMiddle" style="cursor: pointer" src="/${res}/bbs_forum/img/home.gif" /> <a href="${base}/">${site.name}</a> &raquo; <a href="${base}/member/index.html">会员中心</a> &raquo;搜索好友</div>
     <div id="set-wrap">
     <div id="set-side">
     <div id="set-side-wrap">
@@ -41,7 +41,7 @@
     </div>
     </div>
     <div id="set-content">
-    <form action="${base}/member/friendSearch.jhtml" name="jvForm" method="get">
+    <form action="${base}/member/friendSearch.html" name="jvForm" method="get">
     <div class="cc" id="set-content-wrap">
     <div>
     <div class="set-tab-table">
@@ -80,7 +80,7 @@
     		[/@friendship]
     		[/#if]
     		</span>
-    		<a href="${base}/member/sendMsg.jhtml?username=${friend.username!}&type=3">打招呼</a>
+    		<a href="${base}/member/sendMsg.html?username=${friend.username!}&type=3">打招呼</a>
     		<br/>
     	[/#list]
    	  	[/@friend_page]

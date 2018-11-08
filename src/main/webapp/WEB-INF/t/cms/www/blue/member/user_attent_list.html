@@ -36,17 +36,17 @@
 				</div>
 				<div class="gzbox">
 						<ul class="column clearfix">
-						<li [#if location?contains('member/myTopicType.jhtml')]class="active"[/#if]>
-							<a href="${base}/member/myTopicType.jhtml">关注的话题 &nbsp; <span>${user.subscribeCount!}</span></a>
+						<li [#if location?contains('member/myTopicType.html')]class="active"[/#if]>
+							<a href="${base}/member/myTopicType.html">关注的话题 &nbsp; <span>${user.subscribeCount!}</span></a>
 						</li>
-						<li [#if location?contains('member/myAttentUsers.jhtml')]class="active"[/#if]>
-							<a href="${base}/member/myAttentUsers.jhtml">关注的人 &nbsp; <span>${user.attentionCount!}</span></a>
+						<li [#if location?contains('member/myAttentUsers.html')]class="active"[/#if]>
+							<a href="${base}/member/myAttentUsers.html">关注的人 &nbsp; <span>${user.attentionCount!}</span></a>
 						</li>
-						<li [#if location?contains('member/myAttentTopics.jhtml')]class="active"[/#if]>
-							<a href="${base}/member/myAttentTopics.jhtml">关注的帖子 &nbsp; <span>${user.attentTopicCount!}</span></a>
+						<li [#if location?contains('member/myAttentTopics.html')]class="active"[/#if]>
+							<a href="${base}/member/myAttentTopics.html">关注的帖子 &nbsp; <span>${user.attentTopicCount!}</span></a>
 						</li>
-						<li [#if location?contains('member/myFans.jhtml')]class="active"[/#if]>
-							<a href="${base}/member/myFans.jhtml">关注者 &nbsp; <span>${user.fanCount!}</span></a>
+						<li [#if location?contains('member/myFans.html')]class="active"[/#if]>
+							<a href="${base}/member/myFans.html">关注者 &nbsp; <span>${user.fanCount!}</span></a>
 						</li>
 					</ul>
 					<ul class="gz-user gzdr clearfix">
@@ -57,7 +57,7 @@
 							</div>
 							<div class="gzdr-name">
 								<div class="name">
-									<a href="${base}/person/topics.jhtml?userId=${user.id}" target="_blank">${user.realname!user.username!}</a>
+									<a href="${base}/person/topics.html?userId=${user.id}" target="_blank">${user.realname!user.username!}</a>
 									<img src="${user.group.imgPath!}"/>
 								</div>
 								<div class="gzdr-info">

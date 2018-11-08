@@ -755,19 +755,19 @@ function checkContent(){
 				}, "json");
 			}
 			function apply(id, val,pid){
-				$.post("${base}/member/applyJson.jhtml",{"u": val},function(data){
+				$.post("${base}/member/applyJson.html",{"u": val},function(data){
 					$("#u"+id+"_"+pid).css("iconfont  icon-tongxunlu green");
 				});
 			}
 			function applyDel(id, uid,pid){
-				$.post("${base}/member/delJson.jhtml",{"uid": uid},function(data){
+				$.post("${base}/member/delJson.html",{"uid": uid},function(data){
 					if(data.status==-1){
 						$("#u"+id+"_"+pid).css("iconfont  icon-tongxunlu1 green");
 					}
 				});
 			}
 			function report(url){
-				$.post("${base}/member/report.jhtml",{"url": url},function(data){
+				$.post("${base}/member/report.html",{"url": url},function(data){
 					alert("举报成功!");
 				}, "json");
 			}
@@ -793,7 +793,7 @@ function checkContent(){
 		    }
 			//operate 0关注  1取消关注
 			function attent(userId,operate){
-				$.post("${base}/member/attent.jhtml",{
+				$.post("${base}/member/attent.html",{
 					"userId": userId
 				},function(data){
 					if(operate==1){

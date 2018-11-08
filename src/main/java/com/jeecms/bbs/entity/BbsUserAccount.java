@@ -36,12 +36,14 @@ public class BbsUserAccount implements Serializable {
 
 	public static final byte DRAW_ALIPY = 1;
 
+    @Id
+    @Column(name="user_id")
 	private Integer id;
 
 	@Column(name="account_weixin")
 	private String accountWeixin;
 	
-	@Column(name="account_weixin_openId")
+	@Column(name="account_weixin_open_id")
 	private String accountWeixinOpenId;
 	
 	@Column(name="account_alipy")
@@ -106,8 +108,6 @@ public class BbsUserAccount implements Serializable {
 
 	@OneToOne
 	@JoinColumn(name = "user_id")
-	@Id
-	@Column(name="user_id")
 	private BbsUser user;
 
 	public Integer getId() {

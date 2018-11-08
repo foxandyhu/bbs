@@ -1,4 +1,4 @@
-﻿package com.jeecms.bbs.entity;
+package com.jeecms.bbs.entity;
 
 import static com.jeecms.bbs.web.FrontUtils.replaceSensitivity;
 
@@ -11,17 +11,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.annotations.Cache;
@@ -83,10 +73,11 @@ public class BbsPost implements Serializable {
 	private static final long serialVersionUID = 7386412084173390279L;
 
 	@Id
-	@Column(name="POST_ID")
+	@Column(name="post_id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 
+	@Transient
 	private String title;
 	
 	@Column(name="CREATE_TIME")
@@ -158,7 +149,7 @@ public class BbsPost implements Serializable {
 	private BbsUser editer;
 	
 	@ManyToOne
-	@JoinColumn(name="post_id")
+	@JoinColumn(name="parent_id")
 	private BbsPost parent;
 
 	@OneToMany(mappedBy="post",cascade=CascadeType.ALL)

@@ -33,7 +33,7 @@
 	$(document).ready(function(){
 		var button = $('#upload-button'), interval;
 		new AjaxUpload(button, {
-			action: '${base}/member/userImgUpload.jhtml', 
+			action: '${base}/member/userImgUpload.html',
 			name: 'uploadfile',
 			onSubmit : function(file, ext){
 				button.text('正在上传');
@@ -84,7 +84,7 @@
     <!--main-->
     <div class="main-wrap">
     <div id="main">
-    <div id="breadCrumb"><img alt="" align="absMiddle" style="cursor: pointer" src="/${res}/bbs_forum/img/home.gif" /> <a href="${base}/">${site.name}</a> &raquo; <a href="${base}/member/index.jhtml">会员中心</a> &raquo;个人资料</div>
+    <div id="breadCrumb"><img alt="" align="absMiddle" style="cursor: pointer" src="/${res}/bbs_forum/img/home.gif" /> <a href="${base}/">${site.name}</a> &raquo; <a href="${base}/member/index.html">会员中心</a> &raquo;个人资料</div>
     <div id="set-wrap">
     <div id="set-side">
     <div id="set-side-wrap">
@@ -97,7 +97,7 @@
     <div>
     <div class="set-tab-table">
    		 [#include "image_upload.html"/]
-   <form id="jvForm" action="updateUserImg.jhtml" method="post">
+   <form id="jvForm" action="updateUserImg.html" method="post">
      <table width="98%" border="0" align="center" cellpadding="5" cellspacing="1" bgcolor="#C8DCF0" style="margin:5px;">
         <tr>
          <td height="25" align="right" bgcolor="#f6fbff">头像：</td>
@@ -120,7 +120,7 @@
        
        <tr>
          <td height="25" colspan="2" align="center" bgcolor="#f6fbff">
-		    <input type="hidden" name="nextUrl" value="index.jhtml"/>
+		    <input type="hidden" name="nextUrl" value="index.html"/>
 		     <input class="input" type="hidden" maxlength="75" name="id" value="${user.id!}"/>
 	        <input type="submit" value="提交" class="member_button"/> &nbsp; <input type="reset" value="重置" class="member_button"/>
 		 </td>

@@ -16,7 +16,7 @@
     </style>
     <script>
     	function ajax_delete(id){
-			$.post("ajax_delete_msg.jhtml",{"mid":id},function(data){
+			$.post("ajax_delete_msg.html",{"mid":id},function(data){
 				if(data.success){
 					$("#m"+id).remove();
 				}else{
@@ -25,14 +25,14 @@
 			},"json");
         }
 	function apply(id, val){
-		$.post("apply.jhtml",{"u": val},function(data){
+		$.post("apply.html",{"u": val},function(data){
 			if(data){
 				$("#u"+id).html(data);
 			}
 		});
 	}
     $(function(){
-    	suggest("suggest.jhtml", "kw", "suggest", 10, 600, 30000);
+    	suggest("suggest.html", "kw", "suggest", 10, 600, 30000);
     });
     </script>
   </head>
@@ -41,7 +41,7 @@
     <!--main-->
     <div class="main-wrap">
     <div id="main">
-    <div id="breadCrumb"><img alt="" align="absMiddle" style="cursor: pointer" src="/${res}/bbs_forum/img/home.gif" /> <a href="${base}/">${site.name}</a> &raquo; <a href="${base}/member/index.jhtml">会员中心</a> &raquo;我的消息</div>
+    <div id="breadCrumb"><img alt="" align="absMiddle" style="cursor: pointer" src="/${res}/bbs_forum/img/home.gif" /> <a href="${base}/">${site.name}</a> &raquo; <a href="${base}/member/index.html">会员中心</a> &raquo;我的消息</div>
     <div id="set-wrap">
     <div id="set-side">
     <div id="set-side-wrap">
@@ -65,13 +65,13 @@
      	[#list tag_pagination.list as msg]
      	<span id="m${msg.id}">
      	[#if msg.sys]
-     		<span style="color:blue">系统消息</span>:${(msg.content)!}　${msg.createTime?string("yyyy-MM-dd HH:mm")}　<a href="reply.jhtml?mid=${msg.id}">查看</a>
+     		<span style="color:blue">系统消息</span>:${(msg.content)!}　${msg.createTime?string("yyyy-MM-dd HH:mm")}　<a href="reply.html?mid=${msg.id}">查看</a>
      	[#else]
 	     	<span style="color:blue">[#if msg.sender.id==user.id]您[#else]${msg.sender.username!}[/#if]</span>
 	     	对
 	     	<span style="color:blue">[#if msg.receiver.id==user.id]您[#else]${msg.receiver.username!}[/#if]</span>
 	     	说:
-	     	[@text_cut s=msg.content append='...' len=20/]${msg.createTime?string("yyyy-MM-dd HH:mm")}　<a href="reply.jhtml?mid=${msg.id}">[#if msg.sender.id==user.id]继续发送[#else]回复[/#if]</a>
+	     	[@text_cut s=msg.content append='...' len=20/]${msg.createTime?string("yyyy-MM-dd HH:mm")}　<a href="reply.html?mid=${msg.id}">[#if msg.sender.id==user.id]继续发送[#else]回复[/#if]</a>
      	[/#if]
      	　　<a href="javascript:ajax_delete('${msg.id}')">删除</a><br/>
      	</span>
@@ -83,7 +83,7 @@
     [/@mymsg_page]
     </div>
     <div style="float:right;">
-    <form action="${base}/member/myMsg.jhtml" name="jvForm" method="get">
+    <form action="${base}/member/myMsg.html" name="jvForm" method="get">
     <div style="width:250px;">
 			<input id="kw" type="text" name="kw" value="${kw!}" style="width:173px;" autocomplete="off"/>
 			<input type="submit" value="搜索"/>

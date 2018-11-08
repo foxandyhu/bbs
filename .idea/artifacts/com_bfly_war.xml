@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="com.bfly:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="com.bfly-1.0.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="com.bfly:war exploded" />
+    </root>
+  </artifact>
+</component>

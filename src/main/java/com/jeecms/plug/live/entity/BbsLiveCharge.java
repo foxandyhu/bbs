@@ -51,7 +51,6 @@ public class BbsLiveCharge implements Serializable {
 	private Integer giftNum;
 	
 	@Id
-	@Column(name="live_id")
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="live_id",unique=true)
 	private BbsLive live;

@@ -1,4 +1,4 @@
-﻿package com.jeecms.bbs.entity;
+package com.jeecms.bbs.entity;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -46,7 +46,8 @@ public class BbsConfig implements Serializable{
 	 */
 	public static final short REGISTER_INVITATION = 2;
 
-	
+    @Id
+    @Column(name="CONFIG_ID")
 	private Integer id;
 
 	@Column(name="DEF_AVATAR")
@@ -109,9 +110,8 @@ public class BbsConfig implements Serializable{
 	@Column(name="pic_zoom_def_width")
 	private Integer picZoomDefWidth;
 
-	@Id
-	@Column(name="CONFIG_ID")
-	@OneToOne(mappedBy="config",cascade=CascadeType.ALL)
+	@JoinColumn(name="CONFIG_ID")
+	@OneToOne(cascade=CascadeType.ALL)
 	private CmsSite site;
 
 	@ManyToOne

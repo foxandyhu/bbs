@@ -61,13 +61,13 @@ function hideUserMagicUL(pid){
 	$("#user-magic-"+pid).hide();
 }
 function apply(id, val,pid){
-	$.post("${base}/member/applyJson.jhtml",{"u": val},function(data){
+	$.post("${base}/member/applyJson.html",{"u": val},function(data){
 		$("#u"+id+"_"+pid).html(data.message);
 	});
 	alert("发出好友邀请成功!");
 }
 function attent(userId,operate){
-	$.post("${base}/member/attent.jhtml",{
+	$.post("${base}/member/attent.html",{
 		"userId": userId
 	},function(data){
 		if(data.status==0){
@@ -353,7 +353,7 @@ $("a[id^='magica']").each(function(){
 $("a[id^='msgSendA']").each(function(){
 	id=$(this).attr("id");
 	strs=id.split("_");
-	$(this).wBox({title: "打招呼",requestType:"iframe",iframeWH:{width:320,height:50},target:"${base}/getsendmsgpage.jhtml?username="+strs[2]});
+	$(this).wBox({title: "打招呼",requestType:"iframe",iframeWH:{width:320,height:50},target:"${base}/getsendmsgpage.html?username="+strs[2]});
 });
 $("a[id^='reportA']").each(function(){
 	id=$(this).attr("id");

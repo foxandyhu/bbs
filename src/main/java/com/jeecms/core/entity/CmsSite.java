@@ -39,6 +39,7 @@ public class CmsSite implements Serializable {
 	 */
 	private static final long serialVersionUID = 5903809221240109670L;
 
+	public CmsSite(){}
 	public CmsSite(Integer id) {
 		this.setId(id);
 	}
@@ -460,7 +461,7 @@ public class CmsSite implements Serializable {
 		if (StringUtils.isNotBlank(config.getContextPath())) {
 			buff.append(config.getContextPath());
 		}
-		buff.append("/magic/mybox.jhtml");
+		buff.append("/magic/mybox.html");
 		return buff.toString();
 	}
 
@@ -474,7 +475,7 @@ public class CmsSite implements Serializable {
 		if (StringUtils.isNotBlank(config.getContextPath())) {
 			buff.append(config.getContextPath());
 		}
-		buff.append("/gift/index.jhtml");
+		buff.append("/gift/index.html");
 		return buff.toString();
 	}
 

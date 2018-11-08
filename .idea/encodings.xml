@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/jeecms/bbs/dao/BbsCategoryDao.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/jeecms/bbs/dao/BbsConfigDao.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/jeecms/bbs/dao/BbsGradeDao.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/jeecms/bbs/dao/BbsOperationDao.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/jeecms/bbs/dao/BbsPostDao.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/jeecms/bbs/dao/BbsTopicDao.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/jeecms/bbs/dao/BbsUserGroupDao.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/jeecms/bbs/dao/impl/BbsCategoryDaoImpl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/jeecms/bbs/dao/impl/BbsConfigDaoImpl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/jeecms/bbs/dao/impl/BbsGradeDaoImpl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/jeecms/bbs/dao/impl/BbsOperationDaoImpl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/jeecms/bbs/dao/impl/BbsPostDaoImpl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/jeecms/bbs/dao/impl/BbsTopicDaoImpl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/jeecms/bbs/dao/impl/BbsUserGroupDaoImpl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/jeecms/bbs/entity/BbsCategory.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/jeecms/bbs/entity/BbsConfig.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/jeecms/bbs/entity/BbsForum.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/jeecms/bbs/entity/BbsGrade.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/jeecms/bbs/entity/BbsOperation.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/jeecms/bbs/entity/BbsPost.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/jeecms/bbs/entity/BbsPostText.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/jeecms/bbs/entity/BbsTopic.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/jeecms/bbs/entity/BbsUserGroup.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/jeecms/bbs/manager/BbsCategoryMng.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/jeecms/bbs/manager/BbsConfigMng.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/jeecms/bbs/manager/BbsGradeMng.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/jeecms/bbs/manager/BbsOperationMng.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/jeecms/bbs/manager/BbsPostMng.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/jeecms/bbs/manager/BbsTopicMng.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/jeecms/bbs/manager/BbsUserGroupMng.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/jeecms/bbs/manager/impl/BbsCategoryMngImpl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/jeecms/bbs/manager/impl/BbsConfigMngImpl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/jeecms/bbs/manager/impl/BbsGradeMngImpl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/jeecms/bbs/manager/impl/BbsOperationMngImpl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/jeecms/bbs/manager/impl/BbsPostMngImpl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/jeecms/bbs/manager/impl/BbsTopicMngImpl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/jeecms/bbs/manager/impl/BbsUserGroupMngImpl.java" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>

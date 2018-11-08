@@ -29,7 +29,7 @@ public class BbsGiftAct {
 	/**
 	 * 礼物页
 	 */
-	@RequestMapping(value = "/gift/index*.jhtml", method = RequestMethod.GET)
+	@RequestMapping(value = "/gift/index*.html", method = RequestMethod.GET)
 	public String giftIndex(HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);

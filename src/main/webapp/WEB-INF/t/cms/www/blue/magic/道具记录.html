@@ -33,7 +33,7 @@
         try{
             var tableForm = document.getElementById("tableForm"+id);
             $("#pageNo"+id).val(pageNo);
-            tableForm.action="magiclog.jhtml";
+            tableForm.action="magiclog.html";
             tableForm.onsubmit=null;
             tableForm.submit();
         } catch(e) {
@@ -73,19 +73,19 @@
                             <div class="djjl-nav">
 					<ul class="column clearfix">
 						<li class="active">
-							<a href="${base}/magic/magiclog.jhtml">使用记录</a>
+							<a href="${base}/magic/magiclog.html">使用记录</a>
 						</li>
 						<li>
-							<a href="${base}/magic/buyMagiclog.jhtml">购买记录</a>
+							<a href="${base}/magic/buyMagiclog.html">购买记录</a>
 						</li>
 						<li>
-							<a href="${base}/magic/giveMagiclog.jhtml">获赠记录</a>
+							<a href="${base}/magic/giveMagiclog.html">获赠记录</a>
 						</li>
 					</ul>
                </div>
 					<div class="set-tab-box">
       <div  id="tbc_11" class="dis">
-      	<form id="tableForm1" action="magiclog.jhtml" method="post">
+      	<form id="tableForm1" action="magiclog.html" method="post">
             [#if tag_pagination.list?size gt 0]
 <table border="0" cellspacing="0" cellpadding="0" class="table">
 							<thead>

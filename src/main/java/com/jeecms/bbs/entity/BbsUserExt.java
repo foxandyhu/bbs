@@ -54,6 +54,8 @@ public class BbsUserExt implements Serializable {
 		}
 	}
 
+	@Id
+    @Column(name="user_id")
 	private Integer id;
 
 	@Column(name="realname")
@@ -85,8 +87,6 @@ public class BbsUserExt implements Serializable {
 
 	@OneToOne
 	@JoinColumn(name="user_id")
-	@Id
-	@Column(name="user_id")
 	private BbsUser user;
 
 	public Integer getId() {

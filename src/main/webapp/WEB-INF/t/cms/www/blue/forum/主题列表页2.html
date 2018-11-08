@@ -137,11 +137,11 @@
 	  <th class="h" colspan="5">
 	  [@bbs_posttype forumId=forum.id]
 		  [#list tag_list as type]
-		 	【<a href="${base}/${forum.path!}/type/${type.id}.jhtml" onmouseover="showChild('${type.id}')">${type.typeName!}</a>】
+		 	【<a href="${base}/${forum.path!}/type/${type.id}.html" onmouseover="showChild('${type.id}')">${type.typeName!}</a>】
 			[#if child_list[type.id?string]?size gt 0]
 			 	<ul id="childType_${type.id}" style="display: none;" onmouseout="showChild('${type.id}')">
 				 	 [#list child_list[type.id?string] as child]
-				 	 	 <li>【<a href="${base}/${forum.path!}/type/${child.id}.jhtml">${child.typeName!}</a>】</li>
+				 	 	 <li>【<a href="${base}/${forum.path!}/type/${child.id}.html">${child.typeName!}</a>】</li>
 				 	  [/#list]
 			 	 </ul>
 		 	 [/#if]

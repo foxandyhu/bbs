@@ -2,6 +2,7 @@ package com.context.front;
 
 import java.util.Properties;
 
+import org.apache.catalina.servlets.DefaultServlet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -9,6 +10,7 @@ import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -23,8 +25,10 @@ public class FrontContextConfig extends WebMvcConfigurerAdapter{
 
 	@Autowired
 	private FrontContextInterceptor frontContextInterceptor;
+
 	@Autowired
 	private FrontLocaleInterceptor frontLocaleInterceptor;
+
 	@Autowired
 	private TokenInterceptor tokenInterceptor;
 	
@@ -56,4 +60,9 @@ public class FrontContextConfig extends WebMvcConfigurerAdapter{
 		resolver.setExceptionMappings(p);
 		return resolver;
 	}
+
+    @Override
+    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+	    configurer.enable();        //启用容器默认的servlet 过滤静态资源
+    }
 }

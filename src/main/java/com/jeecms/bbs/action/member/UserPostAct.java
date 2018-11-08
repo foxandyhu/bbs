@@ -64,7 +64,7 @@ public class UserPostAct {
 	public static final String TPL_PWD = "tpl.memberPassword";
 	public static final String MEMBER_ACCOUNT = "tpl.memberAccount";
 
-	@RequestMapping("/member/index*.jhtml")
+	@RequestMapping("/member/index*.html")
 	public String index(HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
 		FrontUtils.frontData(request, model, site);
@@ -79,7 +79,7 @@ public class UserPostAct {
 				TPLDIR_MEMBER, MEMBER_CENTER);
 	}
 
-	@RequestMapping("/member/information.jhtml")
+	@RequestMapping("/member/information.html")
 	public String information(HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
 		FrontUtils.frontData(request, model, site);
@@ -97,7 +97,7 @@ public class UserPostAct {
 	}
 	
 	
-	@RequestMapping("/member/editUserImg.jhtml")
+	@RequestMapping("/member/editUserImg.html")
 	public String editUserImg(HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
 		FrontUtils.frontData(request, model, site);
@@ -112,7 +112,7 @@ public class UserPostAct {
 				TPLDIR_MEMBER, TPL_EDIT_USERIMG);
 	}
 	
-	@RequestMapping("/member/updateUserImg.jhtml")
+	@RequestMapping("/member/updateUserImg.html")
 	public String updateUserImg(String email,
 			String newPassword, String signed, String avatar, BbsUserExt ext,
 			HttpServletRequest request,HttpServletResponse response, ModelMap model) {
@@ -168,7 +168,7 @@ public class UserPostAct {
 				TPLDIR_MEMBER, MEMBER_INFORM);
 	}
 
-	@RequestMapping("/member/mytopic*.jhtml")
+	@RequestMapping("/member/mytopic*.html")
 	public String mytopic(Integer pageNo, HttpServletRequest request,
 			ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -190,7 +190,7 @@ public class UserPostAct {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/member/checkingtopic*.jhtml")
+	@RequestMapping("/member/checkingtopic*.html")
 	public String checkingTopics(Integer pageNo, HttpServletRequest request,
 			HttpServletResponse response,ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -212,7 +212,7 @@ public class UserPostAct {
 				TPLDIR_MEMBER, MEMBER_CHECKING_TOPIC);
 	}
 	
-	@RequestMapping("/member/rejecttopic*.jhtml")
+	@RequestMapping("/member/rejecttopic*.html")
 	public String rejectTopics(Integer pageNo, HttpServletRequest request,
 			HttpServletResponse response,ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -352,7 +352,7 @@ public class UserPostAct {
 		ResponseUtils.renderJson(response, json.toString());
 	}
 
-	@RequestMapping("/member/mypost*.jhtml")
+	@RequestMapping("/member/mypost*.html")
 	public String mypost(Integer pageNo, HttpServletRequest request,
 			ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -368,7 +368,7 @@ public class UserPostAct {
 				TPLDIR_MEMBER, MEMBER_POST);
 	}
 	
-	@RequestMapping("/member/checkingposts*.jhtml")
+	@RequestMapping("/member/checkingposts*.html")
 	public String checkingPosts(Integer pageNo, HttpServletRequest request,
 			HttpServletResponse response,ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -421,7 +421,7 @@ public class UserPostAct {
 		ResponseUtils.renderJson(response, json.toString());
 	}
 
-	@RequestMapping(value = "/member/inputSearch*.jhtml", method = RequestMethod.GET)
+	@RequestMapping(value = "/member/inputSearch*.html", method = RequestMethod.GET)
 	public String search(Integer pageNo, HttpServletRequest request,
 			ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -436,7 +436,7 @@ public class UserPostAct {
 				TPLDIR_MEMBER, SEARCH);
 	}
 
-	@RequestMapping(value = "/member/search*.jhtml")
+	@RequestMapping(value = "/member/search*.html")
 	public String searchSubmit( Integer pageNo,
 			HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -457,7 +457,7 @@ public class UserPostAct {
 				TPLDIR_MEMBER, SEARCH_RESULT);
 	}
 
-	@RequestMapping("/member/creditManager.jhtml")
+	@RequestMapping("/member/creditManager.html")
 	public String creditManager(HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
 		FrontUtils.frontData(request, model, site);
@@ -580,7 +580,7 @@ public class UserPostAct {
 		ResponseUtils.renderJson(response, object.toString());
 	}
 	
-	@RequestMapping(value = "/member/pwd.jhtml", method = RequestMethod.GET)
+	@RequestMapping(value = "/member/pwd.html", method = RequestMethod.GET)
 	public String pwd(HttpServletRequest request,ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
 		FrontUtils.frontData(request, model, site);
@@ -592,7 +592,7 @@ public class UserPostAct {
 		return FrontUtils.getTplPath(request, site,TPLDIR_MEMBER, TPL_PWD);
 	}
 	
-	@RequestMapping(value = "/member/pwd.jhtml", method = RequestMethod.POST)
+	@RequestMapping(value = "/member/pwd.html", method = RequestMethod.POST)
 	public String pwd_update(String origPwd,String password,HttpServletRequest request,HttpServletResponse response,ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
 		FrontUtils.frontData(request, model, site);
@@ -620,7 +620,7 @@ public class UserPostAct {
 	 * @param request
 	 * @param response
 	 */
-	@RequestMapping("/member/checkPwd.jhtml")
+	@RequestMapping("/member/checkPwd.html")
 	public void checkPwd(String origPwd, HttpServletRequest request,
 			HttpServletResponse response) {
 		BbsUser user = CmsUtils.getUser(request);

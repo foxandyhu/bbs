@@ -30,7 +30,7 @@ public class TopicTypeAct {
 	/**
 	 * 我的订阅
 	 */
-	@RequestMapping(value = "/member/myTopicType*.jhtml")
+	@RequestMapping(value = "/member/myTopicType*.html")
 	public String topicTypeIndex(Integer pageNo,HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);

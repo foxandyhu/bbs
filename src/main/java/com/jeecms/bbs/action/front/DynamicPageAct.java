@@ -1,14 +1,16 @@
 package com.jeecms.bbs.action.front;
 
-import static com.jeecms.bbs.Constants.TPLDIR_FORUM;
-import static com.jeecms.bbs.Constants.TPLDIR_INDEX;
-import static com.jeecms.common.web.Constants.INDEX;
-
-import java.io.IOException;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.jeecms.bbs.cache.ForumCountCache;
+import com.jeecms.bbs.cache.TopicCountEhCache;
+import com.jeecms.bbs.entity.*;
+import com.jeecms.bbs.manager.*;
+import com.jeecms.bbs.web.CmsUtils;
+import com.jeecms.bbs.web.FrontUtils;
+import com.jeecms.common.web.CookieUtils;
+import com.jeecms.common.web.session.SessionProvider;
+import com.jeecms.common.web.springmvc.MessageResolver;
+import com.jeecms.core.entity.CmsSite;
+import com.jeecms.core.web.front.URLHelper;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,25 +20,13 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.jeecms.bbs.cache.ForumCountCache;
-import com.jeecms.bbs.cache.TopicCountEhCache;
-import com.jeecms.bbs.entity.BbsForum;
-import com.jeecms.bbs.entity.BbsPostType;
-import com.jeecms.bbs.entity.BbsTopic;
-import com.jeecms.bbs.entity.BbsUser;
-import com.jeecms.bbs.entity.BbsUserGroup;
-import com.jeecms.bbs.manager.BbsConfigMng;
-import com.jeecms.bbs.manager.BbsForumMng;
-import com.jeecms.bbs.manager.BbsOrderMng;
-import com.jeecms.bbs.manager.BbsPostTypeMng;
-import com.jeecms.bbs.manager.BbsTopicMng;
-import com.jeecms.bbs.web.CmsUtils;
-import com.jeecms.bbs.web.FrontUtils;
-import com.jeecms.common.web.CookieUtils;
-import com.jeecms.common.web.session.SessionProvider;
-import com.jeecms.common.web.springmvc.MessageResolver;
-import com.jeecms.core.entity.CmsSite;
-import com.jeecms.core.web.front.URLHelper;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+import static com.jeecms.bbs.Constants.TPLDIR_FORUM;
+import static com.jeecms.bbs.Constants.TPLDIR_INDEX;
+import static com.jeecms.common.web.Constants.INDEX;
 
 @Controller
 public class DynamicPageAct {
@@ -46,16 +36,10 @@ public class DynamicPageAct {
 	public static final String TPL_INDEX = "tpl.index";
 	public static final String TPL_INDEX_MODERATOR = "tpl.indexModerator";
 	public static final String TPL_INDEX_RECOMMEND = "tpl.indexRecommend";
-	public static final String TPL_FORUM = "tpl.forum";
-	public static final String TPL_TOPIC = "tpl.topic";
 	public static final String TPL_NO_VIEW = "tpl.noview";
-	public static final String TPL_TOPIC_TYPE = "tpl.topicType";
-	public static final String LOGIN_INPUT = "tpl.loginInput";
-	public static final int TOPIC_ALL = 0;
-	public static final int TOPIC_ESSENCE = 1;
-	
-	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+
+
+	@RequestMapping(value = {"/","/index"}, method = RequestMethod.GET)
 	public String index(HttpServletRequest request, ModelMap model,HttpServletResponse response) {
 		CmsSite site = CmsUtils.getSite(request);
 		FrontUtils.frontData(request, model, site);
@@ -65,19 +49,7 @@ public class DynamicPageAct {
 		return path;
 	}
 	
-	/**
-	 * WEBLOGIC的默认路径
-	 * 
-	 * @param request
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping(value = "/index.jhtml", method = RequestMethod.GET)
-	public String indexForWeblogic(HttpServletRequest request, ModelMap model,HttpServletResponse response) {
-		return index(request, model,response);
-	}
-	
-	@RequestMapping(value = "/indexModerator*.jhtml", method = RequestMethod.GET)
+	@RequestMapping(value = "/indexModerator*.html", method = RequestMethod.GET)
 	public String indexForModerator(HttpServletRequest request, ModelMap model,HttpServletResponse response) {
 		CmsSite site = CmsUtils.getSite(request);
 		FrontUtils.frontData(request, model, site);
@@ -86,7 +58,7 @@ public class DynamicPageAct {
 				TPLDIR_INDEX, TPL_INDEX_MODERATOR);
 	}
 	
-	@RequestMapping(value = "/indexRecommend*.jhtml", method = RequestMethod.GET)
+	@RequestMapping(value = "/indexRecommend*.html", method = RequestMethod.GET)
 	public String indexRecommend(HttpServletRequest request, ModelMap model,HttpServletResponse response) {
 		CmsSite site = CmsUtils.getSite(request);
 		FrontUtils.frontData(request, model, site);

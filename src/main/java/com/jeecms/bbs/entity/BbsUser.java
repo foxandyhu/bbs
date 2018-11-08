@@ -205,7 +205,7 @@ public class BbsUser implements PriorityInterface, Serializable {
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
 	private Set<BbsMemberMagic> memberMagics;
 
-	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)
+	@OneToMany(mappedBy = "operater", cascade = CascadeType.REMOVE, orphanRemoval = true)
 	private Set<BbsOperation> operations;
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)

@@ -1,4 +1,4 @@
-﻿package com.jeecms.bbs.manager;
+package com.jeecms.bbs.manager;
 
 import java.util.List;
 

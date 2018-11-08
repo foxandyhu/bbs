@@ -44,7 +44,7 @@ public class UserPostAct {
 	public static final String TPL_NO_LOGIN = "tpl.nologin";
 	public static final String TPL_CREDIT = "tpl.creditMng";
 
-	@RequestMapping("/member/index.jhtml")
+	@RequestMapping("/member/index.html")
 	public String index(HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
 		FrontUtils.frontData(request, model, site);
@@ -59,7 +59,7 @@ public class UserPostAct {
 				TPLDIR_MEMBER, MEMBER_CENTER);
 	}
 
-	@RequestMapping("/member/information.jhtml")
+	@RequestMapping("/member/information.html")
 	public String information(HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
 		FrontUtils.frontData(request, model, site);
@@ -93,7 +93,7 @@ public class UserPostAct {
 				TPLDIR_MEMBER, MEMBER_INFORM);
 	}
 
-	@RequestMapping("/member/mytopic*.jhtml")
+	@RequestMapping("/member/mytopic*.html")
 	public String mytopic(Integer pageNo, HttpServletRequest request,
 			ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -109,7 +109,7 @@ public class UserPostAct {
 				TPLDIR_MEMBER, MEMBER_TOPIC);
 	}
 
-	@RequestMapping("/member/mypost*.jhtml")
+	@RequestMapping("/member/mypost*.html")
 	public String mypost(Integer pageNo, HttpServletRequest request,
 			ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -125,7 +125,7 @@ public class UserPostAct {
 				TPLDIR_MEMBER, MEMBER_POST);
 	}
 
-	@RequestMapping(value = "/member/inputSearch.jhtml", method = RequestMethod.GET)
+	@RequestMapping(value = "/member/inputSearch.html", method = RequestMethod.GET)
 	public String search(Integer pageNo, HttpServletRequest request,
 			ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -140,7 +140,7 @@ public class UserPostAct {
 				TPLDIR_MEMBER, SEARCH);
 	}
 
-	@RequestMapping(value = "/member/search*.jhtml")
+	@RequestMapping(value = "/member/search*.html")
 	public String searchSubmit(String keywords, Integer pageNo,
 			HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -156,7 +156,7 @@ public class UserPostAct {
 				TPLDIR_MEMBER, SEARCH_RESULT);
 	}
 
-	@RequestMapping("/member/creditManager.jhtml")
+	@RequestMapping("/member/creditManager.html")
 	public String creditManager(HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
 		FrontUtils.frontData(request, model, site);

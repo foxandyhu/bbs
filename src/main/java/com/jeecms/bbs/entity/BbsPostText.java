@@ -1,12 +1,8 @@
-﻿package com.jeecms.bbs.entity;
+package com.jeecms.bbs.entity;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -26,6 +22,8 @@ public class BbsPostText implements Serializable {
 	 */
 	private static final long serialVersionUID = -6301034656965349193L;
 
+	    @Id
+        @Column(name="POST_ID")
 		private Integer id;
 
 		@Column(name="POST_TITLE")

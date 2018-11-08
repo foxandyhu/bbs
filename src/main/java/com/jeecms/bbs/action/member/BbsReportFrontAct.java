@@ -44,7 +44,7 @@ public class BbsReportFrontAct {
 				TPLDIR_MEMBER, TPL_REPORT_PAGE);
 	}
 
-	@RequestMapping(value="/member/report.jhtml",method = RequestMethod.POST)
+	@RequestMapping(value="/member/report.html",method = RequestMethod.POST)
 	public void report(String url, String reason, HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		BbsUser user=CmsUtils.getUser(request);

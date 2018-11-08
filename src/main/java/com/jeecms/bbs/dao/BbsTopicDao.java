@@ -1,4 +1,4 @@
-﻿package com.jeecms.bbs.dao;
+package com.jeecms.bbs.dao;
 
 import java.util.List;
 

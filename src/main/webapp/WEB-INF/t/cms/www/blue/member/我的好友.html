@@ -14,10 +14,10 @@
 		<script type="text/javascript" src="/${res}/bbs_member/js/l-member.js"></script>
 		<script  type="text/javascript">
 		$(function(){
-			$("#suggest").load("${base}/member/getSearchFriend.jhtml");
+			$("#suggest").load("${base}/member/getSearchFriend.html");
 			$("#search").bind("click",function(){
 				var kw = $("#kw").val().trim();
-				$("#suggest").load("${base}/member/getSearchFriend.jhtml?kw="+kw);
+				$("#suggest").load("${base}/member/getSearchFriend.html?kw="+kw);
 			})
 			
 		})
@@ -25,7 +25,7 @@
 			var id = $(event).attr('id');
 			var content = $("#content_"+id).val();
 			var username = $("#username_"+id).val();
-			$.post("${base}/member/sendMsgJson.jhtml",{
+			$.post("${base}/member/sendMsgJson.html",{
 				"content":content,
 				"username":username,
 				"msgType":1
@@ -35,7 +35,7 @@
 			},"json");
 		}
 		function ajax_delete(id){
-			$.post("${base}/member/ajax_delete_msg.jhtml",{"mid":id},function(data){
+			$.post("${base}/member/ajax_delete_msg.html",{"mid":id},function(data){
 				if(data.success){
 					alert("删除成功");
 					location.reload();
@@ -135,7 +135,7 @@
 						[/#list]
 						[/@mymsg_page]
 					</ul>
-					<form id="searchForm" action="${base}/member/myfriend.jhtml" name="jvForm" method="post">
+					<form id="searchForm" action="${base}/member/myfriend.html" name="jvForm" method="post">
 					<div class="rightFriendList">
 						<div class="" style="width: 220px;">
 						<div class="offside">

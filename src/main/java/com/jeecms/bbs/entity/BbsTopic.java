@@ -1,4 +1,4 @@
-﻿package com.jeecms.bbs.entity;
+package com.jeecms.bbs.entity;
 
 import static com.jeecms.bbs.Constants.DAY_MILLIS;
 import static com.jeecms.bbs.web.FrontUtils.replaceSensitivity;
@@ -52,7 +52,7 @@ import com.jeecms.core.entity.CmsSite;
 @Table(name = "bbs_topic")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @DiscriminatorColumn(name="CATEGORY",discriminatorType=DiscriminatorType.INTEGER)	//帖子类型
-@DiscriminatorValue("100")
+@DiscriminatorValue("0")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 public class BbsTopic implements Serializable {
 

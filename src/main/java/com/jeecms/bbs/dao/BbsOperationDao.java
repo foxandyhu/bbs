@@ -1,4 +1,4 @@
-﻿package com.jeecms.bbs.dao;
+package com.jeecms.bbs.dao;
 
 import com.jeecms.bbs.entity.BbsOperation;
 import com.jeecms.common.hibernate4.Updater;
