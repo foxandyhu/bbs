@@ -1,23 +1,23 @@
 package com.jeecms.bbs.cache;
 
-import java.util.Date;
-import java.util.List;
-
-import net.sf.ehcache.Ehcache;
-import net.sf.ehcache.Element;
-
-import org.springframework.beans.factory.DisposableBean;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Service;
-
 import com.jeecms.bbs.entity.BbsConfig;
 import com.jeecms.bbs.entity.BbsUser;
 import com.jeecms.bbs.manager.BbsConfigMng;
+import net.sf.ehcache.Ehcache;
+import net.sf.ehcache.Element;
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.ehcache.EhCacheCache;
+import org.springframework.cache.ehcache.EhCacheCacheManager;
+import org.springframework.stereotype.Service;
+
+import java.util.Date;
+import java.util.List;
 
 @Service
 public class BbsConfigEhCacheImpl implements BbsConfigEhCache, DisposableBean {
 
+	@Override
 	public void setBbsConfigCache(int postToday, int topicTotal, int postTotal,
 			int userTotal, BbsUser lastUser, Integer siteId) {
 		BbsConfigCache configCache = new BbsConfigCache();
@@ -83,6 +83,7 @@ public class BbsConfigEhCacheImpl implements BbsConfigEhCache, DisposableBean {
 		refreshToDB(siteId);
 	}
 
+	@Override
 	public BbsConfigCache getBbsConfigCache(Integer siteId) {
 		Element e = cache.get(siteId);
 		if (e != null) {
@@ -159,6 +160,7 @@ public class BbsConfigEhCacheImpl implements BbsConfigEhCache, DisposableBean {
 	 * 销毁BEAN时，缓存入库。
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public void destroy() throws Exception {
 		List<Integer> keys = cache.getKeys();
 		for (Integer siteId : keys) {
@@ -174,8 +176,9 @@ public class BbsConfigEhCacheImpl implements BbsConfigEhCache, DisposableBean {
 	private Ehcache cache;
 
 	@Autowired
-	public void setCache(@Qualifier("bbsconfigCount") Ehcache cache) {
-		this.cache = cache;
+	public void setCache(EhCacheCacheManager cacheManager){
+		EhCacheCache ehcache= (EhCacheCache)cacheManager.getCache("bbsConfigCountCache");
+		cache=ehcache.getNativeCache();
 	}
 
 	@Autowired

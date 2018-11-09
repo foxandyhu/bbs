@@ -24,7 +24,7 @@ import com.jeecms.core.entity.CmsSite;
  */
 @Entity
 @Table(name="bbs_config")
-@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
+@Cache(usage=CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 public class BbsConfig implements Serializable{
 
 	/**

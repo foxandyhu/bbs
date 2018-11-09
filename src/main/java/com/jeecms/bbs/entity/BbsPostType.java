@@ -54,7 +54,7 @@ public class BbsPostType implements Serializable {
 	private BbsPostType parent;
 
 	@OneToMany(cascade=CascadeType.REFRESH,orphanRemoval=true)
-	@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
+	@Cache(usage=CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 	@JoinColumn(name="parent_id")
 	private Set<BbsPostType> childs;
 	

@@ -31,7 +31,7 @@ import org.json.JSONObject;
  */
 @Entity
 @Table(name="jc_config")
-@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
+@Cache(usage=CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 public class CmsConfig implements Serializable {
 
 	/**

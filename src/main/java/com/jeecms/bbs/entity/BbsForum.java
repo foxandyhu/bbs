@@ -30,7 +30,7 @@ import com.jeecms.core.entity.CmsSite;
  */
 @Entity
 @Table(name = "BBS_FORUM")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 public class BbsForum implements PriorityInterface, Serializable {
 
 	/**

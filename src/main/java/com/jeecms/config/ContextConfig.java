@@ -14,11 +14,15 @@ import org.springframework.orm.hibernate4.support.OpenSessionInViewFilter;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.DispatcherServlet;
-import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.util.IntrospectorCleanupListener;
 
 import java.util.EventListener;
 
+/**
+*  @Description: 系统上下文配置
+*  @Author: andy_hulibo@163.com
+*  @CreateDate: 2018/11/9 10:03
+*/
 @Configuration
 public class ContextConfig{
 
@@ -47,17 +51,29 @@ public class ContextConfig{
 		filter.setName("openSessionInViewFilter");
 		return filter;
 	}
-	
+
 	@Bean
 	public ServletRegistrationBean axisServlet(){
 		AxisServlet axisServlet=new AxisServlet();
 		ServletRegistrationBean registrationBean= new ServletRegistrationBean(axisServlet);
-		registrationBean.setLoadOnStartup(2);
+		registrationBean.setLoadOnStartup(4);
 		registrationBean.addUrlMappings("/services/*");
 		registrationBean.setName("axisServlet");
 		return registrationBean;
 	}
-	
+
+	@Bean
+	public ServletRegistrationBean druidStatViewServlet(){
+		ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean(new StatViewServlet(),"/druid/*");
+		servletRegistrationBean.addInitParameter("allow","127.0.0.1");
+		servletRegistrationBean.addInitParameter("deny","192.168.1.73");
+		servletRegistrationBean.addInitParameter("loginUsername","admin");
+		servletRegistrationBean.addInitParameter("loginPassword","123456");
+		servletRegistrationBean.addInitParameter("resetEnable","false");
+		servletRegistrationBean.setLoadOnStartup(5);
+		return servletRegistrationBean;
+	}
+
 	@Bean
 	public ServletRegistrationBean bbsAdminApiServlet(){
 		AnnotationConfigWebApplicationContext context=new AnnotationConfigWebApplicationContext();
@@ -66,7 +82,7 @@ public class ContextConfig{
 
 		DispatcherServlet bbsAdminApiServlet=new DispatcherServlet(context);
 		ServletRegistrationBean registrationBean= new ServletRegistrationBean(bbsAdminApiServlet);
-		registrationBean.setLoadOnStartup(3);
+		registrationBean.setLoadOnStartup(6);
 		registrationBean.addUrlMappings("/api/admin/*");
 		registrationBean.setName("bbsAdminApiServlet");
 		return registrationBean;
@@ -80,14 +96,14 @@ public class ContextConfig{
 		DispatcherServlet bbsMemberApiServlet=new DispatcherServlet(context);
 		
 		ServletRegistrationBean registrationBean= new ServletRegistrationBean(bbsMemberApiServlet);
-		registrationBean.setLoadOnStartup(4);
+		registrationBean.setLoadOnStartup(7);
 		registrationBean.addUrlMappings("/api/member/*");
 		registrationBean.setName("bbsMemberApiServlet");
 		return registrationBean;
 	}
 
     @Bean
-    public ServletRegistrationBean bbsFrontServlet(){
+    public ServletRegistrationBean dispatcherServlet(){
         AnnotationConfigWebApplicationContext context=new AnnotationConfigWebApplicationContext();
         context.scan("com.context.front","com.jeecms.bbs.action.front","com.jeecms.bbs.api.front","com.jeecms.plug.live.action.front");
 
@@ -95,23 +111,11 @@ public class ContextConfig{
         context.setServletContext(bbsFrontServlet.getServletContext());
 
         ServletRegistrationBean registrationBean= new ServletRegistrationBean(bbsFrontServlet);
-        registrationBean.setLoadOnStartup(5);
+        registrationBean.setLoadOnStartup(8);
         registrationBean.addUrlMappings("/");
-        registrationBean.setName("bbsFrontServlet");
+        registrationBean.setName("dispatcherServlet");
         return registrationBean;
     }
-
-	@Bean
-	public ServletRegistrationBean druidStatViewServlet(){
-       ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean(new StatViewServlet(),"/druid/*");
-       servletRegistrationBean.addInitParameter("allow","127.0.0.1");
-       servletRegistrationBean.addInitParameter("deny","192.168.1.73");
-       servletRegistrationBean.addInitParameter("loginUsername","admin");
-       servletRegistrationBean.addInitParameter("loginPassword","123456");
-       servletRegistrationBean.addInitParameter("resetEnable","false");
-       servletRegistrationBean.setLoadOnStartup(6);
-       return servletRegistrationBean;
-   }
 	
 	@Bean
 	public FilterRegistrationBean bbsUserFilterRegistration(BbsUserFilter userFilter) {

@@ -33,7 +33,7 @@ import com.jeecms.core.entity.CmsSite;
  */
 @Entity
 @Table(name="bbs_post")
-@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
+@Cache(usage=CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 public class BbsPost implements Serializable {
 	
 	/**

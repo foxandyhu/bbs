@@ -8,6 +8,8 @@ import net.sf.ehcache.Element;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.cache.ehcache.EhCacheCache;
+import org.springframework.cache.ehcache.EhCacheCacheManager;
 import org.springframework.stereotype.Service;
 
 import com.jeecms.bbs.entity.BbsTopic;
@@ -17,8 +19,9 @@ import com.jeecms.bbs.manager.BbsTopicMng;
 @Service
 public class TopicCountEhCacheImpl implements TopicCountEhCache, DisposableBean {
 
+	@Override
 	public Long getViewCount(Integer topicId) {
-		Element e = cache.get(topicId);
+		Element e = topicCountCache.get(topicId);
 		if (e != null) {
 			return (Long) e.getObjectValue();
 		} else {
@@ -27,13 +30,14 @@ public class TopicCountEhCacheImpl implements TopicCountEhCache, DisposableBean 
 			if (topic.getViewCount() != null) {
 				viewCount = topic.getViewCount();
 			}
-			cache.put(new Element(topicId, viewCount));
+			topicCountCache.put(new Element(topicId, viewCount));
 			return viewCount;
 		}
 	}
-	
+
+	@Override
 	public Long getViewCount(Integer topicId, BbsTopicCountEnum e) {
-		Element en=cache.get(topicId);
+		Element en=topicCountCache.get(topicId);
 		if(e.equals(BbsTopicCountEnum.day)){
 			en= topicDayCountCache.get(topicId);
 		}else if(e.equals(BbsTopicCountEnum.week)){
@@ -63,12 +67,13 @@ public class TopicCountEhCacheImpl implements TopicCountEhCache, DisposableBean 
 		}
 	}
 
+	@Override
 	public Long setViewCount(Integer topicId) {
 		Long viewCount = 0L;
 		Long viewDayCount=0L;
 		Long viewWeekCount=0L;
 		Long viewMonthCount=0L;
-		Element e = cache.get(topicId);
+		Element e = topicCountCache.get(topicId);
 		Element eTopicDay = topicDayCountCache.get(topicId);
 		Element eTopicWeek = topicWeekCountCache.get(topicId);
 		Element eTopicMonth = topicMonthCountCache.get(topicId);
@@ -109,7 +114,7 @@ public class TopicCountEhCacheImpl implements TopicCountEhCache, DisposableBean 
 				viewMonthCount = topic.getViewsMonth() + 1;
 			}
 		}
-		cache.put(new Element(topicId, viewCount));
+		topicCountCache.put(new Element(topicId, viewCount));
 		topicDayCountCache.put(new Element(topicId, viewDayCount));
 		topicWeekCountCache.put(new Element(topicId, viewWeekCount));
 		topicMonthCountCache.put(new Element(topicId, viewMonthCount));
@@ -122,7 +127,7 @@ public class TopicCountEhCacheImpl implements TopicCountEhCache, DisposableBean 
 		if (time > refreshTime + interval) {
 			refreshTime = time;
 			BbsTopic topic = bbsTopicMng.findById(topicId);
-			Element e = cache.get(topicId);
+			Element e = topicCountCache.get(topicId);
 			Long viewCount = (Long) e.getObjectValue();
 			topic.setViewCount(viewCount);
 			Element eTopicDay = topicDayCountCache.get(topicId);
@@ -138,6 +143,7 @@ public class TopicCountEhCacheImpl implements TopicCountEhCache, DisposableBean 
 		}
 	}
 
+	@Override
 	public boolean getLastReply(Integer userId, long time) {
 		Element e = replycache.get(userId);
 		if (e != null) {
@@ -158,8 +164,9 @@ public class TopicCountEhCacheImpl implements TopicCountEhCache, DisposableBean 
 	 * 销毁BEAN时，缓存入库。
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public void destroy() throws Exception {
-		List<Integer> keys = cache.getKeys();
+		List<Integer> keys = topicCountCache.getKeys();
 		for (Integer topicId : keys) {
 			refreshToDB(topicId);
 		}
@@ -170,42 +177,35 @@ public class TopicCountEhCacheImpl implements TopicCountEhCache, DisposableBean 
 	// 最后刷新时间
 	private long refreshTime = System.currentTimeMillis();
 	private BbsTopicMng bbsTopicMng;
-	private Ehcache cache;
+	private Ehcache topicCountCache;
 	private Ehcache replycache;
 	private Ehcache topicDayCountCache;
 	private Ehcache topicWeekCountCache;
 	private Ehcache topicMonthCountCache;
 
 	@Autowired
-	public void setCache(@Qualifier("topicCount") Ehcache cache) {
-		this.cache = cache;
-	}
+	public void setCache(EhCacheCacheManager cacheManager){
+		EhCacheCache cache= (EhCacheCache)cacheManager.getCache("topicCountCache");
+		topicCountCache=cache.getNativeCache();
 
-	@Autowired
-	public void setReplycache(@Qualifier("lastReply") Ehcache cache) {
-		this.replycache = cache;
-	}
-	
-	@Autowired
-	public void setTopicDayCountCache(@Qualifier("topicDayCount") Ehcache cache) {
-		this.topicDayCountCache = cache;
-	}
-	
-	@Autowired
-	public void setTopicWeekCountCache(@Qualifier("topicWeekCount") Ehcache cache) {
-		this.topicWeekCountCache = cache;
-	}
-	
-	@Autowired
-	public void setTopicMonthCountCache(@Qualifier("topicDayCount") Ehcache cache) {
-		this.topicMonthCountCache = cache;
+		cache= (EhCacheCache)cacheManager.getCache("lastReplyCache");
+		replycache=cache.getNativeCache();
+
+		cache= (EhCacheCache)cacheManager.getCache("topicDayCountCache");
+		topicDayCountCache=cache.getNativeCache();
+
+		cache= (EhCacheCache)cacheManager.getCache("topicWeekCountCache");
+		topicWeekCountCache=cache.getNativeCache();
+
+		cache= (EhCacheCache)cacheManager.getCache("topicMonthCountCache");
+		topicMonthCountCache=cache.getNativeCache();
 	}
 
 	@Autowired
 	public void setBbsTopicMng(BbsTopicMng bbsTopicMng) {
 		this.bbsTopicMng = bbsTopicMng;
 	}
-	
+
 	
 
 }

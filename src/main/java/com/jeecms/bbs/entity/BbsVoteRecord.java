@@ -18,7 +18,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 @Entity
 @Table(name="bbs_vote_record")
-@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
+@Cache(usage=CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 public class BbsVoteRecord implements Serializable{
 	/**
 	 * @author andy_hulibo@163.com

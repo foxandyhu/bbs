@@ -32,7 +32,7 @@ import com.jeecms.common.upload.UploadUtils;
 
 @Entity
 @Table(name = "jo_ftp")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 public class Ftp implements Serializable {
 
 	/**

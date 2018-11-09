@@ -12,9 +12,14 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+/**
+*  @Description: 主题数据
+*  @Author: andy_hulibo@163.com
+*  @CreateDate: 2018/11/9 14:29
+*/
 @Entity
 @Table(name="bbs_topic_count")
-@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
+@Cache(usage=CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 public class BbsTopicCount implements Serializable {
 
 	/**
@@ -23,6 +28,9 @@ public class BbsTopicCount implements Serializable {
 	 */
 	private static final long serialVersionUID = -6424118666399519003L;
 
+	@Id
+	@Column(name = "topic_id")
+	private int id;
 
 	@Column(name="ups")
 	private Integer ups;
@@ -36,10 +44,17 @@ public class BbsTopicCount implements Serializable {
 	@Column(name="attentions")
 	private Integer attentions;
 
-	@Id
 	@OneToOne
 	@JoinColumn(name="topic_id")
 	private BbsTopic topic;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public Integer getUps () {
 		return ups;

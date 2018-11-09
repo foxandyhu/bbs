@@ -20,7 +20,7 @@ import com.jeecms.core.entity.CmsSite;
  */
 @Entity
 @Table(name="bbs_operation")
-@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
+@Cache(usage=CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 public class BbsOperation implements Serializable {
 
 	/**

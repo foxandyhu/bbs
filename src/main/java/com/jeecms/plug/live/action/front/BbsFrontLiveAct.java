@@ -25,6 +25,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.cache.ehcache.EhCacheCache;
+import org.springframework.cache.ehcache.EhCacheCacheManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -768,9 +770,6 @@ public class BbsFrontLiveAct extends AbstractBbsLive{
 	@Autowired
 	private BbsOrderMng orderMng;
 	@Autowired
-	@Qualifier("OrderTemp")
-	private Ehcache cache;
-	@Autowired
 	private BbsLiveUserMng liveUserMng;
 	@Autowired
 	private BbsGiftMng bbsGiftMng;
@@ -780,4 +779,11 @@ public class BbsFrontLiveAct extends AbstractBbsLive{
 	WebSocketExtHandler socketHandler;
 	@Autowired
 	private BbsLiveMessageMng liveMessageMng;
+
+	private Ehcache cache;
+	@Autowired
+	public void setCache(EhCacheCacheManager cacheManager){
+		EhCacheCache ehcache= (EhCacheCache)cacheManager.getCache("orderTempCache");
+		cache=ehcache.getNativeCache();
+	}
 }

@@ -30,7 +30,7 @@ import com.jeecms.core.entity.CmsSite;
  */
 @Entity
 @Table(name = "bbs_report")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 public class BbsReport implements Serializable {
 
 	/**
@@ -62,7 +62,7 @@ public class BbsReport implements Serializable {
 	private BbsUser processUser;
 
 	@OneToMany(cascade=CascadeType.REMOVE,orphanRemoval=true,mappedBy="report")
-	@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
+	@Cache(usage=CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 	private Set<BbsReportExt> bbsReportExtSet;
 
 	

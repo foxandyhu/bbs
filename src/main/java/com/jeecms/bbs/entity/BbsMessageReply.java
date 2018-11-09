@@ -21,7 +21,7 @@ import com.jeecms.common.util.DateUtils;
 
 @Entity
 @Table(name = "jb_message_reply")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 public class BbsMessageReply implements Serializable {
 
 	/**

@@ -22,7 +22,7 @@ import com.jeecms.common.util.DateUtils;
 
 @Entity
 @Table(name = "jb_api_record")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 public class ApiRecord implements Serializable {
 
 	/**

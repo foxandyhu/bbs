@@ -23,7 +23,7 @@ import com.jeecms.common.util.DateUtils;
  */
 @Entity
 @Table(name="bbs_topic_charge")
-@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
+@Cache(usage=CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 public class BbsTopicCharge implements Serializable{
 	
 	public static final Short MODEL_FREE=0;

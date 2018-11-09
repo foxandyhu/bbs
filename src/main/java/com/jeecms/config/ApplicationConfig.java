@@ -59,7 +59,8 @@ public class ApplicationConfig {
 	
 	@Bean
 	public CommandLineRunner customFreemarkerView(FreeMarkerViewResolver resolver) {
-		return (String ... args) ->resolver.setViewClass(SimpleFreeMarkerView.class);	//设置Freemarker解析视图;
+		//设置Freemarker解析视图;
+		return (String ... args) ->resolver.setViewClass(SimpleFreeMarkerView.class);
 	}
 	
 	@EventListener

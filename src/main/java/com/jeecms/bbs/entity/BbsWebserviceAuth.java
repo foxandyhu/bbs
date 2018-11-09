@@ -26,7 +26,7 @@ import org.json.JSONObject;
  */
 @Entity
 @Table(name = "bbs_webservice_auth")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 public class BbsWebserviceAuth implements Serializable{
 
 	/**
@@ -92,7 +92,7 @@ public class BbsWebserviceAuth implements Serializable{
 	private boolean enable;
 
 	@OneToMany(cascade=CascadeType.ALL,orphanRemoval=true,fetch=FetchType.LAZY,mappedBy="auth")
-	@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
+	@Cache(usage=CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 	private Set<BbsWebserviceCallRecord> callRecords;
 
 	public Integer getId() {

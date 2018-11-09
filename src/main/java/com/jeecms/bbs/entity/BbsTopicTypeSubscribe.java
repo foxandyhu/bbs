@@ -23,7 +23,7 @@ import org.json.JSONObject;
  */
 @Entity
 @Table(name = "bbs_topic_type_subscribe")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 public class BbsTopicTypeSubscribe implements Serializable {
 
 	/**

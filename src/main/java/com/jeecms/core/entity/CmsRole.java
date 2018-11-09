@@ -33,7 +33,7 @@ import com.jeecms.bbs.entity.BbsUser;
  */
 @Entity
 @Table(name = "jc_role")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 public class CmsRole implements Serializable {
 
 	/**
@@ -68,7 +68,7 @@ public class CmsRole implements Serializable {
 	private Set<String> perms;
 	
 	@ManyToMany(cascade=CascadeType.REMOVE)
-	@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
+	@Cache(usage=CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 	@JoinTable(name="jb_user_role",
 	joinColumns=@JoinColumn(name="role_id",referencedColumnName="role_id"),
 	inverseJoinColumns=@JoinColumn(name="user_id",referencedColumnName="user_id"))

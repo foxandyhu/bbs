@@ -21,7 +21,7 @@ import org.json.JSONObject;
 
 @Entity
 @Table(name="jb_api_info")
-@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
+@Cache(usage=CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 public class ApiInfo implements Serializable{
 
 	

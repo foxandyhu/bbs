@@ -29,7 +29,7 @@ import com.jeecms.common.util.DateUtils;
 
 @Entity
 @Table(name = "bbs_live_apply")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 public class BbsLiveApply implements Serializable {
 
 	/**

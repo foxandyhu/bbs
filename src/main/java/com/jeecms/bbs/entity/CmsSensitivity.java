@@ -26,7 +26,7 @@ import com.jeecms.core.entity.CmsSite;
  */
 @Entity
 @Table(name = "jc_sensitivity")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 public class CmsSensitivity implements Serializable {
 
 	/**

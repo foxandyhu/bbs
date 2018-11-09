@@ -49,7 +49,7 @@ import com.jeecms.plug.live.entity.BbsLiveUserAccount;
  */
 @Entity
 @Table(name="jb_user")
-@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
+@Cache(usage=CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 public class BbsUser implements PriorityInterface, Serializable {
 
 	/**
@@ -195,7 +195,7 @@ public class BbsUser implements PriorityInterface, Serializable {
 	private BbsUserActiveLevel activeLevel;
 
 	@ManyToMany(mappedBy = "users")
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 	private Set<CmsRole> roles;
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)
@@ -212,59 +212,62 @@ public class BbsUser implements PriorityInterface, Serializable {
 	private Set<BbsSession> sessions;
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 	private Set<BbsFriendShip> myFriends;
 
 	@OneToMany(mappedBy = "friend", cascade = CascadeType.REMOVE, orphanRemoval = true)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 	private Set<BbsFriendShip> toFriends;
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
 	private Set<BbsTopicTypeSubscribe> subscribes;
 
-	@OneToMany(mappedBy="user",cascade=CascadeType.REMOVE,orphanRemoval=true)
-	private Set<BbsLiveUserAccount> liveUserAccountSet;
+	@OneToOne(mappedBy="user",cascade=CascadeType.REMOVE,orphanRemoval=true)
+	private BbsLiveUserAccount liveUserAccount;
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 	private Set<BbsGiftUser> gifts;
 	
 	@OneToOne(cascade=CascadeType.REMOVE,mappedBy="user")
 	private BbsUserOnline userOnline;
 	
 	@ElementCollection
-	@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
+	@Cache(usage=CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 	@CollectionTable(name="jb_user_attr",joinColumns=@JoinColumn(name="user_id"))
 	@MapKeyColumn(name="attr_name")
 	@Column(name="attr_value")
 	private Map<String, String> attr;
 	
 	@OneToOne(cascade=CascadeType.REMOVE,orphanRemoval=true,mappedBy="user")
-	@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
+	@Cache(usage=CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 	private BbsUserExt userExt;
 	
 	@OneToMany(cascade=CascadeType.REMOVE,mappedBy="user")
-	@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
+	@Cache(usage=CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 	private Set<BbsTopicPostOperate> topicPostOperates;
 	
 	@OneToOne(mappedBy="user",cascade=CascadeType.REMOVE)
-	@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
+	@Cache(usage=CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 	private BbsUserAccount userAccount;
 	
 	@OneToMany(cascade=CascadeType.REMOVE,mappedBy="user")
-	@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
+	@Cache(usage=CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 	private Set<BbsThirdAccount> thirdAccounts;
 	
 	@ManyToMany(cascade=CascadeType.REMOVE)
 	@JoinTable(name="jb_user_attention",joinColumns=@JoinColumn(name="attention_user_id",referencedColumnName="user_id"))
-	@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
+	@Cache(usage=CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 	private Set<BbsUser> myAttentions;
 	
 	@ManyToMany(cascade=CascadeType.REMOVE)
 	@JoinTable(name="jb_user_attention",joinColumns=@JoinColumn(name="be_attention_user_id",referencedColumnName="user_id"))
-	@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
+	@Cache(usage=CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 	private Set<BbsUser> myFans;
 
+	public void setUserAccount(BbsUserAccount userAccount) {
+		this.userAccount = userAccount;
+	}
 
 	public BbsUserExt getUserExt() {
 		return userExt;
@@ -274,6 +277,7 @@ public class BbsUser implements PriorityInterface, Serializable {
 		this.userExt = userExt;
 	}
 
+	@Override
 	public Integer getId() {
 		return id;
 	}
@@ -656,15 +660,6 @@ public class BbsUser implements PriorityInterface, Serializable {
 
 	public void setUserAccountSet(BbsUserAccount userAccount) {
 		this.userAccount = userAccount;
-	}
-
-	public Set<BbsLiveUserAccount> getLiveUserAccountSet() {
-		return liveUserAccountSet;
-	}
-
-	public void setLiveUserAccountSet(
-			Set<BbsLiveUserAccount> liveUserAccountSet) {
-		this.liveUserAccountSet = liveUserAccountSet;
 	}
 
 	public Set<BbsThirdAccount> getThirdAccounts() {
@@ -1107,12 +1102,11 @@ public class BbsUser implements PriorityInterface, Serializable {
 	}
 
 	public BbsLiveUserAccount getLiveUserAccount() {
-		Set<BbsLiveUserAccount> set = getLiveUserAccountSet();
-		if (set != null && set.size() > 0) {
-			return set.iterator().next();
-		} else {
-			return null;
-		}
+		return liveUserAccount;
+	}
+
+	public void setLiveUserAccount(BbsLiveUserAccount liveUserAccount) {
+		this.liveUserAccount = liveUserAccount;
 	}
 
 	public Date getUserLastActiveTime() {
@@ -1766,6 +1760,7 @@ public class BbsUser implements PriorityInterface, Serializable {
 	/**
 	 * 用于排列顺序。此处优先级为0，则按ID升序排。
 	 */
+	@Override
 	public Number getPriority() {
 		return 0;
 	}

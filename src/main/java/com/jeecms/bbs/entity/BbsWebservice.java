@@ -119,7 +119,7 @@ public class BbsWebservice implements Serializable {
 	@Column(name="service_operate")
 	private String operate;
 
-	@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
+	@Cache(usage=CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 	@OrderBy("priority")
     @ElementCollection
 	@CollectionTable(name="bbs_webservice_param",joinColumns=@JoinColumn(name="service_id"))

@@ -18,7 +18,7 @@ import org.json.JSONObject;
 
 @Entity
 @Table(name = "jb_friendship")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 public class BbsFriendShip implements Serializable {
 
 	/**

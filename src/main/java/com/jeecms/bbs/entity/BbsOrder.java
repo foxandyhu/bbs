@@ -23,7 +23,7 @@ import com.jeecms.common.util.DateUtils;
  */
 @Entity
 @Table(name = "bbs_order")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 public class BbsOrder implements Serializable {
 
 	/**

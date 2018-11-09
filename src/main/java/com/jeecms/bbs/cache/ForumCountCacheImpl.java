@@ -1,20 +1,19 @@
 package com.jeecms.bbs.cache;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-
-import org.springframework.beans.factory.DisposableBean;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Service;
-
 import com.jeecms.bbs.entity.BbsForumCount;
 import com.jeecms.bbs.manager.BbsForumCountMng;
 import com.jeecms.common.util.DateUtils;
-
 import net.sf.ehcache.Ehcache;
 import net.sf.ehcache.Element;
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.ehcache.EhCacheCache;
+import org.springframework.cache.ehcache.EhCacheCacheManager;
+import org.springframework.stereotype.Service;
+
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -206,16 +205,16 @@ public class ForumCountCacheImpl implements ForumCountCache, DisposableBean {
 	private Ehcache forumVisitCount;
 	private Ehcache forumTopicCount;
 	private Ehcache forumPostCount;
+
 	@Autowired
-	public void setForumVisitCount(@Qualifier("forumVisitCount")Ehcache cache) {
-		this.forumVisitCount = cache;
-	}
-	@Autowired
-	public void setForumTopicCount(@Qualifier("forumTopicCount")Ehcache cache) {
-		this.forumTopicCount = cache;
-	}
-	@Autowired
-	public void setForumPostCountCount(@Qualifier("forumPostCount")Ehcache cache) {
-		this.forumPostCount = cache;
+	public void setCache(EhCacheCacheManager cacheManager){
+		EhCacheCache cache= (EhCacheCache)cacheManager.getCache("forumVisitCountCache");
+		forumVisitCount=cache.getNativeCache();
+
+		cache= (EhCacheCache)cacheManager.getCache("forumTopicCountCache");
+		forumTopicCount=cache.getNativeCache();
+
+		cache= (EhCacheCache)cacheManager.getCache("forumPostCountCache");
+		forumPostCount=cache.getNativeCache();
 	}
 }

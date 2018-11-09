@@ -11,6 +11,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.cache.ehcache.EhCacheCache;
+import org.springframework.cache.ehcache.EhCacheCacheManager;
 import org.springframework.stereotype.Service;
 
 import com.jeecms.bbs.manager.BbsSessionMng;
@@ -23,15 +25,18 @@ import com.jeecms.bbs.manager.BbsSessionMng;
 public class BbsUserCacheImpl implements BbsUserCache, DisposableBean {
 	private Logger log = LoggerFactory.getLogger(BbsUserCacheImpl.class);
 
+	@Override
 	public void view(Long sessionId,Date lastActiveTime){
 		cache.put(new Element(sessionId,lastActiveTime));
 	}
 
+	@Override
 	public void refreshToDB() {
 		bbsSessionMng.freshCacheToDB(cache);
 		log.info("refresh cache views to DB: {}");
 	}
-	
+
+	@Override
 	public void removeCache() {
 		// 清除缓存
 		cache.removeAll();
@@ -41,6 +46,7 @@ public class BbsUserCacheImpl implements BbsUserCache, DisposableBean {
 	/**
 	 * 销毁BEAN时，缓存入库。
 	 */
+	@Override
 	public void destroy() throws Exception {
 		bbsSessionMng.freshCacheToDB(cache);
 		log.info("Bean destroy.refresh cache views to DB: {}");
@@ -50,10 +56,10 @@ public class BbsUserCacheImpl implements BbsUserCache, DisposableBean {
 	private BbsSessionMng bbsSessionMng;
 
 	private Ehcache cache;
-	
-	@Autowired
-	public void setCache(@Qualifier("bbsUserCache") Ehcache cache) {
-		this.cache = cache;
-	}
 
+	@Autowired
+	public void setCache(EhCacheCacheManager cacheManager){
+		EhCacheCache ehcache= (EhCacheCache)cacheManager.getCache("bbsUserCache");
+		cache=ehcache.getNativeCache();
+	}
 }

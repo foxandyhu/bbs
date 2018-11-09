@@ -5,17 +5,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.annotations.Cache;
@@ -34,7 +24,7 @@ import com.jeecms.core.entity.CmsSite;
  */
 @Entity
 @Table(name = "bbs_live")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 public class BbsLive implements Serializable {
 
 	/**
@@ -134,16 +124,16 @@ public class BbsLive implements Serializable {
 	private CmsSite site;
 
 	@OneToMany(mappedBy="live",fetch=FetchType.LAZY,cascade=CascadeType.REMOVE)
-	@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
+	@Cache(usage=CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 	private Set<BbsLiveMessage> messages;
 	
 	@OneToMany(mappedBy="live",fetch=FetchType.LAZY,cascade=CascadeType.REMOVE)
-	@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
+	@Cache(usage=CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 	private Set<BbsLiveUser> joinUsers;
 	
-	@OneToMany(mappedBy="live",fetch=FetchType.LAZY,cascade=CascadeType.REMOVE,orphanRemoval=true)
-	@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
-	private Set<BbsLiveCharge> chargeSet;
+	@OneToOne(mappedBy="live",fetch=FetchType.LAZY,cascade=CascadeType.REMOVE,orphanRemoval=true)
+	@Cache(usage=CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
+	private BbsLiveCharge liveCharge;
 
 	public Integer getId() {
 		return id;
@@ -357,14 +347,6 @@ public class BbsLive implements Serializable {
 		this.joinUsers = joinUsers;
 	}
 
-	public Set<BbsLiveCharge> getChargeSet() {
-		return chargeSet;
-	}
-
-	public void setChargeSet(Set<BbsLiveCharge> chargeSet) {
-		this.chargeSet = chargeSet;
-	}
-
 	public String getUrlWhole() {
 		return getSite().getUrlBuffer(true, true, false).append("/live/front/get.jspx?id=").append(getId()).toString();
 	}
@@ -414,12 +396,11 @@ public class BbsLive implements Serializable {
 	}
 
 	public BbsLiveCharge getLiveCharge() {
-		Set<BbsLiveCharge> set = getChargeSet();
-		if (set != null && set.size() > 0) {
-			return set.iterator().next();
-		} else {
-			return null;
-		}
+		return liveCharge;
+	}
+
+	public void setLiveCharge(BbsLiveCharge liveCharge) {
+		this.liveCharge = liveCharge;
 	}
 
 	public Double getTotalAmount() {

@@ -1,4 +1,4 @@
-package com.jeecms.common.captcha;
+package com.jeecms.core.servlet;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -27,7 +27,7 @@ import com.octo.captcha.service.image.ImageCaptchaService;
  * 
  */
 @SuppressWarnings("serial")
-@WebServlet(name="Jcaptcha",urlPatterns={"/captcha.svl"})
+@WebServlet(name="Jcaptcha",urlPatterns={"/captcha.svl"},loadOnStartup = 3)
 public class JcaptchaServlet extends HttpServlet {
 	public static final String CAPTCHA_IMAGE_FORMAT = "jpeg";
 

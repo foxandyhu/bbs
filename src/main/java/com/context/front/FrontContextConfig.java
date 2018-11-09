@@ -1,23 +1,34 @@
 package com.context.front;
 
-import java.util.Properties;
-
-import org.apache.catalina.servlets.DefaultServlet;
+import com.jeecms.common.web.springmvc.ExtCookieLocaleResolver;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
+import org.springframework.core.Ordered;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.HttpRequestHandler;
+import org.springframework.web.servlet.HandlerMapping;
+import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
+import org.springframework.web.servlet.handler.SimpleUrlHandlerMapping;
+import org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler;
+import org.w3c.dom.stylesheets.LinkStyle;
 
-import com.jeecms.common.web.springmvc.ExtCookieLocaleResolver;
+import javax.servlet.ServletContext;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
 
+/**
+*  @Description: 页面访问上下文配置
+*  @Author: andy_hulibo@163.com
+*  @CreateDate: 2018/11/9 11:20
+*/
 @Configuration
 @ComponentScan(basePackages= {"com.jeecms.bbs.action.front","com.jeecms.bbs.api.front","com.jeecms.plug.live.action.front"},includeFilters=@Filter(type=FilterType.ANNOTATION,value=Controller.class),useDefaultFilters=false)
 @EnableWebMvc
@@ -61,8 +72,25 @@ public class FrontContextConfig extends WebMvcConfigurerAdapter{
 		return resolver;
 	}
 
-    @Override
-    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-	    configurer.enable();        //启用容器默认的servlet 过滤静态资源
-    }
+	@Value("#{'${spring.resource.suffix}'.split(',')}")
+	private List<String> suffixs;
+
+	/**
+	*  @Description: 手动开启Servlet容器默认的Servlet对静态资源的处理
+	*  @Author: andy_hulibo@163.com
+	*  @CreateDate: 2018/11/9 14:19
+	*/
+	@Bean
+	public HandlerMapping defaultServletHandlerMapping(ServletContext ctx) {
+		DefaultServletHttpRequestHandler handler=new DefaultServletHttpRequestHandler();
+		handler.setServletContext(ctx);
+		Map<String, HttpRequestHandler> urlMap = new HashMap<>(15);
+		for (String suffix:suffixs){
+			urlMap.put("/**/"+suffix, handler);
+		}
+		SimpleUrlHandlerMapping handlerMapping = new SimpleUrlHandlerMapping();
+		handlerMapping.setOrder(Integer.MIN_VALUE);
+		handlerMapping.setUrlMap(urlMap);
+		return handlerMapping;
+	}
 }

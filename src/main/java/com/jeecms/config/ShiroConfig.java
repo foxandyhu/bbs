@@ -17,6 +17,7 @@ import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.mgt.WebSecurityManager;
 import org.apache.shiro.web.servlet.Cookie;
 import org.apache.shiro.web.servlet.SimpleCookie;
+import org.springframework.cache.ehcache.EhCacheCacheManager;
 import org.springframework.cache.ehcache.EhCacheManagerFactoryBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -30,6 +31,11 @@ import com.jeecms.core.security.BbsAuthorizingRealm;
 import com.jeecms.core.security.BbsLogoutFilter;
 import com.jeecms.core.security.BbsUserFilter;
 
+/**
+*  @Description: Shiro配置
+*  @Author: andy_hulibo@163.com
+*  @CreateDate: 2018/11/9 16:35
+*/
 @Configuration
 public class ShiroConfig {
 	
@@ -102,9 +108,9 @@ public class ShiroConfig {
 	}
 	
 	@Bean
-	public EhCacheManager shiroEhcacheManager(EhCacheManagerFactoryBean ehCacheManagerFactoryBean) {
+	public EhCacheManager shiroEhcacheManager(EhCacheCacheManager cacheManager) {
 		EhCacheManager manager=new EhCacheManager();
-		manager.setCacheManager(ehCacheManagerFactoryBean.getObject());
+		manager.setCacheManager(cacheManager.getCacheManager());
 		return manager;
 	}
 	

@@ -20,13 +20,15 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
  */
 @Entity
 @Table(name="bbs_live_charge")
-@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
+@Cache(usage=CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 public class BbsLiveCharge implements Serializable {
 	/**
 	 * @author andy_hulibo@163.com 2018年10月26日下午4:40:23
 	 */
 	private static final long serialVersionUID = 6953620611365481927L;
 
+	@Id
+	@Column(name="live_id")
 	private Integer id;
 
 	@Column(name="total_amount")
@@ -49,10 +51,9 @@ public class BbsLiveCharge implements Serializable {
 	
 	@Column(name="gift_num")
 	private Integer giftNum;
-	
-	@Id
+
 	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="live_id",unique=true)
+	@JoinColumn(name="live_id")
 	private BbsLive live;
 
 	

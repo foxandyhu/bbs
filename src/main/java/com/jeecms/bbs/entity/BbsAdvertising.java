@@ -32,7 +32,7 @@ import com.jeecms.core.entity.CmsSite;
  */
 @Entity
 @Table(name="jb_advertising")
-@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
+@Cache(usage=CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 public class BbsAdvertising implements Serializable {
 
 	/**

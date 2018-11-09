@@ -1,38 +1,15 @@
 package com.jeecms.bbs.action.front;
 
 
-import static com.jeecms.bbs.Constants.TPLDIR_SPECIAL;
-import static com.jeecms.common.page.SimplePage.cpn;
-
-import java.io.File;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.lang.RandomStringUtils;
-import org.apache.commons.lang.StringUtils;
-import org.jdom2.JDOMException;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-
 import com.alipay.api.response.AlipayTradeQueryResponse;
-import com.jeecms.common.util.PropertyUtils;
-import com.jeecms.common.util.StrUtils;
-import com.jeecms.common.util.WeixinPay;
+import com.jeecms.bbs.MagicConstants;
+import com.jeecms.bbs.entity.*;
+import com.jeecms.bbs.entity.BbsIncomeStatistic.BbsIncomeType;
+import com.jeecms.bbs.manager.*;
+import com.jeecms.bbs.web.CmsUtils;
+import com.jeecms.bbs.web.FrontUtils;
+import com.jeecms.common.page.Pagination;
+import com.jeecms.common.util.*;
 import com.jeecms.common.web.Constants;
 import com.jeecms.common.web.CookieUtils;
 import com.jeecms.common.web.HttpClientUtil;
@@ -41,36 +18,29 @@ import com.jeecms.common.web.session.SessionProvider;
 import com.jeecms.common.web.springmvc.RealPathResolver;
 import com.jeecms.core.entity.CmsSite;
 import com.jeecms.core.web.WebErrors;
-
 import net.sf.ehcache.Ehcache;
 import net.sf.ehcache.Element;
+import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang.StringUtils;
+import org.jdom2.JDOMException;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.ehcache.EhCacheCache;
+import org.springframework.cache.ehcache.EhCacheCacheManager;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.jeecms.bbs.MagicConstants;
-import com.jeecms.bbs.entity.BbsCommonMagic;
-import com.jeecms.bbs.entity.BbsConfigCharge;
-import com.jeecms.bbs.entity.BbsGift;
-import com.jeecms.bbs.entity.BbsIncomeStatistic.BbsIncomeType;
-import com.jeecms.bbs.entity.BbsOrder;
-import com.jeecms.bbs.entity.BbsTopic;
-import com.jeecms.bbs.entity.BbsTopicCharge;
-import com.jeecms.bbs.entity.BbsUser;
-import com.jeecms.bbs.manager.BbsCommonMagicMng;
-import com.jeecms.bbs.manager.BbsConfigChargeMng;
-import com.jeecms.bbs.manager.BbsGiftMng;
-import com.jeecms.bbs.manager.BbsGiftUserMng;
-import com.jeecms.bbs.manager.BbsIncomeStatisticMng;
-import com.jeecms.bbs.manager.BbsMagicLogMng;
-import com.jeecms.bbs.manager.BbsOrderMng;
-import com.jeecms.bbs.manager.BbsTopicChargeMng;
-import com.jeecms.bbs.manager.BbsTopicMng;
-import com.jeecms.bbs.manager.BbsUserAccountMng;
-import com.jeecms.bbs.manager.BbsUserMng;
-import com.jeecms.bbs.web.CmsUtils;
-import com.jeecms.bbs.web.FrontUtils;
-import com.jeecms.common.page.Pagination;
-import com.jeecms.common.util.AliPay;
-import com.jeecms.common.util.Num62;
-import com.jeecms.common.util.PayUtil;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.*;
+
+import static com.jeecms.bbs.Constants.TPLDIR_SPECIAL;
+import static com.jeecms.common.page.SimplePage.cpn;
 
 @Controller
 public class OrderAct {
@@ -1351,9 +1321,13 @@ public class OrderAct {
 	private BbsGiftUserMng bbsGiftUserMng;
 	@Autowired
 	private BbsIncomeStatisticMng incomeStatisticMng;
-	@Autowired
-	@Qualifier("OrderTemp")
+
 	private Ehcache cache;
-	
+
+	@Autowired
+	public void setCache(EhCacheCacheManager cacheManager){
+		EhCacheCache ehcache= (EhCacheCache)cacheManager.getCache("orderTempCache");
+		cache=ehcache.getNativeCache();
+	}
 }
 

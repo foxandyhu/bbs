@@ -27,7 +27,7 @@ import com.jeecms.common.util.DateUtils;
  */
 @Entity
 @Table(name = "bbs_account_pay")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 public class BbsAccountPay implements Serializable {
 
 	/**

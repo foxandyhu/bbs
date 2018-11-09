@@ -18,7 +18,7 @@ import org.json.JSONObject;
 
 @Entity
 @Table(name = "bbs_config_charge")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 public class BbsConfigCharge implements Serializable {
 
 	/**

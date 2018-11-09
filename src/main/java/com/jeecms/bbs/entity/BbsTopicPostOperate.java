@@ -19,7 +19,7 @@ import org.json.JSONObject;
 
 @Entity
 @Table(name = "bbs_topic_post_operate")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 public class BbsTopicPostOperate implements Serializable {
 
 	/**

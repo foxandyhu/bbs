@@ -22,7 +22,7 @@ import org.json.JSONObject;
  */
 @Entity
 @Table(name="bbs_limit")
-@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
+@Cache(usage=CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 public class BbsLimit implements Serializable {
 	/**
 	 * @author andy_hulibo@163.com 2018年10月26日下午3:57:53

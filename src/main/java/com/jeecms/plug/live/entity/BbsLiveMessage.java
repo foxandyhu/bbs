@@ -24,7 +24,7 @@ import com.jeecms.bbs.entity.BbsUser;
  */
 @Entity
 @Table(name="bbs_live_message")
-@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
+@Cache(usage=CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 public class BbsLiveMessage implements Serializable {
 
 	/**

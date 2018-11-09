@@ -26,7 +26,7 @@ import com.jeecms.common.util.DateUtils;
  */
 @Entity
 @Table(name = "bbs_live_user_account")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 public class BbsLiveUserAccount implements Serializable {
 
 	/**
@@ -34,6 +34,8 @@ public class BbsLiveUserAccount implements Serializable {
 	 */
 	private static final long serialVersionUID = -1594260021077691667L;
 
+	@Id
+	@Column(name = "user_id")
 	private Integer id;
 
 	@Column(name = "total_amount")
@@ -75,7 +77,6 @@ public class BbsLiveUserAccount implements Serializable {
 	@Column(name = "check_time")
 	private Date checkTime;
 
-	@Id
 	@OneToOne
 	@JoinColumn(name = "user_id")
 	private BbsUser user;

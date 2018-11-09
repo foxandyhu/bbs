@@ -37,7 +37,7 @@ import com.jeecms.core.entity.CmsSite;
  */
 @Entity
 @Table(name = "bbs_topic_type")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 public class BbsTopicType implements HibernateTree<Integer>, PriorityInterface, Serializable {
 
 	/**
@@ -93,7 +93,7 @@ public class BbsTopicType implements HibernateTree<Integer>, PriorityInterface, 
 	private CmsSite site;
 	
 	@OneToMany(cascade=CascadeType.REMOVE,mappedBy="parent")
-	@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
+	@Cache(usage=CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 	@SortComparator(value=PriorityComparator.class)
 	private Set<BbsTopicType> child;
 	

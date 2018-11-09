@@ -25,7 +25,7 @@ import com.jeecms.common.util.DateUtils;
  */
 @Entity
 @Table(name = "bbs_user_account")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 public class BbsUserAccount implements Serializable {
 
 	/**

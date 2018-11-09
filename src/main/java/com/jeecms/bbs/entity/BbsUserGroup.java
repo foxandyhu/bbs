@@ -36,7 +36,7 @@ import com.jeecms.core.entity.CmsSite;
  */
 @Entity
 @Table(name = "bbs_user_group")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 public class BbsUserGroup implements Serializable {
 
 	/**

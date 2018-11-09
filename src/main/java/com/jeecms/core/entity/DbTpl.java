@@ -30,7 +30,7 @@ import com.jeecms.core.tpl.Tpl;
  */
 @Entity
 @Table(name="jo_template")
-@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
+@Cache(usage=CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 public class DbTpl implements Tpl, Serializable {
 
 	/**

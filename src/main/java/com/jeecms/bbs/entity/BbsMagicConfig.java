@@ -16,7 +16,7 @@ import org.json.JSONObject;
 
 @Entity
 @Table(name="bbs_magic_config")
-@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
+@Cache(usage=CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 public class BbsMagicConfig implements Serializable {
 
 	/**

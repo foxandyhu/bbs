@@ -18,7 +18,7 @@ import org.json.JSONObject;
 
 @Entity
 @Table(name = "bbs_vote_item")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 public class BbsVoteItem implements Serializable {
 
 	/**

@@ -25,7 +25,7 @@ import com.jeecms.core.entity.CmsSite;
  */
 @Entity
 @Table(name = "jc_friendlink_ctg")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 public class CmsFriendlinkCtg implements Serializable {
 
 	/**

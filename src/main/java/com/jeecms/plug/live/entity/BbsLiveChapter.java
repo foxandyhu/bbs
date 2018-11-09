@@ -34,7 +34,7 @@ import com.jeecms.common.hibernate4.PriorityInterface;
  */
 @Entity
 @Table(name="bbs_live_chapter")
-@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
+@Cache(usage=CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 public class BbsLiveChapter implements HibernateTree<Integer>, PriorityInterface, Serializable {
 
 	/**
@@ -72,7 +72,7 @@ public class BbsLiveChapter implements HibernateTree<Integer>, PriorityInterface
 
 	@OneToMany(cascade=CascadeType.REMOVE)
 	@JoinColumn(name="parent_id")
-	@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
+	@Cache(usage=CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 	@SortComparator(value=PriorityComparator.class)
 	private Set<BbsLiveChapter> child;
 

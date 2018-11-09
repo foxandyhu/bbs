@@ -50,7 +50,7 @@ import com.jeecms.core.entity.CmsSite;
  */
 @Entity
 @Table(name = "bbs_topic")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 @DiscriminatorColumn(name="CATEGORY",discriminatorType=DiscriminatorType.INTEGER)	//帖子类型
 @DiscriminatorValue("0")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)

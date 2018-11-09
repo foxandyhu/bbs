@@ -1,4 +1,4 @@
-package com.jeecms.core.action.front;
+package com.jeecms.core.servlet;
 
 import java.io.IOException;
 
@@ -18,7 +18,7 @@ import com.jeecms.core.entity.DbFile;
 import com.jeecms.core.manager.DbFileMng;
 
 @SuppressWarnings("serial")
-@WebServlet(name="DbFile",urlPatterns={"/dbfile.svl"})
+@WebServlet(name="DbFile",urlPatterns={"/dbfile.svl"},loadOnStartup = 2)
 public class DbFileServlet extends HttpServlet {
 	/**
 	 * 参数名称

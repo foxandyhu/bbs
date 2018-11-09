@@ -25,7 +25,7 @@ import com.jeecms.common.util.DateUtils;
  */
 @Entity
 @Table(name="bbs_income_statistic")
-@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
+@Cache(usage=CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 public class BbsIncomeStatistic implements Serializable {
 
 	/**

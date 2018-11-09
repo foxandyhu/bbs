@@ -31,7 +31,7 @@ import com.jeecms.bbs.entity.BbsCreditExchange;
  */
 @Entity
 @Table(name="jc_site")
-@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
+@Cache(usage=CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 public class CmsSite implements Serializable {
 
 	/**

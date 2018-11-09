@@ -26,7 +26,7 @@ import com.jeecms.common.util.DateUtils;
  */
 @Entity
 @Table(name = "bbs_forum_count")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 public class BbsForumCount implements Serializable {
 	/**
 	 * @author andy_hulibo@163.com 2018年10月26日下午3:58:36

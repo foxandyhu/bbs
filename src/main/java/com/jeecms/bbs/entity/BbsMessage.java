@@ -25,7 +25,7 @@ import com.jeecms.common.util.DateUtils;
 
 @Entity
 @Table(name="jb_message")
-@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
+@Cache(usage=CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 public class BbsMessage implements Cloneable, Serializable {
 
 	/**
@@ -86,7 +86,7 @@ public class BbsMessage implements Cloneable, Serializable {
 	private BbsUserGroup msgGroup;
 
 	@OneToMany(cascade=CascadeType.ALL,orphanRemoval=true,mappedBy="message")
-	@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
+	@Cache(usage=CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 	private Set<BbsMessageReply> reply;
 
 	public Integer getId() {
