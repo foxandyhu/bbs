@@ -34,9 +34,8 @@ import com.jeecms.plug.live.manager.BbsLiveUserMng;
 @Transactional
 public class BbsLiveMngImpl implements BbsLiveMng ,BbsLiveChapterDeleteChecker{
 	
-	public static final String WEIXIN_ORDER_QUERY_URL="weixin.orderquery.url";
-	public static final String ALI_PAY_URL="alipay.openapi.url";
-	
+
+	@Override
 	@Transactional(readOnly = true)
 	public Pagination getPage(Integer cid,String title,Integer hostUserId,
 			Short status,Date timeBegin,Date timeEnd,
@@ -47,7 +46,8 @@ public class BbsLiveMngImpl implements BbsLiveMng ,BbsLiveChapterDeleteChecker{
 				orderBy,pageNo, pageSize);
 		return page;
 	}
-	
+
+	@Override
 	@Transactional(readOnly = true)
 	public List<BbsLive> getList(Integer cid,String title,Integer hostUserId,
 			Short status,Date timeBegin,Date timeEnd,
@@ -57,14 +57,16 @@ public class BbsLiveMngImpl implements BbsLiveMng ,BbsLiveChapterDeleteChecker{
 				timeBegin, timeEnd, liveEndTimeBegin,liveEndTimeEnd,
 				orderBy, first, count);
 	}
-	
+
+	@Override
 	public Long findLiveCount(Integer cid,Integer hostUserId,
 			Short status,Date timeBegin,Date timeEnd,
 			Date liveEndTimeBegin,Date liveEndTimeEnd){
 		return dao.findLiveCount(cid,hostUserId,status,timeBegin,
 				timeEnd,liveEndTimeBegin,liveEndTimeEnd);
 	}
-	
+
+	@Override
 	public BbsOrder liveOrder(BbsLive live, Integer num,Integer orderType,
 			String orderNumber,String outOrderNum,Integer buyUserId,
 			boolean selfOnly){
@@ -76,8 +78,6 @@ public class BbsLiveMngImpl implements BbsLiveMng ,BbsLiveChapterDeleteChecker{
     	if(live!=null&&buyUser!=null){
     		//外部订单号和内部订单号要一一对应，否则会出现一个外部订单可以用于形成多个内部订单
     		BbsConfigCharge config=configChargeMng.getDefault();
-    		initWeiXinPayUrl();
-    		initAliPayUrl();
     		Double orderAmount = -1d;
 	 		// 这里是把微信商户的订单号放入了交易号中
 	   	    if(orderType.equals(BbsOrder.PAY_METHOD_WECHAT)){
@@ -145,12 +145,13 @@ public class BbsLiveMngImpl implements BbsLiveMng ,BbsLiveChapterDeleteChecker{
     	}
 	    return order;
 	}
-	
-	
+
+	@Override
 	public void clearLiveUserNum(){
 		dao.clearLiveUserNum();
 	}
-	
+
+	@Override
 	public int sessionConnect(Integer liveId,boolean isClosed){
 		int count=0;
 		BbsLive live=null;
@@ -181,28 +182,33 @@ public class BbsLiveMngImpl implements BbsLiveMng ,BbsLiveChapterDeleteChecker{
 		return count;
 	}
 
+	@Override
 	@Transactional(readOnly = true)
 	public BbsLive findById(Integer id) {
 		BbsLive entity = dao.findById(id);
 		return entity;
 	}
 
+	@Override
 	public BbsLive save(BbsLive bean) {
 		dao.save(bean);
 		return bean;
 	}
 
+	@Override
 	public BbsLive update(BbsLive bean) {
 		Updater<BbsLive> updater = new Updater<BbsLive>(bean);
 		BbsLive entity = dao.updateByUpdater(updater);
 		return entity;
 	}
 
+	@Override
 	public BbsLive deleteById(Integer id) {
 		BbsLive bean = dao.deleteById(id);
 		return bean;
 	}
-	
+
+	@Override
 	public BbsLive[] deleteByIds(Integer[] ids) {
 		BbsLive[] beans = new BbsLive[ids.length];
 		for (int i = 0,len = ids.length; i < len; i++) {
@@ -210,7 +216,8 @@ public class BbsLiveMngImpl implements BbsLiveMng ,BbsLiveChapterDeleteChecker{
 		}
 		return beans;
 	}
-	
+
+	@Override
 	public String checkForChapterDelete(Integer chapterId) {
 		int count = dao.countByChapterId(chapterId);
 		if (count > 0) {
@@ -220,47 +227,11 @@ public class BbsLiveMngImpl implements BbsLiveMng ,BbsLiveChapterDeleteChecker{
 		}
 	}
 	
-	private void initAliPayUrl(){
-		if(getAliPayUrl()==null){
-			setAliPayUrl(PropertyUtils.getPropertyValue(
-					new File(realPathResolver.get(com.jeecms.bbs.Constants.JEEBBS_CONFIG)),ALI_PAY_URL));
-		}
-	}
-	
-	private void initWeiXinPayUrl(){
-		if(getWeiXinPayUrl()==null){
-			setWeiXinPayUrl(PropertyUtils.getPropertyValue(
-					new File(realPathResolver.get(com.jeecms.bbs.Constants.JEEBBS_CONFIG)),WEIXIN_ORDER_QUERY_URL));
-		}
-	}
-	
-	private String weiXinPayUrl;
-	
-	private String aliPayUrl;
-	
-	public String getWeiXinPayUrl() {
-		return weiXinPayUrl;
-	}
-
-	public void setWeiXinPayUrl(String weiXinPayUrl) {
-		this.weiXinPayUrl = weiXinPayUrl;
-	}
-
-	public String getAliPayUrl() {
-		return aliPayUrl;
-	}
-
-	public void setAliPayUrl(String aliPayUrl) {
-		this.aliPayUrl = aliPayUrl;
-	}
-
 	private BbsLiveDao dao;
 	@Autowired
 	private BbsConfigChargeMng configChargeMng;
 	@Autowired
 	private BbsOrderMng orderMng;
-	@Autowired
-	private RealPathResolver realPathResolver;
 	@Autowired
 	private BbsUserMng userMng;
 	@Autowired

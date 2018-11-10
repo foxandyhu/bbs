@@ -1,25 +1,5 @@
 package com.jeecms.bbs.api.member;
 
-import java.io.File;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.lang.StringUtils;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-
 import com.jeecms.bbs.api.ApiResponse;
 import com.jeecms.bbs.api.ApiValidate;
 import com.jeecms.bbs.api.Constants;
@@ -35,27 +15,30 @@ import com.jeecms.bbs.web.CmsUtils;
 import com.jeecms.bbs.web.SignValidate;
 import com.jeecms.bbs.web.StrUtils;
 import com.jeecms.common.page.Pagination;
-import com.jeecms.common.util.PropertyUtils;
 import com.jeecms.common.web.RequestUtils;
 import com.jeecms.common.web.ResponseUtils;
-import com.jeecms.common.web.springmvc.RealPathResolver;
+import com.jeecms.config.SocialInfoConfig;
 import com.jeecms.core.entity.CmsConfig;
 import com.jeecms.core.entity.CmsSite;
 import com.jeecms.core.manager.CmsConfigMng;
 import com.jeecms.core.web.WebErrors;
-import com.jeecms.plug.live.action.front.BbsHostLiveAct;
-import com.jeecms.plug.live.entity.BbsLive;
-import com.jeecms.plug.live.entity.BbsLiveChapter;
-import com.jeecms.plug.live.entity.BbsLiveRate;
-import com.jeecms.plug.live.entity.BbsLiveUser;
-import com.jeecms.plug.live.entity.BbsLiveUserAccount;
-import com.jeecms.plug.live.manager.BbsLiveChapterMng;
-import com.jeecms.plug.live.manager.BbsLiveMng;
-import com.jeecms.plug.live.manager.BbsLiveRateMng;
-import com.jeecms.plug.live.manager.BbsLiveUserAccountMng;
-import com.jeecms.plug.live.manager.BbsLiveUserMng;
+import com.jeecms.plug.live.entity.*;
+import com.jeecms.plug.live.manager.*;
 import com.jeecms.plug.live.util.BaiduCloudUtil;
 import com.jeecms.plug.live.util.TencentCloudUtil;
+import org.apache.commons.lang.StringUtils;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.*;
 
 @Controller
 public class HostLiveApiAct {
@@ -100,11 +83,10 @@ public class HostLiveApiAct {
 				List<BbsLive> lives = (List<BbsLive>) page.getList();
 				int totalCount = page.getTotalCount();
 				// 需要判断当前平台选择的视频云平台类型
-				initTencentPushBaseUrl();
 				for (BbsLive live : lives) {
 					if (live.getLivePlat().equals(BbsLive.LIVE_PLAT_TENCENT)) {
 						String url = TencentCloudUtil.getPushUrl(
-								getTencentPushBaseUrl(),
+								socialInfoConfig.getTencent().getVideoCloud().getPushUrl(),
 								config.getTencentBizId(),
 								config.getTencentPushFlowKey(), user.getId(),
 								live.getEndTime());
@@ -141,8 +123,6 @@ public class HostLiveApiAct {
 
 	/**
 	 * 直播管理-创建
-	 * 
-	 * @param cid非必填
 	 * @throws JSONException
 	 */
 	@RequestMapping(value = "/liveHost/add")
@@ -259,19 +239,18 @@ public class HostLiveApiAct {
 							live.setLivePlat(BbsLive.LIVE_PLAT_TENCENT);
 						}
 						// 需要判断当前平台选择的视频云平台类型
+						String palyUrl=socialInfoConfig.getTencent().getVideoCloud().getPlayUrl();
 						if (live.getLivePlat()
 								.equals(BbsLive.LIVE_PLAT_TENCENT)) {
-							initTencentPushBaseUrl();
-							initTencentPlayBaseUrl();
 							liveUrl = TencentCloudUtil.getRtmpPlayUrl(
-									getTencentPlayBaseUrl(),
+									palyUrl,
 									config.getTencentBizId(), user.getId());
 							demandUrl = TencentCloudUtil.getPlayUrl(
-									getTencentPlayBaseUrl(),
+									palyUrl,
 									config.getTencentBizId(), user.getId(),
 									"flv");
 							liveMobileUrl = TencentCloudUtil.getPlayUrl(
-									getTencentPlayBaseUrl(),
+									palyUrl,
 									config.getTencentBizId(), user.getId(),
 									"m3u8");
 						} else if (live.getLivePlat().equals(
@@ -825,24 +804,6 @@ public class HostLiveApiAct {
 
 	}
 
-	private void initTencentPushBaseUrl() {
-		if (getTencentPushBaseUrl() == null) {
-			setTencentPushBaseUrl(PropertyUtils.getPropertyValue(
-					new File(realPathResolver
-							.get(com.jeecms.bbs.Constants.JEEBBS_CONFIG)),
-					BbsHostLiveAct.TENCENT_PUSH_BASE_URL));
-		}
-	}
-
-	private void initTencentPlayBaseUrl() {
-		if (getTencentPlayBaseUrl() == null) {
-			setTencentPlayBaseUrl(PropertyUtils.getPropertyValue(
-					new File(realPathResolver
-							.get(com.jeecms.bbs.Constants.JEEBBS_CONFIG)),
-					BbsHostLiveAct.TENCENT_PUSH_BASE_URL));
-		}
-	}
-
 	private BbsLive updateLive(Integer id, Integer chapterId, String title,
 			String description, String liveLogo, Date beginTime, Date endTime,
 			Double beginPrice, Double afterPrice, Integer limitUserNum,
@@ -896,17 +857,16 @@ public class HostLiveApiAct {
 			String liveUrl = live.getLiveUrl(), demandUrl = live.getDemandUrl();
 			String liveMobileUrl = live.getLiveMobileUrl();
 			// 需要判断当前平台选择的视频云平台类型
+			String playUrl=socialInfoConfig.getTencent().getVideoCloud().getPlayUrl();
 			if (live.getLivePlat().equals(BbsLive.LIVE_PLAT_TENCENT)) {
-				initTencentPushBaseUrl();
-				initTencentPlayBaseUrl();
 				liveUrl = TencentCloudUtil.getRtmpPlayUrl(
-						getTencentPlayBaseUrl(), config.getTencentBizId(),
+						playUrl, config.getTencentBizId(),
 						hostId);
 				demandUrl = TencentCloudUtil.getPlayUrl(
-						getTencentPlayBaseUrl(), config.getTencentBizId(),
+						playUrl, config.getTencentBizId(),
 						hostId, "flv");
 				liveMobileUrl = TencentCloudUtil.getPlayUrl(
-						getTencentPlayBaseUrl(), config.getTencentBizId(),
+						playUrl, config.getTencentBizId(),
 						hostId, "m3u8");
 			} else if (live.getLivePlat().equals(BbsLive.LIVE_PLAT_BAIDU)) {
 				liveUrl = BaiduCloudUtil.getRtmpPlayUrl(
@@ -936,8 +896,6 @@ public class HostLiveApiAct {
 	@Autowired
 	private BbsLiveMng liveMng;
 	@Autowired
-	private RealPathResolver realPathResolver;
-	@Autowired
 	private BbsLiveChapterMng liveChapterMng;
 	@Autowired
 	private ApiRecordMng apiRecordMng;
@@ -953,24 +911,6 @@ public class HostLiveApiAct {
 	private BbsConfigChargeMng configChargeMng;
 	@Autowired
 	private BbsLiveUserAccountMng liveUserAccountMng;
-
-	private String tencentPushBaseUrl;
-	private String tencentPlayBaseUrl;
-
-	public String getTencentPushBaseUrl() {
-		return tencentPushBaseUrl;
-	}
-
-	public void setTencentPushBaseUrl(String tencentPushBaseUrl) {
-		this.tencentPushBaseUrl = tencentPushBaseUrl;
-	}
-
-	public String getTencentPlayBaseUrl() {
-		return tencentPlayBaseUrl;
-	}
-
-	public void setTencentPlayBaseUrl(String tencentPlayBaseUrl) {
-		this.tencentPlayBaseUrl = tencentPlayBaseUrl;
-	}
-
+	@Autowired
+	private SocialInfoConfig socialInfoConfig;
 }

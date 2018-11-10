@@ -1,19 +1,25 @@
 package com.jeecms.bbs.action.login;
 
 
-import static com.jeecms.bbs.Constants.TPLDIR_MEMBER;
-
-import java.io.File;
-import java.io.IOException;
-import java.sql.Timestamp;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.jeecms.bbs.cache.BbsConfigEhCache;
+import com.jeecms.bbs.entity.*;
+import com.jeecms.bbs.manager.*;
+import com.jeecms.bbs.service.ImageSvc;
+import com.jeecms.bbs.web.CmsUtils;
+import com.jeecms.bbs.web.FrontUtils;
+import com.jeecms.common.security.encoder.PwdEncoder;
+import com.jeecms.common.util.AES128Util;
+import com.jeecms.common.util.Num62;
+import com.jeecms.common.web.*;
+import com.jeecms.common.web.session.SessionProvider;
+import com.jeecms.config.SocialInfoConfig;
+import com.jeecms.core.entity.CmsConfig;
+import com.jeecms.core.entity.CmsSite;
+import com.jeecms.core.entity.Ftp;
+import com.jeecms.core.entity.UnifiedUser;
+import com.jeecms.core.manager.CmsConfigMng;
+import com.jeecms.core.manager.UnifiedUserMng;
+import com.jeecms.core.web.WebErrors;
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.http.client.ClientProtocolException;
@@ -25,59 +31,28 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.jeecms.bbs.cache.BbsConfigEhCache;
-import com.jeecms.bbs.entity.ApiAccount;
-import com.jeecms.bbs.entity.BbsThirdAccount;
-import com.jeecms.bbs.entity.BbsUser;
-import com.jeecms.bbs.entity.BbsUserExt;
-import com.jeecms.bbs.entity.BbsUserGroup;
-import com.jeecms.bbs.entity.BbsWebservice;
-import com.jeecms.bbs.manager.ApiAccountMng;
-import com.jeecms.bbs.manager.ApiUserLoginMng;
-import com.jeecms.bbs.manager.BbsConfigMng;
-import com.jeecms.bbs.manager.BbsLoginLogMng;
-import com.jeecms.bbs.manager.BbsThirdAccountMng;
-import com.jeecms.bbs.manager.BbsUserMng;
-import com.jeecms.bbs.manager.BbsWebserviceMng;
-import com.jeecms.bbs.service.ImageSvc;
-import com.jeecms.bbs.web.CmsUtils;
-import com.jeecms.bbs.web.FrontUtils;
-import com.jeecms.common.security.encoder.PwdEncoder;
-import com.jeecms.common.util.AES128Util;
-import com.jeecms.common.util.Num62;
-import com.jeecms.common.util.PropertyUtils;
-import com.jeecms.common.web.HttpClientUtil;
-import com.jeecms.common.web.HttpRequestUtil;
-import com.jeecms.common.web.LoginUtils;
-import com.jeecms.common.web.RequestUtils;
-import com.jeecms.common.web.ResponseUtils;
-import com.jeecms.common.web.session.SessionProvider;
-import com.jeecms.common.web.springmvc.RealPathResolver;
-import com.jeecms.core.entity.CmsConfig;
-import com.jeecms.core.entity.CmsSite;
-import com.jeecms.core.entity.Ftp;
-import com.jeecms.core.entity.UnifiedUser;
-import com.jeecms.core.manager.CmsConfigMng;
-import com.jeecms.core.manager.UnifiedUserMng;
-import com.jeecms.core.web.WebErrors;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.sql.Timestamp;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static com.jeecms.bbs.Constants.TPLDIR_MEMBER;
 
 
 /**
- * 第三方登录Action
- * 腾讯qq、新浪微博、微信登陆
- */
+*  @Description:  * 第三方登录Action 腾讯qq、新浪微博、微信登陆
+*  @Author: andy_hulibo@163.com
+*  @CreateDate: 2018/11/10 19:28
+*/
 @Controller
 public class ThirdLoginAct {
 	public static final String TPL_BIND = "tpl.member.bind";
 	public static final String TPL_AUTH = "tpl.member.auth";
-	public static final String TPL_INDEX = "tpl.index";
-	
-	public static final String USER_LOG_OUT_FLAG = "logout";
-	public static final String WEIXIN_AUTH_CODE_URL ="weixin.auth.getQrCodeUrl";
-	public static final String WEIXIN_AUTH_TOKEN_URL ="weixin.auth.getAccessTokenUrl";
-	public static final String WEIXIN_AUTH_USER_URL ="weixin.auth.getUserInfoUrl";
-	
-	
+
 	@RequestMapping(value = "/public_auth.jspx")
 	public String auth(String openId,HttpServletRequest request,HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -271,12 +246,7 @@ public class ThirdLoginAct {
 	public String weixinLogin(HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
-		String codeUrl="";
-		if(getWeixinAuthCodeUrl()==null){
-			codeUrl=PropertyUtils.getPropertyValue(
-					new File(realPathResolver.get(com.jeecms.bbs.Constants.JEEBBS_CONFIG)),WEIXIN_AUTH_CODE_URL);
-			setWeixinAuthCodeUrl(codeUrl);
-		}
+		String codeUrl=socialInfoConfig.getWeixin().getAuth().getCodeUrl();
 		CmsConfig config=cmsConfigMng.get();
 		String auth_url="/weixin_auth.jspx";
 		String redirect_uri=site.getUrlPrefixWithNoDefaultPort();
@@ -284,7 +254,7 @@ public class ThirdLoginAct {
 			redirect_uri+=site.getContextPath();
 		}
 		redirect_uri+=auth_url;
-		codeUrl=getWeixinAuthCodeUrl()+"&appid="+config.getWeixinLoginId()+"&redirect_uri="+redirect_uri
+		codeUrl=codeUrl+"&appid="+config.getWeixinLoginId()+"&redirect_uri="+redirect_uri
 				+"&state="+RandomStringUtils.random(10,Num62.N36_CHARS)+"#wechat_redirect";
 		return "redirect:"+codeUrl;
 	}
@@ -294,16 +264,9 @@ public class ThirdLoginAct {
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
 		FrontUtils.frontData(request, model, site);
-		if(getWeixinAuthTokenUrl()==null){
-			setWeixinAuthTokenUrl(PropertyUtils.getPropertyValue(
-					new File(realPathResolver.get(com.jeecms.bbs.Constants.JEEBBS_CONFIG)),WEIXIN_AUTH_TOKEN_URL));
-		}
-		if(getWeixinAuthUserUrl()==null){
-			setWeixinAuthUserUrl(PropertyUtils.getPropertyValue(
-					new File(realPathResolver.get(com.jeecms.bbs.Constants.JEEBBS_CONFIG)),WEIXIN_AUTH_USER_URL));
-		}
+		String accessTokenUrl=socialInfoConfig.getWeixin().getAuth().getAccessTokenUrl();
 		CmsConfig config=cmsConfigMng.get();
-		String tokenUrl=getWeixinAuthTokenUrl()+"&appid="+config.getWeixinLoginId()+"&secret="+config.getWeixinLoginSecret()+"&code="+code;
+		String tokenUrl=accessTokenUrl+"&appid="+config.getWeixinLoginId()+"&secret="+config.getWeixinLoginSecret()+"&code="+code;
 		JSONObject json=null;
 		try {
 			//获取openid和access_token
@@ -324,7 +287,8 @@ public class ThirdLoginAct {
 						loginByKey(md5OpenId, request, response, model);
 						return "redirect:index.html";
 					}else{
-						String userUrl=getWeixinAuthUserUrl()+"&access_token="+access_token+"&openid="+openid;
+						String userUrl=socialInfoConfig.getWeixin().getAuth().getUserInfoUrl();
+						userUrl=userUrl+"&access_token="+access_token+"&openid="+openid;
 						try {
 							//获取用户信息
 							json = new JSONObject(HttpClientUtil.getInstance().get(userUrl));
@@ -564,38 +528,7 @@ public class ThirdLoginAct {
 			bbsWebserviceMng.callWebService(operate, paramsValues);
 		}
 	}
-	
-	private String weixinAuthCodeUrl;
-	private String weixinAuthTokenUrl;
-	private String weixinAuthUserUrl;
-	
 
-	public String getWeixinAuthCodeUrl() {
-		return weixinAuthCodeUrl;
-	}
-
-	public void setWeixinAuthCodeUrl(String weixinAuthCodeUrl) {
-		this.weixinAuthCodeUrl = weixinAuthCodeUrl;
-	}
-
-	public String getWeixinAuthTokenUrl() {
-		return weixinAuthTokenUrl;
-	}
-
-	public void setWeixinAuthTokenUrl(String weixinAuthTokenUrl) {
-		this.weixinAuthTokenUrl = weixinAuthTokenUrl;
-	}
-	
-	public String getWeixinAuthUserUrl() {
-		return weixinAuthUserUrl;
-	}
-
-	public void setWeixinAuthUserUrl(String weixinAuthUserUrl) {
-		this.weixinAuthUserUrl = weixinAuthUserUrl;
-	}
-	
-	@Autowired
-	private RealPathResolver realPathResolver;
 	@Autowired
 	private UnifiedUserMng unifiedUserMng;
 	@Autowired
@@ -622,4 +555,6 @@ public class ThirdLoginAct {
 	private BbsLoginLogMng bbsLoginLogMng;
 	@Autowired
 	private ApiAccountMng apiAccountMng;
+	@Autowired
+	private SocialInfoConfig socialInfoConfig;
 }

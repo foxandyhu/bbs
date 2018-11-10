@@ -16,6 +16,7 @@ import com.jeecms.common.web.HttpClientUtil;
 import com.jeecms.common.web.ResponseUtils;
 import com.jeecms.common.web.session.SessionProvider;
 import com.jeecms.common.web.springmvc.RealPathResolver;
+import com.jeecms.config.SocialInfoConfig;
 import com.jeecms.core.entity.CmsSite;
 import com.jeecms.core.web.WebErrors;
 import net.sf.ehcache.Ehcache;
@@ -44,20 +45,10 @@ import static com.jeecms.common.page.SimplePage.cpn;
 
 @Controller
 public class OrderAct {
-	//收费
-	public static final Integer CONTENT_PAY_MODEL_CHARGE=1;
-	//打赏
-	public static final Integer CONTENT_PAY_MODEL_REWARD=2;
-	public static final String WEIXIN_PAY_URL="weixin.pay.url";
-	public static final String ALI_PAY_URL="alipay.openapi.url";
-	
-	public static final String ORDER_AD_TITLE="order.ad.title";
-	
 
 	public static final String REWARD="tpl.reward";
 	public static final String ALIPAY_MOBILE="tpl.alipay.mobile";
 	public static final String TOPIC_ORDERS="tpl.orders";
-	public static final String WEIXIN_AUTH_CODE_URL ="weixin.auth.getCodeUrl";
 	public static final String COMMON_BUY="tpl.commonBuy";
 	
 	//支付购买（先选择支付方式，在进行支付）
@@ -355,8 +346,7 @@ public class OrderAct {
 		WebErrors errors=WebErrors.create(request);
 		BbsUser user=CmsUtils.getUser(request);
 		CmsSite site=CmsUtils.getSite(request);
-		initWeiXinPayUrl();
-		initAliPayUrl();
+		String weixinPayUrl=socialInfoConfig.getWeixin().getOrder().getPayUrl();
 		if(topicId==null){
 			errors.addErrorCode("error.required","topicId");
 			return FrontUtils.showError(request, response, model, errors);
@@ -392,13 +382,13 @@ public class OrderAct {
 		  	    	}
 		  	    	if(payMethod!=null){
 		  	    		if(payMethod==1){
-		  	    			return WeixinPay.enterWeiXinPay(getWeiXinPayUrl(),config,
+		  	    			return WeixinPay.enterWeiXinPay(weixinPayUrl,config,
 									orderNumber,totalAmount,topic.getTitle(),
 		  	    					topic.getUrlWhole(),BbsOrder.PAY_TARGET_TOPIC,
 		  	    					request, response, model);
 		  	    		}else if(payMethod==3){
 		  	    			String openId=(String) session.getAttribute(request, "wxopenid");
-		  	    			return WeixinPay.weixinPayByMobile(getWeiXinPayUrl(), 
+		  	    			return WeixinPay.weixinPayByMobile(weixinPayUrl,
 		  	    					config, openId,orderNumber, totalAmount, topic.getTitle(),
 		  	    					topic.getUrlWhole(),BbsOrder.PAY_TARGET_TOPIC,
 		  	    					request, response, model);
@@ -409,7 +399,7 @@ public class OrderAct {
 		  	    					 request, response, model);
 		  	    		}else if(payMethod==4){
 		  	    			return AliPay.enterAlipayScanCode(request, response, model,
-		  	    					getAliPayUrl(), config, topic.getTitle(), topic.getUrlWhole(),
+									socialInfoConfig.getAlipay().getOpenapiUrl(), config, topic.getTitle(), topic.getUrlWhole(),
 		  	    					orderNumber, totalAmount,BbsOrder.PAY_TARGET_TOPIC);
 		  	    		}else if(payMethod==5){
 		  	    			model.addAttribute("orderNumber",orderNumber);
@@ -438,7 +428,6 @@ public class OrderAct {
 			Double rewardAmount,HttpServletRequest request,
 			HttpServletResponse response,ModelMap model) throws JSONException {
 		WebErrors errors=WebErrors.create(request);
-		initAliPayUrl();
 		if(topicId==null){
 			errors.addErrorCode("error.required","topicId");
 			return FrontUtils.showError(request, response, model, errors);
@@ -450,7 +439,7 @@ public class OrderAct {
     			if(rewardAmount!=null){
     				totalAmount=rewardAmount;
     			}
-				AliPay.enterAlipayInMobile(request, response, getAliPayUrl(), config,
+				AliPay.enterAlipayInMobile(request, response, socialInfoConfig.getAlipay().getOpenapiUrl(), config,
 						topic.getTitle(), topic.getUrlWhole(), orderNumber, totalAmount);
 				return "";
 			}else{
@@ -465,7 +454,6 @@ public class OrderAct {
 	 * @param mid 道具标识
 	 * @param orderNumber 订单号
 	 * @param payMethod 支付方式 1微信扫码 2支付宝即时支付  3微信浏览器打开[微信移动端] 4支付宝扫码5支付宝手机网页
-	 * @param rewardAmount 打赏金额
 	 */
 	@RequestMapping(value = "/order/magicSelectPay.jspx")
 	public String magicSelectPay(String mid,Integer buyNum,
@@ -475,8 +463,7 @@ public class OrderAct {
 		BbsUser user=CmsUtils.getUser(request);
 		CmsSite site=CmsUtils.getSite(request);
 		String returnUrl=site.getMagicShopUrl();
-		initWeiXinPayUrl();
-		initAliPayUrl();
+		String weixinPayUrl=socialInfoConfig.getWeixin().getOrder().getPayUrl();
 		if(mid==null){
 			errors.addErrorCode("error.required","mid");
 			return FrontUtils.showError(request, response, model, errors);
@@ -506,13 +493,13 @@ public class OrderAct {
 		  	    	}
 		  	    	if(payMethod!=null){
 		  	    		if(payMethod==1){
-		  	    			return WeixinPay.enterWeiXinPay(getWeiXinPayUrl(),config,
+		  	    			return WeixinPay.enterWeiXinPay(weixinPayUrl,config,
 									orderNumber,totalAmount,magic.getName(),
 									returnUrl,BbsOrder.PAY_TARGET_MAGIC,
 									request, response, model);
 		  	    		}else if(payMethod==3){
 		  	    			String openId=(String) session.getAttribute(request, "wxopenid");
-		  	    			return WeixinPay.weixinPayByMobile(getWeiXinPayUrl(), 
+		  	    			return WeixinPay.weixinPayByMobile(weixinPayUrl,
 		  	    					config, openId,orderNumber, totalAmount, magic.getName(),
 		  	    					returnUrl,BbsOrder.PAY_TARGET_MAGIC,
 		  	    					request, response, model);
@@ -523,7 +510,7 @@ public class OrderAct {
 		  	    					request, response, model);
 		  	    		}else if(payMethod==4){
 		  	    			return AliPay.enterAlipayScanCode(request, response, model,
-		  	    					getAliPayUrl(), config, magic.getName(), 
+									socialInfoConfig.getAlipay().getOpenapiUrl(), config, magic.getName(),
 		  	    					returnUrl,orderNumber, totalAmount,BbsOrder.PAY_TARGET_MAGIC);
 		  	    		}else if(payMethod==5){
 		  	    			model.addAttribute("orderNumber",orderNumber);
@@ -554,7 +541,6 @@ public class OrderAct {
 		WebErrors errors=WebErrors.create(request);
 		CmsSite site=CmsUtils.getSite(request);
 		String returnUrl=site.getMagicShopUrl();
-		initAliPayUrl();
 		if(mid==null){
 			errors.addErrorCode("error.required","mid");
 			return FrontUtils.showError(request, response, model, errors);
@@ -566,7 +552,7 @@ public class OrderAct {
 	    			buyNum=1;
 	    		}
 	    		Double totalAmount=magic.getPrice()*buyNum.doubleValue();
-				AliPay.enterAlipayInMobile(request, response, getAliPayUrl(), 
+				AliPay.enterAlipayInMobile(request, response, socialInfoConfig.getAlipay().getOpenapiUrl(),
 						config,magic.getName(), returnUrl, orderNumber, totalAmount);
 				return "";
 			}else{
@@ -594,8 +580,7 @@ public class OrderAct {
 		if(StringUtils.isBlank(returnUrl)){
 			 returnUrl=site.getGiftIndexUrl();
 		}
-		initWeiXinPayUrl();
-		initAliPayUrl();
+		String weixinPayUrl=socialInfoConfig.getWeixin().getOrder().getPayUrl();
 		if(giftId==null){
 			errors.addErrorCode("error.required","giftId");
 			return FrontUtils.showError(request, response, model, errors);
@@ -625,13 +610,13 @@ public class OrderAct {
 		  	    	}
 		  	    	if(payMethod!=null){
 		  	    		if(payMethod==1){
-		  	    			return WeixinPay.enterWeiXinPay(getWeiXinPayUrl(),config,
+		  	    			return WeixinPay.enterWeiXinPay(weixinPayUrl,config,
 									orderNumber,totalAmount,gift.getName(),
 									returnUrl,BbsOrder.PAY_TARGET_GIFT,
 									request, response, model);
 		  	    		}else if(payMethod==3){
 		  	    			String openId=(String) session.getAttribute(request, "wxopenid");
-		  	    			return WeixinPay.weixinPayByMobile(getWeiXinPayUrl(), 
+		  	    			return WeixinPay.weixinPayByMobile(weixinPayUrl,
 		  	    					config, openId,orderNumber, totalAmount, gift.getName(),
 		  	    					returnUrl,BbsOrder.PAY_TARGET_GIFT,
 		  	    					request, response, model);
@@ -642,7 +627,7 @@ public class OrderAct {
 		  	    					request, response, model);
 		  	    		}else if(payMethod==4){
 		  	    			return AliPay.enterAlipayScanCode(request, response, model,
-		  	    					getAliPayUrl(), config, gift.getName(), 
+									socialInfoConfig.getAlipay().getOpenapiUrl(), config, gift.getName(),
 		  	    					returnUrl,orderNumber, totalAmount,BbsOrder.PAY_TARGET_GIFT);
 		  	    		}else if(payMethod==5){
 		  	    			model.addAttribute("orderNumber",orderNumber);
@@ -673,7 +658,6 @@ public class OrderAct {
 		WebErrors errors=WebErrors.create(request);
 		CmsSite site=CmsUtils.getSite(request);
 		String returnUrl=site.getGiftIndexUrl();
-		initAliPayUrl();
 		if(giftId==null){
 			errors.addErrorCode("error.required","giftId");
 			return FrontUtils.showError(request, response, model, errors);
@@ -685,7 +669,7 @@ public class OrderAct {
 	    			buyNum=1;
 	    		}
 	    		Double totalAmount=gift.getPrice()*buyNum.doubleValue();
-				AliPay.enterAlipayInMobile(request, response, getAliPayUrl(), 
+				AliPay.enterAlipayInMobile(request, response, socialInfoConfig.getAlipay().getOpenapiUrl(),
 						config,gift.getName(), returnUrl, orderNumber, totalAmount);
 				return "";
 			}else{
@@ -752,23 +736,22 @@ public class OrderAct {
 		}
 		model.addAttribute("orderNumber", orderNumber);
 		String returnUrl=site.getMemberAdIndexUrl();
-		initWeiXinPayUrl();
-		initAliPayUrl();
 	    if(amount!=null&&amount>0){
 	    	String orderTitle=WebErrors.create(request).getMessage("order.ad.title");
 	    	BbsConfigCharge config=configChargeMng.getDefault();
 			Short chargeReward=BbsTopicCharge.MODEL_CHARGE;
     		cache.put(new Element(orderNumber,
     				BbsOrder.ORDER_TYPE_CACHE_FLAG_AD+","+amount+","+user.getId()));
-  	    	if(payMethod!=null){
+  	    	String weixinPayUrl=socialInfoConfig.getWeixin().getOrder().getPayUrl();
+    		if(payMethod!=null){
   	    		if(payMethod==1){
-  	    			return WeixinPay.enterWeiXinPay(getWeiXinPayUrl(),config,
+  	    			return WeixinPay.enterWeiXinPay(weixinPayUrl,config,
 							orderNumber,amount,orderTitle,
 							returnUrl,BbsOrder.PAY_TARGET_AD,
 							request, response, model);
   	    		}else if(payMethod==3){
   	    			String openId=(String) session.getAttribute(request, "wxopenid");
-  	    			return WeixinPay.weixinPayByMobile(getWeiXinPayUrl(), 
+  	    			return WeixinPay.weixinPayByMobile(weixinPayUrl,
   	    					config, openId,orderNumber, amount, orderTitle,
   	    					returnUrl,BbsOrder.PAY_TARGET_AD,
   	    					request, response, model);
@@ -779,7 +762,7 @@ public class OrderAct {
   	    					request, response, model);
   	    		}else if(payMethod==4){
   	    			return AliPay.enterAlipayScanCode(request, response, model,
-  	    					getAliPayUrl(), config, orderTitle, 
+							socialInfoConfig.getAlipay().getOpenapiUrl(), config, orderTitle,
   	    					returnUrl,orderNumber, amount,BbsOrder.PAY_TARGET_AD);
   	    		}else if(payMethod==5){
   					model.addAttribute("ad", true);
@@ -811,17 +794,15 @@ public class OrderAct {
 			return FrontUtils.showLogin(request, model, site);
 		}
 		String returnUrl=site.getMemberAdIndexUrl();
-		initAliPayUrl();
 		String orderTitle=WebErrors.create(request).getMessage("order.ad.title");
 		BbsConfigCharge config=configChargeMng.getDefault();
-		AliPay.enterAlipayInMobile(request, response, getAliPayUrl(), 
+		AliPay.enterAlipayInMobile(request, response, socialInfoConfig.getAlipay().getOpenapiUrl(),
 				config,orderTitle,returnUrl, orderNumber, amount);
 		return "";
 	}
 	
 	/**
 	 * 微信回调
-	 * @param code
 	 */
 	@RequestMapping(value = "/order/payCallByWeiXin.jspx")
 	public void orderPayCallByWeiXin(String orderNumber,
@@ -834,7 +815,7 @@ public class OrderAct {
 			BbsOrder order=orderMng.findByOrderNumber(orderNumber);
 			if (order!=null&&StringUtils.isNotBlank(order.getOrderNumWeixin())) {
 				//已成功支付过
-				WeixinPay.noticeWeChatSuccess(getWeiXinPayUrl());
+				WeixinPay.noticeWeChatSuccess(socialInfoConfig.getWeixin().getOrder().getPayUrl());
 				json.put("status", 4);
 			} else {
 				//订单未成功支付
@@ -869,7 +850,7 @@ public class OrderAct {
 								// 商户系统的订单号，与请求一致。
 								String out_trade_no = result_map.get("out_trade_no");
 								// 通知微信该订单已处理
-								WeixinPay.noticeWeChatSuccess(getWeiXinPayUrl());
+								WeixinPay.noticeWeChatSuccess(socialInfoConfig.getWeixin().getOrder().getPayUrl());
 								payAfter(site,out_trade_no,config.getChargeRatio(),
 										transaction_id, null);
 								//支付成功
@@ -891,7 +872,7 @@ public class OrderAct {
 					// 将参数转成xml格式
 					String xmlWeChat = PayUtil.assembParamToXml(parames);
 					try {
-						HttpClientUtil.post(getWeiXinPayUrl(), xmlWeChat, Constants.UTF8);
+						HttpClientUtil.post(socialInfoConfig.getWeixin().getOrder().getPayUrl(), xmlWeChat, Constants.UTF8);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -966,9 +947,8 @@ public class OrderAct {
 		BbsConfigCharge config=configChargeMng.getDefault();
 		JSONObject json = new JSONObject();
 		CmsSite site=CmsUtils.getSite(request);
-		initAliPayUrl();
 		FrontUtils.frontData(request, model, site);
-		AlipayTradeQueryResponse res=AliPay.query(getAliPayUrl(), config,
+		AlipayTradeQueryResponse res=AliPay.query(socialInfoConfig.getAlipay().getOpenapiUrl(), config,
 				orderNumber,null);
 		try {
 			if (null != res && res.isSuccess()) {
@@ -1249,51 +1229,6 @@ public class OrderAct {
 			return site.getMemberAdIndexUrl();
 		}
 	}
-	
-	private void initAliPayUrl(){
-		if(getAliPayUrl()==null){
-			setAliPayUrl(PropertyUtils.getPropertyValue(
-					new File(realPathResolver.get(com.jeecms.bbs.Constants.JEEBBS_CONFIG)),ALI_PAY_URL));
-		}
-	}
-	
-	private void initWeiXinPayUrl(){
-		if(getWeiXinPayUrl()==null){
-			setWeiXinPayUrl(PropertyUtils.getPropertyValue(
-					new File(realPathResolver.get(com.jeecms.bbs.Constants.JEEBBS_CONFIG)),WEIXIN_PAY_URL));
-		}
-	}
-	
-	
-	private String weiXinPayUrl;
-	
-	private String aliPayUrl;
-	private String weixinAuthCodeUrl;
-	
-
-	public String getWeiXinPayUrl() {
-		return weiXinPayUrl;
-	}
-
-	public void setWeiXinPayUrl(String weiXinPayUrl) {
-		this.weiXinPayUrl = weiXinPayUrl;
-	}
-
-	public String getAliPayUrl() {
-		return aliPayUrl;
-	}
-
-	public void setAliPayUrl(String aliPayUrl) {
-		this.aliPayUrl = aliPayUrl;
-	}
-	
-	public String getWeixinAuthCodeUrl() {
-		return weixinAuthCodeUrl;
-	}
-
-	public void setWeixinAuthCodeUrl(String weixinAuthCodeUrl) {
-		this.weixinAuthCodeUrl = weixinAuthCodeUrl;
-	}
 
 	@Autowired
 	private BbsTopicMng topicMng;
@@ -1303,8 +1238,6 @@ public class OrderAct {
 	private BbsOrderMng orderMng;
 	@Autowired
 	private BbsConfigChargeMng configChargeMng;
-	@Autowired
-	private RealPathResolver realPathResolver;
 	@Autowired
 	private BbsUserAccountMng userAccountMng;
 	@Autowired
@@ -1321,7 +1254,8 @@ public class OrderAct {
 	private BbsGiftUserMng bbsGiftUserMng;
 	@Autowired
 	private BbsIncomeStatisticMng incomeStatisticMng;
-
+	@Autowired
+	private SocialInfoConfig socialInfoConfig;
 	private Ehcache cache;
 
 	@Autowired

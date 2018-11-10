@@ -13,6 +13,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.jeecms.config.SocialInfoConfig;
 import org.apache.commons.lang.StringUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -50,8 +51,10 @@ import com.jeecms.plug.live.util.BaiduCloudUtil;
 import com.jeecms.plug.live.util.TencentCloudUtil;
 
 /**
- * 活动live管理
- */
+*  @Description: 活动live管理
+*  @Author: andy_hulibo@163.com
+*  @CreateDate: 2018/11/10 19:39
+*/
 @Controller
 public class BbsHostLiveAct extends AbstractBbsLive{
 	 private static final Logger log = LoggerFactory
@@ -67,11 +70,7 @@ public class BbsHostLiveAct extends AbstractBbsLive{
 	public static final String TPL_LIVE_VIEWREASON = "tpl.liveViewReason";
 	public static final String TPL_LIVE_ADD = "tpl.liveAdd";
 	public static final String TPL_LIVE_STATISTICS = "tpl.liveStatistics";
-	public static final String TPL_LIVE_TICKET_USER_INDEX = "tpl.liveTicketUserIndex";
 	public static final String TPL_LIVE_TICKET_List = "tpl.liveTicketList";
-	public static final String TENCENT_PUSH_BASE_URL="tencent.video.cloud.push.url";
-	public static final String TENCENT_PLAY_BASE_URL="tencent.video.cloud.play.url";
-	public static final String TPL_LIVE_GET_PUSH_URL = "tpl.liveGetPushUrl";
 
 	@RequestMapping("/live/host/index.jspx")
 	public String index(HttpServletRequest request,
@@ -190,10 +189,9 @@ public class BbsHostLiveAct extends AbstractBbsLive{
 		Map<String,String>pushUrlMap=new HashMap<>();
 		List<BbsLive>lives=(List<BbsLive>) pagination.getList();
 		//需要判断当前平台选择的视频云平台类型
-		initTencentPushBaseUrl();
 		for(BbsLive live:lives){
 			if(live.getLivePlat().equals(BbsLive.LIVE_PLAT_TENCENT)){
-				String url=TencentCloudUtil.getPushUrl(getTencentPushBaseUrl(),
+				String url=TencentCloudUtil.getPushUrl(socialInfoConfig.getTencent().getVideoCloud().getPushUrl(),
 						config.getTencentBizId(), 
 						config.getTencentPushFlowKey(), user.getId(), live.getEndTime());
 				pushUrlMap.put(live.getId().toString(), url);
@@ -320,14 +318,13 @@ public class BbsHostLiveAct extends AbstractBbsLive{
 			live.setLivePlat(BbsLive.LIVE_PLAT_TENCENT);
 		}
 		//需要判断当前平台选择的视频云平台类型
+		String playUrl=socialInfoConfig.getTencent().getVideoCloud().getPlayUrl();
 		if(live.getLivePlat().equals(BbsLive.LIVE_PLAT_TENCENT)){
-			initTencentPushBaseUrl();
-			initTencentPlayBaseUrl();
-			liveUrl=TencentCloudUtil.getRtmpPlayUrl(getTencentPlayBaseUrl(),
+			liveUrl=TencentCloudUtil.getRtmpPlayUrl(playUrl,
 					config.getTencentBizId(), user.getId());
-			demandUrl=TencentCloudUtil.getPlayUrl(getTencentPlayBaseUrl(),
+			demandUrl=TencentCloudUtil.getPlayUrl(playUrl,
 					config.getTencentBizId(), user.getId(), "flv");
-			liveMobileUrl=TencentCloudUtil.getPlayUrl(getTencentPlayBaseUrl(),
+			liveMobileUrl=TencentCloudUtil.getPlayUrl(playUrl,
 					config.getTencentBizId(), user.getId(), "m3u8");
 		}else if(live.getLivePlat().equals(BbsLive.LIVE_PLAT_BAIDU)){
 			liveUrl=BaiduCloudUtil.getRtmpPlayUrl(config.getBaiduPlayDomain(),
@@ -603,15 +600,14 @@ public class BbsHostLiveAct extends AbstractBbsLive{
 			}
 			String liveUrl=live.getLiveUrl(), demandUrl=live.getDemandUrl();
 			String liveMobileUrl=live.getLiveMobileUrl();
+			String playUrl=socialInfoConfig.getTencent().getVideoCloud().getPlayUrl();
 			//需要判断当前平台选择的视频云平台类型
 			if(live.getLivePlat().equals(BbsLive.LIVE_PLAT_TENCENT)){
-				initTencentPushBaseUrl();
-				initTencentPlayBaseUrl();
-				liveUrl=TencentCloudUtil.getRtmpPlayUrl(getTencentPlayBaseUrl(),
+				liveUrl=TencentCloudUtil.getRtmpPlayUrl(playUrl,
 						config.getTencentBizId(), hostId);
-				demandUrl=TencentCloudUtil.getPlayUrl(getTencentPlayBaseUrl(),
+				demandUrl=TencentCloudUtil.getPlayUrl(playUrl,
 						config.getTencentBizId(), hostId, "flv");
-				liveMobileUrl=TencentCloudUtil.getPlayUrl(getTencentPlayBaseUrl(),
+				liveMobileUrl=TencentCloudUtil.getPlayUrl(playUrl,
 						config.getTencentBizId(), hostId, "m3u8");
 			}else if(live.getLivePlat().equals(BbsLive.LIVE_PLAT_BAIDU)){
 				liveUrl=BaiduCloudUtil.getRtmpPlayUrl(config.getBaiduPlayDomain(),
@@ -634,21 +630,6 @@ public class BbsHostLiveAct extends AbstractBbsLive{
 		}
 		return live;
 	}
-	
-	private void initTencentPushBaseUrl(){
-		if(getTencentPushBaseUrl()==null){
-			setTencentPushBaseUrl(PropertyUtils.getPropertyValue(
-					new File(realPathResolver.get(com.jeecms.bbs.Constants.JEEBBS_CONFIG)),TENCENT_PUSH_BASE_URL));
-		}
-	}
-	
-	private void initTencentPlayBaseUrl(){
-		if(getTencentPlayBaseUrl()==null){
-			setTencentPlayBaseUrl(PropertyUtils.getPropertyValue(
-					new File(realPathResolver.get(com.jeecms.bbs.Constants.JEEBBS_CONFIG)),TENCENT_PLAY_BASE_URL));
-		}
-	}
-	
 	
 	private void appendQuery(ModelMap model,Integer cid,String qtitle,String qusername,
 			Short qstatus,Date qtimeBegin,Date qtimeEnd,Integer qorderBy){
@@ -784,24 +765,6 @@ public class BbsHostLiveAct extends AbstractBbsLive{
 	private RealPathResolver realPathResolver;
 	@Autowired
 	private BbsAccountDrawMng accountDrawMng;
-	
-	private String tencentPushBaseUrl;
-	private String tencentPlayBaseUrl;
-
-	public String getTencentPushBaseUrl() {
-		return tencentPushBaseUrl;
-	}
-
-	public void setTencentPushBaseUrl(String tencentPushBaseUrl) {
-		this.tencentPushBaseUrl = tencentPushBaseUrl;
-	}
-
-	public String getTencentPlayBaseUrl() {
-		return tencentPlayBaseUrl;
-	}
-
-	public void setTencentPlayBaseUrl(String tencentPlayBaseUrl) {
-		this.tencentPlayBaseUrl = tencentPlayBaseUrl;
-	}
-	
+	@Autowired
+	private SocialInfoConfig socialInfoConfig;
 }

@@ -1,37 +1,5 @@
 package com.jeecms.plug.live.action.front;
 
-import static com.jeecms.bbs.Constants.TPLDIR_PLUG;
-
-import java.io.File;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.lang.RandomStringUtils;
-import org.apache.commons.lang.StringUtils;
-import org.jdom2.JDOMException;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.cache.ehcache.EhCacheCache;
-import org.springframework.cache.ehcache.EhCacheCacheManager;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.socket.TextMessage;
-
 import com.alipay.api.response.AlipayTradeQueryResponse;
 import com.google.gson.GsonBuilder;
 import com.jeecms.bbs.entity.BbsConfigCharge;
@@ -47,14 +15,13 @@ import com.jeecms.bbs.web.FrontUtils;
 import com.jeecms.common.util.AliPay;
 import com.jeecms.common.util.Num62;
 import com.jeecms.common.util.PayUtil;
-import com.jeecms.common.util.PropertyUtils;
 import com.jeecms.common.util.WeixinPay;
 import com.jeecms.common.web.Constants;
 import com.jeecms.common.web.HttpClientUtil;
 import com.jeecms.common.web.ResponseUtils;
 import com.jeecms.common.web.session.SessionProvider;
 import com.jeecms.common.web.springmvc.MessageResolver;
-import com.jeecms.common.web.springmvc.RealPathResolver;
+import com.jeecms.config.SocialInfoConfig;
 import com.jeecms.core.entity.CmsConfig;
 import com.jeecms.core.entity.CmsSite;
 import com.jeecms.core.web.WebErrors;
@@ -65,21 +32,42 @@ import com.jeecms.plug.live.manager.BbsLiveMng;
 import com.jeecms.plug.live.manager.BbsLiveUserMng;
 import com.jeecms.plug.live.websocket.Message;
 import com.jeecms.plug.live.websocket.WebSocketExtHandler;
-
 import net.sf.ehcache.Ehcache;
 import net.sf.ehcache.Element;
+import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang.StringUtils;
+import org.jdom2.JDOMException;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.ehcache.EhCacheCache;
+import org.springframework.cache.ehcache.EhCacheCacheManager;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.socket.TextMessage;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.*;
+
+import static com.jeecms.bbs.Constants.TPLDIR_PLUG;
 
 /**
- * 活动live对外公众功能
- */
+*  @Description: 活动live对外公众功能
+*  @Author: andy_hulibo@163.com
+*  @CreateDate: 2018/11/10 19:39
+*/
 @Controller
 public class BbsFrontLiveAct extends AbstractBbsLive{
 	 private static final Logger log = LoggerFactory
 	 .getLogger(BbsFrontLiveAct.class);
 	 
-	public static final String WEIXIN_PAY_URL="weixin.pay.url";
-    public static final String ALI_PAY_URL="alipay.openapi.url";
-
 	public static final String TPL_LIVE_INDEX = "tpl.liveIndex";
 	public static final String TPL_LIVE_GET = "tpl.liveGet";
 	public static final String TPL_LIVE_BUY = "tpl.liveBuy";
@@ -361,8 +349,8 @@ public class BbsFrontLiveAct extends AbstractBbsLive{
 		WebErrors errors=WebErrors.create(request);
 		BbsUser user=CmsUtils.getUser(request);
 		CmsSite site=CmsUtils.getSite(request);
-		initWeiXinPayUrl();
-		initAliPayUrl();
+		String weixinPayUrl=socialInfoConfig.getWeixin().getOrder().getPayUrl();
+		String alipayUrl=socialInfoConfig.getAlipay().getOpenapiUrl();
 		if(num==null){
 			num=1;
 		}
@@ -399,13 +387,13 @@ public class BbsFrontLiveAct extends AbstractBbsLive{
 		  	    	}
 		  	    	if(payMethod!=null){
 		  	    		if(payMethod==1){
-		  	    			return WeixinPay.enterWeiXinPay(getWeiXinPayUrl(),config,
+		  	    			return WeixinPay.enterWeiXinPay(weixinPayUrl,config,
 									orderNumber,totalAmount,live.getTitle(),
 		  	    					live.getUrlWhole(),BbsOrder.PAY_TARGET_LIVE,
 		  	    					request, response, model);
 		  	    		}else if(payMethod==3){
 		  	    			String openId=(String) session.getAttribute(request, "wxopenid");
-		  	    			return WeixinPay.weixinPayByMobile(getWeiXinPayUrl(), 
+		  	    			return WeixinPay.weixinPayByMobile(weixinPayUrl,
 		  	    					config, openId,orderNumber, totalAmount, live.getTitle(),
 		  	    					live.getUrlWhole(),BbsOrder.PAY_TARGET_LIVE,request, response, model);
 		  	    		}else if(payMethod==2){
@@ -415,7 +403,7 @@ public class BbsFrontLiveAct extends AbstractBbsLive{
 		  	    					 request, response, model);
 		  	    		}else if(payMethod==4){
 		  	    			return AliPay.enterAlipayScanCode(request, response, model,
-		  	    					getAliPayUrl(), config, live.getTitle(), live.getUrlWhole(),
+		  	    					alipayUrl, config, live.getTitle(), live.getUrlWhole(),
 		  	    					orderNumber, totalAmount,BbsOrder.PAY_TARGET_LIVE);
 		  	    		}else if(payMethod==5){
 		  	    			model.addAttribute("orderNumber",orderNumber);
@@ -443,7 +431,6 @@ public class BbsFrontLiveAct extends AbstractBbsLive{
 	public String enterAlipayInMobile(Integer liveId,String orderNumber,Integer num,
 			HttpServletRequest request,HttpServletResponse response,ModelMap model) throws JSONException {
 		WebErrors errors=WebErrors.create(request);
-		initAliPayUrl();
 		if(liveId==null){
 			errors.addErrorCode("error.required","liveId");
 			return FrontUtils.showError(request, response, model, errors);
@@ -456,7 +443,7 @@ public class BbsFrontLiveAct extends AbstractBbsLive{
 		    	if(now.after(live.getEndTime())){
 		    		totalAmount=live.getAfterPrice()*num;
 		    	}
-				AliPay.enterAlipayInMobile(request, response, getAliPayUrl(), config,
+				AliPay.enterAlipayInMobile(request, response, socialInfoConfig.getAlipay().getOpenapiUrl(), config,
 						live.getTitle(), live.getUrlWhole(), orderNumber, totalAmount);
 				return "";
 			}else{
@@ -468,7 +455,6 @@ public class BbsFrontLiveAct extends AbstractBbsLive{
 	
 	/**
 	 * 购买live微信支付微信回调
-	 * @param code
 	 */
 	@RequestMapping(value = "/live/order/payCallByWeiXin.jspx")
 	public void orderPayCallByWeiXin(String orderNumber,
@@ -477,11 +463,12 @@ public class BbsFrontLiveAct extends AbstractBbsLive{
 		JSONObject json = new JSONObject();
 		CmsSite site=CmsUtils.getSite(request);
 		BbsConfigCharge config=configChargeMng.getDefault();
+		String weixinPayUrl=socialInfoConfig.getWeixin().getOrder().getPayUrl();
 		if (StringUtils.isNotBlank(orderNumber)) {
 			BbsOrder order=orderMng.findByOrderNumber(orderNumber);
 			if (order!=null&&StringUtils.isNotBlank(order.getOrderNumWeixin())) {
 				//已成功支付过
-				WeixinPay.noticeWeChatSuccess(getWeiXinPayUrl());
+				WeixinPay.noticeWeChatSuccess(weixinPayUrl);
 				json.put("status", 4);
 			} else {
 				//订单未成功支付
@@ -516,7 +503,7 @@ public class BbsFrontLiveAct extends AbstractBbsLive{
 								// 商户系统的订单号，与请求一致。
 								String out_trade_no = result_map.get("out_trade_no");
 								// 通知微信该订单已处理
-								WeixinPay.noticeWeChatSuccess(getWeiXinPayUrl());
+								WeixinPay.noticeWeChatSuccess(weixinPayUrl);
 								payAfter(site,out_trade_no,config.getChargeRatio(),
 										transaction_id, null);
 								//支付成功
@@ -538,7 +525,7 @@ public class BbsFrontLiveAct extends AbstractBbsLive{
 					// 将参数转成xml格式
 					String xmlWeChat = PayUtil.assembParamToXml(parames);
 					try {
-						HttpClientUtil.post(getWeiXinPayUrl(), xmlWeChat, Constants.UTF8);
+						HttpClientUtil.post(weixinPayUrl, xmlWeChat, Constants.UTF8);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -614,9 +601,8 @@ public class BbsFrontLiveAct extends AbstractBbsLive{
 		BbsConfigCharge config=configChargeMng.getDefault();
 		JSONObject json = new JSONObject();
 		CmsSite site=CmsUtils.getSite(request);
-		initAliPayUrl();
 		FrontUtils.frontData(request, model, site);
-		AlipayTradeQueryResponse res=AliPay.query(getAliPayUrl(), config,
+		AlipayTradeQueryResponse res=AliPay.query(socialInfoConfig.getAlipay().getOpenapiUrl(), config,
 				orderNumber,null);
 		try {
 			if (null != res && res.isSuccess()) {
@@ -714,57 +700,11 @@ public class BbsFrontLiveAct extends AbstractBbsLive{
 			return site.getUrl();
 		}
 	}
-	
 
-	private void initAliPayUrl(){
-		if(getAliPayUrl()==null){
-			setAliPayUrl(PropertyUtils.getPropertyValue(
-					new File(realPathResolver.get(com.jeecms.bbs.Constants.JEEBBS_CONFIG)),ALI_PAY_URL));
-		}
-	}
-	
-	private void initWeiXinPayUrl(){
-		if(getWeiXinPayUrl()==null){
-			setWeiXinPayUrl(PropertyUtils.getPropertyValue(
-					new File(realPathResolver.get(com.jeecms.bbs.Constants.JEEBBS_CONFIG)),WEIXIN_PAY_URL));
-		}
-	}
-	
-	private String weiXinPayUrl;
-	
-	private String aliPayUrl;
-	private String weixinAuthCodeUrl;
-	
-	public String getWeiXinPayUrl() {
-		return weiXinPayUrl;
-	}
-
-	public void setWeiXinPayUrl(String weiXinPayUrl) {
-		this.weiXinPayUrl = weiXinPayUrl;
-	}
-
-	public String getAliPayUrl() {
-		return aliPayUrl;
-	}
-
-	public void setAliPayUrl(String aliPayUrl) {
-		this.aliPayUrl = aliPayUrl;
-	}
-	
-	public String getWeixinAuthCodeUrl() {
-		return weixinAuthCodeUrl;
-	}
-
-	public void setWeixinAuthCodeUrl(String weixinAuthCodeUrl) {
-		this.weixinAuthCodeUrl = weixinAuthCodeUrl;
-	}
-	
 	@Autowired
 	private BbsLiveMng manager;
 	@Autowired
 	private SessionProvider session;
-	@Autowired
-	private RealPathResolver realPathResolver;
 	@Autowired
 	private BbsConfigChargeMng configChargeMng;
 	@Autowired
@@ -779,6 +719,8 @@ public class BbsFrontLiveAct extends AbstractBbsLive{
 	WebSocketExtHandler socketHandler;
 	@Autowired
 	private BbsLiveMessageMng liveMessageMng;
+	@Autowired
+	private SocialInfoConfig socialInfoConfig;
 
 	private Ehcache cache;
 	@Autowired

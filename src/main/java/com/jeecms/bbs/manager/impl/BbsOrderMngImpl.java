@@ -1,60 +1,37 @@
 package com.jeecms.bbs.manager.impl;
 
 
-import java.io.File;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Map;
-
+import com.alipay.api.response.AlipayTradeQueryResponse;
+import com.jeecms.bbs.MagicConstants;
+import com.jeecms.bbs.dao.BbsOrderDao;
+import com.jeecms.bbs.entity.*;
+import com.jeecms.bbs.entity.BbsIncomeStatistic.BbsIncomeType;
+import com.jeecms.bbs.manager.*;
+import com.jeecms.common.hibernate4.Updater;
+import com.jeecms.common.page.Pagination;
+import com.jeecms.common.util.AliPay;
+import com.jeecms.common.util.Num62;
+import com.jeecms.common.util.WeixinPay;
+import com.jeecms.config.SocialInfoConfig;
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.jeecms.bbs.MagicConstants;
-import com.jeecms.bbs.dao.BbsOrderDao;
-import com.jeecms.bbs.entity.BbsCommonMagic;
-import com.jeecms.bbs.entity.BbsConfigCharge;
-import com.jeecms.bbs.entity.BbsGift;
-import com.jeecms.bbs.entity.BbsOrder;
-import com.jeecms.bbs.entity.BbsTopic;
-import com.jeecms.bbs.entity.BbsTopicCharge;
-import com.jeecms.bbs.entity.BbsUser;
-import com.jeecms.bbs.entity.BbsIncomeStatistic.BbsIncomeType;
-import com.jeecms.bbs.manager.BbsCommonMagicMng;
-import com.jeecms.bbs.manager.BbsConfigChargeMng;
-import com.jeecms.bbs.manager.BbsGiftMng;
-import com.jeecms.bbs.manager.BbsGiftUserMng;
-import com.jeecms.bbs.manager.BbsIncomeStatisticMng;
-import com.jeecms.bbs.manager.BbsMagicLogMng;
-import com.jeecms.bbs.manager.BbsOrderMng;
-import com.jeecms.bbs.manager.BbsTopicChargeMng;
-import com.jeecms.bbs.manager.BbsTopicMng;
-import com.jeecms.bbs.manager.BbsUserAccountMng;
-import com.jeecms.bbs.manager.BbsUserMng;
-import com.jeecms.common.hibernate4.Updater;
-import com.jeecms.common.page.Pagination;
-import com.jeecms.common.util.AliPay;
-import com.jeecms.common.util.Num62;
-import com.jeecms.common.util.PropertyUtils;
-import com.jeecms.common.util.WeixinPay;
-import com.jeecms.common.web.springmvc.RealPathResolver;
-import com.alipay.api.response.AlipayTradeQueryResponse;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional
 public class BbsOrderMngImpl implements BbsOrderMng {
-	
-	public static final String WEIXIN_ORDER_QUERY_URL="weixin.orderquery.url";
-	public static final String ALI_PAY_URL="alipay.openapi.url";
-	
+
+	@Override
 	public BbsOrder adOrder(Integer orderType ,Integer buyUserId,
 			String outOrderNum){
 		BbsOrder order = new BbsOrder();
 		BbsConfigCharge config = configChargeMng.getDefault();
-		initWeiXinPayUrl();
-		initAliPayUrl();
 		Double orderAmount = 0d;
 		//把微信商户的订单号放入了交易号中
 		if (orderType.equals(BbsOrder.PAY_METHOD_WECHAT)) {
@@ -92,7 +69,8 @@ public class BbsOrderMngImpl implements BbsOrderMng {
 		}
 		return order;
 	}
-	
+
+	@Override
 	public BbsOrder topicOrder(Integer topicId,Integer orderType,
 			Short chargeReward,Integer buyUserId,String outOrderNum){
 		BbsOrder order=new BbsOrder();
@@ -106,8 +84,6 @@ public class BbsOrderMngImpl implements BbsOrderMng {
 	    			buy=true;
 	    		}
 	    		BbsConfigCharge config=configChargeMng.getDefault();
-	    		initWeiXinPayUrl();
-	    		initAliPayUrl();
 	    		Double orderAmount = 0d;
 		 		// 这里是把微信商户的订单号放入了交易号中
 		   	    if(orderType.equals(BbsOrder.PAY_METHOD_WECHAT)){
@@ -171,7 +147,8 @@ public class BbsOrderMngImpl implements BbsOrderMng {
 	 	}
 	    return order;
 	}
-	
+
+	@Override
 	public BbsOrder magicOrder(String mid, Integer num,Integer orderType,
 			String outOrderNum,Integer buyUserId){
 		BbsOrder order=new BbsOrder();
@@ -184,8 +161,6 @@ public class BbsOrderMngImpl implements BbsOrderMng {
 	    	if(magic!=null&&buyUser!=null){
    	    		//外部订单号和内部订单号要一一对应，否则会出现一个外部订单可以用于形成多个内部订单
 	    		BbsConfigCharge config=configChargeMng.getDefault();
-	    		initWeiXinPayUrl();
-	    		initAliPayUrl();
 	    		Double orderAmount = 0d;
 		 		// 这里是把微信商户的订单号放入了交易号中
 		   	    if(orderType.equals(BbsOrder.PAY_METHOD_WECHAT)){
@@ -235,7 +210,8 @@ public class BbsOrderMngImpl implements BbsOrderMng {
 	 	}
 	    return order;
 	}
-	
+
+	@Override
 	public BbsOrder giftOrder(BbsGift gift, Integer num,Integer orderType,
 			String outOrderNum,Integer buyUserId){
 		BbsOrder order=new BbsOrder();
@@ -246,8 +222,6 @@ public class BbsOrderMngImpl implements BbsOrderMng {
     	if(gift!=null&&buyUser!=null){
     		//外部订单号和内部订单号要一一对应，否则会出现一个外部订单可以用于形成多个内部订单
     		BbsConfigCharge config=configChargeMng.getDefault();
-    		initWeiXinPayUrl();
-    		initAliPayUrl();
     		Double orderAmount = -1d;
 	 		// 这里是把微信商户的订单号放入了交易号中
 	   	    if(orderType.equals(BbsOrder.PAY_METHOD_WECHAT)){
@@ -295,7 +269,8 @@ public class BbsOrderMngImpl implements BbsOrderMng {
     	}
 	    return order;
 	}
-	
+
+	@Override
 	@Transactional(readOnly = true)
 	public Pagination getPage(String orderNum,Integer buyUserId,Integer authorUserId,
 			Short payMode,Short dataType,Integer dataId,int pageNo, int pageSize) {
@@ -303,7 +278,8 @@ public class BbsOrderMngImpl implements BbsOrderMng {
 				authorUserId,payMode,dataType,dataId,pageNo, pageSize);
 		return page;
 	}
-	
+
+	@Override
 	@Transactional(readOnly = true)
 	public List<BbsOrder> getList(String orderNum,Integer buyUserId,
 			Integer authorUserId,Short payMode,Short dataType,
@@ -311,35 +287,41 @@ public class BbsOrderMngImpl implements BbsOrderMng {
 		return dao.getList(orderNum, buyUserId, authorUserId,
 				payMode,dataType,dataId, first, count);
 	}
-	
+
+	@Override
 	@Transactional(readOnly = true)
 	public Pagination getPageByTopic(Integer topicId,
 			Short payMode,int pageNo, int pageSize){
 		return dao.getPageByTopic(topicId,payMode,pageNo,pageSize);
 	}
-	
+
+	@Override
 	@Transactional(readOnly = true)
 	public List<BbsOrder> getListByTopic(Integer topicId, Short payMode, Integer first, Integer count) {
 		return dao.getListByTopic(topicId, payMode, first, count);
 	}
 
+	@Override
 	@Transactional(readOnly = true)
 	public BbsOrder findById(Long id) {
 		BbsOrder entity = dao.findById(id);
 		return entity;
 	}
-	
+
+	@Override
 	@Transactional(readOnly = true)
 	public BbsOrder findByOrderNumber(String orderNumber){
 		return dao.findByOrderNumber(orderNumber);
 	}
 	
 	@Transactional(readOnly = true)
+	@Override
 	public BbsOrder findByOutOrderNum(String orderNum,Integer payMethod){
 		return dao.findByOutOrderNum(orderNum, payMethod);
 	}
 	
 	@Transactional(readOnly = true)
+	@Override
 	public boolean hasBuyTopic(Integer buyUserId,Integer topicId){
 		BbsOrder buy=dao.find(buyUserId, topicId);
 		//用户已经购买并且是收费订单非打赏订单
@@ -350,22 +332,26 @@ public class BbsOrderMngImpl implements BbsOrderMng {
 		}
 	}
 
+	@Override
 	public BbsOrder save(BbsOrder bean) {
 		dao.save(bean);
 		return bean;
 	}
 
+	@Override
 	public BbsOrder update(BbsOrder bean) {
 		Updater<BbsOrder> updater = new Updater<BbsOrder>(bean);
 		bean = dao.updateByUpdater(updater);
 		return bean;
 	}
 
+	@Override
 	public BbsOrder deleteById(Long id) {
 		BbsOrder bean = dao.deleteById(id);
 		return bean;
 	}
-	
+
+	@Override
 	public BbsOrder[] deleteByIds(Long[] ids) {
 		BbsOrder[] beans = new BbsOrder[ids.length];
 		for (int i = 0,len = ids.length; i < len; i++) {
@@ -373,12 +359,12 @@ public class BbsOrderMngImpl implements BbsOrderMng {
 		}
 		return beans;
 	}
-	
+
+	@Override
 	public Double getWeChatOrderAmount(String outOrderNum,
 			BbsConfigCharge config){
-		initWeiXinPayUrl();
 		Map<String, String>map=WeixinPay.weixinOrderQuery(outOrderNum,
-	    			null, getWeiXinPayUrl(), config);
+	    			null, socialInfoConfig.getWeixin().getOrder().getQueryUrl(), config);
 	    String returnCode = map.get("return_code");
 	    Double orderAmount=0d;
 		if(StringUtils.isNotBlank(returnCode)){
@@ -399,11 +385,11 @@ public class BbsOrderMngImpl implements BbsOrderMng {
 		}
 		return orderAmount;
 	}
-	
+
+	@Override
 	public Double getAliPayOrderAmount(String outOrderNum,
 			BbsConfigCharge config){
-		initAliPayUrl();
-		AlipayTradeQueryResponse res=AliPay.query(getAliPayUrl(), config,
+		AlipayTradeQueryResponse res=AliPay.query(socialInfoConfig.getAlipay().getOpenapiUrl(), config,
 				null,outOrderNum);
 		Double orderAmount=0d;
 		if (null != res && res.isSuccess()) {
@@ -420,40 +406,6 @@ public class BbsOrderMngImpl implements BbsOrderMng {
 		return orderAmount;
 	}
 	
-	private void initAliPayUrl(){
-		if(getAliPayUrl()==null){
-			setAliPayUrl(PropertyUtils.getPropertyValue(
-					new File(realPathResolver.get(com.jeecms.bbs.Constants.JEEBBS_CONFIG)),ALI_PAY_URL));
-		}
-	}
-	
-	private void initWeiXinPayUrl(){
-		if(getWeiXinPayUrl()==null){
-			setWeiXinPayUrl(PropertyUtils.getPropertyValue(
-					new File(realPathResolver.get(com.jeecms.bbs.Constants.JEEBBS_CONFIG)),WEIXIN_ORDER_QUERY_URL));
-		}
-	}
-	
-	private String weiXinPayUrl;
-	
-	private String aliPayUrl;
-	
-	public String getWeiXinPayUrl() {
-		return weiXinPayUrl;
-	}
-
-	public void setWeiXinPayUrl(String weiXinPayUrl) {
-		this.weiXinPayUrl = weiXinPayUrl;
-	}
-
-	public String getAliPayUrl() {
-		return aliPayUrl;
-	}
-
-	public void setAliPayUrl(String aliPayUrl) {
-		this.aliPayUrl = aliPayUrl;
-	}
-
 	private BbsOrderDao dao;
 	@Autowired
 	private BbsTopicMng topicMng;
@@ -468,8 +420,6 @@ public class BbsOrderMngImpl implements BbsOrderMng {
 	@Autowired
 	private BbsUserMng userMng;
 	@Autowired
-	private RealPathResolver realPathResolver;
-	@Autowired
 	private BbsCommonMagicMng bbsCommonMagicMng;
 	@Autowired
 	private BbsMagicLogMng magicLogMng;
@@ -479,6 +429,8 @@ public class BbsOrderMngImpl implements BbsOrderMng {
 	private BbsGiftUserMng bbsGiftUserMng;
 	@Autowired
 	private BbsIncomeStatisticMng incomeStatisticMng;
+	@Autowired
+	private SocialInfoConfig socialInfoConfig;
 	
 	@Autowired
 	public void setDao(BbsOrderDao dao) {

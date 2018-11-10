@@ -13,6 +13,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.jeecms.config.SocialInfoConfig;
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
@@ -71,9 +72,6 @@ import com.jeecms.core.web.WebErrors;
 
 @Controller
 public class UserApiAct {
-	
-	private final String WEIXIN_JSCODE_2_SESSION_URL="weixin.jscode2sessionUrl";
-	public static final short REGISTER_CLOSE=0;
 	
 	/**
 	 * 找回密码
@@ -289,14 +287,13 @@ public class UserApiAct {
 				message=Constants.API_MESSAGE_REQUEST_REPEAT;
 				code=ResponseCode.API_CODE_REQUEST_REPEAT;
 			}else{
-				initWeiXinJsCode2SessionUrl();
 				Map<String,String>params=new HashMap<String, String>();
 				CmsConfig config=configMng.get();
 				params.put("appid", config.getWeixinAppId());
 				params.put("secret", config.getWeixinAppSecret());
 				params.put("js_code",js_code);
 				params.put("grant_type",grant_type);
-				String result=HttpClientUtil.postParams(getWeiXinJsCode2SessionUrl(),
+				String result=HttpClientUtil.postParams(socialInfoConfig.getWeixin().getJscode2sessionUrl(),
 						params);
 				JSONObject json;
 				Object openId = null;
@@ -631,25 +628,6 @@ public class UserApiAct {
 			return false;
 		}
 	}
-	
-	private void initWeiXinJsCode2SessionUrl(){
-		if(getWeiXinJsCode2SessionUrl()==null){
-			setWeiXinJsCode2SessionUrl(PropertyUtils.getPropertyValue(
-					new File(realPathResolver.get(com.jeecms.bbs.Constants.JEEBBS_CONFIG)),WEIXIN_JSCODE_2_SESSION_URL));
-		}
-	}
-	
-	
-	
-	private String weiXinJsCode2SessionUrl;
-	
-	public String getWeiXinJsCode2SessionUrl() {
-		return weiXinJsCode2SessionUrl;
-	}
-
-	public void setWeiXinJsCode2SessionUrl(String weiXinJsCode2SessionUrl) {
-		this.weiXinJsCode2SessionUrl = weiXinJsCode2SessionUrl;
-	}
 
 	@Autowired
 	private ApiRecordMng apiRecordMng;
@@ -683,6 +661,8 @@ public class UserApiAct {
 	private ConfigMng conMng;
 	@Autowired
 	private BbsLoginLogMng bbsLoginLogMng;
+	@Autowired
+	private SocialInfoConfig socialInfoConfig;
 	
 }
 

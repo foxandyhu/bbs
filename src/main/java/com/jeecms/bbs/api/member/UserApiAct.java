@@ -107,7 +107,6 @@ public class UserApiAct {
 	 * @param qq qq号  非必选
 	 * @param userImg 用户头像  非必选
 	 * @param appId appID 必选
-	 * @param nonce_str 随机字符串 必选
 	 * @param sign 签名必选
 	 */
 	@SignValidate
@@ -250,10 +249,8 @@ public class UserApiAct {
 	 * 修改会员密码
 	 * @param username 用户名   必选
 	 * @param email 邮箱 非必选
-	 * @param origPwd 原密码  必选
 	 * @param newPwd 新密码 必选
 	 * @param appId appID 必选
-	 * @param nonce_str 随机字符串 必选
 	 * @param sign 签名必选
 	 */
 	@RequestMapping(value = "/user/pwd")
@@ -297,9 +294,6 @@ public class UserApiAct {
 	 * 获取用户信息
 	 * @param username 用户名必选
 	 * @param https 用户头像返回地址格式    1 http格式   0 https格式 非必选 默认1
-	 * @param appId appID 必选
-	 * @param nonce_str 随机字符串 必选
-	 * @param sign 签名必选
 	 */
 	@RequestMapping(value= "/user/get")
 	public void getUserInfo(Integer https,String username,
@@ -343,11 +337,8 @@ public class UserApiAct {
 	
 	/**
 	 * 用户退出API
-	 * @param username 用户名 必选
 	 * @param sessionKey 会话标识 必选
 	 * @param appId appID 必选
-	 * @param nonce_str 随机字符串 必选
-	 * @param sign 签名必选
 	 */
 	@RequestMapping(value = "/user/logout")
 	public void userLogout(String appId,String sessionKey,
@@ -469,17 +460,7 @@ public class UserApiAct {
 		}
 		return errors;
 	}
-	
-	private String weiXinJsCode2SessionUrl;
-	
-	public String getWeiXinJsCode2SessionUrl() {
-		return weiXinJsCode2SessionUrl;
-	}
 
-	public void setWeiXinJsCode2SessionUrl(String weiXinJsCode2SessionUrl) {
-		this.weiXinJsCode2SessionUrl = weiXinJsCode2SessionUrl;
-	}
-	
 	@Autowired
 	private BbsForumMng forumMng;
 	@Autowired

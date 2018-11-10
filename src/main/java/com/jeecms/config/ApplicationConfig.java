@@ -1,10 +1,12 @@
 package com.jeecms.config;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.hibernate.SessionFactory;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.cache.annotation.EnableCaching;
@@ -24,6 +26,11 @@ import com.jeecms.common.web.springmvc.SimpleFreeMarkerView;
 
 import freemarker.template.SimpleHash;
 
+/**
+*  @Description: 系统总体配置
+*  @Author: andy_hulibo@163.com
+*  @CreateDate: 2018/11/10 9:41
+*/
 @Configuration
 @EnableTransactionManagement
 @EnableCaching
@@ -62,19 +69,19 @@ public class ApplicationConfig {
 		//设置Freemarker解析视图;
 		return (String ... args) ->resolver.setViewClass(SimpleFreeMarkerView.class);
 	}
-	
+
+	@Value("#{'${spring.view.directive}'.split(',')}")
+	private List<String> directives;
+
 	@EventListener
 	public void handleContextRefresh(ContextRefreshedEvent event) throws Exception {
 		ApplicationContext context = event.getApplicationContext();
-		
-		DirectiveConfig directiveConfig=context.getBean(DirectiveConfig.class);
-		Map<String,String> directives=directiveConfig.getMap();
 		FreeMarkerConfigurer config=context.getBean(FreeMarkerConfigurer.class);
-		Map<String,Object> map =new HashMap<String,Object>() {
+		Map<String,Object> map =new HashMap<String,Object>(15) {
 			private static final long serialVersionUID = 723383891389861471L;
 			{
-				for (String key:directives.keySet()) {
-					Object obj=context.getBean(directives.get(key));
+				for (String key:directives) {
+					Object obj=context.getBean(key);
 					put(key,obj);
 				}
 			}};

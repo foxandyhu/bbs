@@ -30,18 +30,18 @@ import com.jeecms.core.entity.CmsSite;
 import com.jeecms.core.web.WebErrors;
 
 /**
- * 账户提现
- */
+*  @Description: 账户提现
+*  @Author: andy_hulibo@163.com
+*  @CreateDate: 2018/11/10 20:10
+*/
 @Controller
 public class AccountDrawAct {
 	private static final Logger log = LoggerFactory.getLogger(AccountDrawAct.class);
-	public static final String WEIXIN_AUTH_CODE_URL ="weixin.auth.getCodeUrl";
 	public static final String MEMBER_ACCOUNT_DRAW = "tpl.memberAccountDraw";
 	public static final String MEMBER_ACCOUNT_DRAW_LIST = "tpl.memberAccountDrawList";
 
 	public static final String MEMBER_ACCOUNT_GIFT_DRAW = "tpl.memberAccountGiftDraw";
-	public static final String MEMBER_WEIXIN_AUTH = "tpl.weixinAuth";
-	
+
 	@RequestMapping(value = "/member/draw_list.jspx")
 	public String drawList(Integer pageNo,HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
@@ -271,24 +271,4 @@ public class AccountDrawAct {
 	private BbsAccountDrawMng accountDrawMng;
 	@Autowired
 	private BbsConfigChargeMng configChargeMng;
-	
-	private String weixinAuthCodeUrl;
-	private String weixinAuthTokenUrl;
-	
-
-	public String getWeixinAuthCodeUrl() {
-		return weixinAuthCodeUrl;
-	}
-
-	public void setWeixinAuthCodeUrl(String weixinAuthCodeUrl) {
-		this.weixinAuthCodeUrl = weixinAuthCodeUrl;
-	}
-
-	public String getWeixinAuthTokenUrl() {
-		return weixinAuthTokenUrl;
-	}
-
-	public void setWeixinAuthTokenUrl(String weixinAuthTokenUrl) {
-		this.weixinAuthTokenUrl = weixinAuthTokenUrl;
-	}
 }

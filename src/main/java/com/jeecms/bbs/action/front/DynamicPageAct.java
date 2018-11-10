@@ -38,7 +38,6 @@ public class DynamicPageAct {
 	public static final String TPL_INDEX_RECOMMEND = "tpl.indexRecommend";
 	public static final String TPL_NO_VIEW = "tpl.noview";
 
-
 	@RequestMapping(value = {"/","/index"}, method = RequestMethod.GET)
 	public String index(HttpServletRequest request, ModelMap model,HttpServletResponse response) {
 		CmsSite site = CmsUtils.getSite(request);
