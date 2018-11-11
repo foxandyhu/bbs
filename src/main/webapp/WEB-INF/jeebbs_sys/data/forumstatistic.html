@@ -10,7 +10,7 @@ function getTableForm() {
 }
 function optExport() {
 	var f = getTableForm();
-	f.action="forumCountExport.do";
+	f.action="forumCountExport.html";
 	f.submit();
 }
 </script>
@@ -22,7 +22,7 @@ function optExport() {
 	<form class="ropt">
 		<input name="begin" <#if begin??>value="${begin?string('yyyy-MM-dd')}"</#if> style="width:140px" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate" />
 		<input name="end" <#if end??>value="${end?string('yyyy-MM-dd')}"</#if> style="width:140px" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate" />
-		<input type="submit" value="<@s.m "global.query"/>" onclick="this.form.action='forumstatistic.do';"/>
+		<input type="submit" value="<@s.m "global.query"/>" onclick="this.form.action='forumstatistic.html';"/>
 	</form>
 	<div class="clear"></div>
 </div>
@@ -30,8 +30,8 @@ function optExport() {
 <input type="hidden" name="pageNo" value="${pageNo!}"/>
 <input type="hidden" name="begin" <#if begin??>value="${begin?string('yyyy-MM-dd')}"</#if> />
 <input type="hidden" name="end" <#if end??>value="${end?string('yyyy-MM-dd')}"</#if>/>
-<@p.table value=pagination listAction="forumstatistic.do";forumCount,i,has_next><#rt/>
-	<@p.column title="板块"><a href="singleforumstatistic.do?forumId=${forumCount[0]!}">${forumCount[1]!}</a></@p.column><#t/>
+<@p.table value=pagination listAction="forumstatistic.html";forumCount,i,has_next><#rt/>
+	<@p.column title="板块"><a href="singleforumstatistic.html?forumId=${forumCount[0]!}">${forumCount[1]!}</a></@p.column><#t/>
 	<@p.column title="贴子数">${forumCount[2]!}</@p.column><#t/>
 	<@p.column title="回复数">${forumCount[3]!}</@p.column><#t/>
 	<@p.column title="访问量">${forumCount[4]!}</@p.column><#t/>

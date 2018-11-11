@@ -19,7 +19,7 @@ $(function() {
 	</form>
 	<div class="clear"></div>
 </div>
-<@p.form id="jvForm" action="o_update.do" labelWidth="12">
+<@p.form id="jvForm" action="o_update.html" labelWidth="12">
 <@p.td width="50" colspan="1" label="cmsUser.username">${cmsMember.username}<#if cmsMember.admin> &nbsp; <span style="color:red">[<@s.m "cmsUser.admin"/>]</span></#if></@p.td>
 <@p.text width="50" colspan="1" label="cmsUser.email" name="email" value=cmsMember.email size="30" class="email"/><@p.tr/>
 <@p.password width="50" colspan="1" label="cmsUser.password" id="password" name="password" help="cmsUser.password.help"/>

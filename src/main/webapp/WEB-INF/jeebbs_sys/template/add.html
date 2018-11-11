@@ -16,11 +16,11 @@ $(function() {
 	<div class="rpos"><@s.m "global.position"/>: <@s.m "template.function"/> - <@s.m "global.add"/></div>
 	<form class="ropt">
 		<input type="hidden" name="root" value="${root}"/>
-		<input type="submit" value="<@s.m "global.backToList"/>" onclick="this.form.action='v_list.do';"/>
+		<input type="submit" value="<@s.m "global.backToList"/>" onclick="this.form.action='v_list.html';"/>
 	</form>
 	<div class="clear"></div>
 </div>
-<@p.form id="jvForm" action="o_save.do" labelWidth="15">
+<@p.form id="jvForm" action="o_save.html" labelWidth="15">
 <@p.text label="template.filename" name="filename" size="30" required="true" class="required" maxlength="100" help=".html"/>
 <@p.td><@p.textarea name="source" style="width:90%;height:350px" wrap="off" maxlength="1232896"/></@p.td><@p.tr/>
 <@p.td>

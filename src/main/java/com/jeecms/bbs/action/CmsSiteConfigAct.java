@@ -47,14 +47,14 @@ public class CmsSiteConfigAct {
 			.getLogger(CmsSiteConfigAct.class);
 
 	@RequiresPermissions("site_config:v_system_edit")
-	@RequestMapping("/site_config/v_system_edit.do")
+	@RequestMapping("/site_config/v_system_edit.html")
 	public String systemEdit(HttpServletRequest request, ModelMap model) {
 		model.addAttribute("cmsConfig", cmsConfigMng.get());
 		return "site_config/system_edit";
 	}
 
 	@RequiresPermissions("site_config:o_system_update")
-	@RequestMapping("/site_config/o_system_update.do")
+	@RequestMapping("/site_config/o_system_update.html")
 	public String systemUpdate(CmsConfig bean, Integer pageNo,
 			HttpServletRequest request, ModelMap model) {
 		WebErrors errors = validateSystemUpdate(bean, request);
@@ -68,7 +68,7 @@ public class CmsSiteConfigAct {
 	}
 
 	@RequiresPermissions("site_config:v_base_edit")
-	@RequestMapping("/site_config/v_base_edit.do")
+	@RequestMapping("/site_config/v_base_edit.html")
 	public String baseEdit(HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
 		List<Ftp> ftpList = ftpMng.getList();
@@ -78,7 +78,7 @@ public class CmsSiteConfigAct {
 	}
 
 	@RequiresPermissions("site_config:o_base_update")
-	@RequestMapping("/site_config/o_base_update.do")
+	@RequestMapping("/site_config/o_base_update.html")
 	public String baseUpdate(CmsSite bean, Integer uploadFtpId,
 			HttpServletRequest request, ModelMap model) {
 		WebErrors errors = validateBaseUpdate(bean, request);
@@ -94,7 +94,7 @@ public class CmsSiteConfigAct {
 	}
 
 	@RequiresPermissions("bbs_config:v_edit")
-	@RequestMapping("/bbs_config/v_edit.do")
+	@RequestMapping("/bbs_config/v_edit.html")
 	public String bbsEdit(HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
 		BbsConfig config = bbsConfigMng.findById(site.getId());
@@ -109,7 +109,7 @@ public class CmsSiteConfigAct {
 	}
 
 	@RequiresPermissions("bbs_config:o_update")
-	@RequestMapping("/bbs_config/o_update.do")
+	@RequestMapping("/bbs_config/o_update.html")
 	public String bbsUpdate(BbsConfig bean,BbsConfigAttr bbsConfigAttr, Integer registerGroupId,
 			Integer defaultGroupId, HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -122,7 +122,7 @@ public class CmsSiteConfigAct {
 	}
 	
 	@RequiresPermissions("bbs_config:v_login_edit")
-	@RequestMapping("/bbs_config/v_login_edit.do")
+	@RequestMapping("/bbs_config/v_login_edit.html")
 	public String loginEdit(HttpServletRequest request, ModelMap model) {
 		model.addAttribute("configLogin", configMng.getConfigLogin());
 		model.addAttribute("emailSender", configMng.getEmailSender());
@@ -133,7 +133,7 @@ public class CmsSiteConfigAct {
 	}
 
 	@RequiresPermissions("bbs_config:o_login_update")
-	@RequestMapping("/bbs_config/o_login_update.do")
+	@RequestMapping("/bbs_config/o_login_update.html")
 	public String loginUpdate(ConfigLogin configLogin,
 			ConfigEmailSender emailSender, ConfigMessageTemplate msgTpl,
 			HttpServletRequest request, ModelMap model) {
@@ -150,7 +150,7 @@ public class CmsSiteConfigAct {
 	}
 	
 	@RequiresPermissions("bbs_config:v_creditExchangeEdit")
-	@RequestMapping("/bbs_config/v_creditExchangeEdit.do")
+	@RequestMapping("/bbs_config/v_creditExchangeEdit.html")
 	public String bbsCreditExchangeEdit(HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
 		BbsCreditExchange creditExchange =creditExchangeMng.findById(site.getId());
@@ -159,7 +159,7 @@ public class CmsSiteConfigAct {
 	}
 	
 	@RequiresPermissions("bbs_config:v_creditExchangeUpdate")
-	@RequestMapping("/bbs_config/v_creditExchangeUpdate.do")
+	@RequestMapping("/bbs_config/v_creditExchangeUpdate.html")
 	public String bbsCreditExchangeUpdate(BbsCreditExchange creditExchange ,HttpServletRequest request, ModelMap model) {
 		if(creditExchange.getExchangetax()<1.0&&creditExchange.getExchangetax()>=0.0){
 			creditExchangeMng.update(creditExchange);
@@ -171,14 +171,14 @@ public class CmsSiteConfigAct {
 	
 	
 	@RequiresPermissions("bbs_config:v_api_edit")
-	@RequestMapping("/bbs_config/v_api_edit.do")
+	@RequestMapping("/bbs_config/v_api_edit.html")
 	public String apiEdit(HttpServletRequest request, ModelMap model) {
 		model.addAttribute("configAttr", cmsConfigMng.get().getConfigAttr());
 		return "site_config/api_edit";
 	}
 	
 	@RequiresPermissions("bbs_config:o_aip_update")
-	@RequestMapping("/bbs_config/o_aip_update.do")
+	@RequestMapping("/bbs_config/o_aip_update.html")
 	public String apiUpdate(BbsConfigAttr configAttr,HttpServletRequest request, ModelMap model) {
 		cmsConfigMng.updateConfigAttr(configAttr);
 		model.addAttribute("message", "global.success");
@@ -187,7 +187,7 @@ public class CmsSiteConfigAct {
 	}
 	
 	@RequiresPermissions("bbs_config:v_sso_edit")
-	@RequestMapping("/bbs_config/v_sso_edit.do")
+	@RequestMapping("/bbs_config/v_sso_edit.html")
 	public String ssoAuthenticateEdit(HttpServletRequest request, ModelMap model) {
 		CmsConfig config=cmsConfigMng.get();
 		model.addAttribute("ssoMap", config.getSsoAttr());
@@ -196,7 +196,7 @@ public class CmsSiteConfigAct {
 	}
 	
 	@RequiresPermissions("bbs_config:o_sso_update")
-	@RequestMapping("/bbs_config/o_sso_update.do")
+	@RequestMapping("/bbs_config/o_sso_update.html")
 	public String ssoAuthenticateUpdate(HttpServletRequest request, ModelMap model) {
 		Map<String,String>ssoMap=RequestUtils.getRequestMap(request, "attr_");
 		cmsConfigMng.updateSsoAttr(ssoMap);
@@ -206,20 +206,20 @@ public class CmsSiteConfigAct {
 	}
 	
 	@RequiresPermissions("bbs_config:item_list")
-	@RequestMapping("/bbs_config/item_list.do")
+	@RequestMapping("/bbs_config/item_list.html")
 	public String itemList(HttpServletRequest request, ModelMap model) {
 		model.addAttribute("registerItems",cmsConfigItemMng.getList(cmsConfigMng.get().getId(), CmsConfigItem.CATEGORY_REGISTER));
 		return "site_config/item_list";
 	}
 	
 	@RequiresPermissions("bbs_config:item_add")
-	@RequestMapping("/bbs_config/item_add.do")
+	@RequestMapping("/bbs_config/item_add.html")
 	public String itemAdd(HttpServletRequest request, ModelMap model) {
 		return "site_config/item_add";
 	}
 	
 	@RequiresPermissions("bbs_config:item_save")
-	@RequestMapping("/bbs_config/item_save.do")
+	@RequestMapping("/bbs_config/item_save.html")
 	public String itemSave(CmsConfigItem bean,HttpServletRequest request, ModelMap model) {
 		bean.setConfig(cmsConfigMng.get());
 		bean.setCategory(CmsConfigItem.CATEGORY_REGISTER);
@@ -228,7 +228,7 @@ public class CmsSiteConfigAct {
 	}
 	
 	@RequiresPermissions("bbs_config:item_edit")
-	@RequestMapping("/bbs_config/item_edit.do")
+	@RequestMapping("/bbs_config/item_edit.html")
 	public String itemEdit(Integer id,HttpServletRequest request, ModelMap model) {
 		CmsConfigItem item = cmsConfigItemMng.findById(id);
 		model.addAttribute("cmsConfigItem", item);
@@ -236,14 +236,14 @@ public class CmsSiteConfigAct {
 	}
 	
 	@RequiresPermissions("bbs_config:item_update")
-	@RequestMapping("/bbs_config/item_update.do")
+	@RequestMapping("/bbs_config/item_update.html")
 	public String itemUpdate(CmsConfigItem bean,HttpServletRequest request, ModelMap model) {
 		cmsConfigItemMng.update(bean);
 		return itemList(request, model);
 	}
 	
 	@RequiresPermissions("bbs_config:item_priority")
-	@RequestMapping("/bbs_config/item_priority.do")
+	@RequestMapping("/bbs_config/item_priority.html")
 	public String itemPriority(Integer[] wids, Integer[] priority, String[] label,
 			Boolean[] single, Boolean[] display, Integer modelId,
 			Boolean isChannel, HttpServletRequest request, ModelMap model) {
@@ -255,7 +255,7 @@ public class CmsSiteConfigAct {
 	}
 	
 	@RequiresPermissions("bbs_config:item_delete")
-	@RequestMapping("/bbs_config/item_delete.do")
+	@RequestMapping("/bbs_config/item_delete.html")
 	public String itemDelete(Integer[] ids, Integer modelId, Boolean isChannel,
 			HttpServletRequest request, ModelMap model) {
 		CmsConfigItem[] beans = cmsConfigItemMng.deleteByIds(ids);
@@ -266,14 +266,14 @@ public class CmsSiteConfigAct {
 	}
 	
 	@RequiresPermissions("bbs_config:v_message_edit")
-	@RequestMapping("/bbs_config/v_message_edit.do")
+	@RequestMapping("/bbs_config/v_message_edit.html")
 	public String messageEdit(HttpServletRequest request, ModelMap model) {
 		model.addAttribute("configAttr", cmsConfigMng.get().getConfigAttr());
 		return "site_config/message_edit";
 	}
 
 	@RequiresPermissions("bbs_config:o_message_update")
-	@RequestMapping("/bbs_config/o_message_update.do")
+	@RequestMapping("/bbs_config/o_message_update.html")
 	public String messageUpdate(BbsConfigAttr configAttr, Integer pageNo,
 			HttpServletRequest request, ModelMap model) {
 		cmsConfigMng.updateConfigAttr(configAttr);
@@ -283,14 +283,14 @@ public class CmsSiteConfigAct {
 	}
 	
 	@RequiresPermissions("bbs_config:v_ad_edit")
-	@RequestMapping("/bbs_config/v_ad_edit.do")
+	@RequestMapping("/bbs_config/v_ad_edit.html")
 	public String adEdit(HttpServletRequest request, ModelMap model) {
 		model.addAttribute("configAttr", cmsConfigMng.get().getConfigAttr());
 		return "site_config/ad_edit";
 	}
 
 	@RequiresPermissions("bbs_config:o_ad_update")
-	@RequestMapping("/bbs_config/o_ad_update.do")
+	@RequestMapping("/bbs_config/o_ad_update.html")
 	public String adUpdate(BbsConfigAttr configAttr, Integer pageNo,
 			HttpServletRequest request, ModelMap model) {
 		cmsConfigMng.updateConfigAttr(configAttr);

@@ -27,7 +27,7 @@ public class CmsFriendlinkAct {
 			.getLogger(CmsFriendlinkAct.class);
 
 	@RequiresPermissions("friendlink:v_list")
-	@RequestMapping("/friendlink/v_list.do")
+	@RequestMapping("/friendlink/v_list.html")
 	public String list(Integer queryCtgId, HttpServletRequest request,
 			ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -44,7 +44,7 @@ public class CmsFriendlinkAct {
 	}
 
 	@RequiresPermissions("friendlink:v_add")
-	@RequestMapping("/friendlink/v_add.do")
+	@RequestMapping("/friendlink/v_add.html")
 	public String add(ModelMap model, HttpServletRequest request) {
 		CmsSite site = CmsUtils.getSite(request);
 		WebErrors errors = validateAdd(request);
@@ -58,7 +58,7 @@ public class CmsFriendlinkAct {
 	}
 
 	@RequiresPermissions("friendlink:v_edit")
-	@RequestMapping("/friendlink/v_edit.do")
+	@RequestMapping("/friendlink/v_edit.html")
 	public String edit(Integer id, Integer queryCtgId,
 			HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -77,7 +77,7 @@ public class CmsFriendlinkAct {
 	}
 
 	@RequiresPermissions("friendlink:o_save")
-	@RequestMapping("/friendlink/o_save.do")
+	@RequestMapping("/friendlink/o_save.html")
 	public String save(CmsFriendlink bean, Integer ctgId,
 			HttpServletRequest request, ModelMap model) {
 		WebErrors errors = validateSave(bean, request);
@@ -86,11 +86,11 @@ public class CmsFriendlinkAct {
 		}
 		bean = manager.save(bean, ctgId);
 		log.info("save CmsFriendlink id={}", bean.getId());
-		return "redirect:v_list.do";
+		return "redirect:v_list.html";
 	}
 
 	@RequiresPermissions("friendlink:o_update")
-	@RequestMapping("/friendlink/o_update.do")
+	@RequestMapping("/friendlink/o_update.html")
 	public String update(CmsFriendlink bean, Integer ctgId, Integer queryCtgId,
 			HttpServletRequest request, ModelMap model) {
 		WebErrors errors = validateUpdate(bean.getId(), request);
@@ -103,7 +103,7 @@ public class CmsFriendlinkAct {
 	}
 
 	@RequiresPermissions("friendlink:o_priority")
-	@RequestMapping("/friendlink/o_priority.do")
+	@RequestMapping("/friendlink/o_priority.html")
 	public String priority(Integer[] wids, Integer[] priority,
 			Integer queryCtgId, HttpServletRequest request, ModelMap model) {
 		WebErrors errors = validatePriority(wids, priority, request);
@@ -116,7 +116,7 @@ public class CmsFriendlinkAct {
 	}
 
 	@RequiresPermissions("friendlink:o_delete")
-	@RequestMapping("/friendlink/o_delete.do")
+	@RequestMapping("/friendlink/o_delete.html")
 	public String delete(Integer[] ids, Integer queryCtgId,
 			HttpServletRequest request, ModelMap model) {
 		WebErrors errors = validateDelete(ids, request);

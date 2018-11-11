@@ -27,19 +27,19 @@ public class BbsTopicTypeAct {
 	private static final Logger log = LoggerFactory.getLogger(BbsTopicTypeAct.class);
 
 	@RequiresPermissions("topicType:main")
-	@RequestMapping("/topicType/main.do")
+	@RequestMapping("/topicType/main.html")
 	public String topicTypeMain(ModelMap model) {
 		return "topicType/main";
 	}
 	
 	@RequiresPermissions("topicType:v_left")
-	@RequestMapping("/topicType/v_left.do")
+	@RequestMapping("/topicType/v_left.html")
 	public String left() {
 		return "topicType/left";
 	}
 
 	@RequiresPermissions("topicType:v_tree")
-	@RequestMapping(value = "/topicType/v_tree.do")
+	@RequestMapping(value = "/topicType/v_tree.html")
 	public String tree(String root, HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		log.debug("tree path={}", root);
@@ -65,7 +65,7 @@ public class BbsTopicTypeAct {
 	}
 	
 	@RequiresPermissions("topicType:v_list")
-	@RequestMapping("/topicType/v_list.do")
+	@RequestMapping("/topicType/v_list.html")
 	public String list(Integer root, HttpServletRequest request, ModelMap model) {
 		List<BbsTopicType> list;
 		if (root == null) {
@@ -79,7 +79,7 @@ public class BbsTopicTypeAct {
 	}
 
 	@RequiresPermissions("topicType:v_add")
-	@RequestMapping("/topicType/v_add.do")
+	@RequestMapping("/topicType/v_add.html")
 	public String add(Integer root,ModelMap model) {
 		BbsTopicType parent = null;
 		if (root != null) {
@@ -91,7 +91,7 @@ public class BbsTopicTypeAct {
 	}
 
 	@RequiresPermissions("topicType:v_edit")
-	@RequestMapping("/topicType/v_edit.do")
+	@RequestMapping("/topicType/v_edit.html")
 	public String edit(Integer id, Integer root, 
 			HttpServletRequest request, ModelMap model) {
 		WebErrors errors = validateEdit(id, request);
@@ -111,7 +111,7 @@ public class BbsTopicTypeAct {
 	}
 
 	@RequiresPermissions("topicType:o_save")
-	@RequestMapping("/topicType/o_save.do")
+	@RequestMapping("/topicType/o_save.html")
 	public String save(BbsTopicType bean, Integer root,Integer parentId,
 			HttpServletRequest request, ModelMap model) {
 		if(parentId!=null){
@@ -125,7 +125,7 @@ public class BbsTopicTypeAct {
 	}
 
 	@RequiresPermissions("topicType:o_update")
-	@RequestMapping("/topicType/o_update.do")
+	@RequestMapping("/topicType/o_update.html")
 	public String update(BbsTopicType bean, Integer root,Integer parentId, 
 			HttpServletRequest request,ModelMap model) {
 		WebErrors errors = validateUpdate(bean.getId(), request);
@@ -138,7 +138,7 @@ public class BbsTopicTypeAct {
 	}
 
 	@RequiresPermissions("topicType:o_delete")
-	@RequestMapping("/topicType/o_delete.do")
+	@RequestMapping("/topicType/o_delete.html")
 	public String delete(Integer[] ids, Integer root, HttpServletRequest request,
 			ModelMap model) {
 		WebErrors errors = validateDelete(ids, request);
@@ -153,7 +153,7 @@ public class BbsTopicTypeAct {
 	}
 	
 	@RequiresPermissions("topicType:v_create_path")
-	@RequestMapping(value = "/topicType/v_create_path.do")
+	@RequestMapping(value = "/topicType/v_create_path.html")
 	public void createPath(String name,HttpServletRequest request, HttpServletResponse response) {
 		String path;
 		if (StringUtils.isBlank(name)) {
@@ -165,7 +165,7 @@ public class BbsTopicTypeAct {
 	}
 	
 	@RequiresPermissions("topicType:v_create_path")
-	@RequestMapping(value = "/topicType/v_check_path.do")
+	@RequestMapping(value = "/topicType/v_check_path.html")
 	public void checkPath(Integer id,String path,HttpServletRequest request, HttpServletResponse response) {
 		String pass;
 		if (StringUtils.isBlank(path)) {

@@ -16,11 +16,11 @@ $(function() {
 	<div class="rpos"><@s.m "global.position"/>: <@s.m "template.function"/> - <@s.m "template.rename"/></div>
 	<form class="ropt">
 		<input type="hidden" name="root" value="${root}"/>
-		<input type="submit" value="<@s.m "global.backToList"/>" onclick="this.form.action='v_list.do';"/>
+		<input type="submit" value="<@s.m "global.backToList"/>" onclick="this.form.action='v_list.html';"/>
 	</form>
 	<div class="clear"></div>
 </div>
-<@p.form id="jvForm" action="o_rename.do">
+<@p.form id="jvForm" action="o_rename.html">
 <@p.td label="template.origName">${origName}</@p.td><@p.tr/>
 <@p.text label="template.newName" name="distName" value=origName size="40" required="true" class="required" maxlength="100"/>
 <@p.td>

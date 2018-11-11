@@ -45,12 +45,12 @@ function showAttr(value) {
 <div class="rhead">
 	<div class="rpos"><@s.m "global.position"/>: <@s.m "cmsAdvertising.function"/> > <@s.m "global.edit"/></div>
 	<form class="ropt">
-		<input type="submit" value="<@s.m "global.backToList"/>" onclick="this.form.action='v_list.do';" class="return-button"/>
+		<input type="submit" value="<@s.m "global.backToList"/>" onclick="this.form.action='v_list.html';" class="return-button"/>
 	</form>
 	<div class="clear"></div>
 </div>
 <#include "flash_upload.html"/>
-<@p.form id="jvForm" action="o_update.do" labelWidth="12" class="formDefStyle">
+<@p.form id="jvForm" action="o_update.html" labelWidth="12" class="formDefStyle">
 <@p.text colspan="2" width="100" label="cmsAdvertising.name" name="name" value=cmsAdvertising.name required="true" class="required" maxlength="100"/><@p.tr/>
 <@p.radio colspan="2" label="cmsAdvertising.category" name="category" value=cmsAdvertising.category list={"image":"cmsAdvertising.category.image","flash":"cmsAdvertising.category.flash","text":"cmsAdvertising.category.text","code":"cmsAdvertising.category.code"} onclick="attrChange(this.value)" required="true"/><@p.tr/>
 <@p.td colspan="2" label="cmsAdvertising.attr" required="true">

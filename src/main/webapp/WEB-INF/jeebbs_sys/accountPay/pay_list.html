@@ -20,7 +20,7 @@ function optDelete() {
 }
 function doDelete(){
 	var f = getTableForm();
-	f.action="o_delete.do";
+	f.action="o_delete.html";
 	f.submit();
 }
 </script>
@@ -31,7 +31,7 @@ function doDelete(){
   <div class="rpos"><@s.m "global.position"/>: <@s.m "cmsAccountPay.function"/> > <@s.m "global.list"/></div>
 	<div class="clear"></div>
 </div>
-<form action="v_list.do" method="post">
+<form action="v_list.html" method="post">
 <div style="padding-top:5px; padding-bottom:5px; text-indent:10px; border-bottom:1px solid #fff; border-top:1px solid #fff;">
 <@s.m "cmsAccountPay.drawNum"/>:<input name="drawNum" type="text" value="${drawNum!}" style="width:140px"/>
 <@s.m "cmsAccountPay.payUser"/>:<input name="payUserName"  type="text" value="${payUserName!}" style="width:80px"/>
@@ -61,7 +61,7 @@ function doDelete(){
 	<@p.column code="cmsAccountPay.weixinNum">${cmsAccountPay.weixinNum!}</@p.column><#t/>
 	<@p.column code="cmsAccountPay.alipayNum">${cmsAccountPay.alipayNum!}</@p.column><#t/>
 	<@p.column code="global.operate" align="center">
-		<a href="o_delete.do?ids=${cmsAccountPay.id}&pageNo=${pageNo!}&drawNum=${drawNum!}&payUserName=${payUserName!}&drawUserName=${drawUserName!}&payTimeEnd=${payTimeEnd!}&payTimeBegin=${payTimeBegin!}" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}"  class="pn-opt"><@s.m "global.delete"/></a><#t/>
+		<a href="o_delete.html?ids=${cmsAccountPay.id}&pageNo=${pageNo!}&drawNum=${drawNum!}&payUserName=${payUserName!}&drawUserName=${drawUserName!}&payTimeEnd=${payTimeEnd!}&payTimeBegin=${payTimeBegin!}" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}"  class="pn-opt"><@s.m "global.delete"/></a><#t/>
 	</@p.column><#t/>
 </@p.table>
 <div><input class="del-button" type="button" value="<@s.m "global.delete"/>" onclick="optDelete();"/></div>

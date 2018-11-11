@@ -40,7 +40,7 @@ public class BbsCommonMagicAct {
 			.getLogger(BbsCommonMagicAct.class);
 
 	@RequiresPermissions("magic:v_list")
-	@RequestMapping("/magic/v_list.do")
+	@RequestMapping("/magic/v_list.html")
 	public String list(HttpServletRequest request, ModelMap model) {
 		List<BbsCommonMagic> magics = manager.getList();
 		model.addAttribute("magics", magics);
@@ -48,7 +48,7 @@ public class BbsCommonMagicAct {
 	}
 
 	@RequiresPermissions("magic:user_list")
-	@RequestMapping("/magic/user_list.do")
+	@RequestMapping("/magic/user_list.html")
 	public String user_list(String username, Integer groupId, Integer pageNo,
 			HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -65,7 +65,7 @@ public class BbsCommonMagicAct {
 	}
 
 	@RequiresPermissions("magic:select_magic")
-	@RequestMapping("/magic/select_magic.do")
+	@RequestMapping("/magic/select_magic.html")
 	public String select_magic(Integer userIds[], Integer pageNo,
 			HttpServletRequest request, ModelMap model) {
 		List<BbsCommonMagic> magics = manager.getList();
@@ -75,7 +75,7 @@ public class BbsCommonMagicAct {
 	}
 
 	@RequiresPermissions("magic:give_magic")
-	@RequestMapping("/magic/give_magic.do")
+	@RequestMapping("/magic/give_magic.html")
 	public String give_magic(Integer userIds[], Integer ids[], Integer nums[],
 			Integer pageNo, HttpServletRequest request, ModelMap model) {
 		MagicMessage magicMessage = MagicMessage.create(request);
@@ -114,7 +114,7 @@ public class BbsCommonMagicAct {
 	}
 
 	@RequiresPermissions("magic:v_edit")
-	@RequestMapping("/magic/v_edit.do")
+	@RequestMapping("/magic/v_edit.html")
 	public String edit(Integer id, Integer pageNo, HttpServletRequest request,
 			ModelMap model) {
 		WebErrors errors = validateEdit(id, request);
@@ -135,7 +135,7 @@ public class BbsCommonMagicAct {
 	}
 
 	@RequiresPermissions("magic:o_update")
-	@RequestMapping("/magic/o_update.do")
+	@RequestMapping("/magic/o_update.html")
 	public String update(BbsCommonMagic bean, Integer[] groupIds,
 			Integer[] beUsedGroupIds, HttpServletRequest request, ModelMap model) {
 		manager.updateByGroup(bean, groupIds, beUsedGroupIds);
@@ -144,11 +144,11 @@ public class BbsCommonMagicAct {
 	}
 
 	@RequiresPermissions("magic:o_priority")
-	@RequestMapping("/magic/o_priority.do")
+	@RequestMapping("/magic/o_priority.html")
 	public String priorityUpdate(Integer[] mids, Byte[] prioritys,
 			Integer[] magicAvail, HttpServletRequest request, ModelMap model) {
 		if (mids == null || mids.length <= 0) {
-			return "redirect:v_list.do";
+			return "redirect:v_list.html";
 		}
 		BbsCommonMagic magic;
 		Integer id;
@@ -175,7 +175,7 @@ public class BbsCommonMagicAct {
 	}
 
 	@RequiresPermissions("magic:v_config")
-	@RequestMapping("/magic/v_config.do")
+	@RequestMapping("/magic/v_config.html")
 	public String config_edit(HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -185,7 +185,7 @@ public class BbsCommonMagicAct {
 	}
 
 	@RequiresPermissions("magic:o_config")
-	@RequestMapping("/magic/o_config.do")
+	@RequestMapping("/magic/o_config.html")
 	public String config_update(HttpServletRequest request,
 			HttpServletResponse response, BbsMagicConfig bean, ModelMap model) {
 		bean = magicConfigMng.update(bean);

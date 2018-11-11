@@ -16,7 +16,7 @@ $(function() {
 	<div class="clear"></div>
 </div>
 <div class="body-box">
-<@p.form id="jvForm" action="o_login_update.do" labelWidth="15">
+<@p.form id="jvForm" action="o_login_update.html" labelWidth="15">
 <@p.text width="50" colspan="1" label="cmsConfig.configLogin.errorTimes" name="errorTimes" value=configLogin.errorTimes required="required" class="required digits" maxlength="5" style="width:70px" help="cmsConfig.configLogin.errorTimes.help"/>
 <@p.text width="50" colspan="1" label="cmsConfig.configLogin.errorInterval" name="errorInterval" value=configLogin.errorInterval required="required" class="required digits" maxlength="5" style="width:70px" help="cmsConfig.configLogin.errorInterval.help"/><@p.tr/>
 <@p.text width="50" colspan="1" label="cmsConfig.emailSender.host" name="host" value=(emailSender.host)! required="required" class="required" maxlength="100"/>

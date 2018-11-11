@@ -47,14 +47,14 @@ public class BbsAccountPayAct {
 	public static final String WEIXIN_PAY_URL="weixin.transfer.url";
 	
 	@RequiresPermissions("accountPay:payLogin")
-	@RequestMapping(value="/accountPay/payLogin.do", method = RequestMethod.GET)
+	@RequestMapping(value="/accountPay/payLogin.html", method = RequestMethod.GET)
 	public String payLogin(HttpServletRequest request,
 			ModelMap model) {
 		return "accountPay/pay_login";
 	}
 	
 	@RequiresPermissions("accountPay:payLogin")
-	@RequestMapping(value="/accountPay/payLogin.do", method = RequestMethod.POST)
+	@RequestMapping(value="/accountPay/payLogin.html", method = RequestMethod.POST)
 	public String payLoginSubmit(String password, String captcha,
 			HttpServletRequest request,HttpServletResponse response,
 			ModelMap model) {
@@ -84,7 +84,7 @@ public class BbsAccountPayAct {
 	}
 	
 	@RequiresPermissions("accountPay:goToPay")
-	@RequestMapping("/accountPay/goToPay.do")
+	@RequestMapping("/accountPay/goToPay.html")
 	public String goToPay(Integer id, 
 			Integer pageNo, HttpServletRequest request,
 			ModelMap model) {
@@ -100,7 +100,7 @@ public class BbsAccountPayAct {
 	
 	//每次转账均需要输入密码和验证码
 	@RequiresPermissions("accountPay:payByWeiXin")
-	@RequestMapping("/accountPay/payByWeiXin.do")
+	@RequestMapping("/accountPay/payByWeiXin.html")
 	public String payByWeiXin(Integer drawId, String password,String captcha,
 			Integer pageNo, HttpServletRequest request,HttpServletResponse response,
 			ModelMap model) {
@@ -145,7 +145,7 @@ public class BbsAccountPayAct {
 	}
 	
 	@RequiresPermissions("accountPay:v_list")
-	@RequestMapping("/accountPay/v_list.do")
+	@RequestMapping("/accountPay/v_list.html")
 	public String list(String drawNum,String payUserName,String drawUserName,
 			Date payTimeBegin,Date payTimeEnd,Integer pageNo,
 			HttpServletRequest request, ModelMap model) {
@@ -186,7 +186,7 @@ public class BbsAccountPayAct {
 	}
 	
 	@RequiresPermissions("accountPay:o_delete")
-	@RequestMapping("/accountPay/o_delete.do")
+	@RequestMapping("/accountPay/o_delete.html")
 	public String delete(String drawNum,String payUserName,String drawUserName,
 			Date payTimeBegin,Date payTimeEnd,
 			Long[] ids, Integer pageNo, HttpServletRequest request,

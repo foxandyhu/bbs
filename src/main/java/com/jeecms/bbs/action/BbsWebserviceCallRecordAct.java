@@ -18,7 +18,7 @@ import com.jeecms.bbs.manager.BbsWebserviceCallRecordMng;
 public class BbsWebserviceCallRecordAct {
 
 	@RequiresPermissions("webserviceCallRecord:v_list")
-	@RequestMapping("/webserviceCallRecord/v_list.do")
+	@RequestMapping("/webserviceCallRecord/v_list.html")
 	public String list(Integer pageNo, HttpServletRequest request, ModelMap model) {
 		Pagination pagination = manager.getPage(cpn(pageNo), CookieUtils
 				.getPageSize(request));
@@ -27,7 +27,7 @@ public class BbsWebserviceCallRecordAct {
 	}
 
 	@RequiresPermissions("webserviceCallRecord:o_delete")
-	@RequestMapping("/webserviceCallRecord/o_delete.do")
+	@RequestMapping("/webserviceCallRecord/o_delete.html")
 	public String delete(Integer[] ids, Integer pageNo, HttpServletRequest request,
 			ModelMap model) {
 		manager.deleteByIds(ids);

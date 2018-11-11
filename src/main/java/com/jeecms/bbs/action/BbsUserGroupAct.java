@@ -27,7 +27,7 @@ public class BbsUserGroupAct {
 			.getLogger(BbsUserGroupAct.class);
 
 	@RequiresPermissions("group:v_list")
-	@RequestMapping("/group/v_list.do")
+	@RequestMapping("/group/v_list.html")
 	public String list(Integer pageNo, HttpServletRequest request,
 			ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -38,7 +38,7 @@ public class BbsUserGroupAct {
 	}
 
 	@RequiresPermissions("group:v_add")
-	@RequestMapping("/group/v_add.do")
+	@RequestMapping("/group/v_add.html")
 	public String add(short groupType,
 			HttpServletRequest request,  ModelMap model) {
 		CmsSite site=CmsUtils.getSite(request);
@@ -53,7 +53,7 @@ public class BbsUserGroupAct {
 	}
 
 	@RequiresPermissions("group:v_edit")
-	@RequestMapping("/group/v_edit.do")
+	@RequestMapping("/group/v_edit.html")
 	public String edit(Integer groupId, short groupType, Integer pageNo,
 			HttpServletRequest request, ModelMap model) {
 		BbsUserGroup group = manager.findById(groupId);
@@ -107,19 +107,19 @@ public class BbsUserGroupAct {
 	
 	/*
 	@RequiresPermissions("group:o_save")
-	@RequestMapping("/group/o_save.do")
+	@RequestMapping("/group/o_save.html")
 	public String save(String[] name, String[] imgPath, Integer[] id,
 			Long[] point, short groupType, HttpServletRequest request,
 			ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
 		manager.saveOrUpdateGroups(site.getId(), groupType, name, imgPath, id,
 				point);
-		return "redirect:v_list.do";
+		return "redirect:v_list.html";
 	}
 	*/
 	
 	@RequiresPermissions("group:o_save")
-	@RequestMapping("/group/o_save.do")
+	@RequestMapping("/group/o_save.html")
 	public String save(BbsUserGroup bean,Short groupType,  Integer[]forumIds,Integer[] views,
 			Integer[] topics, Integer[] replies, HttpServletRequest request,
 			ModelMap model) {
@@ -129,11 +129,11 @@ public class BbsUserGroupAct {
 		bean.setDefault(false);
 		bean.setGradeNum(0);
 		bean = manager.save(bean, forumIds, views, topics, replies);
-		return "redirect:v_list.do";
+		return "redirect:v_list.html";
 	}
 
 	@RequiresPermissions("group:o_update")
-	@RequestMapping("/group/o_update.do")
+	@RequestMapping("/group/o_update.html")
 	public String update(BbsUserGroup bean,  Integer[]forumIds,Integer[] views,
 			Integer[] topics, Integer[] replies,
 			Integer pageNo, HttpServletRequest request, ModelMap model) {
@@ -144,7 +144,7 @@ public class BbsUserGroupAct {
 	}
 
 	@RequiresPermissions("group:o_delete")
-	@RequestMapping("/group/o_delete.do")
+	@RequestMapping("/group/o_delete.html")
 	public String delete(Integer[] ids, Integer pageNo,
 			HttpServletRequest request, ModelMap model) {
 		BbsUserGroup[] beans = manager.deleteByIds(ids);

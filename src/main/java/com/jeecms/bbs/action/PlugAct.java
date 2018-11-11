@@ -52,7 +52,7 @@ public class PlugAct {
 	private static final String PLUG_CONFIG_KEY_REPAIR="plug_repair";
 
 	@RequiresPermissions("plug:v_list")
-	@RequestMapping(value = "/plug/v_list.do")
+	@RequestMapping(value = "/plug/v_list.html")
 	public String list(Integer pageNo,HttpServletRequest request,
 			 ModelMap model) {
 		Pagination pagination = manager.getPage(cpn(pageNo), CookieUtils
@@ -63,13 +63,13 @@ public class PlugAct {
 	}
 	
 	@RequiresPermissions("plug:v_add")
-	@RequestMapping("/plug/v_add.do")
+	@RequestMapping("/plug/v_add.html")
 	public String add(ModelMap model) {
 		return "plug/add";
 	}
 
 	@RequiresPermissions("plug:v_edit")
-	@RequestMapping("/plug/v_edit.do")
+	@RequestMapping("/plug/v_edit.html")
 	public String edit(Integer id, Integer pageNo, HttpServletRequest request, ModelMap model) {
 		WebErrors errors = validateEdit(id, request);
 		if (errors.hasErrors()) {
@@ -81,7 +81,7 @@ public class PlugAct {
 	}
 
 	@RequiresPermissions("plug:o_save")
-	@RequestMapping("/plug/o_save.do")
+	@RequestMapping("/plug/o_save.html")
 	public String save(BbsPlug bean, HttpServletRequest request, ModelMap model) throws IOException {
 		WebErrors errors = validateSave(bean, request);
 		if (errors.hasErrors()) {
@@ -101,11 +101,11 @@ public class PlugAct {
 		bean.setUploadTime(Calendar.getInstance().getTime());
 		bean = manager.save(bean);
 		log.info("save CmsPlug id={}", bean.getId());
-		return "redirect:v_list.do";
+		return "redirect:v_list.html";
 	}
 
 	@RequiresPermissions("plug:o_update")
-	@RequestMapping("/plug/o_update.do")
+	@RequestMapping("/plug/o_update.html")
 	public String update(BbsPlug bean,String path,
 			Integer pageNo, HttpServletRequest request,
 			ModelMap model) throws IOException {
@@ -141,7 +141,7 @@ public class PlugAct {
 	 * @throws IOException
 	 */
 	@RequiresPermissions("plug:o_upload")
-	@RequestMapping(value = "/plug/o_upload.do")
+	@RequestMapping(value = "/plug/o_upload.html")
 	public String uploadSubmit(
 			@RequestParam(value = "plugFile", required = false) MultipartFile file,
 			HttpServletRequest request, HttpServletResponse response,
@@ -186,7 +186,7 @@ public class PlugAct {
 	 * @throws JSONException 
 	 */
 	@RequiresPermissions("plug:o_install")
-	@RequestMapping(value = "/plug/o_install.do")
+	@RequestMapping(value = "/plug/o_install.html")
 	public void install(Integer id,HttpServletRequest request, HttpServletResponse response,
 			ModelMap model) throws IOException, JSONException {
 		BbsUser user = CmsUtils.getUser(request);
@@ -242,7 +242,7 @@ public class PlugAct {
 	 * @throws JSONException 
 	 */
 	@RequiresPermissions("plug:o_uninstall")
-	@RequestMapping("/plug/o_uninstall.do")
+	@RequestMapping("/plug/o_uninstall.html")
 	public void uninstall(Integer id, HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) 
 					throws IOException, JSONException {
@@ -281,7 +281,7 @@ public class PlugAct {
 	}
 	
 	@RequiresPermissions("plug:o_delete")
-	@RequestMapping("/plug/o_delete.do")
+	@RequestMapping("/plug/o_delete.html")
 	public String delete(Integer[] ids, Integer pageNo, HttpServletRequest request,
 			ModelMap model) {
 		WebErrors errors = validateDelete(ids, request);

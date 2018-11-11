@@ -33,7 +33,7 @@ public class BbsReportAct {
 			.getLogger(BbsReportAct.class);
 
 	@RequiresPermissions("report:v_list")
-	@RequestMapping("/report/v_list.do")
+	@RequestMapping("/report/v_list.html")
 	public String list(Boolean status, Integer pageNo,
 			HttpServletRequest request, ModelMap model) {
 		if(status==null){
@@ -47,7 +47,7 @@ public class BbsReportAct {
 	}
 
 	@RequiresPermissions("report:v_more")
-	@RequestMapping("/report/v_more.do")
+	@RequestMapping("/report/v_more.html")
 	public String more(Integer reportId, Integer pageNo,
 			HttpServletRequest request, ModelMap model) {
 		Pagination pagination = reportExtMng.getPage(reportId, SimplePage
@@ -58,7 +58,7 @@ public class BbsReportAct {
 	}
 
 	@RequiresPermissions("report:o_process")
-	@RequestMapping("/report/o_process.do")
+	@RequestMapping("/report/o_process.html")
 	public String process(Integer[] ids,Integer[] points,String[] results,
 			HttpServletRequest request,
 			ModelMap model) {
@@ -89,7 +89,7 @@ public class BbsReportAct {
 	}
 	
 	@RequiresPermissions("report:o_process")
-	@RequestMapping("/report/o_process_single.do")
+	@RequestMapping("/report/o_process_single.html")
 	public String processReport(Integer ids,Integer points,String results,
 			HttpServletRequest request,
 			ModelMap model) {
@@ -121,7 +121,7 @@ public class BbsReportAct {
 	
 
 	@RequiresPermissions("report:o_delete")
-	@RequestMapping("/report/o_delete.do")
+	@RequestMapping("/report/o_delete.html")
 	public String delete(Boolean status, Integer[] ids, Integer pageNo,
 			HttpServletRequest request, ModelMap model) {
 		BbsReport[] beans = reportMng.deleteByIds(ids);

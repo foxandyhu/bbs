@@ -7,7 +7,7 @@
 <script type="text/javascript">
 $(function(){
 	$("#browser").treeview({
-		url: "v_tree.do"
+		url: "v_tree.html"
 	});
 	Cms.lmenu("lmenu");
 });
@@ -16,11 +16,11 @@ $(function(){
 <body class="lbody">
 <div class="lttop">
 	<a href="javascript:location.href=location.href"><@s.m "global.refresh"/></a>
-<@cms_perm url="/template/v_setting.do">
-&nbsp; <a href="v_setting.do" target="rightFrame"><@s.m "template.computersetting"/></a>
+<@cms_perm url="/template/v_setting.html">
+&nbsp; <a href="v_setting.html" target="rightFrame"><@s.m "template.computersetting"/></a>
 </@cms_perm>
-<@cms_perm url="/template/v_mobile_setting.do">
-&nbsp; <a href="v_mobile_setting.do" target="rightFrame"><@s.m "template.mobilesetting"/></a>
+<@cms_perm url="/template/v_mobile_setting.html">
+&nbsp; <a href="v_mobile_setting.html" target="rightFrame"><@s.m "template.mobilesetting"/></a>
 </@cms_perm>
 </div>
 <hr/>

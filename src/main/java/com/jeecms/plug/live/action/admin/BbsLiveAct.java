@@ -45,7 +45,7 @@ public class BbsLiveAct {
 	private static final Logger log = LoggerFactory.getLogger(BbsLiveAct.class);
 
 	@RequiresPermissions("live:v_list")
-	@RequestMapping("/live/v_list.do")
+	@RequestMapping("/live/v_list.html")
 	public String list(String qtitle,String qusername,
 			Short qstatus,Date qtimeBegin,Date qtimeEnd,
 			Date qFinishTimeBegin,Date qFinishTimeEnd,Integer qorderBy,
@@ -117,7 +117,7 @@ public class BbsLiveAct {
 	}
 
 	@RequiresPermissions("live:v_edit")
-	@RequestMapping("/live/v_edit.do")
+	@RequestMapping("/live/v_edit.html")
 	public String edit(Integer id,String qtitle,String qusername,
 			Short qstatus,Date qtimeBegin,Date qtimeEnd,Integer qorderBy,
 			Integer pageNo,  HttpServletRequest request, ModelMap model) {
@@ -136,7 +136,7 @@ public class BbsLiveAct {
 	}
 	
 	@RequiresPermissions("live:v_view")
-	@RequestMapping("/live/v_view.do")
+	@RequestMapping("/live/v_view.html")
 	public String view(Integer id,HttpServletRequest request, ModelMap model) {
 		WebErrors errors = validateEdit(id, request);
 		if (errors.hasErrors()) {
@@ -148,7 +148,7 @@ public class BbsLiveAct {
 	}
 
 	@RequiresPermissions("live:o_update")
-	@RequestMapping("/live/o_update.do")
+	@RequestMapping("/live/o_update.html")
 	public String update(BbsLive bean,String qtitle,
 			String qusername,Short qstatus,Date qtimeBegin,Date qtimeEnd,
 			Date qFinishTimeBegin,Date qFinishTimeEnd,Integer qorderBy,
@@ -170,7 +170,7 @@ public class BbsLiveAct {
 	
 	
 	@RequiresPermissions("live:o_check")
-	@RequestMapping("/live/o_check.do")
+	@RequestMapping("/live/o_check.html")
 	public String check(Integer[] ids,String qtitle,String qusername,
 			Short qstatus,Date qtimeBegin,Date qtimeEnd,
 			Date qFinishTimeBegin,Date qFinishTimeEnd,Integer qorderBy,
@@ -192,7 +192,7 @@ public class BbsLiveAct {
 	}
 	
 	@RequiresPermissions("live:o_reject")
-	@RequestMapping("/live/o_reject.do")
+	@RequestMapping("/live/o_reject.html")
 	public String reject(Integer[] ids,String reason,
 			String qtitle,String qusername,
 			Short qstatus,Date qtimeBegin,Date qtimeEnd,
@@ -216,7 +216,7 @@ public class BbsLiveAct {
 	}
 	
 	@RequiresPermissions("live:o_stop")
-	@RequestMapping("/live/o_stop.do")
+	@RequestMapping("/live/o_stop.html")
 	public String stop(Integer[] ids,String qtitle,String qusername,
 			Short qstatus,Date qtimeBegin,Date qtimeEnd,
 			Date qFinishTimeBegin,Date qFinishTimeEnd,Integer qorderBy,
@@ -265,7 +265,7 @@ public class BbsLiveAct {
 	}
 	
 	@RequiresPermissions("live:o_stop")
-	@RequestMapping("/live/o_ajax_stop.do")
+	@RequestMapping("/live/o_ajax_stop.html")
 	public void ajaxStop(Integer  id,HttpServletRequest request,
 			HttpServletResponse response,ModelMap model) {
 		WebErrors errors = WebErrors.create(request);
@@ -306,7 +306,7 @@ public class BbsLiveAct {
 	}
 	
 	@RequiresPermissions("live:o_start")
-	@RequestMapping("/live/o_start.do")
+	@RequestMapping("/live/o_start.html")
 	public String start(Integer[] ids,String qtitle,String qusername,
 			Short qstatus,Date qtimeBegin,Date qtimeEnd,
 			Date qFinishTimeBegin,Date qFinishTimeEnd,Integer qorderBy,
@@ -354,7 +354,7 @@ public class BbsLiveAct {
 	}
 	
 	@RequiresPermissions("live:o_start")
-	@RequestMapping("/live/o_ajax_start.do")
+	@RequestMapping("/live/o_ajax_start.html")
 	public void ajaxStart(Integer  id,HttpServletRequest request,
 			HttpServletResponse response,ModelMap model) {
 		WebErrors errors = WebErrors.create(request);
@@ -393,7 +393,7 @@ public class BbsLiveAct {
 	}
 
 	@RequiresPermissions("live:o_delete")
-	@RequestMapping("/live/o_delete.do")
+	@RequestMapping("/live/o_delete.html")
 	public String delete(Integer[] ids, String qtitle,String qusername,
 			Short qstatus,Date qtimeBegin,Date qtimeEnd,
 			Date qFinishTimeBegin,Date qFinishTimeEnd,Integer qorderBy,

@@ -18,12 +18,12 @@ function plugExist(msg){
 <div class="rhead">
 	<div class="rpos"><@s.m "global.position"/>: <@s.m "plug.function"/> > <@s.m "global.edit"/></div>
 	<form class="ropt">
-		<input class="return-button" type="submit" value="<@s.m "global.backToList"/>" onclick="this.form.action='v_list.do';"/>
+		<input class="return-button" type="submit" value="<@s.m "global.backToList"/>" onclick="this.form.action='v_list.html';"/>
 	</form>
 	<div class="clear"></div>
 </div>
 <#include "plug_upload.html"/>
-<@p.form id="jvForm" action="o_update.do">
+<@p.form id="jvForm" action="o_update.html">
 <@p.text label="plug.name" name="name" value=plug.name required="true" class="required" maxlength="100"/>
 <@p.text label="plug.author" name="author" value=plug.author maxlength="100"/>
 <#if !plug.used>

@@ -26,7 +26,7 @@ public class ApiInfoAct {
 
 
 	@RequiresPermissions("apiInfo:v_list")
-	@RequestMapping("/apiInfo/v_list.do")
+	@RequestMapping("/apiInfo/v_list.html")
 	public String list(Integer pageNo, HttpServletRequest request, ModelMap model) {
 		Pagination pagination = manager.getPage(cpn(pageNo), CookieUtils
 				.getPageSize(request));
@@ -36,13 +36,13 @@ public class ApiInfoAct {
 	}
 	
 	@RequiresPermissions("apiInfo:v_add")
-	@RequestMapping("/apiInfo/v_add.do")
+	@RequestMapping("/apiInfo/v_add.html")
 	public String add(ModelMap model) {
 		return "apiInfo/add";
 	}
 
 	@RequiresPermissions("apiInfo:v_edit")
-	@RequestMapping("/apiInfo/v_edit.do")
+	@RequestMapping("/apiInfo/v_edit.html")
 	public String edit(Integer id, Integer pageNo, HttpServletRequest request, ModelMap model) {
 		WebErrors errors = validateEdit(id, request);
 		if (errors.hasErrors()) {
@@ -54,16 +54,16 @@ public class ApiInfoAct {
 	}
 
 	@RequiresPermissions("apiInfo:o_save")
-	@RequestMapping("/apiInfo/o_save.do")
+	@RequestMapping("/apiInfo/o_save.html")
 	public String save(ApiInfo bean, HttpServletRequest request, ModelMap model) {
 		bean.init();
 		bean = manager.save(bean);
 		log.info("save ApiInfo id={}", bean.getId());
-		return "redirect:v_list.do";
+		return "redirect:v_list.html";
 	}
 
 	@RequiresPermissions("apiInfo:o_update")
-	@RequestMapping("/apiInfo/o_update.do")
+	@RequestMapping("/apiInfo/o_update.html")
 	public String update(ApiInfo bean, Integer pageNo, HttpServletRequest request,
 			ModelMap model) {
 		WebErrors errors = validateUpdate(bean.getId(), request);
@@ -76,7 +76,7 @@ public class ApiInfoAct {
 	}
 
 	@RequiresPermissions("apiInfo:o_delete")
-	@RequestMapping("/apiInfo/o_delete.do")
+	@RequestMapping("/apiInfo/o_delete.html")
 	public String delete(Integer[] ids, Integer pageNo, HttpServletRequest request,
 			ModelMap model) {
 		WebErrors errors = validateDelete(ids, request);

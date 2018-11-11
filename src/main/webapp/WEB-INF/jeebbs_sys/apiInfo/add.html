@@ -15,11 +15,11 @@ $(function() {
 <div class="rhead">
 	<div class="rpos"><@s.m "global.position"/>: <@s.m "apiInfo.function"/> > <@s.m "global.add"/></div>
 	<form class="ropt">
-		<input type="submit" value="<@s.m "global.backToList"/>" onclick="this.form.action='v_list.do';" class="return-button"/>
+		<input type="submit" value="<@s.m "global.backToList"/>" onclick="this.form.action='v_list.html';" class="return-button"/>
 	</form>
 	<div class="clear"></div>
 </div>
-<@p.form id="jvForm" action="o_save.do">
+<@p.form id="jvForm" action="o_save.html">
 <@p.text label="apiInfo.name" name="name" required="true" class="required" maxlength="100"/>
 <@p.text label="apiInfo.url" name="url" required="true" class="required" maxlength="100"/><@p.tr/>
 <@p.text label="apiInfo.code" name="code" required="true" class="required" maxlength="20"/>

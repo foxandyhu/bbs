@@ -26,7 +26,7 @@ public class CmsFriendlinkCtgAct {
 			.getLogger(CmsFriendlinkCtgAct.class);
 
 	@RequiresPermissions("friendlink_ctg:v_list")
-	@RequestMapping("/friendlink_ctg/v_list.do")
+	@RequestMapping("/friendlink_ctg/v_list.html")
 	public String list(HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
 		List<CmsFriendlinkCtg> list = manager.getList(site.getId());
@@ -35,7 +35,7 @@ public class CmsFriendlinkCtgAct {
 	}
 
 	@RequiresPermissions("friendlink_ctg:o_save")
-	@RequestMapping("/friendlink_ctg/o_save.do")
+	@RequestMapping("/friendlink_ctg/o_save.html")
 	public String save(CmsFriendlinkCtg bean, HttpServletRequest request,
 			ModelMap model) {
 		WebErrors errors = validateSave(bean, request);
@@ -44,11 +44,11 @@ public class CmsFriendlinkCtgAct {
 		}
 		bean = manager.save(bean);
 		log.info("save CmsFriendlinkCtg id={}", bean.getId());
-		return "redirect:v_list.do";
+		return "redirect:v_list.html";
 	}
 
 	@RequiresPermissions("friendlink_ctg:o_update")
-	@RequestMapping("/friendlink_ctg/o_update.do")
+	@RequestMapping("/friendlink_ctg/o_update.html")
 	public String update(Integer[] wids, String[] name, Integer[] priority,
 			HttpServletRequest request, ModelMap model) {
 		WebErrors errors = validateUpdate(wids, name, priority, request);
@@ -57,11 +57,11 @@ public class CmsFriendlinkCtgAct {
 		}
 		manager.updateFriendlinkCtgs(wids, name, priority);
 		log.info("update CmsFriendlinkCtg.");
-		return "redirect:v_list.do";
+		return "redirect:v_list.html";
 	}
 
 	@RequiresPermissions("friendlink_ctg:o_delete")
-	@RequestMapping("/friendlink_ctg/o_delete.do")
+	@RequestMapping("/friendlink_ctg/o_delete.html")
 	public String delete(Integer[] ids, HttpServletRequest request,
 			ModelMap model) {
 		WebErrors errors = validateDelete(ids, request);
@@ -72,7 +72,7 @@ public class CmsFriendlinkCtgAct {
 		for (CmsFriendlinkCtg bean : beans) {
 			log.info("delete CmsFriendlinkCtg id={}", bean.getId());
 		}
-		return "redirect:v_list.do";
+		return "redirect:v_list.html";
 	}
 
 	private WebErrors validateSave(CmsFriendlinkCtg bean,

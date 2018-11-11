@@ -20,7 +20,7 @@ $(function() {
 	</form>
 	<div class="clear"></div>
 </div>
-<@p.form id="jvForm" action="o_update.do">
+<@p.form id="jvForm" action="o_update.html">
 <@p.text label="bbsGift.name" name="name" value=bbsGift.name  colspan="2" width="100" required="true" class="required" maxlength="100"/><@p.tr/>
 <@p.td id="picPath" label="bbsGift.picUpload" colspan="1" width="50" noHeight="true">
 <@p.text id="uploadImgPath0" name="picPath"  value=bbsGift.picPath style="width:180px"/> <input type="button" value="<@s.m "imageupload.preview"/>" onclick="previewImg(0);"/><br/>

@@ -28,7 +28,7 @@ import com.jeecms.plug.live.manager.BbsLiveUserAccountMng;
 public class BbsLiveHostAct {
 
 	@RequiresPermissions("liveHost:v_list")
-	@RequestMapping("/liveHost/v_list.do")
+	@RequestMapping("/liveHost/v_list.html")
 	public String list(String username, Integer orderBy,Integer queryMode,
 			Integer pageNo, HttpServletRequest request, ModelMap model) {
 		Integer queryUserId = null;
@@ -44,7 +44,7 @@ public class BbsLiveHostAct {
 			queryMode=1;
 		}
 		if(queryMode==0){
-			return "redirect:../liveApply/v_list.do";
+			return "redirect:../liveApply/v_list.html";
 		}
 		Pagination pagination = manager.getPage(queryUserId, orderBy, cpn(pageNo), CookieUtils.getPageSize(request));
 		model.addAttribute("pagination", pagination);
@@ -55,7 +55,7 @@ public class BbsLiveHostAct {
 	}
 	
 	@RequiresPermissions("liveHost:o_delete")
-	@RequestMapping("/liveHost/o_delete.do")
+	@RequestMapping("/liveHost/o_delete.html")
 	public String delete(Integer[] ids,String username,
 			Integer orderBy,Integer pageNo, 
 			HttpServletRequest request, ModelMap model) {
@@ -66,7 +66,7 @@ public class BbsLiveHostAct {
 	}
 
 	@RequiresPermissions("liveHost:o_priority")
-	@RequestMapping("/liveHost/o_priority.do")
+	@RequestMapping("/liveHost/o_priority.html")
 	public String priority(String username, Integer orderBy,
 			Integer[] wids, Integer[] priority,
 			Integer pageNo, HttpServletRequest request, ModelMap model) {

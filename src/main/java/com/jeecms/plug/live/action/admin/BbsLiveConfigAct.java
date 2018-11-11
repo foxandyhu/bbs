@@ -16,14 +16,14 @@ import com.jeecms.core.manager.CmsConfigMng;
 public class BbsLiveConfigAct {
 
 	@RequiresPermissions("live:v_config")
-	@RequestMapping("/live/v_config.do")
+	@RequestMapping("/live/v_config.html")
 	public String configEdit(HttpServletRequest request, ModelMap model) {
 		model.addAttribute("cmsConfig", cmsConfigMng.get());
 		return "plugPage/live/config";
 	}
 	
 	@RequiresPermissions("live:config_update")
-	@RequestMapping("/live/config_update.do")
+	@RequestMapping("/live/config_update.html")
 	public String configUpdate(BbsConfigAttr bbsConfigAttr, HttpServletRequest request, ModelMap model) {
 		cmsConfigMng.updateConfigAttr(bbsConfigAttr);
 		return configEdit(request, model);

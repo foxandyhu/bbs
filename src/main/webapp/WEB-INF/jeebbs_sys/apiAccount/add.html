@@ -21,14 +21,14 @@ function createAppId(id,len){
 <div class="rhead">
 	<div class="rpos"><@s.m "global.position"/>: <@s.m "apiAccount.function"/> > <@s.m "global.add"/></div>
 	<form class="ropt">
-		<input type="submit" value="<@s.m "global.backToList"/>" onclick="this.form.action='v_list.do';" class="return-button"/>
+		<input type="submit" value="<@s.m "global.backToList"/>" onclick="this.form.action='v_list.html';" class="return-button"/>
 	</form>
 	<div class="clear"></div>
 </div>
 <#assign appIdExist><@s.m "error.appIdExist"/></#assign>
-<@p.form id="jvForm" action="o_save.do">
+<@p.form id="jvForm" action="o_save.html">
 <@p.td label="apiAccount.appId"  width="100" colspan="2" >
-<input  name="appId"  id="appId"  type="text" size="50" vld="{required:true,remote:'v_exist.do',messages:{remote:'${appIdExist}'}}"   maxlength="100"/>
+<input  name="appId"  id="appId"  type="text" size="50" vld="{required:true,remote:'v_exist.html',messages:{remote:'${appIdExist}'}}"   maxlength="100"/>
 <@p.button code="apiAccount.appKey.create" class="submit" onclick="createAppId('appId',16)"/>
 </@p.td>
 <@p.tr/>

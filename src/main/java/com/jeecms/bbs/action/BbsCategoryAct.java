@@ -30,7 +30,7 @@ public class BbsCategoryAct {
 			.getLogger(BbsCategoryAct.class);
 
 	@RequiresPermissions("category:v_list")
-	@RequestMapping("/category/v_list.do")
+	@RequestMapping("/category/v_list.html")
 	public String list(HttpServletRequest request, ModelMap model) {
 		List<BbsCategory> list = bbsCategoryMng.getList(CmsUtils
 				.getSiteId(request));
@@ -39,13 +39,13 @@ public class BbsCategoryAct {
 	}
 
 	@RequiresPermissions("category:v_add")
-	@RequestMapping("/category/v_add.do")
+	@RequestMapping("/category/v_add.html")
 	public String add(HttpServletRequest request, ModelMap model) {
 		return "category/add";
 	}
 
 	@RequiresPermissions("category:v_edit")
-	@RequestMapping("/category/v_edit.do")
+	@RequestMapping("/category/v_edit.html")
 	public String edit(Integer id, HttpServletRequest request, ModelMap model) {
 		BbsCategory category = bbsCategoryMng.findById(id);
 		model.put("category", category);
@@ -53,26 +53,26 @@ public class BbsCategoryAct {
 	}
 
 	@RequiresPermissions("category:o_save")
-	@RequestMapping("/category/o_save.do")
+	@RequestMapping("/category/o_save.html")
 	public String save(BbsCategory category, HttpServletRequest request,
 			ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
 		category.setSite(site);
 		category.init();
 		bbsCategoryMng.save(category);
-		return "redirect:../forum/v_list.do";
+		return "redirect:../forum/v_list.html";
 	}
 
 	@RequiresPermissions("category:o_update")
-	@RequestMapping("/category/o_update.do")
+	@RequestMapping("/category/o_update.html")
 	public String update(BbsCategory category, HttpServletRequest request,
 			ModelMap model) {
 		bbsCategoryMng.update(category);
-		return "redirect:v_list.do";
+		return "redirect:v_list.html";
 	}
 
 	@RequiresPermissions("category:o_delete")
-	@RequestMapping("/category/o_delete.do")
+	@RequestMapping("/category/o_delete.html")
 	public String delete(Integer[] ids, Integer pageNo,
 			HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -96,15 +96,15 @@ public class BbsCategoryAct {
 		for (BbsCategory bean : beans) {
 			log.info("delete BbsCategory id={}", bean.getId());
 		}
-		return "redirect:v_list.do";
+		return "redirect:v_list.html";
 	}
 
 	@RequiresPermissions("category:o_priority")
-	@RequestMapping("/category/o_priority.do")
+	@RequestMapping("/category/o_priority.html")
 	public String priorityUpdate(Integer[] wids, Integer[] prioritys,
 			HttpServletRequest request, ModelMap model) {
 		if (wids == null || wids.length <= 0) {
-			return "redirect:v_list.do";
+			return "redirect:v_list.html";
 		}
 		CmsSite site = CmsUtils.getSite(request);
 		BbsCategory t;
@@ -125,7 +125,7 @@ public class BbsCategoryAct {
 	}
 	
 	@RequiresPermissions("category:o_priority")
-	@RequestMapping("/category/o_m_priority.do")
+	@RequestMapping("/category/o_m_priority.html")
 	public void priorityMoveUpdate(String categoryIds,
 			HttpServletRequest request,HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);

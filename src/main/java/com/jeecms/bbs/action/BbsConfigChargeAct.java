@@ -28,7 +28,7 @@ public class BbsConfigChargeAct {
 	private static final Logger log = LoggerFactory.getLogger(BbsConfigChargeAct.class);
 
 	@RequiresPermissions("bbs_config:v_charge")
-	@RequestMapping("/bbs_config/v_charge.do")
+	@RequestMapping("/bbs_config/v_charge.html")
 	public String edit(HttpServletRequest request, ModelMap model) {
 		CmsConfig config=cmsConfigMng.get();
 		model.addAttribute("configCharge", manager.getDefault());
@@ -45,7 +45,7 @@ public class BbsConfigChargeAct {
 	 * @return
 	 */
 	@RequiresPermissions("bbs_config:o_charge_update")
-	@RequestMapping("/bbs_config/o_charge_update.do")
+	@RequestMapping("/bbs_config/o_charge_update.html")
 	public String update(BbsConfigCharge bean,String weixinPassword,
 			String weixinSecret,String alipayKey,String alipayPublicKey,
 			String alipayPrivateKey,

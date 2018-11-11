@@ -22,7 +22,7 @@ function optDelete() {
 		return;
 	}
 	var f = getTableForm();
-	f.action="o_delete.do";
+	f.action="o_delete.html";
 	f.submit();
 }
 function categoryup(categoryId){
@@ -58,7 +58,7 @@ function priorityCategory(){
 	$("input[name='categoryIds']").each(function(){
 		categoryIds+=$(this).val()+",";
 	});
-	$.post("../category/o_m_priority.do", {
+	$.post("../category/o_m_priority.html", {
 		categoryIds:categoryIds
 	}, function(data) {
 	}, "json");
@@ -68,7 +68,7 @@ function priorityForum(){
 	$("input[name='forumIds']").each(function(){
 		forumIds+=$(this).val()+",";
 	});
-	$.post("o_m_priority.do", {
+	$.post("o_m_priority.html", {
 		forumIds:forumIds
 	}, function(data) {
 	}, "json");
@@ -117,11 +117,11 @@ function forumBtnControl(){
 <div class="rhead">
 	<div class="rpos"><@s.m "global.position"/>: 版块 - <@s.m "global.list"/></div>
 	<form class="ropt">
-		<input type="submit" value="<@s.m "global.add"/>" onclick="this.form.action='v_add.do';"/>
+		<input type="submit" value="<@s.m "global.add"/>" onclick="this.form.action='v_add.html';"/>
 	</form>
 	<div class="clear"></div>
 </div>
-<form id="tableForm" method="post" action="batchUpdate.do">
+<form id="tableForm" method="post" action="batchUpdate.html">
 	<div> ID   分区/板块     访问路径   排序      操作</div>
 	<#list categoryList as category>
 	<div id="catediv_${category.id}">
@@ -136,7 +136,7 @@ function forumBtnControl(){
 				<input id="btn_up_cate_${category.id}" onclick="categoryup('${category.id}')" type="button" value="上移"/>
 				<input id="btn_down_cate_${category.id}" onclick="categorydown('${category.id}')" type="button" value="下移"/>
 			</span>
-			<span><a href="../category/o_delete.do?ids=${category.id}" onclick="if(!confirm('你确定要删除吗?')) {return false;}" class="pn-opt">删除</a></span>
+			<span><a href="../category/o_delete.html?ids=${category.id}" onclick="if(!confirm('你确定要删除吗?')) {return false;}" class="pn-opt">删除</a></span>
 		</div>
 		<div id="forumdiv_${category.id}">
 			<#list category.forums as bbsForum>
@@ -146,18 +146,18 @@ function forumBtnControl(){
 				<input name="bbsForumPath" value="${bbsForum.path!}" required="true" class="required" maxlength="150"/>
 				<input id="btn_up_f_${category.id}_${bbsForum.id}" onclick="forumup('${category.id}','${bbsForum.id}')"  type="button" value="上移"/>
 				<input id="btn_down_f_${category.id}_${bbsForum.id}" onclick="forumdown('${category.id}','${bbsForum.id}')" type="button" value="下移"/>
-				<a href="v_edit.do?forumId=${bbsForum.id}&id=${bbsForum.id}&pageNo=${pageNo!}" class="pn-opt"><@s.m "global.edit"/></a> | <#rt/>
-				<a href="o_delete.do?forumId=${bbsForum.id}&ids=${bbsForum.id}&pageNo=${pageNo!}" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}" class="pn-opt"><@s.m "global.delete"/></a><#t/>
+				<a href="v_edit.html?forumId=${bbsForum.id}&id=${bbsForum.id}&pageNo=${pageNo!}" class="pn-opt"><@s.m "global.edit"/></a> | <#rt/>
+				<a href="o_delete.html?forumId=${bbsForum.id}&ids=${bbsForum.id}&pageNo=${pageNo!}" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}" class="pn-opt"><@s.m "global.delete"/></a><#t/>
 			</div>
 			</#list>
 			<div id="newDiv_${category.id}">
-				<a href="v_add.do?categoryId=${category.id}">添加新板块</a>
+				<a href="v_add.html?categoryId=${category.id}">添加新板块</a>
 			</div>	
 		</div>
 	</div>
 	</#list>
 	<div>
-		<a href="../category/v_add.do">添加新分区</a>
+		<a href="../category/v_add.html">添加新分区</a>
 	</div>
 <div>
 	<input type="submit" value="提交" />

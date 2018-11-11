@@ -42,7 +42,7 @@ public class ShiroConfig {
 	@Bean
 	public BbsAdminUrl adminUrlBean() {
 		BbsAdminUrl admin=new BbsAdminUrl();
-		admin.setAdminLogin("/jeeadmin/jeebbs/login.do");
+		admin.setAdminLogin("/jeeadmin/jeebbs/login.html");
 		admin.setAdminPrefix("/jeeadmin/jeebbs/");
 		return admin;
 	}
@@ -66,7 +66,7 @@ public class ShiroConfig {
 	@Bean
 	public BbsAuthenticationFilter authcFilter(BbsAdminUrl adminUrlBean) {
 		BbsAuthenticationFilter authc=new BbsAuthenticationFilter();
-		authc.setAdminIndex("/jeeadmin/jeebbs/index.do");
+		authc.setAdminIndex("/jeeadmin/jeebbs/index.html");
 		authc.setAdminPrefix(adminUrlBean.getAdminPrefix());
 		authc.setRememberMeParam("rememberMe");
 		return authc;

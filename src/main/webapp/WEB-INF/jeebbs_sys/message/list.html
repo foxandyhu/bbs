@@ -17,7 +17,7 @@ function optDelete() {
 		return;
 	}
 	var f = getTableForm();
-	f.action="o_delete.do";
+	f.action="o_delete.html";
 	f.submit();
 }
 </script>
@@ -26,7 +26,7 @@ function optDelete() {
 <div class="body-box">
 <div class="rhead">
 	<div class="rpos"><@s.m "global.position"/>: <@s.m "bbsMessage.function"/> - <@s.m "global.list"/></div>
-	<form class="ropt" method="post" action="v_list.do">
+	<form class="ropt" method="post" action="v_list.html">
 	    发送者：<input type="text" name="sender" value="${sender!}" size="10"/>
 	   接收者： <input type="text" name="receiver" value="${receiver!}" size="10"/>
 	  内容： <input type="text" name="content" value="${content!}" size="15"/>  
@@ -50,7 +50,7 @@ function optDelete() {
 	<@p.column code="bbsMessage.sendTime">${message.createTime!?string("yyyy-MM-dd HH:mm:ss")}</@p.column><#t/>
 	<@p.column code="bbsMessage.content"><span title="${message.content!?html}"><@text_cut s=message.content!?html len=25 append="..."/></span></@p.column><#t/>
 	<@p.column code="global.operate" align="center">
-		<a href="o_delete.do?sys=false&sender=${sender!}&receiver=${receiver!}&content=${content!}&ids=${message.message.id}&pageNo=${pageNo!}" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}"><@s.m "global.delete"/></a><#t/>
+		<a href="o_delete.html?sys=false&sender=${sender!}&receiver=${receiver!}&content=${content!}&ids=${message.message.id}&pageNo=${pageNo!}" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}"><@s.m "global.delete"/></a><#t/>
 	</@p.column><#t/>
 </@p.table>
 <div><input type="button" value="<@s.m "global.delete"/>" onclick="optDelete();"/></div>

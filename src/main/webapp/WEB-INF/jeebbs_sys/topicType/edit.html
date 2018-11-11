@@ -8,7 +8,7 @@
 $(function() {
 	$("#jvForm").validate();
 	$("input[name='name']").blur( function () {
-		$.post("v_create_path.do", {
+		$.post("v_create_path.html", {
 			name:$(this).val()
 		}, function(data) {
 			$("input[name='path']").val(data);
@@ -23,19 +23,19 @@ $(function() {
 	<div class="rpos"><@s.m "global.position"/>:  <@s.m "bbsTopicType.function"/> - <@s.m "global.edit"/></div>
 	<form class="ropt">
 	    <input type="hidden" id="root" name="root" value="${bbsTopicType.id}"/>
-		<input type="button" value="<@s.m 'global.add'/>" onclick="{this.form.action='v_add.do';this.form.submit();}"/>
+		<input type="button" value="<@s.m 'global.add'/>" onclick="{this.form.action='v_add.html';this.form.submit();}"/>
 		<input type="button" value="<@s.m "global.backToList"/>" onclick="history.back();"/>
 	</form>
 	<div class="clear"></div>
 </div>
 <#include "/common/image_upload.html"/>
-<@p.form id="jvForm" action="o_update.do">
+<@p.form id="jvForm" action="o_update.html">
 <@p.td colspan="1" width="50" label="bbsTopicType.parent">
 	<@p.select name="parentId" list=typeList value=(bbsTopicType.parent.id)! listKey="id" listValue="name" listDeep="deep" headerKey="" headerValue="bbsTopicType.top"/>
 </@p.td>
 <@p.text colspan="1" width="50" label="bbsTopicType.name" name="name" value=bbsTopicType.name required="true" class="required" maxlength="100"/><@p.tr/>
 <#assign pathExist><@s.m "error.topicTypePathExist"/></#assign>
-<@p.text colspan="1" width="50" label="bbsTopicType.path" name="path" value=bbsTopicType.path vld="{required:true,path:true,remote:'v_check_path.do?id=${bbsTopicType.id}',messages:{remote:'${pathExist}'}}"  required="true" class="required" maxlength="50"/>
+<@p.text colspan="1" width="50" label="bbsTopicType.path" name="path" value=bbsTopicType.path vld="{required:true,path:true,remote:'v_check_path.html?id=${bbsTopicType.id}',messages:{remote:'${pathExist}'}}"  required="true" class="required" maxlength="50"/>
 <@p.text colspan="1" width="50" label="bbsTopicType.priority" name="priority" value=bbsTopicType.priority required="true" class="required digits" maxlength="10"/><@p.tr/>
 <@p.radio width="100" colspan="2" label="bbsTopicType.display" name="display" value=bbsTopicType.display value="true" list={"true":"global.true","false":"global.false"}/><@p.tr/>
 

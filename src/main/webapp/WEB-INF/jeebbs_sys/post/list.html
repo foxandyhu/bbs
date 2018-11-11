@@ -17,7 +17,7 @@ function optDelete() {
 		return;
 	}
 	var f = getTableForm();
-	f.action="o_delete.do";
+	f.action="o_delete.html";
 	f.submit();
 }
 </script>
@@ -27,7 +27,7 @@ function optDelete() {
 <div class="rhead">
 	<div class="rpos"><@s.m "global.position"/>: <@s.m "bbsPost.function"/> - <@s.m "global.list"/></div>
 	<form class="ropt">
-		<input type="submit" value="<@s.m "global.add"/>" onclick="this.form.action='v_add.do';"/>
+		<input type="submit" value="<@s.m "global.add"/>" onclick="this.form.action='v_add.html';"/>
 	</form>
 	<div class="clear"></div>
 </div>
@@ -40,8 +40,8 @@ function optDelete() {
 	<@p.column title="ID">${bbsPost.id}</@p.column><#t/>
 	<@p.column code="bbsPost.name">${bbsPost.name}</@p.column><#t/>
 	<@p.column code="global.operate" align="center">
-		<a href="v_edit.do?id=${bbsPost.id}&pageNo=${pageNo!}" class="pn-opt"><@s.m "global.edit"/></a> | <#rt/>
-		<a href="o_delete.do?ids=${bbsPost.id}&pageNo=${pageNo!}" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}" class="pn-opt"><@s.m "global.delete"/></a><#t/>
+		<a href="v_edit.html?id=${bbsPost.id}&pageNo=${pageNo!}" class="pn-opt"><@s.m "global.edit"/></a> | <#rt/>
+		<a href="o_delete.html?ids=${bbsPost.id}&pageNo=${pageNo!}" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}" class="pn-opt"><@s.m "global.delete"/></a><#t/>
 	</@p.column><#t/>
 </@p.table>
 <div><input type="button" value="<@s.m "global.delete"/>" onclick="optDelete();"/></div>

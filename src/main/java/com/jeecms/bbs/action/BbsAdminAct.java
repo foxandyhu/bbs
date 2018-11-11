@@ -49,7 +49,7 @@ public class BbsAdminAct {
 			.getLogger(BbsAdminAct.class);
 
 	@RequiresPermissions("admin:v_list")
-	@RequestMapping("/admin/v_list.do")
+	@RequestMapping("/admin/v_list.html")
 	public String list(String queryUsername, String queryEmail,
 			Integer queryGroupId, Boolean queryDisabled,
 			Integer orderBy, Integer pageNo,
@@ -69,7 +69,7 @@ public class BbsAdminAct {
 	}
 
 	@RequiresPermissions("admin:v_add")
-	@RequestMapping("/admin/v_add.do")
+	@RequestMapping("/admin/v_add.html")
 	public String add(HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
 		BbsUser currUser = CmsUtils.getUser(request);
@@ -83,7 +83,7 @@ public class BbsAdminAct {
 	}
 
 	@RequiresPermissions("admin:v_edit")
-	@RequestMapping("/admin/v_edit.do")
+	@RequestMapping("/admin/v_edit.html")
 	public String edit(Integer id, String queryUsername, String queryEmail,
 			Integer queryGroupId, Boolean queryDisabled, 
 			Integer orderBy,HttpServletRequest request,
@@ -111,7 +111,7 @@ public class BbsAdminAct {
 	}
 
 	@RequiresPermissions("admin:o_save")
-	@RequestMapping("/admin/o_save.do")
+	@RequestMapping("/admin/o_save.html")
 	public String save(BbsUser bean, BbsUserExt ext, String username,
 			String email, String password,Integer rank, 
 			Integer groupId,Integer[] roleIds,HttpServletRequest request,ModelMap model) {
@@ -129,11 +129,11 @@ public class BbsAdminAct {
 		} 
 		callWebService(username, password, email, ext,BbsWebservice.SERVICE_TYPE_ADD_USER);
 		log.info("save CmsAdmin id={}", bean.getId());
-		return "redirect:v_list.do";
+		return "redirect:v_list.html";
 	}
 
 	@RequiresPermissions("admin:o_update")
-	@RequestMapping("/admin/o_update.do")
+	@RequestMapping("/admin/o_update.html")
 	public String update(BbsUser bean, BbsUserExt ext, String password,
 			Integer groupId, Integer[] roleIds,String queryUsername, String queryEmail,
 			Integer queryGroupId, Boolean queryDisabled, 
@@ -150,7 +150,7 @@ public class BbsAdminAct {
 	}
 
 	@RequiresPermissions("admin:o_delete")
-	@RequestMapping("/admin/o_delete.do")
+	@RequestMapping("/admin/o_delete.html")
 	public String delete(Integer[] ids, String queryUsername, String queryEmail,
 			Integer queryGroupId, Boolean queryDisabled, 
 			Integer orderBy,Integer pageNo, HttpServletRequest request,
@@ -182,13 +182,13 @@ public class BbsAdminAct {
 	}
 
 	@RequiresPermissions("admin:v_check_username")
-	@RequestMapping(value = "/admin/v_check_username.do")
+	@RequestMapping(value = "/admin/v_check_username.html")
 	public void checkUsername(HttpServletRequest request, HttpServletResponse response) {
 		checkUserJson(request, response);
 	}
 
 	@RequiresPermissions("admin:v_check_email")
-	@RequestMapping(value = "/admin/v_check_email.do")
+	@RequestMapping(value = "/admin/v_check_email.html")
 	public void checkEmail(String email, HttpServletResponse response) {
 		checkEmailJson(email, response);
 	}

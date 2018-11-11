@@ -14,10 +14,10 @@ $(function() {
 <div class="body-box">
 <div class="rhead">
 	<div class="rpos">当前位置： 扩展 - live配置 - 修改</div>
-	<a href="../liveRate/v_list.do"><@s.m "bbsLiveRate.function"/></a>
+	<a href="../liveRate/v_list.html"><@s.m "bbsLiveRate.function"/></a>
 	<div class="clear"></div>
 </div>
-<@p.form id="submitForm" action="config_update.do" labelWidth="12">
+<@p.form id="submitForm" action="config_update.html" labelWidth="12">
 <@p.radio colspan="2" label="live是否需要审核" name="liveCheck" value=cmsConfig.liveCheck list={"true":"global.true","false","global.false"} required="true" class="required"/><@p.tr/>
 <@p.radio colspan="2" label="直播平台" name="livePlat" value=cmsConfig.livePlat list={"tencent":"腾讯云","baidu","百度云"} required="true" class="required"/><@p.tr/>
 <@p.td label="推流KEY"><input name="tencentPushFlowKey"  />留空则不修改</@p.td><@p.tr/>

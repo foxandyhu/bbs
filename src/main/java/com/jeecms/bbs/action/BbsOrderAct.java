@@ -44,7 +44,7 @@ public class BbsOrderAct {
 	 * @param orderBy
 	 */
 	@RequiresPermissions("order:charge_list")
-	@RequestMapping("/order/charge_list.do")
+	@RequestMapping("/order/charge_list.html")
 	public String chargeList(String title,String author,
 			Date buyTimeBegin,Date buyTimeEnd,
 			Integer orderBy,Integer pageNo,
@@ -80,7 +80,7 @@ public class BbsOrderAct {
 	 * @return
 	 */
 	@RequiresPermissions("order:user_account_list")
-	@RequestMapping("/order/user_account_list.do")
+	@RequestMapping("/order/user_account_list.html")
 	public String userAccountList(String username,
 			Date drawTimeBegin,Date drawTimeEnd,
 			Integer orderBy,Integer pageNo,
@@ -110,7 +110,7 @@ public class BbsOrderAct {
 	 */
 	@SuppressWarnings("unchecked")
 	@RequiresPermissions("order:user_order_list")
-	@RequestMapping("/order/user_order_list.do")
+	@RequestMapping("/order/user_order_list.html")
 	public String userBuyList(String orderNum,String buyusername,
 			String authorusername,Short payMode,Short dataType,Integer dataId,
 			Integer pageNo,HttpServletRequest request, ModelMap model) {
@@ -168,7 +168,7 @@ public class BbsOrderAct {
 	 * @return
 	 */
 	@RequiresPermissions("order:commissionStatic")
-	@RequestMapping("/order/commissionStatic.do")
+	@RequestMapping("/order/commissionStatic.html")
 	public String commissionStatic(HttpServletRequest request, ModelMap model) {
 		BbsConfigCharge config= configChargeMng.getDefault();
 		model.addAttribute("config",config);

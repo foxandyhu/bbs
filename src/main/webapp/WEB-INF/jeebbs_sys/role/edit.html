@@ -18,12 +18,12 @@
 </div>
 <div class="box-positon ck">
 	<form class="ropt">
-		<input type="submit" value="<@s.m "global.backToList"/>" onclick="this.form.action='v_list.do';" class="return-button"/>
+		<input type="submit" value="<@s.m "global.backToList"/>" onclick="this.form.action='v_list.html';" class="return-button"/>
 	</form>
 	<div class="clear"></div>
 </div>
 <div class="body-box">
-<@p.form id="jvForm" action="o_update.do" labelWidth="15" class="formDefStyle">
+<@p.form id="jvForm" action="o_update.html" labelWidth="15" class="formDefStyle">
 <@p.text colspan="1" width="50" label="cmsRole.name" name="name" value=cmsRole.name required="true" class="required" maxlength="100"/>
 <@p.text colspan="1" width="50" label="cmsRole.priority" name="priority" value=cmsRole.priority required="true" class="required digits" maxlength="5" style="width:70px"/><@p.tr/>
 <@p.text colspan="1" width="50" label="cmsRole.level" name="level"  value=cmsRole.level required="true" class="required digits" maxlength="5" style="width:70px"/>

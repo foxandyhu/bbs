@@ -21,12 +21,12 @@ function optDelete() {
 		return;
 	}
 	var f = getTableForm();
-	f.action="o_delete.do";
+	f.action="o_delete.html";
 	f.submit();
 }
 function optSaveContent() {
 	var f = getTableForm();
-	f.action="o_update.do";
+	f.action="o_update.html";
 }
 </script>
 </head>
@@ -38,7 +38,7 @@ function optSaveContent() {
 	</form>
 	<div class="clear"></div>
 </div>
-<form id="jvForm" action="o_save.do" method="post" style="padding:5px 0 0 5px">
+<form id="jvForm" action="o_save.html" method="post" style="padding:5px 0 0 5px">
 <@s.m "cmsFriendlinkCtg.name"/>:<input type="text" name="name" class="required" maxlength="50" style="width:150px"/>
 <@s.m "cmsFriendlinkCtg.priority"/>:<input type="text" name="priority" value="10" class="required digits" maxlength="5" style="width:50px"/>
 <input class="add" type="submit" value="<@s.m "global.add"/>"/>
@@ -52,7 +52,7 @@ function optSaveContent() {
 	<@p.column code="cmsFriendlinkCtg.name" align="center"><input type="text" name="name" value="${cmsFriendlinkCtg.name}" class="required" maxlength="50" style="width:200px"/></@p.column><#t/>
 	<@p.column code="cmsFriendlinkCtg.priority" align="center"><input type="text" name="priority" value="${cmsFriendlinkCtg.priority}" class="required" maxlength="5" style="width:50px"/></@p.column><#t/>
 	<@p.column code="global.operate" align="center">
-		<a href="o_delete.do?ids=${cmsFriendlinkCtg.id}" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}" class="pn-opt"><@s.m "global.delete"/></a><#t/>
+		<a href="o_delete.html?ids=${cmsFriendlinkCtg.id}" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}" class="pn-opt"><@s.m "global.delete"/></a><#t/>
 	</@p.column><#t/>
 </@p.table>
 <div style="margin-top:15px;">

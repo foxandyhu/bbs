@@ -52,13 +52,13 @@ public class TemplateAct {
 	private static final String INVALID_PARAM = "template.invalidParams";
 
 	@RequiresPermissions("template:v_left")
-	@RequestMapping("/template/v_left.do")
+	@RequestMapping("/template/v_left.html")
 	public String left(String path, HttpServletRequest request, ModelMap model) {
 		return "template/left";
 	}
 
 	@RequiresPermissions("template:v_tree")
-	@RequestMapping(value = "/template/v_tree.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/template/v_tree.html", method = RequestMethod.GET)
 	public String tree(HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -86,7 +86,7 @@ public class TemplateAct {
 
 	// 直接调用方法需要把root参数保存至model中
 	@RequiresPermissions("template:v_list")
-	@RequestMapping(value = "/template/v_list.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/template/v_list.html", method = RequestMethod.GET)
 	public String list(HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
 		String root = (String) model.get("root");
@@ -112,7 +112,7 @@ public class TemplateAct {
 	}
 
 	@RequiresPermissions("template:o_create_dir")
-	@RequestMapping(value = "/template/o_create_dir.do")
+	@RequestMapping(value = "/template/o_create_dir.html")
 	public String createDir(String root, String dirName,
 			HttpServletRequest request, ModelMap model) {
 		// TODO 检查dirName是否存在
@@ -122,7 +122,7 @@ public class TemplateAct {
 	}
 
 	@RequiresPermissions("template:v_add")
-	@RequestMapping(value = "/template/v_add.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/template/v_add.html", method = RequestMethod.GET)
 	public String add(HttpServletRequest request, ModelMap model) {
 		String root = RequestUtils.getQueryParam(request, "root");
 		model.addAttribute("root", root);
@@ -130,7 +130,7 @@ public class TemplateAct {
 	}
 
 	@RequiresPermissions("template:v_edit")
-	@RequestMapping("/template/v_edit.do")
+	@RequestMapping("/template/v_edit.html")
 	public String edit(HttpServletRequest request, ModelMap model) {
 		String root = RequestUtils.getQueryParam(request, "root");
 		String name = RequestUtils.getQueryParam(request, "name");
@@ -144,7 +144,7 @@ public class TemplateAct {
 	}
 
 	@RequiresPermissions("template:o_save")
-	@RequestMapping("/template/o_save.do")
+	@RequestMapping("/template/o_save.html")
 	public String save(String root, String filename, String source,
 			HttpServletRequest request, ModelMap model) {
 		WebErrors errors = validateSave(filename, source, request);
@@ -155,12 +155,12 @@ public class TemplateAct {
 		tplManager.save(name, source, false);
 		model.addAttribute("root", root);
 		log.info("save Template name={}", filename);
-		return "redirect:v_list.do";
+		return "redirect:v_list.html";
 	}
 
 	// AJAX请求，不返回页面
 	@RequiresPermissions("template:o_update")
-	@RequestMapping("/template/o_update.do")
+	@RequestMapping("/template/o_update.html")
 	public void update(String root, String name, String source,
 			HttpServletRequest request, HttpServletResponse response,
 			ModelMap model) {
@@ -177,7 +177,7 @@ public class TemplateAct {
 	}
 
 	@RequiresPermissions("template:o_delete")
-	@RequestMapping("/template/o_delete.do")
+	@RequestMapping("/template/o_delete.html")
 	public String delete(String root, String[] names,
 			HttpServletRequest request, ModelMap model) {
 		WebErrors errors = validateDelete(root, names, request);
@@ -194,7 +194,7 @@ public class TemplateAct {
 	}
 
 	@RequiresPermissions("template:o_delete")
-	@RequestMapping("/template/o_delete_single.do")
+	@RequestMapping("/template/o_delete_single.html")
 	public String deleteSingle(HttpServletRequest request, ModelMap model) {
 		// TODO 输入验证
 		String root = RequestUtils.getQueryParam(request, "root");
@@ -206,7 +206,7 @@ public class TemplateAct {
 	}
 
 	@RequiresPermissions("template:v_rename")
-	@RequestMapping(value = "/template/v_rename.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/template/v_rename.html", method = RequestMethod.GET)
 	public String renameInput(HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
 		String root = RequestUtils.getQueryParam(request, "root");
@@ -218,7 +218,7 @@ public class TemplateAct {
 	}
 
 	@RequiresPermissions("template:o_rename")
-	@RequestMapping(value = "/template/o_rename.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/template/o_rename.html", method = RequestMethod.POST)
 	public String renameSubmit(String root, String origName, String distName,
 			HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -236,7 +236,7 @@ public class TemplateAct {
 	}
 
 	@RequiresPermissions("template:o_swfupload")
-	@RequestMapping(value = "/template/o_swfupload.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/template/o_swfupload.html", method = RequestMethod.POST)
 	public void swfUpload(
 			String root,
 			@RequestParam(value = "Filedata", required = false) MultipartFile file,
@@ -273,7 +273,7 @@ public class TemplateAct {
 	}
 
 	@RequiresPermissions("template:v_setting")
-	@RequestMapping(value = "/template/v_setting.do")
+	@RequestMapping(value = "/template/v_setting.html")
 	public String setting(HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -284,7 +284,7 @@ public class TemplateAct {
 	}
 
 	@RequiresPermissions("template:o_def_template")
-	@RequestMapping(value = "/template/o_def_template.do")
+	@RequestMapping(value = "/template/o_def_template.html")
 	public void defTempate(String solution, HttpServletRequest request,
 			HttpServletResponse response) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -293,7 +293,7 @@ public class TemplateAct {
 	}
 
 	@RequiresPermissions("template:o_export")
-	@RequestMapping(value = "/template/o_export.do")
+	@RequestMapping(value = "/template/o_export.html")
 	public void exportSubmit(HttpServletRequest request,
 			HttpServletResponse response) throws UnsupportedEncodingException {
 		String solution = RequestUtils.getQueryParam(request, "solution");
@@ -311,7 +311,7 @@ public class TemplateAct {
 	}
 
 	@RequiresPermissions("template:o_import")
-	@RequestMapping(value = "/template/o_import.do")
+	@RequestMapping(value = "/template/o_import.html")
 	public String importSubmit(
 			@RequestParam(value = "tplZip", required = false) MultipartFile file,
 			HttpServletRequest request, HttpServletResponse response,
@@ -329,7 +329,7 @@ public class TemplateAct {
 	}
 	
 	@RequiresPermissions("template:v_mobile_setting")
-	@RequestMapping(value = "/template/v_mobile_setting.do")
+	@RequestMapping(value = "/template/v_mobile_setting.html")
 	public String mobile_setting(HttpServletRequest request,HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
 		String[] solutions = resourceMng.getSolutions(site.getTplPath());
@@ -339,7 +339,7 @@ public class TemplateAct {
 	}
 
 	@RequiresPermissions("template:o_mobile_def_template")
-	@RequestMapping(value = "/template/o_mobile_def_template.do")
+	@RequestMapping(value = "/template/o_mobile_def_template.html")
 	public void mobile_defTempate(String solution, HttpServletRequest request,
 			HttpServletResponse response) {
 		CmsSite site = CmsUtils.getSite(request);

@@ -19,7 +19,7 @@ $(function() {
 	</form>
 	<div class="clear"></div>
 </div>
-<@p.form id="jvForm" action="o_update.do">
+<@p.form id="jvForm" action="o_update.html">
 <@p.text label="bbsLiveRate.userNum" name="userNum"  value=bbsLiveRate.userNum required="true" class="required digits" maxlength="10"/>
 <@p.text label="bbsLiveRate.rate" name="rate"  value=bbsLiveRate.rate required="true" class="required number"  vld="{max:100,min:0}" help="bbsLiveRate.rate.help" maxlength="5"/><@p.tr/>
 <@p.td><@p.hidden name="id" value=bbsLiveRate.id/><@p.submit code="global.submit"/> &nbsp; <@p.reset code="global.reset"/></@p.td>

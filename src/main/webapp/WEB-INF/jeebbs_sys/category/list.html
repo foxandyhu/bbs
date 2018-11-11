@@ -17,12 +17,12 @@ function optDelete() {
 		return;
 	}
 	var f = getTableForm();
-	f.action="o_delete.do";
+	f.action="o_delete.html";
 	f.submit();
 }
 function optPriority() {
 	var f = getTableForm();
-	f.action="o_priority.do";
+	f.action="o_priority.html";
 	f.submit();
 }
 </script>
@@ -32,7 +32,7 @@ function optPriority() {
 <div class="rhead">
 	<div class="rpos">当前位置： 板块 - 分区管理 - 列表</div>
 	<form class="ropt">
-		<input type="submit" value="添加分区" onclick="this.form.action='v_add.do';"/>
+		<input type="submit" value="添加分区" onclick="this.form.action='v_add.html';"/>
 	</form>
 	<div class="clear"></div>
 </div>
@@ -51,8 +51,8 @@ function optPriority() {
 		<input type="hidden" name="wids" value="${category.id!}"/>
 	</@p.column><#t/>
 	<@p.column code="操作" align="center">
-		<a href="v_edit.do?id=${category.id}" class="pn-opt">修改</a> | <#rt/>
-		<a href="o_delete.do?ids=${category.id}" onclick="if(!confirm('你确定要删除吗?')) {return false;}" class="pn-opt">删除</a><#t/>
+		<a href="v_edit.html?id=${category.id}" class="pn-opt">修改</a> | <#rt/>
+		<a href="o_delete.html?ids=${category.id}" onclick="if(!confirm('你确定要删除吗?')) {return false;}" class="pn-opt">删除</a><#t/>
 	</@p.column><#t/>
 </@p.table>
 <div>

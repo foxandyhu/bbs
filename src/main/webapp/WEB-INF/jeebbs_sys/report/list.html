@@ -17,7 +17,7 @@ function optDelete() {
 		return;
 	}
 	var f = getTableForm();
-	f.action="o_delete.do";
+	f.action="o_delete.html";
 	f.submit();
 }
 function singleProcess(id){
@@ -36,7 +36,7 @@ function singleProcess(id){
 	$("#point_"+id).prop("disabled","");
 	$("#point_"+id).val(getOptionValue(id));
 	var f = getTableForm();
-	f.action="o_process_single.do";
+	f.action="o_process_single.html";
 	f.submit();
 }
 
@@ -70,7 +70,7 @@ function selectAll(checked){
 <div class="rhead">
 	<div class="rpos"><@s.m "global.position"/>: <@s.m "report.function"/> - <@s.m "global.list"/></div>
 	<div  class="ropt">
-	<a href="v_list.do?status=true">已处理举报</a>&nbsp;&nbsp;&nbsp;<a href="v_list.do?status=false">未处理举报</a>
+	<a href="v_list.html?status=true">已处理举报</a>&nbsp;&nbsp;&nbsp;<a href="v_list.html?status=false">未处理举报</a>
 	</div>
 	<div class="clear"></div>
 </div>
@@ -98,9 +98,9 @@ function selectAll(checked){
 		</select>
 		<input name="points" id="point_${report.id}" disabled="disabled"  value="0" type="hidden"/>
 		</#if>
-		<a href="v_more.do?reportId=${report.id}" class="pn-opt"><@s.m "report.view"/></a> | <#rt/>
+		<a href="v_more.html?reportId=${report.id}" class="pn-opt"><@s.m "report.view"/></a> | <#rt/>
 		<#if !status><span onclick="singleProcess('${report.id}')">处理</span> | <#rt/></#if>
-		<a href="o_delete.do?ids=${report.id}&pageNo=${pageNo!}" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}" class="pn-opt"><@s.m "global.delete"/></a><#t/>
+		<a href="o_delete.html?ids=${report.id}&pageNo=${pageNo!}" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}" class="pn-opt"><@s.m "global.delete"/></a><#t/>
 	</@p.column><#t/>
 </@p.table>
 <div>

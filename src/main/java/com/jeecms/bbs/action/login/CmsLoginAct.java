@@ -15,13 +15,13 @@ import com.jeecms.core.manager.UnifiedUserMng;
 @Controller
 public class CmsLoginAct {
 
-	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/login.html", method = RequestMethod.GET)
 	public String input(HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		return "login";
 	}
 	
-	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/login.html", method = RequestMethod.POST)
 	public String submit(String username, String password, String captcha,
 			String processUrl, String returnUrl, String message,
 			HttpServletRequest request, HttpServletResponse response,

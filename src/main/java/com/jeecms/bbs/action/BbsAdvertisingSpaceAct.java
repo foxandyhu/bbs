@@ -28,7 +28,7 @@ public class BbsAdvertisingSpaceAct {
 			.getLogger(BbsAdvertisingSpaceAct.class);
 
 	@RequiresPermissions("advertising_space:v_list")
-	@RequestMapping("/advertising_space/v_list.do")
+	@RequestMapping("/advertising_space/v_list.html")
 	public String list(Integer pageNo, HttpServletRequest request,
 			ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -38,13 +38,13 @@ public class BbsAdvertisingSpaceAct {
 	}
 
 	@RequiresPermissions("advertising_space:v_add")
-	@RequestMapping("/advertising_space/v_add.do")
+	@RequestMapping("/advertising_space/v_add.html")
 	public String add(ModelMap model) {
 		return "advertising_space/add";
 	}
 
 	@RequiresPermissions("advertising_space:v_edit")
-	@RequestMapping("/advertising_space/v_edit.do")
+	@RequestMapping("/advertising_space/v_edit.html")
 	public String edit(Integer id, Integer pageNo, HttpServletRequest request,
 			ModelMap model) {
 		WebErrors errors = validateEdit(id, request);
@@ -57,7 +57,7 @@ public class BbsAdvertisingSpaceAct {
 	}
 	
 	@RequiresPermissions("advertising_space:v_ajax_edit")
-	@RequestMapping("/advertising_space/v_ajax_edit.do")
+	@RequestMapping("/advertising_space/v_ajax_edit.html")
 	public void ajaxEdit(Integer id, HttpServletRequest request,HttpServletResponse response, ModelMap model) throws JSONException {
 		JSONObject object = new JSONObject();
 		BbsAdvertisingSpace space=manager.findById(id);
@@ -71,7 +71,7 @@ public class BbsAdvertisingSpaceAct {
 	}
 
 	@RequiresPermissions("advertising_space:o_save")
-	@RequestMapping("/advertising_space/o_save.do")
+	@RequestMapping("/advertising_space/o_save.html")
 	public String save(BbsAdvertisingSpace bean, HttpServletRequest request,
 			ModelMap model) {
 		WebErrors errors = validateSave(bean, request);
@@ -80,11 +80,11 @@ public class BbsAdvertisingSpaceAct {
 		}
 		bean = manager.save(bean);
 		log.info("save BbsAdvertisingSpace id={}", bean.getId());
-		return "redirect:v_list.do";
+		return "redirect:v_list.html";
 	}
 
 	@RequiresPermissions("advertising_space:o_update")
-	@RequestMapping("/advertising_space/o_update.do")
+	@RequestMapping("/advertising_space/o_update.html")
 	public String update(BbsAdvertisingSpace bean, Integer pageNo,
 			HttpServletRequest request, ModelMap model) {
 		WebErrors errors = validateUpdate(bean.getId(), request);
@@ -97,7 +97,7 @@ public class BbsAdvertisingSpaceAct {
 	}
 
 	@RequiresPermissions("advertising_space:o_delete")
-	@RequestMapping("/advertising_space/o_delete.do")
+	@RequestMapping("/advertising_space/o_delete.html")
 	public String delete(Integer[] ids, Integer pageNo,
 			HttpServletRequest request, ModelMap model) {
 		WebErrors errors = validateDelete(ids, request);

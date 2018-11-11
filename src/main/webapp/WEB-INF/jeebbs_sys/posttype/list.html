@@ -17,12 +17,12 @@ function optDelete() {
 		return;
 	}
 	var f = getTableForm();
-	f.action="o_delete.do";
+	f.action="o_delete.html";
 	f.submit();
 }
 function optPriority() {
 	var f = getTableForm();
-	f.action="o_priority.do";
+	f.action="o_priority.html";
 	f.submit();
 }
 </script>
@@ -34,7 +34,7 @@ function optPriority() {
 	<form class="ropt">
 		<input name="forumId" value="${forumId!}" type="hidden"/>
 		<input name="parentId" value="${parentId!}" type="hidden"/>
-		<input type="submit" value="<@s.m "global.add"/>" onclick="this.form.action='v_add.do';"/>
+		<input type="submit" value="<@s.m "global.add"/>" onclick="this.form.action='v_add.html';"/>
 	</form>
 	<div class="clear"></div>
 </div>
@@ -53,10 +53,10 @@ function optPriority() {
 		<input type="hidden" name="wids" value="${type.id!}"/>
 	</@p.column><#t/>
 	<@p.column code="global.operate" align="center">
-		<a href="v_edit.do?id=${type.id}&forumId=${forumId!}&parentId=${type.id}" class="pn-opt"><@s.m "global.edit"/></a> | <#rt/>
-		<a href="o_delete.do?ids=${type.id}&forumId=${forumId!}&parentId=${type.id}" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}" class="pn-opt"><@s.m "global.delete"/></a><#t/>
-		<a href="v_add.do?forumId=${forumId!}&parentId=${type.id}" class="pn-opt"><@s.m "bbsTopicType.function.addChild"/></a> | <#rt/>
-		<a href="v_list.do?forumId=${forumId!}&parentId=${type.id}" class="pn-opt"><@s.m "bbsTopicType.function.childs"/></a><#rt/>
+		<a href="v_edit.html?id=${type.id}&forumId=${forumId!}&parentId=${type.id}" class="pn-opt"><@s.m "global.edit"/></a> | <#rt/>
+		<a href="o_delete.html?ids=${type.id}&forumId=${forumId!}&parentId=${type.id}" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}" class="pn-opt"><@s.m "global.delete"/></a><#t/>
+		<a href="v_add.html?forumId=${forumId!}&parentId=${type.id}" class="pn-opt"><@s.m "bbsTopicType.function.addChild"/></a> | <#rt/>
+		<a href="v_list.html?forumId=${forumId!}&parentId=${type.id}" class="pn-opt"><@s.m "bbsTopicType.function.childs"/></a><#rt/>
 	</@p.column><#t/>
 </@p.table>
 <div>

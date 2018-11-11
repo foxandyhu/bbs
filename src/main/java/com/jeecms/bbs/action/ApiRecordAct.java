@@ -25,7 +25,7 @@ public class ApiRecordAct {
 	private static final Logger log = LoggerFactory.getLogger(ApiRecordAct.class);
 
 	@RequiresPermissions("apiRecord:v_list")
-	@RequestMapping("/apiRecord/v_list.do")
+	@RequestMapping("/apiRecord/v_list.html")
 	public String list(Integer pageNo, HttpServletRequest request, ModelMap model) {
 		Pagination pagination = manager.getPage(cpn(pageNo), CookieUtils
 				.getPageSize(request));
@@ -35,7 +35,7 @@ public class ApiRecordAct {
 	}
 
 	@RequiresPermissions("apiRecord:o_delete")
-	@RequestMapping("/apiRecord/o_delete.do")
+	@RequestMapping("/apiRecord/o_delete.html")
 	public String delete(Long[] ids, Integer pageNo, HttpServletRequest request,
 			ModelMap model) {
 		WebErrors errors = validateDelete(ids, request);

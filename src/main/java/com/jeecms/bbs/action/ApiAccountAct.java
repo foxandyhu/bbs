@@ -28,7 +28,7 @@ public class ApiAccountAct {
 	private static final Logger log = LoggerFactory.getLogger(ApiAccountAct.class);
 
 	@RequiresPermissions("apiAccount:v_list")
-	@RequestMapping("/apiAccount/v_list.do")
+	@RequestMapping("/apiAccount/v_list.html")
 	public String list(Integer pageNo, HttpServletRequest request, ModelMap model) {
 		Pagination pagination = manager.getPage(cpn(pageNo), CookieUtils
 				.getPageSize(request));
@@ -38,13 +38,13 @@ public class ApiAccountAct {
 	}
 
 	@RequiresPermissions("apiAccount:v_add")
-	@RequestMapping("/apiAccount/v_add.do")
+	@RequestMapping("/apiAccount/v_add.html")
 	public String add(ModelMap model) {
 		return "apiAccount/add";
 	}
 
 	@RequiresPermissions("apiAccount:v_edit")
-	@RequestMapping("/apiAccount/v_edit.do")
+	@RequestMapping("/apiAccount/v_edit.html")
 	public String edit(Integer id, Integer pageNo, 
 			HttpServletRequest request, ModelMap model) {
 		WebErrors errors = validateEdit(id, request);
@@ -57,15 +57,15 @@ public class ApiAccountAct {
 	}
 
 	@RequiresPermissions("apiAccount:o_save")
-	@RequestMapping("/apiAccount/o_save.do")
+	@RequestMapping("/apiAccount/o_save.html")
 	public String save(ApiAccount bean, HttpServletRequest request, ModelMap model) {
 		bean = manager.save(bean);
 		log.info("save ApiAccount id={}", bean.getId());
-		return "redirect:v_list.do";
+		return "redirect:v_list.html";
 	}
 
 	@RequiresPermissions("apiAccount:o_update")
-	@RequestMapping("/apiAccount/o_update.do")
+	@RequestMapping("/apiAccount/o_update.html")
 	public String update(ApiAccount bean,String appKey,
 			String aesKey,String ivKey,Integer pageNo, 
 			HttpServletRequest request,
@@ -80,7 +80,7 @@ public class ApiAccountAct {
 	}
 
 	@RequiresPermissions("apiAccount:o_delete")
-	@RequestMapping("/apiAccount/o_delete.do")
+	@RequestMapping("/apiAccount/o_delete.html")
 	public String delete(Integer[] ids, Integer pageNo, HttpServletRequest request,
 			ModelMap model) {
 		WebErrors errors = validateDelete(ids, request);
@@ -95,7 +95,7 @@ public class ApiAccountAct {
 	}
 	
 	@RequiresPermissions("apiAccount:v_exist")
-	@RequestMapping("/apiAccount/v_exist.do")
+	@RequestMapping("/apiAccount/v_exist.html")
 	public void appIdExist(String appId,HttpServletResponse response) {
 		if(StringUtils.isNotBlank(appId)){
 			ApiAccount account=manager.findByAppId(appId);

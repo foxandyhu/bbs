@@ -31,7 +31,7 @@ import com.jeecms.common.web.CookieUtils;
 public class BbsForumCountAct {
 
 	@RequiresPermissions("data:singleforumstatistic")
-	@RequestMapping("/data/singleforumstatistic.do")
+	@RequestMapping("/data/singleforumstatistic.html")
 	public String singleForumCountList(Integer forumId,Date begin,Date end,
 			Integer pageNo,HttpServletRequest request, ModelMap model) {
 		Pagination pagination = manager.getPage(forumId,begin,end,cpn(pageNo), 
@@ -49,7 +49,7 @@ public class BbsForumCountAct {
 	}
 	
 	@RequiresPermissions("data:forumstatistic")
-	@RequestMapping("/data/forumstatistic.do")
+	@RequestMapping("/data/forumstatistic.html")
 	public String list(Date begin,Date end,Integer pageNo, 
 			HttpServletRequest request, ModelMap model) {
 		Date now=Calendar.getInstance().getTime();
@@ -67,7 +67,7 @@ public class BbsForumCountAct {
 	}
 	
 	@RequiresPermissions("data:forumCountExport")
-	@RequestMapping("/data/forumCountExport.do")
+	@RequestMapping("/data/forumCountExport.html")
 	public void exportExcel(Date begin,Date end,
 			HttpServletRequest request,HttpServletResponse response){
 		String fileName = "板块统计"+System.currentTimeMillis()+".xls"; //文件名 
@@ -99,7 +99,7 @@ public class BbsForumCountAct {
 	}
 	
 	@RequiresPermissions("data:singleForumCountExport")
-	@RequestMapping("/data/singleForumCountExport.do")
+	@RequestMapping("/data/singleForumCountExport.html")
 	public void sigleForumExportExcel(Integer forumId,Date begin,Date end,
 			HttpServletRequest request,HttpServletResponse response){
 		BbsForum forum=null;

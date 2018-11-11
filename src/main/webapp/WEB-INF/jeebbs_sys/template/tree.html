@@ -1,6 +1,6 @@
 <#if isRoot>
 [{
-	"text": "<a href='v_list.do?root=' target='rightFrame'><@s.m "template.root"/></a>",
+	"text": "<a href='v_list.html?root=' target='rightFrame'><@s.m "template.root"/></a>",
 	"classes": "folder"
 	<#if tplList?size gt 0>,
 	"expanded": true,
@@ -8,7 +8,7 @@
 	<#list tplList as tpl>
 		{
 		"id": "${tpl.name}",
-		"text": "<a href='${tpl.directory?string("v_list.do?root=${tpl.name?url}'","v_edit.do?root=${tpl.path?url}&name=${tpl.name?url}'")} target='rightFrame'>${tpl.filename}</a>",
+		"text": "<a href='${tpl.directory?string("v_list.html?root=${tpl.name?url}'","v_edit.html?root=${tpl.path?url}&name=${tpl.name?url}'")} target='rightFrame'>${tpl.filename}</a>",
 		"classes": "${tpl.directory?string('folder','file')}",
 		"hasChildren": ${tpl.directory?string('true','false')}
 		}<#if tpl_has_next>,</#if>
@@ -21,7 +21,7 @@
 	<#list tplList as tpl>
 	{
 	"id": "${tpl.name}",
-	"text": "<a href='${tpl.directory?string("v_list.do?root=${tpl.name?url}'","v_edit.do?root=${tpl.path?url}&name=${tpl.name?url}'")} target='rightFrame'>${tpl.filename}</a>",
+	"text": "<a href='${tpl.directory?string("v_list.html?root=${tpl.name?url}'","v_edit.html?root=${tpl.path?url}&name=${tpl.name?url}'")} target='rightFrame'>${tpl.filename}</a>",
 	"classes": "${tpl.directory?string('folder','file')}",
 	"hasChildren": ${tpl.directory?string('true','false')}
 	}<#if tpl_has_next>,</#if>

@@ -16,7 +16,7 @@ function getTableForm() {
   <div class="rpos"><@s.m "global.position"/>: <@s.m "userAccount.author.static.function"/>  > <@s.m "global.list"/></div>
 	<div class="clear"></div>
 </div>
-<form action="user_account_list.do" method="post">
+<form action="user_account_list.html" method="post">
 <div style="padding-top:5px; padding-bottom:5px; text-indent:10px; border-bottom:1px solid #fff; border-top:1px solid #fff;">
 <@s.m "cmsUser.username"/>:<input name="username" value="${username!}" type="text"/>
 <@s.m "userAccount.drawTime.last"/>:
@@ -31,7 +31,7 @@ function getTableForm() {
 <input type="hidden" name="username" value="${username!}"/>
 <input type="hidden" name="drawTimeBegin" value="${drawTimeBegin!}"/>
 <input type="hidden" name="drawTimeEnd" value="${drawTimeEnd!}"/>
-<@p.table value=pagination listAction="user_account_list.do";userAccount,i,has_next><#rt/>
+<@p.table value=pagination listAction="user_account_list.html";userAccount,i,has_next><#rt/>
 	<@p.column code="userAccount.user">${userAccount.user.realname!userAccount.user.username}</@p.column><#t/>
 	<@p.column code="userAccount.totalAmount">${userAccount.totalAmount!}</@p.column><#t/>
 	<@p.column code="userAccount.yearAmount">${userAccount.yearAmount!}</@p.column><#t/>

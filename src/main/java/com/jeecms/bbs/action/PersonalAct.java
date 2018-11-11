@@ -21,7 +21,7 @@ import com.jeecms.common.web.ResponseUtils;
 public class PersonalAct {
 	
 	@RequiresPermissions("personal:v_profile")
-	@RequestMapping("/personal/v_profile.do")
+	@RequestMapping("/personal/v_profile.html")
 	public String profileEdit(HttpServletRequest request, ModelMap model) {
 		BbsUser user = CmsUtils.getUser(request);
 		model.addAttribute("user", user);
@@ -29,7 +29,7 @@ public class PersonalAct {
 	}
 
 	@RequiresPermissions("personal:o_profile")
-	@RequestMapping("/personal/o_profile.do")
+	@RequestMapping("/personal/o_profile.html")
 	public String profileUpdate(String origPwd, String newPwd, String email,
 			String realname, HttpServletRequest request, ModelMap model) {
 		BbsUser user = CmsUtils.getUser(request);
@@ -55,7 +55,7 @@ public class PersonalAct {
 	 * @param response
 	 */
 	@RequiresPermissions("personal:v_checkPwd")
-	@RequestMapping("/personal/v_checkPwd.do")
+	@RequestMapping("/personal/v_checkPwd.html")
 	public void checkPwd(String origPwd, HttpServletRequest request,
 			HttpServletResponse response) {
 		BbsUser user = CmsUtils.getUser(request);

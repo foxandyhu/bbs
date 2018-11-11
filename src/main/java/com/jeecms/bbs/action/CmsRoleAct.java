@@ -39,7 +39,7 @@ public class CmsRoleAct {
 	public static final String SITE_COOKIE = "_site_id_cookie";
 	
 	@RequiresPermissions("role:v_list")
-	@RequestMapping("/role/v_list.do")
+	@RequestMapping("/role/v_list.html")
 	public String list(HttpServletRequest request, ModelMap model) {
 		List<CmsRole> list = manager.getList(null);
 		model.addAttribute("list", list);
@@ -47,13 +47,13 @@ public class CmsRoleAct {
 	}
 	
 	@RequiresPermissions("role:v_tree")
-	@RequestMapping("/role/v_tree.do")
+	@RequestMapping("/role/v_tree.html")
 	public String tree(HttpServletRequest request, ModelMap model) {
 		return "role/tree";
 	}
 
 	@RequiresPermissions("role:v_add")
-	@RequestMapping("/role/v_add.do")
+	@RequestMapping("/role/v_add.html")
 	public String add(ModelMap model) {
 		List<BbsPlug>usedPlugs=plugMng.getList(null, true);
 		model.addAttribute("plugs", usedPlugs);
@@ -63,7 +63,7 @@ public class CmsRoleAct {
 	
 
 	@RequiresPermissions("role:v_edit")
-	@RequestMapping("/role/v_edit.do")
+	@RequestMapping("/role/v_edit.html")
 	public String edit(Integer id, HttpServletRequest request, ModelMap model) {
 		WebErrors errors = validateEdit(id, request);
 		if (errors.hasErrors()) {
@@ -77,7 +77,7 @@ public class CmsRoleAct {
 	}
 
 	@RequiresPermissions("role:o_save")
-	@RequestMapping("/role/o_save.do")
+	@RequestMapping("/role/o_save.html")
 	public String save(CmsRole bean, String[] perms,
 			HttpServletRequest request, ModelMap model) {
 		WebErrors errors = validateSave(bean, request);
@@ -86,11 +86,11 @@ public class CmsRoleAct {
 		}
 		bean = manager.save(bean, splitPerms(perms));
 		log.info("save CmsRole id={}", bean.getId());
-		return "redirect:v_list.do";
+		return "redirect:v_list.html";
 	}
 
 	@RequiresPermissions("role:o_update")
-	@RequestMapping("/role/o_update.do")
+	@RequestMapping("/role/o_update.html")
 	public String update(CmsRole bean, String[] perms,boolean all,
 			HttpServletRequest request,HttpServletResponse response,ModelMap model) {
 		WebErrors errors = validateUpdate(bean.getId(), request);
@@ -110,7 +110,7 @@ public class CmsRoleAct {
 	}
 
 	@RequiresPermissions("role:o_delete")
-	@RequestMapping("/role/o_delete.do")
+	@RequestMapping("/role/o_delete.html")
 	public String delete(Integer[] ids, HttpServletRequest request,
 			ModelMap model) {
 		WebErrors errors = validateDelete(ids, request);

@@ -15,11 +15,11 @@ $(function() {
 <div class="rhead">
 	<div class="rpos"><@s.m "global.position"/>: <@s.m "bbsUserActiveLevel.function"/> - <@s.m "global.add"/></div>
 	<form class="ropt">
-		<input type="submit" value="<@s.m "global.backToList"/>" onclick="this.form.action='v_list.do';"/>
+		<input type="submit" value="<@s.m "global.backToList"/>" onclick="this.form.action='v_list.html';"/>
 	</form>
 	<div class="clear"></div>
 </div>
-<@p.form id="jvForm" action="o_save.do">
+<@p.form id="jvForm" action="o_save.html">
 <@p.text label="bbsUserActiveLevel.levelName" name="levelName" required="true" class="required" maxlength="100"/>
 <@p.text label="bbsUserActiveLevel.requiredHour" name="requiredHour" required="true" class="required" maxlength="20"/><@p.tr/>
 <@p.text label="bbsUserActiveLevel.levelImg" name="levelImg" maxlength="100"/><@p.tr/>

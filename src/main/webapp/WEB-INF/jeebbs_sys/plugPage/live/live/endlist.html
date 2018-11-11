@@ -17,7 +17,7 @@ function optDelete() {
 		return;
 	}
 	var f = getTableForm();
-	f.action="o_delete.do";
+	f.action="o_delete.html";
 	f.submit();
 }
 function query(){
@@ -29,7 +29,7 @@ function query(){
 <div class="body-box">
 <div class="rhead">
 	<div class="rpos"><@s.m "global.position"/>: <@s.m "bbsLive.function"/> - <@s.m "global.list"/></div>
-	<form class="ropt" id="queryForm" method="post" action="v_list.do">
+	<form class="ropt" id="queryForm" method="post" action="v_list.html">
 		<select name="qstatus" onchange="query()">
 			<option value="0" <#if qstatus??><#if qstatus==0>selected="selected"</#if></#if>>待审核</option>
 			<option value="1" <#if qstatus??><#if qstatus==1>selected="selected"</#if></#if>>未开始</option>
@@ -52,7 +52,7 @@ function query(){
 	    <option value="9" <#if qorderBy??><#if qorderBy==9>selected="selected"</#if></#if> >门票数升序</option>
 	    <option value="10" <#if qorderBy??><#if qorderBy==10>selected="selected"</#if></#if> >限制人数升序</option>
 		</select>
-	    <input type="submit" value="查询" onclick="this.form.action='v_list.do';"/>
+	    <input type="submit" value="查询" onclick="this.form.action='v_list.html';"/>
 	</form>
 	<div class="clear"></div>
 </div>
@@ -77,7 +77,7 @@ function query(){
 	<@p.column code="live.endTime" align="center">${live.endTime?string("yyyy-MM-dd HH:mm")}</@p.column><#t/>
 	<@p.column title="礼物数" align="center">${live.giftNum!}</@p.column><#t/>
 	<@p.column code="global.operate" align="center">
-		<a href="o_delete.do?ids=${live.id}${params!}" class="pn-opt" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}"><@s.m "global.delete"/></a><#t/>
+		<a href="o_delete.html?ids=${live.id}${params!}" class="pn-opt" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}"><@s.m "global.delete"/></a><#t/>
 	</@p.column><#t/>
 </@p.table>
 <div>

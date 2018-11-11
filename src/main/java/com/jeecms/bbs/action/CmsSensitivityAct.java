@@ -33,7 +33,7 @@ public class CmsSensitivityAct {
 			.getLogger(CmsSensitivityAct.class);
 
 	@RequiresPermissions("sensitivity:v_list")
-	@RequestMapping("/sensitivity/v_list.do")
+	@RequestMapping("/sensitivity/v_list.html")
 	public String list(HttpServletRequest request, ModelMap model) {
 		Integer siteId = CmsUtils.getSiteId(request);
 		List<CmsSensitivity> list = manager.getList(siteId, false);
@@ -42,13 +42,13 @@ public class CmsSensitivityAct {
 	}
 	
 	@RequiresPermissions("sensitivity:v_add")
-	@RequestMapping("/sensitivity/v_add.do")
+	@RequestMapping("/sensitivity/v_add.html")
 	public String add(HttpServletRequest request, ModelMap model) {
 		return "sensitivity/add";
 	}
 	
 	@RequiresPermissions("sensitivity:o_batchSave")
-	@RequestMapping("/sensitivity/o_batchSave.do")
+	@RequestMapping("/sensitivity/o_batchSave.html")
 	public String batchSave(String words,Integer type,
 			HttpServletRequest request,
 			ModelMap model) {
@@ -72,7 +72,7 @@ public class CmsSensitivityAct {
 	}
 
 	@RequiresPermissions("sensitivity:o_save")
-	@RequestMapping("/sensitivity/o_save.do")
+	@RequestMapping("/sensitivity/o_save.html")
 	public String save(CmsSensitivity bean, HttpServletRequest request,
 			ModelMap model) {
 		WebErrors errors = validateSave(bean, request);
@@ -87,7 +87,7 @@ public class CmsSensitivityAct {
 	}
 
 	@RequiresPermissions("sensitivity:o_update")
-	@RequestMapping("/sensitivity/o_update.do")
+	@RequestMapping("/sensitivity/o_update.html")
 	public String update(Integer[] id, String[] search, String[] replacement,
 			HttpServletRequest request, ModelMap model) {
 		WebErrors errors = validateUpdate(id, search, replacement, request);
@@ -101,7 +101,7 @@ public class CmsSensitivityAct {
 	}
 
 	@RequiresPermissions("sensitivity:o_delete")
-	@RequestMapping("/sensitivity/o_delete.do")
+	@RequestMapping("/sensitivity/o_delete.html")
 	public String delete(Integer[] ids, HttpServletRequest request,
 			ModelMap model) {
 		WebErrors errors = validateDelete(ids, request);
@@ -117,7 +117,7 @@ public class CmsSensitivityAct {
 	}
 	
 	@RequiresPermissions("sensitivity:v_open_close")
-	@RequestMapping("/sensitivity/v_open_close.do")
+	@RequestMapping("/sensitivity/v_open_close.html")
 	public void openClose(String open,HttpServletRequest request,
 			HttpServletResponse response,ModelMap model) {
 		CmsConfig cmsConfig=cmsConfigMng.get();

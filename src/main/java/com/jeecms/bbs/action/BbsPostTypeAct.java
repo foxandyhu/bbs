@@ -26,7 +26,7 @@ public class BbsPostTypeAct {
 			.getLogger(BbsPostTypeAct.class);
 
 	@RequiresPermissions("posttype:v_list")
-	@RequestMapping("/posttype/v_list.do")
+	@RequestMapping("/posttype/v_list.html")
 	public String list(Integer forumId,Integer parentId,Integer pageNo, HttpServletRequest request,
 			ModelMap model) {
 		Pagination pagination = bbsPostTypeMng.getPage(CmsUtils
@@ -39,7 +39,7 @@ public class BbsPostTypeAct {
 	}
 
 	@RequiresPermissions("posttype:v_add")
-	@RequestMapping("/posttype/v_add.do")
+	@RequestMapping("/posttype/v_add.html")
 	public String add(Integer forumId,Integer parentId,HttpServletRequest request, ModelMap model) {
 		model.put("forumId", forumId);
 		model.put("parentId", parentId);
@@ -47,7 +47,7 @@ public class BbsPostTypeAct {
 	}
 
 	@RequiresPermissions("posttype:v_edit")
-	@RequestMapping("/posttype/v_edit.do")
+	@RequestMapping("/posttype/v_edit.html")
 	public String edit(Integer id, Integer forumId,Integer parentId,HttpServletRequest request, ModelMap model) {
 		BbsPostType posttype = bbsPostTypeMng.findById(id);
 		model.put("posttype", posttype);
@@ -57,7 +57,7 @@ public class BbsPostTypeAct {
 	}
 
 	@RequiresPermissions("posttype:o_save")
-	@RequestMapping("/posttype/o_save.do")
+	@RequestMapping("/posttype/o_save.html")
 	public String save(BbsPostType posttype,Integer forumId,Integer parentId,Integer pageNo,HttpServletRequest request,
 			ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -73,7 +73,7 @@ public class BbsPostTypeAct {
 	}
 
 	@RequiresPermissions("posttype:o_update")
-	@RequestMapping("/posttype/o_update.do")
+	@RequestMapping("/posttype/o_update.html")
 	public String update(BbsPostType posttype,Integer forumId,Integer parentId,Integer pageNo, HttpServletRequest request,
 			ModelMap model) {
 		if(forumId!=null){
@@ -87,7 +87,7 @@ public class BbsPostTypeAct {
 	}
 
 	@RequiresPermissions("posttype:o_delete")
-	@RequestMapping("/posttype/o_delete.do")
+	@RequestMapping("/posttype/o_delete.html")
 	public String delete(Integer[] ids,Integer forumId,Integer parentId, Integer pageNo,
 			HttpServletRequest request, ModelMap model) {
 		BbsPostType[] beans = bbsPostTypeMng.deleteByIds(ids);
@@ -102,11 +102,11 @@ public class BbsPostTypeAct {
 	}
 
 	@RequiresPermissions("posttype:o_priority")
-	@RequestMapping("/posttype/o_priority.do")
+	@RequestMapping("/posttype/o_priority.html")
 	public String priorityUpdate(Integer forumId,Integer parentId,Integer[] wids, Integer[] prioritys,
 			Integer pageNo, HttpServletRequest request, ModelMap model) {
 		if (wids == null || wids.length <= 0) {
-			return "redirect:v_list.do";
+			return "redirect:v_list.html";
 		}
 		CmsSite site = CmsUtils.getSite(request);
 		BbsPostType t;

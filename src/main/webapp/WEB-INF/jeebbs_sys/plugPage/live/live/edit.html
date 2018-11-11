@@ -26,7 +26,7 @@ $(function() {
     });
 });
 function reject(){
-	$("#jvForm").prop("action","o_reject.do");
+	$("#jvForm").prop("action","o_reject.html");
 	$("#jvForm").submit();
 }
 function rejectTip(){
@@ -43,7 +43,7 @@ function rejectTip(){
 	</form>
 	<div class="clear"></div>
 </div>
-<@p.form id="jvForm" action="o_update.do">
+<@p.form id="jvForm" action="o_update.html">
 <@p.text label="live.title" name="title" value=live.title required="true" class="required" maxlength="100" size="15"  colspan="2" width="100"/><@p.tr/>
 <@p.td colspan="2" label="主播">
 	${live.user.realname!live.user.username}

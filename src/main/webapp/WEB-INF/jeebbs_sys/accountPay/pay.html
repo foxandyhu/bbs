@@ -15,13 +15,13 @@
 </div>
 <div class="box-positon ck">
 	<form class="ropt">
-		<input type="submit" value="<@s.m "global.backToList"/>" onclick="this.form.action='v_list.do';" class="return-button"/>
+		<input type="submit" value="<@s.m "global.backToList"/>" onclick="this.form.action='v_list.html';" class="return-button"/>
 	</form>
 	<div class="clear"></div>
 </div>
-<#assign payUrl="payByWeiXin.do"/>
+<#assign payUrl="payByWeiXin.html"/>
 <#if draw??&&draw.applyType==3>
-	<#assign payUrl="../live/accountPay/payByWeiXin.do"/>
+	<#assign payUrl="../live/accountPay/payByWeiXin.html"/>
 </#if>
 <@p.form id="jvForm" action="${payUrl!}" labelWidth="15" class="formDefStyle">
 <@p.td colspan="2" width="100" label="cmsAccountDraw.applyAccount">

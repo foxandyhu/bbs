@@ -23,7 +23,7 @@ public class BbsLiveRateAct {
 	private static final Logger log = LoggerFactory.getLogger(BbsLiveRateAct.class);
 
 	@RequiresPermissions("liveRate:v_list")
-	@RequestMapping("/liveRate/v_list.do")
+	@RequestMapping("/liveRate/v_list.html")
 	public String list(Integer pageNo, HttpServletRequest request, ModelMap model) {
 		Pagination pagination = manager.getPage(cpn(pageNo), CookieUtils
 				.getPageSize(request));
@@ -32,13 +32,13 @@ public class BbsLiveRateAct {
 	}
 
 	@RequiresPermissions("liveRate:v_add")
-	@RequestMapping("/liveRate/v_add.do")
+	@RequestMapping("/liveRate/v_add.html")
 	public String add(ModelMap model) {
 		return "plugPage/live/liveRate/add";
 	}
 
 	@RequiresPermissions("liveRate:v_edit")
-	@RequestMapping("/liveRate/v_edit.do")
+	@RequestMapping("/liveRate/v_edit.html")
 	public String edit(Integer id, HttpServletRequest request, ModelMap model) {
 		WebErrors errors = validateEdit(id, request);
 		if (errors.hasErrors()) {
@@ -49,15 +49,15 @@ public class BbsLiveRateAct {
 	}
 
 	@RequiresPermissions("liveRate:o_save")
-	@RequestMapping("/liveRate/o_save.do")
+	@RequestMapping("/liveRate/o_save.html")
 	public String save(BbsLiveRate bean, HttpServletRequest request, ModelMap model) {
 		bean = manager.save(bean);
 		log.info("save BbsLiveRate id={}", bean.getId());
-		return "redirect:v_list.do";
+		return "redirect:v_list.html";
 	}
 
 	@RequiresPermissions("liveRate:o_update")
-	@RequestMapping("/liveRate/o_update.do")
+	@RequestMapping("/liveRate/o_update.html")
 	public String update(BbsLiveRate bean, Integer pageNo, HttpServletRequest request,
 			ModelMap model) {
 		WebErrors errors = validateUpdate(bean.getId(), request);
@@ -70,7 +70,7 @@ public class BbsLiveRateAct {
 	}
 
 	@RequiresPermissions("liveRate:o_delete")
-	@RequestMapping("/liveRate/o_delete.do")
+	@RequestMapping("/liveRate/o_delete.html")
 	public String delete(Integer[] ids, Integer pageNo, HttpServletRequest request,
 			ModelMap model) {
 		WebErrors errors = validateDelete(ids, request);

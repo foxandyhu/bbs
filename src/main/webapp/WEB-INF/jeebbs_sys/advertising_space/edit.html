@@ -17,11 +17,11 @@ $(function() {
 <div class="rhead">
 	<div class="rpos"><@s.m "global.position"/>:  <@s.m "cmsAdvertisingSpace.function"/> - <@s.m "global.edit"/></div>
 	<form class="ropt">
-		<input type="submit" value="<@s.m "global.backToList"/>" onclick="this.form.action='v_list.do';" class="return-button"/>
+		<input type="submit" value="<@s.m "global.backToList"/>" onclick="this.form.action='v_list.html';" class="return-button"/>
 	</form>
 	<div class="clear"></div>
 </div>
-<@p.form id="jvForm" action="o_update.do">
+<@p.form id="jvForm" action="o_update.html">
 <@p.text label="cmsAdvertisingSpace.name" name="name" value=bbsAdvertisingSpace.name required="true" class="required" maxlength="100"/>
 <@p.td colspan="2" label="位置预览">
 <div id="preview_image">

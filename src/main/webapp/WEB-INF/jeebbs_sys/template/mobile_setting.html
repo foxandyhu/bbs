@@ -6,7 +6,7 @@
 <#include "/jeebbs_sys/head.html"/>
 <script type="text/javascript">
 function setDefSolution() {
-	$.post("o_mobile_def_template.do", {
+	$.post("o_mobile_def_template.html", {
 		"solution" : $("#defSolution").val()
 	}, function(data) {
 		if (data.success) {
@@ -18,7 +18,7 @@ function setDefSolution() {
 }
 function exportTpl() {
 	var form = document.getElementById("jvForm");
-	form.action = "o_export.do";
+	form.action = "o_export.html";
 	form.encoding = "application/x-www-form-urlencoded";
 	form.submit();
 }
@@ -29,7 +29,7 @@ function importTpl() {
 	   alert("请选择导入的模板");
 	   return;
 	}
-	form.action = "o_import.do";
+	form.action = "o_import.html";
 	form.encoding = "multipart/form-data";
 	form.submit();
 }
@@ -44,19 +44,19 @@ function importTpl() {
 	<div class="clear"></div>
 </div>
 <@p.form id="jvForm">
-<@cms_perm url="/template/o_def_template.do">
+<@cms_perm url="/template/o_def_template.html">
 <@p.td label="template.default">
 	<@p.select id="defSolution" list=solutions value=defSolution/>
 &nbsp; <input type="button" onclick="setDefSolution();" value="<@s.m "template.setting"/>"/>
 </@p.td><@p.tr/>
 </@cms_perm>
-<@cms_perm url="/template/o_export.do">
+<@cms_perm url="/template/o_export.html">
 <@p.td label="template.export">
 	<@p.select name="solution" list=solutions value=defSolution/>
 &nbsp; <input type="button" onclick="exportTpl();" value="<@s.m "template.export"/>"/>
 </@p.td><@p.tr/>
 </@cms_perm>
-<@cms_perm url="/template/o_import.do">
+<@cms_perm url="/template/o_import.html">
 <@p.td label="template.import">
 	<input type="file" name="tplZip" id="tplZip"/>
 	<input name="mobileSetting" value="true" type="hidden"/>

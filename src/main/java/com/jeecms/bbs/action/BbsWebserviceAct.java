@@ -22,7 +22,7 @@ public class BbsWebserviceAct {
 	private static final Logger log = LoggerFactory.getLogger(BbsWebserviceAct.class);
 
 	@RequiresPermissions("webservice:v_list")
-	@RequestMapping("/webservice/v_list.do")
+	@RequestMapping("/webservice/v_list.html")
 	public String list(Integer pageNo, HttpServletRequest request, ModelMap model) {
 		Pagination pagination = manager.getPage(cpn(pageNo), CookieUtils
 				.getPageSize(request));
@@ -31,29 +31,29 @@ public class BbsWebserviceAct {
 	}
 
 	@RequiresPermissions("webservice:v_add")
-	@RequestMapping("/webservice/v_add.do")
+	@RequestMapping("/webservice/v_add.html")
 	public String add(ModelMap model) {
 		return "webservice/add";
 	}
 
 	@RequiresPermissions("webservice:v_edit")
-	@RequestMapping("/webservice/v_edit.do")
+	@RequestMapping("/webservice/v_edit.html")
 	public String edit(Integer id, HttpServletRequest request, ModelMap model) {
 		model.addAttribute("bbsWebservice", manager.findById(id));
 		return "webservice/edit";
 	}
 
 	@RequiresPermissions("webservice:o_save")
-	@RequestMapping("/webservice/o_save.do")
+	@RequestMapping("/webservice/o_save.html")
 	public String save(BbsWebservice bean, String[] paramName, String[] defaultValue,
 			HttpServletRequest request, ModelMap model) {
 		bean = manager.save(bean,paramName,defaultValue);
 		log.info("save BbsWebservice id={}", bean.getId());
-		return "redirect:v_list.do";
+		return "redirect:v_list.html";
 	}
 
 	@RequiresPermissions("webservice:o_update")
-	@RequestMapping("/webservice/o_update.do")
+	@RequestMapping("/webservice/o_update.html")
 	public String update(BbsWebservice bean,String[] paramName, String[] defaultValue,
 			Integer pageNo, HttpServletRequest request,ModelMap model) {
 		bean = manager.update(bean,paramName,defaultValue);
@@ -62,7 +62,7 @@ public class BbsWebserviceAct {
 	}
 
 	@RequiresPermissions("webservice:o_delete")
-	@RequestMapping("/webservice/o_delete.do")
+	@RequestMapping("/webservice/o_delete.html")
 	public String delete(Integer[] ids, Integer pageNo, HttpServletRequest request,
 			ModelMap model) {
 		manager.deleteByIds(ids);

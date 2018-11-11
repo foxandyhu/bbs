@@ -21,16 +21,16 @@ function optDelete() {
 		return;
 	}
 	var f = getTableForm();
-	f.action="o_delete.do";
+	f.action="o_delete.html";
 	f.submit();
 }
 function optSaveContent() {
 	var f = getTableForm();
-	f.action="o_update.do";
+	f.action="o_update.html";
 	f.submit();
 }
 function openClose(open){
-	$.post("v_open_close.do", {
+	$.post("v_open_close.html", {
 		open:open
 	}, function(data) {
 		if(data){
@@ -48,14 +48,14 @@ function openClose(open){
 	</form>
 	<div class="clear"></div>
 </div>
-<form id="jvForm" action="o_save.do" method="post" style="padding:5px 0 0 5px">
+<form id="jvForm" action="o_save.html" method="post" style="padding:5px 0 0 5px">
 <@s.m "cmsSensitivity.search"/>:<input type="text" name="search" class="required" maxlength="255"/>
 <@s.m "cmsSensitivity.replacement"/>:<input type="text" name="replacement" class="required" maxlength="255"/>
 <input class="add" type="submit" value="<@s.m "global.add"/>"/>
 </form>
 <span onclick="openClose('true')">开</span>
 <span onclick="openClose('false')">关</span>
-<a href="v_add.do">批量添加</a>
+<a href="v_add.html">批量添加</a>
 <#--<div style="padding:5px 0 0 5px"><@s.m "cmsSensitivity.search.help"/></div>-->
 <form id="tableForm" method="post">
 <@p.table value=list;cmsSensitivity,i,has_next><#rt/>
@@ -66,7 +66,7 @@ function openClose(open){
 	<@p.column code="cmsSensitivity.search" align="center"><input type="text" name="search" value="${cmsSensitivity.search}"/></@p.column><#t/>
 	<@p.column code="cmsSensitivity.replacement" align="center"><input type=""text" name="replacement" value="${cmsSensitivity.replacement}"/></@p.column><#t/>
 	<@p.column code="global.operate" align="center">
-		<a href="o_delete.do?ids=${cmsSensitivity.id}" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}" class="pn-opt"><@s.m "global.delete"/></a><#t/>
+		<a href="o_delete.html?ids=${cmsSensitivity.id}" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}" class="pn-opt"><@s.m "global.delete"/></a><#t/>
 	</@p.column><#t/>
 </@p.table>
 <div style="margin-top:15px;">

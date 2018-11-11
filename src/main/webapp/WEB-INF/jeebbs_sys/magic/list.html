@@ -10,7 +10,7 @@ function getTableForm() {
 }
 function optPriority() {
 	var f = getTableForm();
-	f.action="o_priority.do";
+	f.action="o_priority.html";
 	f.submit();
 }
 function magiccheck(magicid){
@@ -27,10 +27,10 @@ function magiccheck(magicid){
 <div class="rhead">
 	<div class="rpos"><@s.m "global.position"/>： <@s.m "magic.function"/> - <@s.m "global.list"/></div>
 	<form class="ropt">
-		<input type="submit" value="<@s.m "magic.give"/>" onclick="this.form.action='user_list.do';"/>
+		<input type="submit" value="<@s.m "magic.give"/>" onclick="this.form.action='user_list.html';"/>
 	</form>
 	<form class="ropt">
-		<input type="submit" value="<@s.m "config.configuration"/>" onclick="this.form.action='v_config.do';"/>
+		<input type="submit" value="<@s.m "config.configuration"/>" onclick="this.form.action='v_config.html';"/>
 	</form>
 	<div class="clear"></div>
 </div>
@@ -52,7 +52,7 @@ function magiccheck(magicid){
 		<input type="hidden" name="mids" value="${magic.id!}"/>
 	</@p.column><#t/>
 	<@p.column code="global.operate" align="center">
-		<a href="v_edit.do?id=${magic.id}" class="pn-opt"><@s.m "global.edit"/></a> | <#rt/>
+		<a href="v_edit.html?id=${magic.id}" class="pn-opt"><@s.m "global.edit"/></a> | <#rt/>
 	</@p.column><#t/>
 </@p.table>
 <div>

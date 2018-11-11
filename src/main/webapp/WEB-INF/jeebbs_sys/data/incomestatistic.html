@@ -10,7 +10,7 @@ function getTableForm() {
 }
 function optExport() {
 	var f = getTableForm();
-	f.action="incomeExport.do";
+	f.action="incomeExport.html";
 	f.submit();
 }
 </script>
@@ -22,7 +22,7 @@ function optExport() {
 	<form class="ropt">
 		<input name="begin" value="${begin!}" style="width:140px" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate" />
 		<input name="end" value="${end!}" style="width:140px" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate" />
-		<input type="submit" value="<@s.m "global.query"/>" onclick="this.form.action='incomestatistic.do';"/>
+		<input type="submit" value="<@s.m "global.query"/>" onclick="this.form.action='incomestatistic.html';"/>
 	</form>
 	<div class="clear"></div>
 </div>
@@ -30,7 +30,7 @@ function optExport() {
 <input type="hidden" name="pageNo" value="${pageNo!}"/>
 <input type="hidden" name="begin" value="${begin!}"/>
 <input type="hidden" name="end" value="${end!}"/>
-<@p.table value=pagination listAction="incomestatistic.do";bbsIncomeStatistic,i,has_next><#rt/>
+<@p.table value=pagination listAction="incomestatistic.html";bbsIncomeStatistic,i,has_next><#rt/>
 	<@p.column title="日期">${bbsIncomeStatistic.incomeDate?string("yyyy-MM-dd")!}</@p.column><#t/>
 	<@p.column title="总收益">${bbsIncomeStatistic.totalIncomeAmount!}</@p.column><#t/>
 	<@p.column title="广告收益">${bbsIncomeStatistic.adIncomeAmount!}</@p.column><#t/>

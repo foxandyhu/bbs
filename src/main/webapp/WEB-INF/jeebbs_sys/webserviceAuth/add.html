@@ -15,11 +15,11 @@ $(function() {
 <div class="rhead">
 	<div class="rpos"><@s.m "global.position"/>: <@s.m "bbsWebserviceAuth.function"/> - <@s.m "global.add"/></div>
 	<form class="ropt">
-		<input type="submit" value="<@s.m "global.backToList"/>" onclick="this.form.action='v_list.do';"/>
+		<input type="submit" value="<@s.m "global.backToList"/>" onclick="this.form.action='v_list.html';"/>
 	</form>
 	<div class="clear"></div>
 </div>
-<@p.form id="jvForm" action="o_save.do">
+<@p.form id="jvForm" action="o_save.html">
 <@p.text width="50" colspan="1" label="bbsWebserviceAuth.username" name="username" required="true" class="required" maxlength="20"/>
 <@p.text width="50" colspan="1" label="bbsWebserviceAuth.system" name="system" required="true" class="required" maxlength="20"/><@p.tr/>
 <@p.password width="50" colspan="1" label="bbsWebserviceAuth.password" id="password" name="password" maxlength="20" required="true" class="required"/>

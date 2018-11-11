@@ -23,7 +23,7 @@ public class BbsWebserviceAuthAct {
 	private static final Logger log = LoggerFactory.getLogger(BbsWebserviceAuthAct.class);
 
 	@RequiresPermissions("webserviceAuth:v_list")
-	@RequestMapping("/webserviceAuth/v_list.do")
+	@RequestMapping("/webserviceAuth/v_list.html")
 	public String list(Integer pageNo, HttpServletRequest request, ModelMap model) {
 		Pagination pagination = manager.getPage(cpn(pageNo), CookieUtils
 				.getPageSize(request));
@@ -32,29 +32,29 @@ public class BbsWebserviceAuthAct {
 	}
 
 	@RequiresPermissions("webserviceAuth:v_add")
-	@RequestMapping("/webserviceAuth/v_add.do")
+	@RequestMapping("/webserviceAuth/v_add.html")
 	public String add(ModelMap model) {
 		return "webserviceAuth/add";
 	}
 
 	@RequiresPermissions("webserviceAuth:v_edit")
-	@RequestMapping("/webserviceAuth/v_edit.do")
+	@RequestMapping("/webserviceAuth/v_edit.html")
 	public String edit(Integer id, HttpServletRequest request, ModelMap model) {
 		model.addAttribute("bbsWebserviceAuth", manager.findById(id));
 		return "webserviceAuth/edit";
 	}
 
 	@RequiresPermissions("webserviceAuth:o_save")
-	@RequestMapping("/webserviceAuth/o_save.do")
+	@RequestMapping("/webserviceAuth/o_save.html")
 	public String save(BbsWebserviceAuth bean, HttpServletRequest request, ModelMap model) {
 		bean.setPassword(pwdEncoder.encodePassword(bean.getPassword()));
 		bean = manager.save(bean);
 		log.info("save BbsWebserviceAuth id={}", bean.getId());
-		return "redirect:v_list.do";
+		return "redirect:v_list.html";
 	}
 
 	@RequiresPermissions("webserviceAuth:o_update")
-	@RequestMapping("/webserviceAuth/o_update.do")
+	@RequestMapping("/webserviceAuth/o_update.html")
 	public String update(Integer id,String username,String password,String system,Boolean enable, Integer pageNo, HttpServletRequest request,
 			ModelMap model) {
 		BbsWebserviceAuth bean = manager.update(id, username, password, system, enable);
@@ -63,7 +63,7 @@ public class BbsWebserviceAuthAct {
 	}
 
 	@RequiresPermissions("webserviceAuth:o_delete")
-	@RequestMapping("/webserviceAuth/o_delete.do")
+	@RequestMapping("/webserviceAuth/o_delete.html")
 	public String delete(Integer[] ids, Integer pageNo, HttpServletRequest request,
 			ModelMap model) {
 		manager.deleteByIds(ids);

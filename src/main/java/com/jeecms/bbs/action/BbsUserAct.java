@@ -42,7 +42,7 @@ public class BbsUserAct {
 			.getLogger(BbsUserGroupAct.class);
 
 	@RequiresPermissions("user:v_list")
-	@RequestMapping("/user/v_list.do")
+	@RequestMapping("/user/v_list.html")
 	public String list(String username, Integer groupId,Integer lastLoginDay,
 			Integer orderBy, Integer pageNo, HttpServletRequest request,
 			ModelMap model) {
@@ -62,7 +62,7 @@ public class BbsUserAct {
 	}
 	
 	@RequiresPermissions("user:v_officialuser_list")
-	@RequestMapping("/user/v_officialuser_list.do")
+	@RequestMapping("/user/v_officialuser_list.html")
 	public String listOfficialUserList(Integer pageNo, HttpServletRequest request,ModelMap model) {
 		BbsUser user=CmsUtils.getUser(request);
 		Pagination pagination = manager.getPage(null, null, null, null,
@@ -73,18 +73,18 @@ public class BbsUserAct {
 	}
 
 	@RequiresPermissions("user:o_onlinestatistics")
-	@RequestMapping("/user/o_onlinestatistics.do")
+	@RequestMapping("/user/o_onlinestatistics.html")
 	public String onlinestatistics(Integer[] ids, Integer pageNo,
 			HttpServletRequest request, ModelMap model) {
 		BbsUser[] beans = manager.deleteByIds(ids);
 		for (BbsUser bean : beans) {
 			log.info("delete BbsUser id={}", bean.getId());
 		}
-		return "redirect:v_list.do";
+		return "redirect:v_list.html";
 	}
 
 	@RequiresPermissions("user:v_add")
-	@RequestMapping("/user/v_add.do")
+	@RequestMapping("/user/v_add.html")
 	public String add(HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
 		List<BbsUserGroup> groupList = bbsUserGroupMng.getList(site.getId());
@@ -95,7 +95,7 @@ public class BbsUserAct {
 	}
 
 	@RequiresPermissions("user:v_edit")
-	@RequestMapping("/user/v_edit.do")
+	@RequestMapping("/user/v_edit.html")
 	public String edit(Integer userId, HttpServletRequest request,
 			ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -114,7 +114,7 @@ public class BbsUserAct {
 	}
 	
 	@RequiresPermissions("user:v_officialuser_add")
-	@RequestMapping("/user/v_officialuser_add.do")
+	@RequestMapping("/user/v_officialuser_add.html")
 	public String addOfficialUser(HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
 		List<BbsUserGroup> groupList = bbsUserGroupMng.getList(site.getId());
@@ -123,7 +123,7 @@ public class BbsUserAct {
 	}
 
 	@RequiresPermissions("user:v_officialuser_edit")
-	@RequestMapping("/user/v_officialuser_edit.do")
+	@RequestMapping("/user/v_officialuser_edit.html")
 	public String editOfficialUser(Integer userId, HttpServletRequest request,
 			ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -135,7 +135,7 @@ public class BbsUserAct {
 	}
 	
 	@RequiresPermissions("user:v_check_username")
-	@RequestMapping(value = "/user/v_check_username.do")
+	@RequestMapping(value = "/user/v_check_username.html")
 	public void checkUsername(String username, HttpServletResponse response) {
 		String pass;
 		if (StringUtils.isBlank(username)) {
@@ -147,7 +147,7 @@ public class BbsUserAct {
 	}
 	
 	@RequiresPermissions("user:v_find_username")
-	@RequestMapping(value = "/user/v_find_username.do")
+	@RequestMapping(value = "/user/v_find_username.html")
 	public void findUsername(String username, HttpServletResponse response) {
 		String pass;
 		if (StringUtils.isBlank(username)) {
@@ -160,7 +160,7 @@ public class BbsUserAct {
 
 
 	@RequiresPermissions("user:o_save")
-	@RequestMapping("/user/o_save.do")
+	@RequestMapping("/user/o_save.html")
 	public String save(BbsUser bean, BbsUserExt ext, String username,Boolean official,
 			String email, String password, Integer groupId,
 			HttpServletRequest request, ModelMap model) throws UnsupportedEncodingException, MessagingException {
@@ -169,14 +169,14 @@ public class BbsUserAct {
 		bean = manager.registerMember(username, email,official, password, ip, groupId,ext,attrs);
 		callWebService(username, password, email, ext,BbsWebservice.SERVICE_TYPE_ADD_USER);
 		if(official!=null&&official){
-			return "redirect:v_officialuser_list.do";
+			return "redirect:v_officialuser_list.html";
 		}else{
-			return "redirect:v_list.do";
+			return "redirect:v_list.html";
 		}
 	}
 
 	@RequiresPermissions("user:o_update")
-	@RequestMapping("/user/o_update.do")
+	@RequestMapping("/user/o_update.html")
 	public String update(Integer id, String email, String password,
 			Boolean disabled, BbsUserExt ext, Integer groupId,
 			HttpServletRequest request, ModelMap model) {
@@ -185,14 +185,14 @@ public class BbsUserAct {
 		BbsUser bean=manager.updateMember(id, email, password, disabled, null, null, ext,attrs,groupId);
 		callWebService(bean.getUsername(), password, email, ext,BbsWebservice.SERVICE_TYPE_UPDATE_USER);
 		if(bean.getOfficial()!=null&&bean.getOfficial()){
-			return "redirect:v_officialuser_list.do";
+			return "redirect:v_officialuser_list.html";
 		}else{
-			return "redirect:v_list.do";
+			return "redirect:v_list.html";
 		}
 	}
 	
 	@RequiresPermissions("user:o_delete")
-	@RequestMapping("/user/o_delete.do")
+	@RequestMapping("/user/o_delete.html")
 	public String delete(Integer[] ids, Boolean official,Integer pageNo,
 			HttpServletRequest request, ModelMap model) {
 		for (Integer id : ids) {
@@ -206,9 +206,9 @@ public class BbsUserAct {
 		}
 		manager.deleteByIds(ids);
 		if(official!=null&&official){
-			return "redirect:v_officialuser_list.do";
+			return "redirect:v_officialuser_list.html";
 		}else{
-			return "redirect:v_list.do";
+			return "redirect:v_list.html";
 		}
 	}
 	

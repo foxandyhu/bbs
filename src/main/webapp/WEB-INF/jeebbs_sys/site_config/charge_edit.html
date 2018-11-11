@@ -16,7 +16,7 @@ $(function() {
 	  <div class="rpos"><@s.m "global.position"/>: <@s.m "cmsConfig.function"/> > <@s.m "configCharge.function"/> > <@s.m "global.edit"/></div>
 	<div class="clear"></div>
 </div>
-<@p.form id="jvForm" action="o_charge_update.do" labelWidth="15" class="formDefStyle">
+<@p.form id="jvForm" action="o_charge_update.html" labelWidth="15" class="formDefStyle">
 <@p.text  width="50" colspan="1"  label="configCharge.weixinAppId" name="weixinAppId" value=configCharge.weixinAppId required="true" class="required" maxlength="100"/>
 <@p.password  width="50" colspan="1" label="configCharge.weixinSecret" name="weixinSecret" maxlength="100" help="configCharge.weixinPassword.help"/><@p.tr/>
 

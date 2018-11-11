@@ -20,7 +20,7 @@ function optDelete() {
 }
 function doDelete(){
 	var f = getTableForm();
-	f.action="o_delete.do";
+	f.action="o_delete.html";
 	f.submit();
 }
 </script>
@@ -42,7 +42,7 @@ function doDelete(){
 	<@p.column code="apiRecord.callIp">${apiRecord.callIp!}</@p.column><#t/>
 	<@p.column code="apiRecord.callTime">${apiRecord.callTime!?string("yyyy-MM-dd HH:mm:ss")}</@p.column><#t/>
 	<@p.column code="global.operate" align="center">
-		<a href="o_delete.do?ids=${apiRecord.id}&pageNo=${pageNo!}" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}"  class="pn-opt"><@s.m "global.delete"/></a><#t/>
+		<a href="o_delete.html?ids=${apiRecord.id}&pageNo=${pageNo!}" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}"  class="pn-opt"><@s.m "global.delete"/></a><#t/>
 	</@p.column><#t/>
 </@p.table>
 <div><input class="del-button" type="button" value="<@s.m "global.delete"/>" onclick="optDelete();"/></div>

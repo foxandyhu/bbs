@@ -27,7 +27,7 @@ public class BbsLiveApplyAct {
 	private static final Logger log = LoggerFactory.getLogger(BbsLiveApplyAct.class);
 
 	@RequiresPermissions("liveApply:v_list")
-	@RequestMapping("/liveApply/v_list.do")
+	@RequestMapping("/liveApply/v_list.html")
 	public String list(String mobile,Short status,Integer queryMode,
 			String username,Integer pageNo, 
 			HttpServletRequest request, ModelMap model) {
@@ -47,7 +47,7 @@ public class BbsLiveApplyAct {
 			queryMode=0;
 		}
 		if(queryMode==1){
-			return "redirect:../liveHost/v_list.do";
+			return "redirect:../liveHost/v_list.html";
 		}
 		Pagination pagination = manager.getPage(mobile,status,applyUserId,
 				cpn(pageNo), CookieUtils.getPageSize(request));
@@ -59,7 +59,7 @@ public class BbsLiveApplyAct {
 	}
 	
 	@RequiresPermissions("liveApply:v_edit")
-	@RequestMapping("/liveApply/v_edit.do")
+	@RequestMapping("/liveApply/v_edit.html")
 	public String edit(Integer id, HttpServletRequest request, ModelMap model) {
 		WebErrors errors = validateEdit(id, request);
 		if (errors.hasErrors()) {
@@ -70,7 +70,7 @@ public class BbsLiveApplyAct {
 	}
 	
 	@RequiresPermissions("liveApply:v_view")
-	@RequestMapping("/liveApply/v_view.do")
+	@RequestMapping("/liveApply/v_view.html")
 	public String view(Integer id, HttpServletRequest request, ModelMap model) {
 		WebErrors errors = validateEdit(id, request);
 		if (errors.hasErrors()) {
@@ -81,7 +81,7 @@ public class BbsLiveApplyAct {
 	}
 
 	@RequiresPermissions("liveApply:o_update")
-	@RequestMapping("/liveApply/o_update.do")
+	@RequestMapping("/liveApply/o_update.html")
 	public String update(String mobile,Short status,
 			String username,BbsLiveApply bean,String[] picPaths, String[] picDescs,
 			Integer pageNo, HttpServletRequest request,
@@ -96,7 +96,7 @@ public class BbsLiveApplyAct {
 	}
 	
 	@RequiresPermissions("liveApply:v_check")
-	@RequestMapping("/liveApply/v_check.do")
+	@RequestMapping("/liveApply/v_check.html")
 	public String check(Integer[] ids,String mobile,Short status,
 			String username, Integer pageNo, HttpServletRequest request, ModelMap model) {
 		WebErrors errors = validateDelete(ids, request);
@@ -108,7 +108,7 @@ public class BbsLiveApplyAct {
 	}
 	
 	@RequiresPermissions("liveApply:v_reject")
-	@RequestMapping("/liveApply/v_reject.do")
+	@RequestMapping("/liveApply/v_reject.html")
 	public String reject(Integer[] ids,String mobile,Short status,
 			String username, Integer pageNo, HttpServletRequest request, ModelMap model) {
 		WebErrors errors = validateDelete(ids, request);
@@ -120,7 +120,7 @@ public class BbsLiveApplyAct {
 	}
 
 	@RequiresPermissions("liveApply:o_delete")
-	@RequestMapping("/liveApply/o_delete.do")
+	@RequestMapping("/liveApply/o_delete.html")
 	public String delete(String mobile,Short status,
 			String username,Integer[] ids, Integer pageNo, HttpServletRequest request,
 			ModelMap model) {

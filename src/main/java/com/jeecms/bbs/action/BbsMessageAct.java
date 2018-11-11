@@ -34,7 +34,7 @@ public class BbsMessageAct {
 	private static final Logger log = LoggerFactory.getLogger(BbsMessageAct.class);
 	
 	@RequiresPermissions("message:v_sys_list")
-	@RequestMapping("/message/v_sys_list.do")
+	@RequestMapping("/message/v_sys_list.html")
 	public String sysMessagelist(Integer pageNo, HttpServletRequest request, ModelMap model) {
 //		Pagination pagination=bbsMessageMng.getPagination(true,null,null,cpn(pageNo),
 //				CookieUtils.getPageSize(request));
@@ -45,7 +45,7 @@ public class BbsMessageAct {
 	}
 	
 	@RequiresPermissions("message:v_list")
-	@RequestMapping("/message/v_list.do")
+	@RequestMapping("/message/v_list.html")
 	public String messagelist(String sender,String receiver,String content, 
 			Integer pageNo, HttpServletRequest request, ModelMap model) {
 		Integer sendUserId=0,receiverId=0;
@@ -69,7 +69,7 @@ public class BbsMessageAct {
 	}
 	
 	@RequiresPermissions("message:v_sendSys")
-	@RequestMapping("/message/v_sendSys.do")
+	@RequestMapping("/message/v_sendSys.html")
 	public String sendMessage(Integer pageNo, HttpServletRequest request, ModelMap model) {
 		CmsSite site=CmsUtils.getSite(request);
 		List<BbsUserGroup> groupList = bbsUserGroupMng.getList(site.getId());
@@ -79,7 +79,7 @@ public class BbsMessageAct {
 	}
 	
 	@RequiresPermissions("message:o_sendSys")
-	@RequestMapping("/message/o_sendSys.do")
+	@RequestMapping("/message/o_sendSys.html")
 	public String submitSysMessage(String content,String username,Integer groupId,
 			Boolean toAll,Integer pageNo, 
 			HttpServletRequest request, ModelMap model) {
@@ -95,7 +95,7 @@ public class BbsMessageAct {
 	}
 	
 	@RequiresPermissions("message:o_delete")
-	@RequestMapping("/message/o_delete.do")
+	@RequestMapping("/message/o_delete.html")
 	public String delete(Boolean sys,String sender,String receiver,String content, 
 			Integer[] ids, Integer pageNo, HttpServletRequest request,ModelMap model) {
 		ids=array_unique(ids);

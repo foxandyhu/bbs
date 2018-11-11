@@ -23,20 +23,20 @@ ${name}.Config["ImageBrowser"] = false ;
 ${name}.Config["FlashBrowser"] = false ;
 ${name}.Config["MediaBrowser"] = false ;
 
-${name}.Config["LinkBrowserURL"] = "${filemanager}?Connector=${base+appBase}/fck/connector.do" ;
-${name}.Config["ImageBrowserURL"] = "${filemanager}?Type=Image&Connector=${base+appBase}/fck/connector.do" ;
-${name}.Config["FlashBrowserURL"] = "${filemanager}?Type=Flash&Connector=${base+appBase}/fck/connector.do" ;
-${name}.Config["MediaBrowserURL"] = "${filemanager}?Type=Media&Connector=${base+appBase}/fck/connector.do" ;
+${name}.Config["LinkBrowserURL"] = "${filemanager}?Connector=${base+appBase}/fck/connector.html" ;
+${name}.Config["ImageBrowserURL"] = "${filemanager}?Type=Image&Connector=${base+appBase}/fck/connector.html" ;
+${name}.Config["FlashBrowserURL"] = "${filemanager}?Type=Flash&Connector=${base+appBase}/fck/connector.html" ;
+${name}.Config["MediaBrowserURL"] = "${filemanager}?Type=Media&Connector=${base+appBase}/fck/connector.html" ;
 
 ${name}.Config["LinkUpload"] = true ;
 ${name}.Config["ImageUpload"] = true ;
 ${name}.Config["FlashUpload"] = true ;
 ${name}.Config["MediaUpload"] = true ;
 
-${name}.Config["LinkUploadURL"] = "${base+appBase}/fck/upload.do" ;
-${name}.Config["ImageUploadURL"] = "${base+appBase}/fck/upload.do?Type=Image" ;
-${name}.Config["FlashUploadURL"] = "${base+appBase}/fck/upload.do?Type=Flash" ;
-${name}.Config["MediaUploadURL"] = "${base+appBase}/fck/upload.do?Type=Media" ;
+${name}.Config["LinkUploadURL"] = "${base+appBase}/fck/upload.html" ;
+${name}.Config["ImageUploadURL"] = "${base+appBase}/fck/upload.html?Type=Image" ;
+${name}.Config["FlashUploadURL"] = "${base+appBase}/fck/upload.html?Type=Flash" ;
+${name}.Config["MediaUploadURL"] = "${base+appBase}/fck/upload.html?Type=Media" ;
 
 ${name}.ToolbarSet="${toolbarSet}";
 ${name}.Height=${height};

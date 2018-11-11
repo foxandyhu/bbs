@@ -25,7 +25,7 @@ public class BbsThirdAccountAct {
 	private static final Logger log = LoggerFactory.getLogger(BbsThirdAccountAct.class);
 
 	@RequiresPermissions("account:v_list")
-	@RequestMapping("/account/v_list.do")
+	@RequestMapping("/account/v_list.html")
 	public String list(String username,String source,Integer pageNo, HttpServletRequest request, ModelMap model) {
 		Pagination pagination = manager.getPage(username,source,cpn(pageNo), CookieUtils
 				.getPageSize(request));
@@ -37,7 +37,7 @@ public class BbsThirdAccountAct {
 	}
 	
 	@RequiresPermissions("account:o_delete")
-	@RequestMapping("/account/o_delete.do")
+	@RequestMapping("/account/o_delete.html")
 	public String delete(String username,String source,Long[] ids, Integer pageNo, HttpServletRequest request,
 			ModelMap model) {
 		WebErrors errors = validateDelete(ids, request);

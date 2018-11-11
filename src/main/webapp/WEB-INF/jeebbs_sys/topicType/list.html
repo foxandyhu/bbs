@@ -17,7 +17,7 @@ function optDelete() {
 		return;
 	}
 	var f = getTableForm();
-	f.action="o_delete.do";
+	f.action="o_delete.html";
 	f.submit();
 }
 </script>
@@ -28,7 +28,7 @@ function optDelete() {
 	<div class="rpos"><@s.m "global.position"/>: <@s.m "bbsTopicType.function"/> - <@s.m "global.list"/></div>
 	<form class="ropt">
 	    <input type="hidden" name="root" value="${root!}"/>
-		<input type="submit" value="<@s.m "global.add"/>" onclick="this.form.action='v_add.do';"/>
+		<input type="submit" value="<@s.m "global.add"/>" onclick="this.form.action='v_add.html';"/>
 	</form>
 	<div class="clear"></div>
 </div>
@@ -46,8 +46,8 @@ function optDelete() {
 	<@p.column code="bbsTopicType.topicEssenceCount">${bbsTopicType.topicEssenceCount!}</@p.column><#t/>
 	<@p.column code="bbsTopicType.subscribeCount">${bbsTopicType.subscribeCount!}</@p.column><#t/>
 	<@p.column code="global.operate" align="center">
-		<a href="v_edit.do?id=${bbsTopicType.id}"><@s.m "global.edit"/></a> | <#rt/>
-		<a href="o_delete.do?ids=${bbsTopicType.id}&root=${root!}" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}"><@s.m "global.delete"/></a><#t/>
+		<a href="v_edit.html?id=${bbsTopicType.id}"><@s.m "global.edit"/></a> | <#rt/>
+		<a href="o_delete.html?ids=${bbsTopicType.id}&root=${root!}" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}"><@s.m "global.delete"/></a><#t/>
 	</@p.column><#t/>
 </@p.table>
 <div><input type="button" value="<@s.m "global.delete"/>" onclick="optDelete();"/></div>

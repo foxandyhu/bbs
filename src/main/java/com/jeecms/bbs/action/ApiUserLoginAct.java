@@ -23,7 +23,7 @@ public class ApiUserLoginAct {
 	private static final Logger log = LoggerFactory.getLogger(ApiUserLoginAct.class);
 
 	@RequiresPermissions("apiUserLogin:v_list")
-	@RequestMapping("/apiUserLogin/v_list.do")
+	@RequestMapping("/apiUserLogin/v_list.html")
 	public String list(Integer pageNo, HttpServletRequest request, ModelMap model) {
 		Pagination pagination = manager.getPage(cpn(pageNo), CookieUtils
 				.getPageSize(request));
@@ -33,7 +33,7 @@ public class ApiUserLoginAct {
 	}
 
 	@RequiresPermissions("apiUserLogin:o_delete")
-	@RequestMapping("/apiUserLogin/o_delete.do")
+	@RequestMapping("/apiUserLogin/o_delete.html")
 	public String delete(Long[] ids, Integer pageNo, HttpServletRequest request,
 			ModelMap model) {
 		WebErrors errors = validateDelete(ids, request);

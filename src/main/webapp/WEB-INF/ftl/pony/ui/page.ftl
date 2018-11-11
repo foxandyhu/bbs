@@ -5,7 +5,7 @@
 <#assign n=5/>
 <#assign m=3/>
 <#assign b=2/>
-<#macro page value listAction="v_list.do" tableForm='tableForm' >
+<#macro page value listAction="v_list.html" tableForm='tableForm' >
 <#if value?is_sequence><#local pageList=value/><#else><#local pageList=value.list/></#if>
 <div class="table-bottom-bar">
 	<div class="pull-left">

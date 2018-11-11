@@ -16,7 +16,7 @@ $(function() {
 	<div class="rpos">当前位置： 核心功能 - 论坛配置 - 修改</div>
 	<div class="clear"></div>
 </div>
-<@p.form id="submitForm" action="o_update.do" labelWidth="12">
+<@p.form id="submitForm" action="o_update.html" labelWidth="12">
 <@p.text label="在线保持时间" name="keepMinute" value=cmsConfig.keepMinute required="true" class="required" maxlength="100"/>
 <@p.text label="默认头像" name="defAvatar" value=config.defAvatar required="true" class="required" maxlength="100"/>
 <@p.text label="图片上传缩率图默认宽度" name="picZoomDefWidth" value=config.picZoomDefWidth required="true" class="required digits" maxlength="10"/>

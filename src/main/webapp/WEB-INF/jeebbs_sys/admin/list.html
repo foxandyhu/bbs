@@ -20,7 +20,7 @@ function optDelete() {
 }
 function doDelete(){
 	var f = getTableForm();
-	f.action="o_delete.do";
+	f.action="o_delete.html";
 	f.submit();
 }
 </script>
@@ -31,12 +31,12 @@ function doDelete(){
 </div>
 <div class="box-positon">
 	<form class="ropt">
-		<input class="add" type="submit" value="<@s.m "global.add"/>" onclick="this.form.action='v_add.do';"/>
+		<input class="add" type="submit" value="<@s.m "global.add"/>" onclick="this.form.action='v_add.html';"/>
 	</form>
 	<div class="clear"></div>
 </div>
 <div class="body-box">
-<form action="v_list.do" method="post">
+<form action="v_list.html" method="post">
 <div style="padding-bottom:10px; text-indent:6px;">
 <div>
 <@s.m "cmsUser.username"/>: <input type="text" name="queryUsername" value="${queryUsername!}" style="width:100px"/>
@@ -64,8 +64,8 @@ function doDelete(){
 	<@p.column code="cmsUser.disabled" align="center"><#if bbsUser.disabled><span style="color:red"><@s.m "global.true"/></span><#else><@s.m "global.false"/></#if></@p.column><#t/>
 	<@p.column code="global.operate" align="center">
 		<#assign params>&pageNo=${pageNo!}&queryUsername=${queryUsername!}&queryEmail=${queryEmail!}&queryGroupId=${queryGroupId!}&queryDisabled=${(queryDisabled!false)?string}</#assign>
-		<a href="v_edit.do?id=${bbsUser.id}${params}" class="pn-opt"><@s.m "global.edit"/></a> | <#rt/>
-		<a href="o_delete.do?ids=${bbsUser.id}${params}" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}" class="pn-opt"><@s.m "global.delete"/></a><#t/>
+		<a href="v_edit.html?id=${bbsUser.id}${params}" class="pn-opt"><@s.m "global.edit"/></a> | <#rt/>
+		<a href="o_delete.html?ids=${bbsUser.id}${params}" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}" class="pn-opt"><@s.m "global.delete"/></a><#t/>
 	</@p.column><#t/>
 </@p.table>
 <div>

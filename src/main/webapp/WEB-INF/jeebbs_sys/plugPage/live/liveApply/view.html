@@ -10,7 +10,7 @@ $(function() {
 });
 function reback(){
 	var f = getTableForm();
-	f.action="v_reject.do";
+	f.action="v_reject.html";
 	f.submit();
 }
 function getTableForm() {
@@ -27,7 +27,7 @@ function getTableForm() {
 	</form>
 	<div class="clear"></div>
 </div>
-<@p.form id="jvForm" action="v_check.do">
+<@p.form id="jvForm" action="v_check.html">
 <@p.td colspan="2" width="100" label="bbsLiveApply.intro">${bbsLiveApply.intro!}</@p.td><@p.tr/>
 <@p.td colspan="2" width="100" label="bbsLiveApply.brief">${bbsLiveApply.brief!}</@p.td><@p.tr/>
 <@p.td colspan="2" width="100" label="bbsLiveApply.experience">${bbsLiveApply.experience!}</@p.td><@p.tr/>

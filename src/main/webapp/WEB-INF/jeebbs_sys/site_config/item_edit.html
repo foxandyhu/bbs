@@ -19,7 +19,7 @@ $(function() {
 	<div class="clear"></div>
 </div>
 <div class="body-box">
-<@p.form id="jvForm" action="item_update.do" labelWidth="12">
+<@p.form id="jvForm" action="item_update.html" labelWidth="12">
 <@p.text colspan="1" width="50" label="cmsModelItem.field" name="field" value=cmsConfigItem.field required="true" class="required" maxlength="100"/>
 <@p.text colspan="1" width="50" label="cmsModelItem.label" name="label" value=cmsConfigItem.label required="true" class="required" maxlength="100"/><@p.tr/>
 <@p.select colspan="1" width="50" label="cmsModelItem.dataType" name="dataType" value=cmsConfigItem.dataType list={"1":"cmsModelItem.type1","2":"cmsModelItem.type2","3":"cmsModelItem.type3","4":"cmsModelItem.type4","5":"cmsModelItem.type5","6":"cmsModelItem.type6","7":"cmsModelItem.type7","8":"cmsModelItem.type8"}/>

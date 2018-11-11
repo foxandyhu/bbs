@@ -27,7 +27,7 @@ import com.jeecms.common.web.CookieUtils;
 public class BbsIncomeStatisticAct {
 
 	@RequiresPermissions("data:incomestatistic")
-	@RequestMapping("/data/incomestatistic.do")
+	@RequestMapping("/data/incomestatistic.html")
 	public String statistic(Date begin,Date end,Integer pageNo, 
 			HttpServletRequest request,
 			ModelMap model) {
@@ -40,7 +40,7 @@ public class BbsIncomeStatisticAct {
 	}
 	
 	@RequiresPermissions("data:incomeExport")
-	@RequestMapping("/data/incomeExport.do")
+	@RequestMapping("/data/incomeExport.html")
 	public void exportExcel(Date begin,Date end,
 			HttpServletRequest request,HttpServletResponse response){
 		String fileName = "收益统计"+System.currentTimeMillis()+".xls"; //文件名 

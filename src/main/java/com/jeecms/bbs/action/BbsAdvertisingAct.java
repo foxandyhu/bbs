@@ -54,7 +54,7 @@ public class BbsAdvertisingAct {
 			.getLogger(BbsAdvertisingAct.class);
 
 	@RequiresPermissions("advertising:v_list")
-	@RequestMapping("/advertising/v_list.do")
+	@RequestMapping("/advertising/v_list.html")
 	public String list(Integer queryAdspaceId, Boolean queryEnabled,
 			Integer queryChargeMode,String queryTitle,
 			Integer pageNo, HttpServletRequest request, ModelMap model) {
@@ -79,7 +79,7 @@ public class BbsAdvertisingAct {
 	}
 
 	@RequiresPermissions("advertising:v_add")
-	@RequestMapping("/advertising/v_add.do")
+	@RequestMapping("/advertising/v_add.html")
 	public String add(HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
 		List<BbsAdvertisingSpace> adspaceList = bbsAdvertisingSpaceMng
@@ -89,7 +89,7 @@ public class BbsAdvertisingAct {
 	}
 
 	@RequiresPermissions("advertising:v_edit")
-	@RequestMapping("/advertising/v_edit.do")
+	@RequestMapping("/advertising/v_edit.html")
 	public String edit(Integer id, Integer pageNo, HttpServletRequest request,
 			ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -115,7 +115,7 @@ public class BbsAdvertisingAct {
 
 	/*
 	@RequiresPermissions("advertising:o_save")
-	@RequestMapping("/advertising/o_save.do")
+	@RequestMapping("/advertising/o_save.html")
 	public String save(BbsAdvertising bean, Integer adspaceId,
 			HttpServletRequest request, ModelMap model) {
 		WebErrors errors = validateSave(bean, request);
@@ -135,12 +135,12 @@ public class BbsAdvertisingAct {
 		}
 		bean = manager.save(bean, adspaceId, attr);
 		log.info("save BbsAdvertising id={}", bean.getId());
-		return "redirect:v_list.do";
+		return "redirect:v_list.html";
 	}
 	*/
 	
 	@RequiresPermissions("advertising:o_save")
-	@RequestMapping("/advertising/o_save.do")
+	@RequestMapping("/advertising/o_save.html")
 	public String save(BbsAdvertising bean, Integer adspaceId,
 			Integer chargeDay,Date startTime,String username,
 			HttpServletRequest request, ModelMap model) {
@@ -164,11 +164,11 @@ public class BbsAdvertisingAct {
 		}
 		bean = manager.save(bean, adspaceId,chargeDay,startTime,attr);
 		log.info("save BbsAdvertising id={}", bean.getId());
-		return "redirect:v_list.do";
+		return "redirect:v_list.html";
 	}
 
 	@RequiresPermissions("advertising:o_update")
-	@RequestMapping("/advertising/o_update.do")
+	@RequestMapping("/advertising/o_update.html")
 	public String update(Integer queryAdspaceId, Boolean queryEnabled,
 			BbsAdvertising bean, Integer adspaceId,
 			Integer chargeDay,Date startTime,
@@ -196,7 +196,7 @@ public class BbsAdvertisingAct {
 	}
 	
 	@RequiresPermissions("advertising:getChargeAmount")
-	@RequestMapping("/advertising/getChargeAmount.do")
+	@RequestMapping("/advertising/getChargeAmount.html")
 	public void getChargeAmount(Integer chargeDay,
 			HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
@@ -217,7 +217,7 @@ public class BbsAdvertisingAct {
 
 	
 	@RequiresPermissions("advertising:checkAdAmount")
-	@RequestMapping("/advertising/checkAdAmount.do")
+	@RequestMapping("/advertising/checkAdAmount.html")
 	public void checkUserAdAmount(Double amount,String username,
 			HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
@@ -246,7 +246,7 @@ public class BbsAdvertisingAct {
 	}
 	
 	@RequiresPermissions("advertising:o_delete")
-	@RequestMapping("/advertising/o_delete.do")
+	@RequestMapping("/advertising/o_delete.html")
 	public String delete(Integer[] ids, Integer queryAdspaceId,
 			Boolean queryEnabled, Integer queryChargeMode,String queryTitle,
 			Integer pageNo, HttpServletRequest request,
@@ -264,7 +264,7 @@ public class BbsAdvertisingAct {
 	}
 
 	@RequiresPermissions("advertising:o_upload_flash")
-	@RequestMapping("/advertising/o_upload_flash.do")
+	@RequestMapping("/advertising/o_upload_flash.html")
 	public String uploadFlash(
 			@RequestParam(value = "flashFile", required = false) MultipartFile file,
 			String flashNum, HttpServletRequest request, ModelMap model) {

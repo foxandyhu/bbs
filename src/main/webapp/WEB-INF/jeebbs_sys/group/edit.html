@@ -56,7 +56,7 @@ function chkCol(i,b) {
 	</form>
 	<div class="clear"></div>
 </div>
-<@p.form id="jvForm" action="o_update.do">
+<@p.form id="jvForm" action="o_update.html">
 <@p.text colspan="2" label="名称" name="name" value=bbsUserGroup.name class="required" maxlength="100"/>
 <@p.tr/>
 <@p.radio colspan="1" width="50" label="允许发表主题" name="perms['allow_topic']" value=bbsUserGroup.perms['allow_topic'] list={"true":"是","false":"否"}/>
@@ -138,7 +138,7 @@ $(function () {
 $(function(){
 	var groupId=$("#groupId").val();
 	$("#browser").treeview({
-		url: "v_tree.do?groupId="+groupId
+		url: "v_tree.html?groupId="+groupId
 	});
 	Cms.lmenu("lmenu");
 });

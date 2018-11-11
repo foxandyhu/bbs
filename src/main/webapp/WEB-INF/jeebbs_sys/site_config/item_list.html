@@ -20,21 +20,21 @@ function optDelete() {
 }
 function doDelete(){
 	var f = getTableForm();
-	f.action="item_delete.do";
+	f.action="item_delete.html";
 	f.submit();
 }
 function optAdd(){
 	var f = getTableForm();
-	f.action="item_add.do";
+	f.action="item_add.html";
 	f.submit();
 }
 function optSaveOrder() {
 	var f = getTableForm();
-	f.action="item_priority.do";
+	f.action="item_priority.html";
 	f.submit();
 }
 function backToList(o) {
-	o.form.action='../item_list.do';
+	o.form.action='../item_list.html';
 }
 function disInput(o) {
 	if(o.checked) {
@@ -77,8 +77,8 @@ function disInput(o) {
 		<input type="hidden" name="wids" value="${item.id}"/>
 	</td>
 	<td align="center">
-		<a href="item_edit.do?id=${item.id}" class="pn-opt"><@s.m "global.edit"/></a> |
-		<a href="item_delete.do?ids=${item.id}" class="pn-opt" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}" ><@s.m "global.delete"/></a>
+		<a href="item_edit.html?id=${item.id}" class="pn-opt"><@s.m "global.edit"/></a> |
+		<a href="item_delete.html?ids=${item.id}" class="pn-opt" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}" ><@s.m "global.delete"/></a>
  	</td>
 </tr>
 </#list>

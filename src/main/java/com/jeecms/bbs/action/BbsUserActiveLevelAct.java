@@ -23,7 +23,7 @@ public class BbsUserActiveLevelAct {
 	private static final Logger log = LoggerFactory.getLogger(BbsUserActiveLevelAct.class);
 
 	@RequiresPermissions("activelevel:v_list")
-	@RequestMapping("/activelevel/v_list.do")
+	@RequestMapping("/activelevel/v_list.html")
 	public String list(Integer pageNo, HttpServletRequest request, ModelMap model) {
 		Pagination pagination = manager.getPage(cpn(pageNo), CookieUtils
 				.getPageSize(request));
@@ -32,28 +32,28 @@ public class BbsUserActiveLevelAct {
 	}
 
 	@RequiresPermissions("activelevel:v_add")
-	@RequestMapping("/activelevel/v_add.do")
+	@RequestMapping("/activelevel/v_add.html")
 	public String add(ModelMap model) {
 		return "activelevel/add";
 	}
 
 	@RequiresPermissions("activelevel:v_edit")
-	@RequestMapping("/activelevel/v_edit.do")
+	@RequestMapping("/activelevel/v_edit.html")
 	public String edit(Integer id, HttpServletRequest request, ModelMap model) {
 		model.addAttribute("bbsactivelevel", manager.findById(id));
 		return "activelevel/edit";
 	}
 
 	@RequiresPermissions("activelevel:o_save")
-	@RequestMapping("/activelevel/o_save.do")
+	@RequestMapping("/activelevel/o_save.html")
 	public String save(BbsUserActiveLevel bean, HttpServletRequest request, ModelMap model) {
 		bean = manager.save(bean);
 		log.info("save Bbsactivelevel id={}", bean.getId());
-		return "redirect:v_list.do";
+		return "redirect:v_list.html";
 	}
 
 	@RequiresPermissions("activelevel:o_update")
-	@RequestMapping("/activelevel/o_update.do")
+	@RequestMapping("/activelevel/o_update.html")
 	public String update(BbsUserActiveLevel bean, Integer pageNo, HttpServletRequest request,
 			ModelMap model) {
 		bean = manager.update(bean);
@@ -62,7 +62,7 @@ public class BbsUserActiveLevelAct {
 	}
 
 	@RequiresPermissions("activelevel:o_delete")
-	@RequestMapping("/activelevel/o_delete.do")
+	@RequestMapping("/activelevel/o_delete.html")
 	public String delete(Integer[] ids, Integer pageNo, HttpServletRequest request,
 			ModelMap model) {
 		WebErrors errors = validateDelete(ids, request);

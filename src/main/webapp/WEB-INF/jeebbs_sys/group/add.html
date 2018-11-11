@@ -50,11 +50,11 @@ function chkCol(i,b) {
 <div class="rhead">
 	<div class="rpos"><@s.m "global.position"/>: 会员组 - <@s.m "global.add"/></div>
 	<form class="ropt">
-		<input type="submit" value="<@s.m "global.backToList"/>" onclick="this.form.action='v_list.do';"/>
+		<input type="submit" value="<@s.m "global.backToList"/>" onclick="this.form.action='v_list.html';"/>
 	</form>
 	<div class="clear"></div>
 </div>
-<@p.form id="jvForm" action="o_save.do">
+<@p.form id="jvForm" action="o_save.html">
 <@p.text colspan="2" label="名称" name="name"  class="required" maxlength="100"/>
 <@p.tr/>
 <@p.text colspan="2" label="升级积分" name="point"  class="required digits" maxlength="100"/>
@@ -137,7 +137,7 @@ $(function () {
 $(function(){
 	var groupId=$("#groupId").val();
 	$("#browser").treeview({
-		url: "v_tree.do?groupId="+groupId
+		url: "v_tree.html?groupId="+groupId
 	});
 	Cms.lmenu("lmenu");
 });

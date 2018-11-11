@@ -6,10 +6,10 @@
 <#include "/jeebbs_sys/head.html"/>
 <script>
 $(function() {
-	$("#incomeChartDive").load("income/indexStatistic.do?flag=1");
+	$("#incomeChartDive").load("income/indexStatistic.html?flag=1");
 });
 function openLive(liveId){
-	$.post("live/o_ajax_start.do", {
+	$.post("live/o_ajax_start.html", {
 		id:liveId
 	}, function(data) {
 		if(data){
@@ -18,7 +18,7 @@ function openLive(liveId){
 	}, "json");
 }
 function closeLive(liveId){
-	$.post("live/o_ajax_stop.do", {
+	$.post("live/o_ajax_stop.html", {
 		id:liveId
 	}, function(data) {
 		if(data){

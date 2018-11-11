@@ -14,7 +14,7 @@ function selectMagic() {
 		return;
 	}
 	var f = getTableForm();
-	f.action="select_magic.do";
+	f.action="select_magic.html";
 	f.submit();
 }
 </script>
@@ -31,7 +31,7 @@ function selectMagic() {
 	    <option value="${group.id!}" <#if groupId??><#if group.id==groupId>selected="selected"</#if></#if>>${group.name!}</option>
 	    </#list>
 	    </select>
-		<input type="submit" value="搜索" onclick="this.form.action='user_list.do';"/>
+		<input type="submit" value="搜索" onclick="this.form.action='user_list.html';"/>
 	</form>
 	<div class="clear"></div>
 </div>
@@ -47,8 +47,8 @@ function selectMagic() {
 	<@p.column code="cmsUser.group">${bbsUser.group.name}<#if bbsUser.admin><span style="color:red"> [<@s.m "cmsUser.admin"/>]</span></#if></@p.column><#t/>
 	<@p.column code="cmsUser.disabled" align="center"><#if bbsUser.disabled><span style="color:red"><@s.m "global.true"/></span><#else><@s.m "global.false"/></#if></@p.column><#t/>
 	<@p.column code="global.operate" align="center">
-		<a href="v_edit.do?userId=${bbsUser.id}&pageNo=${pageNo!}" class="pn-opt"><@s.m "global.edit"/></a> | <#rt/>
-		<a href="o_delete.do?ids=${bbsUser.id}&pageNo=${pageNo!}" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}" class="pn-opt"><@s.m "global.delete"/></a><#t/>
+		<a href="v_edit.html?userId=${bbsUser.id}&pageNo=${pageNo!}" class="pn-opt"><@s.m "global.edit"/></a> | <#rt/>
+		<a href="o_delete.html?ids=${bbsUser.id}&pageNo=${pageNo!}" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}" class="pn-opt"><@s.m "global.delete"/></a><#t/>
 	</@p.column><#t/>
 </@p.table>
 <div><input type="button" value="<@s.m "global.submit"/>" onclick="selectMagic();"/></div>

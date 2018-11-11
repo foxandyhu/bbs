@@ -55,9 +55,9 @@ $(function() {
 <div class="tab-body">
 	<div id="tab-1" class="tab-body-cell" style="display:none">
 		
-		<form class="jvForm" action="o_save.do" method="post">
+		<form class="jvForm" action="o_save.html" method="post">
 		<table id="table1" width="100%" border="0">
-			<div><a href="v_add.do?groupType=1">添加</a></div>
+			<div><a href="v_add.html?groupType=1">添加</a></div>
 			<tr>
 				<th>头衔</th>
 				<th>组头像</th>
@@ -75,7 +75,7 @@ $(function() {
 				
 				</td>
 				<td align="center"><input type="text" name="point" value="${group.point}" class="point-text required digits" maxlength="19"/></td>
-				<td align="center"><input type="hidden" name="id" value="${group.id}"/><a href="v_edit.do?groupType=1&groupId=${group.id}" class="pn-loperator">管理权限</a> <a href="javascript:void(0);" onclick="delRow(this);" class="pn-loperator">删除</a></td>
+				<td align="center"><input type="hidden" name="id" value="${group.id}"/><a href="v_edit.html?groupType=1&groupId=${group.id}" class="pn-loperator">管理权限</a> <a href="javascript:void(0);" onclick="delRow(this);" class="pn-loperator">删除</a></td>
 			</tr>
 			<#assign i=i+1/>
 			</#if>
@@ -87,9 +87,9 @@ $(function() {
 		</form>
 	</div>
 	<div id="tab-2" class="tab-body-cell" style="display:none">
-		<form class="jvForm" action="o_save.do" method="post">
+		<form class="jvForm" action="o_save.html" method="post">
 		<table id="table2" width="100%" border="0">
-			<div><a href="v_add.do?groupType=2">添加</a></div>
+			<div><a href="v_add.html?groupType=2">添加</a></div>
 			<tr>
 				<th>头衔</th>
 				<th>组头像</th>
@@ -105,7 +105,7 @@ $(function() {
 					<input type="text" name="imgPath" value="${group.imgPath!}" class="image-text required" maxlength="20"/>
 					
 				</td>
-				<td align="center"><input type="hidden" name="point" value="${group.point!}"/><input type="hidden" name="id" value="${group.id}"/><a href="v_edit.do?groupType=2&groupId=${group.id}" class="pn-loperator">管理权限</a> <a href="javascript:void(0);" onclick="delRow(this);" class="pn-loperator">删除</a></td>
+				<td align="center"><input type="hidden" name="point" value="${group.point!}"/><input type="hidden" name="id" value="${group.id}"/><a href="v_edit.html?groupType=2&groupId=${group.id}" class="pn-loperator">管理权限</a> <a href="javascript:void(0);" onclick="delRow(this);" class="pn-loperator">删除</a></td>
 			</tr>
 			<#assign i=i+1/>
 			</#if>
@@ -117,9 +117,9 @@ $(function() {
 		</form>
 	</div>
 	<div id="tab-3" class="tab-body-cell" style="display:none">
-		<form class="jvForm" action="o_save.do" method="post">
+		<form class="jvForm" action="o_save.html" method="post">
 		<table id="table3" width="100%" border="0">
-			<div><a href="v_add.do?groupType=3">添加</a></div>
+			<div><a href="v_add.html?groupType=3">添加</a></div>
 			<tr>
 				<th>头衔</th>
 				<th>组头像</th>
@@ -134,7 +134,7 @@ $(function() {
 				<img src="${group.imgPath!}"  style="width: 100px;height: 10px;"/>
 				<input type="text" name="imgPath" value="${group.imgPath!}" class="image-text required" maxlength="20"/>
 				</td>
-				<td align="center"><input type="hidden" name="point" value="${group.point!}"/><input type="hidden" name="id" value="${group.id}"/><a href="v_edit.do?groupType=3&groupId=${group.id}" class="pn-loperator">管理权限</a> <a href="javascript:void(0);" onclick="delRow(this);" class="pn-loperator">删除</a></td>
+				<td align="center"><input type="hidden" name="point" value="${group.point!}"/><input type="hidden" name="id" value="${group.id}"/><a href="v_edit.html?groupType=3&groupId=${group.id}" class="pn-loperator">管理权限</a> <a href="javascript:void(0);" onclick="delRow(this);" class="pn-loperator">删除</a></td>
 			</tr>
 			<#assign i=i+1/>
 			</#if>
@@ -146,9 +146,9 @@ $(function() {
 		</form>
 	</div>
 	<div id="tab-0" class="tab-body-cell" style="display:none">
-		<form class="jvForm" action="o_save.do" method="post">
+		<form class="jvForm" action="o_save.html" method="post">
 		<table id="table0" width="100%" border="0">
-			<div><a href="v_add.do?groupType=0">添加</a></div>
+			<div><a href="v_add.html?groupType=0">添加</a></div>
 			<tr>
 				<th>头衔</th>
 				<th>组头像</th>
@@ -163,7 +163,7 @@ $(function() {
 				<img src="${group.imgPath!}"  style="width: 100px;height: 10px;"/>
 				<input type="text" name="imgPath" value="${group.imgPath!}" class="image-text required" maxlength="20"/>
 				</td>
-				<td align="center"><input type="hidden" name="point" value="${group.point!}"/><input type="hidden" name="id" value="${group.id}"/><a href="v_edit.do?groupType=0&groupId=${group.id}" class="pn-loperator">管理权限</a> <a href="javascript:void(0);" onclick="delRow(this);" class="pn-loperator">删除</a></td>
+				<td align="center"><input type="hidden" name="point" value="${group.point!}"/><input type="hidden" name="id" value="${group.id}"/><a href="v_edit.html?groupType=0&groupId=${group.id}" class="pn-loperator">管理权限</a> <a href="javascript:void(0);" onclick="delRow(this);" class="pn-loperator">删除</a></td>
 			</tr>
 			<#assign i=i+1/>
 			</#if>

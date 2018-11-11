@@ -33,11 +33,11 @@ function selectGroup(){
 <div class="rhead">
 	<div class="rpos"><@s.m "global.position"/>: <@s.m "cmsMember.function"/> - <@s.m "global.add"/></div>
 	<form class="ropt">
-		<input type="submit" value="<@s.m "global.backToList"/>" onclick="this.form.action='v_list.do';"/>
+		<input type="submit" value="<@s.m "global.backToList"/>" onclick="this.form.action='v_list.html';"/>
 	</form>
 	<div class="clear"></div>
 </div>
-<@p.form id="jvForm" action="o_sendSys.do" labelWidth="12">
+<@p.form id="jvForm" action="o_sendSys.html" labelWidth="12">
 <div>
 	发给所有人
 	是:<input name="toAll" id="f1" type="radio" value="true" checked="checked" onclick="selectToAll()"/>

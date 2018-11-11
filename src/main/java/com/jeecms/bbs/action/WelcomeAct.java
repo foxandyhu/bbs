@@ -33,13 +33,13 @@ import com.jeecms.plug.live.manager.BbsLiveUserAccountMng;
 @Controller
 public class WelcomeAct {
 	@RequiresPermissions("index")
-	@RequestMapping("/index.do")
+	@RequestMapping("/index.html")
 	public String index(HttpServletRequest request, ModelMap model) {
 		return "index";
 	}
 
 	@RequiresPermissions("top")
-	@RequestMapping("/top.do")
+	@RequestMapping("/top.html")
 	public String top(HttpServletRequest request, ModelMap model) {
 		// 需要获得站点列表
 		List<CmsSite> siteList = cmsSiteMng.getList();
@@ -53,19 +53,19 @@ public class WelcomeAct {
 	}
 
 	@RequiresPermissions("main")
-	@RequestMapping("/main.do")
+	@RequestMapping("/main.html")
 	public String main() {
 		return "main";
 	}
 
 	@RequiresPermissions("left")
-	@RequestMapping("/left.do")
+	@RequestMapping("/left.html")
 	public String left() {
 		return "left";
 	}
 
 	@RequiresPermissions("right")
-	@RequestMapping("/right.do")
+	@RequestMapping("/right.html")
 	public String right(HttpServletRequest request, ModelMap model) {
 		Date now=Calendar.getInstance().getTime();
 		Date todayBegin=DateUtils.parseDateTimeToDay(now);
@@ -130,7 +130,7 @@ public class WelcomeAct {
 		return "right";
 	}
 	
-	@RequestMapping("/income/indexStatistic.do")
+	@RequestMapping("/income/indexStatistic.html")
 	public String incomeIndexStatistic(Integer flag,HttpServletRequest request, ModelMap model) {
 		Calendar calendar=Calendar.getInstance();
 		//flag 1 按本月统计 2本年度统计 3历史年度统计 

@@ -17,7 +17,7 @@ function optDelete() {
 		return;
 	}
 	var f = getTableForm();
-	f.action="o_delete.do";
+	f.action="o_delete.html";
 	f.submit();
 }
 
@@ -28,7 +28,7 @@ function optDelete() {
 <div class="rhead">
 	<div class="rpos"><@s.m "global.position"/>: <@s.m "cmsMember.function"/> - <@s.m "global.list"/></div>
 	<form class="ropt">
-		<input type="submit" value="<@s.m "global.add"/>" onclick="this.form.action='v_add.do';"/>
+		<input type="submit" value="<@s.m "global.add"/>" onclick="this.form.action='v_add.html';"/>
 	</form>
 	<form class="ropt" method="post">
 	    用户名：<input type="text" name="username" value="${username!}" size="10"/>
@@ -54,7 +54,7 @@ function optDelete() {
 	    <option value="12" <#if orderBy??><#if orderBy==12>selected="selected"</#if></#if> >威望升序</option>
 	    </select>
 	    <@s.m "bbsLastLogin.query"/> <@p.select name="lastLoginDay"  list={"0":"bbsLastLogin.All","3":"bbsLastLogin.threeDay","7":"bbsLastLogin.week","30":"bbsLastLogin.month","90":"bbsLastLogin.threemonth"} required="true"/>
-		<input type="submit" value="搜索" onclick="this.form.action='v_list.do';"/>
+		<input type="submit" value="搜索" onclick="this.form.action='v_list.html';"/>
 	</form>
 	<div class="clear"></div>
 </div>
@@ -80,8 +80,8 @@ function optDelete() {
 	<@p.column code="cmsUser.loginCountForList" align="right">${bbsUser.loginCount}</@p.column><#t/>
 	<@p.column code="cmsUser.disabled" align="center"><#if bbsUser.disabled><span style="color:red"><@s.m "global.true"/></span><#else><@s.m "global.false"/></#if></@p.column><#t/>
 	<@p.column code="global.operate" align="center">
-		<a href="v_edit.do?userId=${bbsUser.id}&pageNo=${pageNo!}" class="pn-opt"><@s.m "global.edit"/></a> | <#rt/>
-		<a href="o_delete.do?ids=${bbsUser.id}&pageNo=${pageNo!}" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}" class="pn-opt"><@s.m "global.delete"/></a> <#rt/>
+		<a href="v_edit.html?userId=${bbsUser.id}&pageNo=${pageNo!}" class="pn-opt"><@s.m "global.edit"/></a> | <#rt/>
+		<a href="o_delete.html?ids=${bbsUser.id}&pageNo=${pageNo!}" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}" class="pn-opt"><@s.m "global.delete"/></a> <#rt/>
 		<#t/>
 	</@p.column><#t/>
 </@p.table>

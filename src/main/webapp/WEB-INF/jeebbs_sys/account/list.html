@@ -20,7 +20,7 @@ function optDelete() {
 }
 function doDelete(){
 	var f = getTableForm();
-	f.action="o_delete.do";
+	f.action="o_delete.html";
 	f.submit();
 }
 </script>
@@ -31,7 +31,7 @@ function doDelete(){
 	<div class="clear"></div>
 </div>
 <div class="body-box">
-<form action="v_list.do" method="post" style="padding-top:5px; border-top:1px solid #fff; text-indent:10px; padding-bottom:5px;">
+<form action="v_list.html" method="post" style="padding-top:5px; border-top:1px solid #fff; text-indent:10px; padding-bottom:5px;">
 <div>
 <@s.m "cmsThirdAccount.username"/>: <input type="text" name="username" value="${username!}" style="width:70px"/>
 <@p.select name="source" value=source headerKey="" headerValue="cms.account.source.all" list={"WEIXIN":"微信登陆","QQ":"QQ","SINA":"cms.account.source.SINA","QQWEBO":"cms.account.source.QQWEBO"}/>
@@ -51,7 +51,7 @@ function doDelete(){
 	<@p.column title="姓名" align="center">${cmsThirdAccount.user.realname!}</@p.column><#t/>
 	<@p.column title="性别" align="center"><#if cmsThirdAccount.user.gender??><#if cmsThirdAccount.user.gender>男<#else>女</#if></#if></@p.column><#t/>
 	<@p.column code="global.operate" align="center">
-		<a href="o_delete.do?ids=${cmsThirdAccount.id}&pageNo=${pageNo!}" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}"  class="pn-opt"><@s.m "cms.account.unbundling"/></a><#t/>
+		<a href="o_delete.html?ids=${cmsThirdAccount.id}&pageNo=${pageNo!}" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}"  class="pn-opt"><@s.m "cms.account.unbundling"/></a><#t/>
 	</@p.column><#t/>
 </@p.table>
 <div style="background:url(${base}/res/common/img/theme/boxTitleBG.jpg) repeat-x; height:20px; overflow:hidden;">

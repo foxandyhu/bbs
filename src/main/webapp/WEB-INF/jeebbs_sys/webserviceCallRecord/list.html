@@ -17,7 +17,7 @@ function optDelete() {
 		return;
 	}
 	var f = getTableForm();
-	f.action="o_delete.do";
+	f.action="o_delete.html";
 	f.submit();
 }
 </script>
@@ -27,7 +27,7 @@ function optDelete() {
 <div class="rhead">
 	<div class="rpos"><@s.m "global.position"/>: <@s.m "bbsWebserviceCallRecord.function"/> - <@s.m "global.list"/></div>
 	<form class="ropt">
-		<input type="submit" value="<@s.m "global.add"/>" onclick="this.form.action='v_add.do';"/>
+		<input type="submit" value="<@s.m "global.add"/>" onclick="this.form.action='v_add.html';"/>
 	</form>
 	<div class="clear"></div>
 </div>
@@ -43,7 +43,7 @@ function optDelete() {
 	<@p.column code="bbsWebserviceAuth.system">${bbsWebserviceCallRecord.auth.system!}</@p.column><#t/>
 	<@p.column code="bbsWebserviceCallRecord.recordTime">${bbsWebserviceCallRecord.recordTime!?string("yyyy-MM-dd HH:mm:ss")}</@p.column><#t/>
 	<@p.column code="global.operate" align="center">
-		<a href="o_delete.do?ids=${bbsWebserviceCallRecord.id}&pageNo=${pageNo!}" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}"><@s.m "global.delete"/></a><#t/>
+		<a href="o_delete.html?ids=${bbsWebserviceCallRecord.id}&pageNo=${pageNo!}" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}"><@s.m "global.delete"/></a><#t/>
 	</@p.column><#t/>
 </@p.table>
 <div><input type="button" value="<@s.m "global.delete"/>" onclick="optDelete();"/></div>

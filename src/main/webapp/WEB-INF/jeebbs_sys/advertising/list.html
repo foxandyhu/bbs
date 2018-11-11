@@ -20,7 +20,7 @@ function optDelete() {
 }
 function doDelete(){
 	var f = getTableForm();
-	f.action="o_delete.do";
+	f.action="o_delete.html";
 	f.submit();
 }
 </script>
@@ -29,9 +29,9 @@ function doDelete(){
 <div class="body-box">
 <div class="rhead">
 	<div class="rpos"><@s.m "global.position"/>: <@s.m "cmsAdvertising.function"/> > <@s.m "global.list"/></div>
-	<form action="v_list.do">
-		<a href="v_add.do" class="add-Class">添加</a>
-		<a href="../advertising_space/v_list.do" class="add-Class">版位管理</a>
+	<form action="v_list.html">
+		<a href="v_add.html" class="add-Class">添加</a>
+		<a href="../advertising_space/v_list.html" class="add-Class">版位管理</a>
 		<div class="search-box">
 			<input type="text" name="queryTitle" value="${queryTitle!}" class="top-search" placeholder="输入关键词"/>
 			<input type="submit" class="top-sub"  value="" />
@@ -67,8 +67,8 @@ function doDelete(){
 	<@p.column code="cmsAdvertising.count" align="center">${cmsAdvertising.clickCount}/${cmsAdvertising.displayCount}=${cmsAdvertising.percent}%</@p.column><#t/>
 	<@p.column code="cmsAdvertising.enabled" align="center"><#if cmsAdvertising.enabled><@s.m "global.true"/><#else><span style="color:red"><@s.m "global.false"/></span></#if></@p.column><#t/>
 	<@p.column code="global.operate" align="center">
-		<a href="v_edit.do?id=${cmsAdvertising.id}&pageNo=${pageNo!}" class="pn-opt"><@s.m "global.edit"/></a> | <#rt/>
-		<a href="o_delete.do?ids=${cmsAdvertising.id}&pageNo=${pageNo!}" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}"  class="pn-opt"><@s.m "global.delete"/></a><#t/>
+		<a href="v_edit.html?id=${cmsAdvertising.id}&pageNo=${pageNo!}" class="pn-opt"><@s.m "global.edit"/></a> | <#rt/>
+		<a href="o_delete.html?ids=${cmsAdvertising.id}&pageNo=${pageNo!}" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}"  class="pn-opt"><@s.m "global.delete"/></a><#t/>
 	</@p.column><#t/>
 </@p.table>
 <div>

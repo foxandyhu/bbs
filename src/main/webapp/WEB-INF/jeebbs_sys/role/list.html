@@ -20,7 +20,7 @@ function optDelete() {
 }
 function doDelete(){
 	var f = getTableForm();
-	f.action="o_delete.do";
+	f.action="o_delete.html";
 	f.submit();
 }
 </script>
@@ -31,7 +31,7 @@ function doDelete(){
 </div>
 <div class="box-positon">
 	<form class="ropt">
-		<input class="add" type="submit" value="<@s.m "global.add"/>" onclick="this.form.action='v_add.do';"/>
+		<input class="add" type="submit" value="<@s.m "global.add"/>" onclick="this.form.action='v_add.html';"/>
 	</form>
 	<div class="clear"></div>
 </div>
@@ -45,8 +45,8 @@ function doDelete(){
 	<@p.column code="cmsRole.name" align="center">${cmsRole.name}</@p.column><#t/>
 	<@p.column code="cmsRole.priority" align="center">${cmsRole.priority}</@p.column><#t/>
 	<@p.column code="global.operate" align="center">
-		<a href="v_edit.do?id=${cmsRole.id}" class="pn-opt"><@s.m "global.edit"/></a> | <#rt/>
-		<a href="o_delete.do?ids=${cmsRole.id}" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}" class="pn-opt"><@s.m "global.delete"/></a> | <#rt/>
+		<a href="v_edit.html?id=${cmsRole.id}" class="pn-opt"><@s.m "global.edit"/></a> | <#rt/>
+		<a href="o_delete.html?ids=${cmsRole.id}" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}" class="pn-opt"><@s.m "global.delete"/></a> | <#rt/>
 	</@p.column><#t/>
 </@p.table>
 <div style="margin-top:20px;">

@@ -49,7 +49,7 @@ public class BbsLiveProfitAct {
 	 * @param qorderBy
 	 */
 	@RequiresPermissions("live:v_user_account_list")
-	@RequestMapping("/live/v_user_account_list.do")
+	@RequestMapping("/live/v_user_account_list.html")
 	public String list(String qusername,Integer qorderBy,
 			Integer pageNo, HttpServletRequest request, ModelMap model) {
 		Integer hostUserId=null;
@@ -77,7 +77,7 @@ public class BbsLiveProfitAct {
 	 * @return
 	 */
 	@RequiresPermissions("live:commissionStatic")
-	@RequestMapping("/live/commissionStatic.do")
+	@RequestMapping("/live/commissionStatic.html")
 	public String commissionStatic(HttpServletRequest request, ModelMap model) {
 		BbsConfigCharge config= configChargeMng.getDefault();
 		model.addAttribute("config",config);
@@ -86,7 +86,7 @@ public class BbsLiveProfitAct {
 	
 	//每次转账均需要输入密码和验证码
 	@RequiresPermissions("live:accountPay")
-	@RequestMapping("/live/accountPay/payByWeiXin.do")
+	@RequestMapping("/live/accountPay/payByWeiXin.html")
 	public String payByWeiXin(Integer drawId, String password,String captcha,
 			Integer pageNo, HttpServletRequest request,HttpServletResponse response,
 			ModelMap model) {

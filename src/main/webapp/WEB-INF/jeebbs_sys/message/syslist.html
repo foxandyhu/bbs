@@ -17,7 +17,7 @@ function optDelete() {
 		return;
 	}
 	var f = getTableForm();
-	f.action="o_delete.do";
+	f.action="o_delete.html";
 	f.submit();
 }
 </script>
@@ -26,7 +26,7 @@ function optDelete() {
 <div class="body-box">
 <div class="rhead">
 	<div class="rpos"><@s.m "global.position"/>: <@s.m "bbsMessage.function"/> - <@s.m "global.list"/></div>
-	<a href="v_sendSys.do">发送系统消息</a>
+	<a href="v_sendSys.html">发送系统消息</a>
 	<div class="clear"></div>
 </div>
 <form id="tableForm" method="post">
@@ -41,7 +41,7 @@ function optDelete() {
 	<@p.column code="bbsMessage.sendTime">${message.createTime!?string("yyyy-MM-dd HH:mm:ss")}</@p.column><#t/>
 	<@p.column code="bbsMessage.content"><span title="${message.content!?html}"><@text_cut s=message.content!?html len=25 append="..."/></span></@p.column><#t/>
 	<@p.column code="global.operate" align="center">
-		<a href="o_delete.do?sys=true&ids=${message.id}&pageNo=${pageNo!}" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}"><@s.m "global.delete"/></a><#t/>
+		<a href="o_delete.html?sys=true&ids=${message.id}&pageNo=${pageNo!}" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}"><@s.m "global.delete"/></a><#t/>
 	</@p.column><#t/>
 </@p.table>
 <div><input type="button" value="<@s.m "global.delete"/>" onclick="optDelete();"/></div>

@@ -30,7 +30,7 @@ public class BbsAccountDrawAct {
 	private static final Logger log = LoggerFactory.getLogger(BbsAccountDrawAct.class);
 
 	@RequiresPermissions("accountPay:draw_apply_list")
-	@RequestMapping("/accountPay/draw_apply_list.do")
+	@RequestMapping("/accountPay/draw_apply_list.html")
 	public String list(String queryUsername,Short status,
 			Date timeBegin,Date timeEnd,Integer pageNo, 
 			HttpServletRequest request, ModelMap model) {
@@ -60,7 +60,7 @@ public class BbsAccountDrawAct {
 	 * @param ids
 	 */
 	@RequiresPermissions("accountPay:draw_apply_check")
-	@RequestMapping("/accountPay/draw_apply_check.do")
+	@RequestMapping("/accountPay/draw_apply_check.html")
 	public String checkApply(String queryUsername,Short status,
 			Date timeBegin,Date timeEnd,
 			Integer[] ids, Boolean[] checks,
@@ -81,7 +81,7 @@ public class BbsAccountDrawAct {
 	}
 	
 	@RequiresPermissions("accountPay:draw_apply_delete")
-	@RequestMapping("/accountPay/draw_apply_delete.do")
+	@RequestMapping("/accountPay/draw_apply_delete.html")
 	public String delete(String queryUsername,Short status,
 			Date timeBegin,Date timeEnd,Integer[] ids, 
 			Integer pageNo, HttpServletRequest request,

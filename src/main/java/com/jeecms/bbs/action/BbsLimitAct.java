@@ -22,7 +22,7 @@ public class BbsLimitAct {
 	private static final Logger log = LoggerFactory.getLogger(BbsLimitAct.class);
 
 	@RequiresPermissions("bbslimit:v_list")
-	@RequestMapping("/bbslimit/v_list.do")
+	@RequestMapping("/bbslimit/v_list.html")
 	public String list(Integer pageNo, HttpServletRequest request, ModelMap model) {
 		Pagination pagination = manager.getPage(cpn(pageNo), CookieUtils
 				.getPageSize(request));
@@ -31,28 +31,28 @@ public class BbsLimitAct {
 	}
 
 	@RequiresPermissions("bbslimit:v_add")
-	@RequestMapping("/bbslimit/v_add.do")
+	@RequestMapping("/bbslimit/v_add.html")
 	public String add(ModelMap model) {
 		return "bbslimit/add";
 	}
 
 	@RequiresPermissions("bbslimit:v_edit")
-	@RequestMapping("/bbslimit/v_edit.do")
+	@RequestMapping("/bbslimit/v_edit.html")
 	public String edit(Integer id, HttpServletRequest request, ModelMap model) {
 		model.addAttribute("bbsLimit", manager.findById(id));
 		return "bbslimit/edit";
 	}
 
 	@RequiresPermissions("bbslimit:o_save")
-	@RequestMapping("/bbslimit/o_save.do")
+	@RequestMapping("/bbslimit/o_save.html")
 	public String save(BbsLimit bean, HttpServletRequest request, ModelMap model) {
 		bean = manager.save(bean);
 		log.info("save BbsLimit id={}", bean.getId());
-		return "redirect:v_list.do";
+		return "redirect:v_list.html";
 	}
 
 	@RequiresPermissions("bbslimit:o_update")
-	@RequestMapping("/bbslimit/o_update.do")
+	@RequestMapping("/bbslimit/o_update.html")
 	public String update(BbsLimit bean, Integer pageNo, HttpServletRequest request,
 			ModelMap model) {
 		bean = manager.update(bean);
@@ -61,7 +61,7 @@ public class BbsLimitAct {
 	}
 
 	@RequiresPermissions("bbslimit:o_delete")
-	@RequestMapping("/bbslimit/o_delete.do")
+	@RequestMapping("/bbslimit/o_delete.html")
 	public String delete(Integer[] ids, Integer pageNo, HttpServletRequest request,
 			ModelMap model) {
 		BbsLimit[] beans = manager.deleteByIds(ids);

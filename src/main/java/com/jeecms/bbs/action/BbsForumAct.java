@@ -35,7 +35,7 @@ public class BbsForumAct {
 			.getLogger(BbsForumAct.class);
 
 	@RequiresPermissions("forum:v_list")
-	@RequestMapping("/forum/v_list.do")
+	@RequestMapping("/forum/v_list.html")
 	public String list( HttpServletRequest request,
 			ModelMap model) {
 		Integer siteId=CmsUtils.getSiteId(request);
@@ -45,7 +45,7 @@ public class BbsForumAct {
 	}
 
 	@RequiresPermissions("forum:v_add")
-	@RequestMapping("/forum/v_add.do")
+	@RequestMapping("/forum/v_add.html")
 	public String add(Integer categoryId,HttpServletRequest request, ModelMap model) {
 		List<BbsCategory> categoryList = bbsCategoryMng.getList(CmsUtils
 				.getSiteId(request));
@@ -71,7 +71,7 @@ public class BbsForumAct {
 	}
 
 	@RequiresPermissions("forum:v_edit")
-	@RequestMapping("/forum/v_edit.do")
+	@RequestMapping("/forum/v_edit.html")
 	public String edit(Integer id, Integer pageNo, HttpServletRequest request,
 			ModelMap model) {
 		List<BbsCategory> categoryList = bbsCategoryMng.getList(CmsUtils
@@ -122,7 +122,7 @@ public class BbsForumAct {
 	}
 
 	@RequiresPermissions("forum:o_save")
-	@RequestMapping("/forum/o_save.do")
+	@RequestMapping("/forum/o_save.html")
 	public String save(BbsForum bean,BbsForumExt ext,
 			Integer categoryId, Integer[] views,
 			Integer[] topics, Integer[] replies, HttpServletRequest request,
@@ -148,7 +148,7 @@ public class BbsForumAct {
 	}
 
 	@RequiresPermissions("forum:o_update")
-	@RequestMapping("/forum/o_update.do")
+	@RequestMapping("/forum/o_update.html")
 	public String update(BbsForum bean,BbsForumExt ext,
 			Integer categoryId,  
 			HttpServletRequest request, ModelMap model) {
@@ -173,7 +173,7 @@ public class BbsForumAct {
 	}
 	
 	@RequiresPermissions("forum:batchUpdate")
-	@RequestMapping("/forum/batchUpdate.do")
+	@RequestMapping("/forum/batchUpdate.html")
 	public String batchUpdate(Integer[] categoryIds, Integer[] forumIds,
 			String[]categoryTitle,String[]categoryPath,
 			String[]bbsForumTitle,String[]bbsForumPath,
@@ -212,7 +212,7 @@ public class BbsForumAct {
 	}
 
 	@RequiresPermissions("forum:o_delete")
-	@RequestMapping("/forum/o_delete.do")
+	@RequestMapping("/forum/o_delete.html")
 	public String delete(Integer[] ids, 
 			HttpServletRequest request, ModelMap model) {
 		for (int i = 0; i < ids.length; i++) {
@@ -231,11 +231,11 @@ public class BbsForumAct {
 	}
 
 	@RequiresPermissions("forum:o_priority")
-	@RequestMapping("/forum/o_priority.do")
+	@RequestMapping("/forum/o_priority.html")
 	public String priorityUpdate(Integer[] ids, Integer[] prioritys,
 			HttpServletRequest request, ModelMap model) {
 		if (ids == null || ids.length <= 0) {
-			return "redirect:v_list.do";
+			return "redirect:v_list.html";
 		}
 		CmsSite site = CmsUtils.getSite(request);
 		BbsForum t;
@@ -256,7 +256,7 @@ public class BbsForumAct {
 	}
 	
 	@RequiresPermissions("forum:o_priority")
-	@RequestMapping("/forum/o_m_priority.do")
+	@RequestMapping("/forum/o_m_priority.html")
 	public void priorityMoveUpdate(String forumIds,
 			HttpServletRequest request,	
 			HttpServletResponse response,  ModelMap model) {

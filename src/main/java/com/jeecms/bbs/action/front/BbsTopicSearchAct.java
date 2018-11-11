@@ -14,6 +14,11 @@ import com.jeecms.bbs.web.FrontUtils;
 import com.jeecms.common.web.RequestUtils;
 import com.jeecms.core.entity.CmsSite;
 
+/**
+*  @Description: 帖子搜索
+*  @Author: andy_hulibo@163.com
+*  @CreateDate: 2018/11/11 15:51
+*/
 @Controller
 public class BbsTopicSearchAct {
 	public static final String SEARCH_RESULT = "tpl.search";

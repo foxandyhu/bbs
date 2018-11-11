@@ -42,6 +42,7 @@ public class TopicPageDirective extends AbstractTopicPageDirective {
 	public static final String TPL_MY_POST = "mypost_page";
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@Override
 	public void execute(Environment env, Map params, TemplateModel[] loopVars,
 			TemplateDirectiveBody body) throws TemplateException, IOException {
 		CmsSite site = FrontUtils.getSite(env);

@@ -20,115 +20,115 @@ import com.jeecms.common.util.MapUtil;
 @Controller
 public class FrameAct {
 	@RequiresPermissions("frame:config_main")
-	@RequestMapping("/frame/config_main.do")
+	@RequestMapping("/frame/config_main.html")
 	public String configMain(ModelMap model) {
 		return "frame/config_main";
 	}
 
 	@RequiresPermissions("frame:config_left")
-	@RequestMapping("/frame/config_left.do")
+	@RequestMapping("/frame/config_left.html")
 	public String configLeft(ModelMap model) {
 		return "frame/config_left";
 	}
 
 	@RequiresPermissions("frame:config_right")
-	@RequestMapping("/frame/config_right.do")
+	@RequestMapping("/frame/config_right.html")
 	public String configRight(ModelMap model) {
 		return "frame/config_right";
 	}
 
 	@RequiresPermissions("frame:user_main")
-	@RequestMapping("/frame/user_main.do")
+	@RequestMapping("/frame/user_main.html")
 	public String userMain(ModelMap model) {
 		return "frame/user_main";
 	}
 
 	@RequiresPermissions("frame:user_left")
-	@RequestMapping("/frame/user_left.do")
+	@RequestMapping("/frame/user_left.html")
 	public String userLeft(ModelMap model) {
 		return "frame/user_left";
 	}
 
 	@RequiresPermissions("frame:user_right")
-	@RequestMapping("/frame/user_right.do")
+	@RequestMapping("/frame/user_right.html")
 	public String userRight(ModelMap model) {
 		return "frame/user_right";
 	}
 
 	@RequiresPermissions("frame:category_main")
-	@RequestMapping("/frame/category_main.do")
+	@RequestMapping("/frame/category_main.html")
 	public String generateMain(ModelMap model) {
 		return "frame/category_main";
 	}
 
 	@RequiresPermissions("frame:category_left")
-	@RequestMapping("/frame/category_left.do")
+	@RequestMapping("/frame/category_left.html")
 	public String generateLeft(ModelMap model) {
 		return "frame/category_left";
 	}
 
 	@RequiresPermissions("frame:category_right")
-	@RequestMapping("/frame/category_right.do")
+	@RequestMapping("/frame/category_right.html")
 	public String generateRight(ModelMap model) {
 		return "frame/category_right";
 	}
 
 	@RequiresPermissions("frame:forum_main")
-	@RequestMapping("/frame/forum_main.do")
+	@RequestMapping("/frame/forum_main.html")
 	public String forumMain(ModelMap model) {
 		return "frame/forum_main";
 	}
 
 	@RequiresPermissions("frame:forum_left")
-	@RequestMapping("/frame/forum_left.do")
+	@RequestMapping("/frame/forum_left.html")
 	public String forumLeft(ModelMap model) {
 		return "frame/forum_left";
 	}
 
 	@RequiresPermissions("frame:forum_right")
-	@RequestMapping("/frame/forum_right.do")
+	@RequestMapping("/frame/forum_right.html")
 	public String forumRight(ModelMap model) {
 		return "frame/forum_right";
 	}
 
 	@RequiresPermissions("frame:template_main")
-	@RequestMapping("/frame/template_main.do")
+	@RequestMapping("/frame/template_main.html")
 	public String templateMain(ModelMap model) {
 		return "frame/template_main";
 	}
 
 	@RequiresPermissions("frame:resource_main")
-	@RequestMapping("/frame/resource_main.do")
+	@RequestMapping("/frame/resource_main.html")
 	public String resourceMain(ModelMap model) {
 		return "frame/resource_main";
 	}
 	
 	@RequiresPermissions("frame:maintain_main")
-	@RequestMapping("/frame/maintain_main.do")
+	@RequestMapping("/frame/maintain_main.html")
 	public String maintainMain(ModelMap model){
 		return "frame/maintain_main";
 	}
 	
 	@RequiresPermissions("frame:maintain_left")
-	@RequestMapping("/frame/maintain_left.do")
+	@RequestMapping("/frame/maintain_left.html")
 	public String maintainLeft(ModelMap model){
 		return "frame/maintain_left";
 	}
 	
 	@RequiresPermissions("frame:maintain_right")
-	@RequestMapping("/frame/maintain_right.do")
+	@RequestMapping("/frame/maintain_right.html")
 	public String maintainRight(ModelMap model){
 		return "frame/maintain_right";
 	}
 	
 	@RequiresPermissions("frame:extend_main")
-	@RequestMapping("/frame/extend_main.do")
+	@RequestMapping("/frame/extend_main.html")
 	public String extendMain(ModelMap model) {
 		return "frame/extend_main";
 	}
 	
 	@RequiresPermissions("frame:extend_left")
-	@RequestMapping("/frame/extend_left.do")
+	@RequestMapping("/frame/extend_left.html")
 	public String extendLeft(ModelMap model){
 		if(getMenuUrls()==null){
 			Map<String,String>menus=getMenus();
@@ -172,7 +172,7 @@ public class FrameAct {
 	}
 	
 	@RequiresPermissions("frame:extend_right")
-	@RequestMapping("/frame/extend_right.do")
+	@RequestMapping("/frame/extend_right.html")
 	public String extendRight(){
 		return "frame/expand_right";
 	}

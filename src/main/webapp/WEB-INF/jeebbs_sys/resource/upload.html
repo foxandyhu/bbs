@@ -16,11 +16,11 @@ $(function() {
 	<div class="rpos"><@s.m "global.position"/>: <@s.m "resource.function"/> - <@s.m "resource.upload"/></div>
 	<form class="ropt">
 		<input type="hidden" name="root" value="${root}"/>
-		<input type="submit" value="<@s.m "global.backToList"/>" onclick="this.form.action='v_list.do';"/>
+		<input type="submit" value="<@s.m "global.backToList"/>" onclick="this.form.action='v_list.html';"/>
 	</form>
 	<div class="clear"></div>
 </div>
-<@p.form id="jvForm" action="o_upload.do" enctype="multipart/form-data">
+<@p.form id="jvForm" action="o_upload.html" enctype="multipart/form-data">
 <@p.td label="resource.currentDir">${root}</@p.td><@p.tr/>
 <@p.td label="resource.file">
 

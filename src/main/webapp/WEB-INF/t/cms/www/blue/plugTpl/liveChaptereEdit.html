@@ -15,7 +15,7 @@
 $(function() {
 	$("#jvForm").validate();
 	$("input[name='name']").blur( function () { 
-		$.post("v_create_path.do", {
+		$.post("v_create_path.html", {
 			name:$(this).val()
 		}, function(data) {
 				$("input[name='path']").val(data);

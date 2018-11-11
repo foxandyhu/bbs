@@ -19,7 +19,7 @@ $(function() {
 	</form>
 	<div class="clear"></div>
 </div>
-<@p.form id="jvForm" action="o_config.do">
+<@p.form id="jvForm" action="o_config.html">
 <@p.radio width="50" colspan="1" label="config.magicSwitch" name="magicSwitch" list={"true":"config.magicSwitch.on","false":"config.magicSwitch.off"} value=config.magicSwitch/><@p.tr/>
 <@p.text label="config.magicDiscount" name="magicDiscount" value=config.magicDiscount size="5"  maxlength="3" class="required digits" label="道具回收价格折扣" help="设置道具系统回收价格折扣，此值为百分比，例如如果此值为 80，则系统将以道具原价 80% 的价格回收，建议不超过 100，有效防止刷积分。 0 表示不开启道具回收功能"/><@p.tr/>
 <@p.text label="config.magicSofaLines" name="magicSofaLines" value=config.magicSofaLines size="40"  maxlength="100"/><@p.tr/>

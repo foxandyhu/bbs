@@ -16,7 +16,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
  * @author tom
  * 
  */
-@WebFilter(filterName="processTime",urlPatterns={"*.do","*.jspx","*.htm","*.jsp"})
+@WebFilter(filterName="processTime",urlPatterns={"*.jspx","*.htm","*.jsp"})
 public class ProcessTimeFilter implements Filter {
 	protected final Logger log = LoggerFactory
 			.getLogger(ProcessTimeFilter.class);

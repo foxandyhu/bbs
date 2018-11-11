@@ -23,7 +23,7 @@ public class BbsLiveChapterAct {
 	private static final Logger log = LoggerFactory.getLogger(BbsLiveChapterAct.class);
 
 	@RequiresPermissions("liveChapter:v_list")
-	@RequestMapping("/liveChapter/v_list.do")
+	@RequestMapping("/liveChapter/v_list.html")
 	public String list(Integer pageNo, HttpServletRequest request, ModelMap model) {
 		Pagination pagination = manager.getPage(cpn(pageNo), CookieUtils
 				.getPageSize(request));
@@ -32,7 +32,7 @@ public class BbsLiveChapterAct {
 	}
 	
 	@RequiresPermissions("liveChapter:o_delete")
-	@RequestMapping("/liveChapter/o_delete.do")
+	@RequestMapping("/liveChapter/o_delete.html")
 	public String delete(Integer[] ids, Integer pageNo, HttpServletRequest request,
 			ModelMap model) {
 		WebErrors errors = validateDelete(ids, request);

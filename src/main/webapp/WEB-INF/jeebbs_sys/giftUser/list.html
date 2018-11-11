@@ -17,7 +17,7 @@ function optDelete() {
 		return;
 	}
 	var f = getTableForm();
-	f.action="o_delete.do";
+	f.action="o_delete.html";
 	f.submit();
 }
 </script>
@@ -34,7 +34,7 @@ function optDelete() {
 	    <option value="${g.id!}" <#if giftId??><#if g.id==giftId>selected="selected"</#if></#if>>${g.name!}</option>
 	    </#list>
 	    </select>
-		<input type="submit" value="<@s.m "global.query"/>" onclick="this.form.action='v_list.do';"/>
+		<input type="submit" value="<@s.m "global.query"/>" onclick="this.form.action='v_list.html';"/>
 	</form>
 	<div class="clear"></div>
 </div>

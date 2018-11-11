@@ -38,7 +38,7 @@ function optUninstall(a) {
 function doInstall(){
 	 $.ajax({
 	        type: "POST",
-	        url: "o_install.do",
+	        url: "o_install.html",
 	        data: {id:$(clicka).attr("id")},
 	        dataType: "json",
 	        success: function(data){
@@ -65,7 +65,7 @@ function doInstall(){
 function doUninstall(){
 	$.ajax({
         type: "POST",
-        url: "o_uninstall.do",
+        url: "o_uninstall.html",
         data: {id:$(clicka).attr("id")},
         dataType: "json",
         success: function(data){
@@ -90,7 +90,7 @@ function doUninstall(){
 }
 function doDelete(){
 	var f = getTableForm();
-	f.action="o_delete.do";
+	f.action="o_delete.html";
 	f.submit();
 }
 </script>
@@ -100,7 +100,7 @@ function doDelete(){
 <div class="rhead">
 	<div class="rpos"><@s.m "global.position"/>: <@s.m "plug.function"/> > <@s.m "global.list"/></div>
 	<form class="ropt">
-		<input class="add" type="submit" value="<@s.m "global.add"/>" onclick="this.form.action='v_add.do';"/>
+		<input class="add" type="submit" value="<@s.m "global.add"/>" onclick="this.form.action='v_add.html';"/>
 	</form>
 	<div class="clear"></div>
 </div>
@@ -124,10 +124,10 @@ function doDelete(){
 		<#if plug.canUnInstall>
 		<a href="#" class="pn-opt" id="${plug.id}" onclick="optUninstall(this)"><@s.m "plug.uninstall"/></a> | <#rt/>
 		</#if>
-		<a href="v_edit.do?id=${plug.id}&pageNo=${pageNo!}" class="pn-opt"><@s.m "global.edit"/></a> 
+		<a href="v_edit.html?id=${plug.id}&pageNo=${pageNo!}" class="pn-opt"><@s.m "global.edit"/></a>
 		<#if !plug.used>
 		| <#rt/>
-		<a href="o_delete.do?ids=${plug.id}&pageNo=${pageNo!}" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}"  class="pn-opt"><@s.m "global.delete"/></a><#t/>
+		<a href="o_delete.html?ids=${plug.id}&pageNo=${pageNo!}" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}"  class="pn-opt"><@s.m "global.delete"/></a><#t/>
 		</#if>
 	</@p.column><#t/>
 </@p.table>

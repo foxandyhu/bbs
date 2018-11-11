@@ -19,14 +19,14 @@ $(function() {
 </div>
 <div class="box-positon ck">
 	<form class="ropt">
-		<input type="submit" value="<@s.m "global.backToList"/>" onclick="this.form.action='v_list.do';" class="return-button"/>
+		<input type="submit" value="<@s.m "global.backToList"/>" onclick="this.form.action='v_list.html';" class="return-button"/>
 	</form>
 	<div class="clear"></div>
 </div>
 <div class="body-box">
 <#assign usernameExist><@s.m "error.usernameExist"/></#assign>
-<@p.form id="jvForm" action="o_save.do" labelWidth="12" class="formDefStyle">
-<@p.text width="50" colspan="1" label="cmsUser.username" name="username" required="true" maxlength="100" vld="{required:true,username:true,remote:'v_check_username.do',messages:{remote:'${usernameExist}'}}"/>
+<@p.form id="jvForm" action="o_save.html" labelWidth="12" class="formDefStyle">
+<@p.text width="50" colspan="1" label="cmsUser.username" name="username" required="true" maxlength="100" vld="{required:true,username:true,remote:'v_check_username.html',messages:{remote:'${usernameExist}'}}"/>
 <@p.text width="50" colspan="1" label="cmsUser.email" name="email" size="30" maxlength="100" class="email"/><@p.tr/>
 <@p.password width="50" colspan="1" label="cmsUser.password" id="password" name="password" maxlength="100" class="required" required="true"/>
 <@p.password width="50" colspan="1" label="cmsUser.pwdAgain" equalTo="#password" required="true"/><@p.tr/>

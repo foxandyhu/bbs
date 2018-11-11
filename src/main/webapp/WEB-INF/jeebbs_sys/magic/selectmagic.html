@@ -14,7 +14,7 @@ function giveMagic() {
 		return;
 	}
 	var f = getTableForm();
-	f.action="give_magic.do";
+	f.action="give_magic.html";
 	f.submit();
 }
 </script>
@@ -24,7 +24,7 @@ function giveMagic() {
 <div class="rhead">
 	<div class="rpos"><@s.m "global.position"/>： <@s.m "magic.function"/> - <@s.m "global.list"/></div>
 	<form class="ropt">
-		<input type="submit" value="<@s.m "config.configuration"/>" onclick="this.form.action='v_config.do';"/>
+		<input type="submit" value="<@s.m "config.configuration"/>" onclick="this.form.action='v_config.html';"/>
 	</form>
 	<div class="clear"></div>
 </div>

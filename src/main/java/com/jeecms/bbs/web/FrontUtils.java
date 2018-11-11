@@ -397,8 +397,8 @@ public class FrontUtils {
 	 * 
 	 * @param pageNo
 	 * @param href
-	 * @param urlFormer
-	 * @param urlLatter
+	 * @param hrefFormer
+	 * @param hrefLatter
 	 * @param map
 	 */
 	public static void frontPageData(int pageNo, String href,

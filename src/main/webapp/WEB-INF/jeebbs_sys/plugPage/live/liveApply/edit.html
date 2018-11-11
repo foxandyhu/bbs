@@ -84,7 +84,7 @@ function uploadPicsSuccess(file,data) {
 	<div class="clear"></div>
 </div>
 <#include "/common/image_upload.html"/>
-<@p.form id="jvForm" action="o_update.do">
+<@p.form id="jvForm" action="o_update.html">
 <@p.textarea value=bbsLiveApply.intro cols="70" rows="3"  maxlength="500" vld="{maxlength:500}" label="bbsLiveApply.intro" name="intro" colspan="2" width="100"/><@p.tr/>
 <@p.textarea value=bbsLiveApply.brief cols="70" rows="3"  maxlength="500" vld="{maxlength:500}" label="bbsLiveApply.brief" name="brief" colspan="2" width="100"/><@p.tr/>
 <@p.textarea value=bbsLiveApply.experience cols="70" rows="5"  maxlength="2000" vld="{maxlength:2000}" label="bbsLiveApply.experience" name="experience" colspan="2" width="100"/><@p.tr/>

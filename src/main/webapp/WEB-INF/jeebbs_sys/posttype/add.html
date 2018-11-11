@@ -17,11 +17,11 @@ $(function() {
 	<form class="ropt">
 		<input name="forumId" value="${forumId!}" type="hidden"/>
 		<input name="parentId" value="${parentId!}" type="hidden"/>
-		<input type="submit" value="<@s.m "global.backToList"/>" onclick="this.form.action='v_list.do';"/>
+		<input type="submit" value="<@s.m "global.backToList"/>" onclick="this.form.action='v_list.html';"/>
 	</form>
 	<div class="clear"></div>
 </div>
-<@p.form id="jvForm" action="o_save.do" labelWidth="15">
+<@p.form id="jvForm" action="o_save.html" labelWidth="15">
 <@p.text colspan="2" width="50" label="bbsTopicType.name" name="typeName" required="true" class="required" maxlength="100"/><@p.tr/>
 <@p.text colspan="2" width="50" label="bbsTopicType.priority" name="priority" required="true" class="required digits" maxlength="10"/><@p.tr/>
 <@p.td colspan="2">

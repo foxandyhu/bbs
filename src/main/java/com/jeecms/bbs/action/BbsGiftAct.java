@@ -23,7 +23,7 @@ public class BbsGiftAct {
 	private static final Logger log = LoggerFactory.getLogger(BbsGiftAct.class);
 
 	@RequiresPermissions("gift:v_list")
-	@RequestMapping("/gift/v_list.do")
+	@RequestMapping("/gift/v_list.html")
 	public String list(Integer pageNo, HttpServletRequest request, ModelMap model) {
 		Pagination pagination = manager.getPage(cpn(pageNo), CookieUtils
 				.getPageSize(request));
@@ -32,13 +32,13 @@ public class BbsGiftAct {
 	}
 
 	@RequiresPermissions("gift:v_add")
-	@RequestMapping("/gift/v_add.do")
+	@RequestMapping("/gift/v_add.html")
 	public String add(ModelMap model) {
 		return "gift/add";
 	}
 
 	@RequiresPermissions("gift:v_edit")
-	@RequestMapping("/gift/v_edit.do")
+	@RequestMapping("/gift/v_edit.html")
 	public String edit(Integer id, HttpServletRequest request, ModelMap model) {
 		WebErrors errors = validateEdit(id, request);
 		if (errors.hasErrors()) {
@@ -49,15 +49,15 @@ public class BbsGiftAct {
 	}
 
 	@RequiresPermissions("gift:o_save")
-	@RequestMapping("/gift/o_save.do")
+	@RequestMapping("/gift/o_save.html")
 	public String save(BbsGift bean, HttpServletRequest request, ModelMap model) {
 		bean = manager.save(bean);
 		log.info("save BbsGift id={}", bean.getId());
-		return "redirect:v_list.do";
+		return "redirect:v_list.html";
 	}
 
 	@RequiresPermissions("gift:o_update")
-	@RequestMapping("/gift/o_update.do")
+	@RequestMapping("/gift/o_update.html")
 	public String update(BbsGift bean, Integer pageNo, HttpServletRequest request,
 			ModelMap model) {
 		WebErrors errors = validateUpdate(bean.getId(), request);
@@ -70,7 +70,7 @@ public class BbsGiftAct {
 	}
 
 	@RequiresPermissions("gift:o_delete")
-	@RequestMapping("/gift/o_delete.do")
+	@RequestMapping("/gift/o_delete.html")
 	public String delete(Integer[] ids, Integer pageNo, HttpServletRequest request,
 			ModelMap model) {
 		WebErrors errors = validateDelete(ids, request);

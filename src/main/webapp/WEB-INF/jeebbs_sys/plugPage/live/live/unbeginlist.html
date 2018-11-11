@@ -14,7 +14,7 @@ function query(){
 <div class="body-box">
 <div class="rhead">
 	<div class="rpos"><@s.m "global.position"/>: <@s.m "bbsLive.function"/> - <@s.m "global.list"/></div>
-	<form class="ropt" id="queryForm" method="post" action="v_list.do">
+	<form class="ropt" id="queryForm" method="post" action="v_list.html">
 		<select name="qstatus" onchange="query()">
 			<option value="0" <#if qstatus??><#if qstatus==0>selected="selected"</#if></#if>>待审核</option>
 			<option value="1" <#if qstatus??><#if qstatus==1>selected="selected"</#if></#if>>未开始</option>
@@ -37,7 +37,7 @@ function query(){
 	    <option value="9" <#if qorderBy??><#if qorderBy==9>selected="selected"</#if></#if> >门票数升序</option>
 	    <option value="10" <#if qorderBy??><#if qorderBy==10>selected="selected"</#if></#if> >限制人数升序</option>
 		</select>
-	    <input type="submit" value="查询" onclick="this.form.action='v_list.do';"/>
+	    <input type="submit" value="查询" onclick="this.form.action='v_list.html';"/>
 	</form>
 	<div class="clear"></div>
 </div>

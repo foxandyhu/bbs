@@ -17,12 +17,12 @@ function optDelete() {
 		return;
 	}
 	var f = getTableForm();
-	f.action="o_delete.do";
+	f.action="o_delete.html";
 	f.submit();
 }
 function optPriority() {
 	var f = getTableForm();
-	f.action="o_priority.do";
+	f.action="o_priority.html";
 	f.submit();
 }
 function queryModeChange(){
@@ -34,7 +34,7 @@ function queryModeChange(){
 <div class="body-box">
 <div class="rhead">
 	<div class="rpos"><@s.m "global.position"/>: <@s.m "bbsLiveUserAccount.function"/> - <@s.m "global.list"/></div>
-	<form id="queryForm" class="ropt" method="post" action="v_list.do">
+	<form id="queryForm" class="ropt" method="post" action="v_list.html">
 		<select name="queryMode" onchange="queryModeChange()">
 			<option value="0" >待审核</option>
 			<option value="1" selected="selected">已审核</option>
@@ -58,9 +58,9 @@ function queryModeChange(){
 	    <option value="16" <#if orderBy??><#if orderBy==14>selected="selected"</#if></#if> >总礼物数升序</option>
 	    <option value="18" <#if orderBy??><#if orderBy==16>selected="selected"</#if></#if> >置顶升序</option>
 	    </select>
-	   <input type="submit" value="<@s.m 'global.query'/>" onclick="this.form.action='v_list.do';"/>
+	   <input type="submit" value="<@s.m 'global.query'/>" onclick="this.form.action='v_list.html';"/>
 	</form>
-	<a href="../order/commissionStatic.do"><@s.m "bbsLivePlatAccount.function"/></a>
+	<a href="../order/commissionStatic.html"><@s.m "bbsLivePlatAccount.function"/></a>
 	<div class="clear"></div>
 </div>
 <form id="tableForm" method="post">
@@ -77,7 +77,7 @@ function queryModeChange(){
 	<@p.column code="bbsLiveUserAccount.ticketNum">${host.ticketNum!}</@p.column><#t/>
 	<@p.column code="bbsLiveUserAccount.totalAmount">${host.totalAmount!}</@p.column><#t/>
 	<@p.column code="bbsLiveUserAccount.giftNum">${host.giftNum!}</@p.column><#t/>
-	<@p.column code="操作"><a href="o_delete.do?ids=${host.id}&pageNo=${pageNo!}&username=${username!}&orderBy=${orderBy!}" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}">删除</a></@p.column><#t/>
+	<@p.column code="操作"><a href="o_delete.html?ids=${host.id}&pageNo=${pageNo!}&username=${username!}&orderBy=${orderBy!}" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}">删除</a></@p.column><#t/>
 </@p.table>
 <div>
 	<input type="button" value="<@s.m "global.delete"/>" onclick="optDelete();"/>

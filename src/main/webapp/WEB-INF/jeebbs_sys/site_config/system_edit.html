@@ -16,7 +16,7 @@ $(function() {
 	<div class="rpos"><@s.m "global.position"/>:  <@s.m "cmsConfig.function"/> - <@s.m "cmsConfig.function.system"/> - <@s.m "global.edit"/></div>
 	<div class="clear"></div>
 </div>
-<@p.form id="jvForm" action="o_system_update.do" labelWidth="10">
+<@p.form id="jvForm" action="o_system_update.html" labelWidth="10">
 <@p.text colspan="1" width="50" label="cmsConfig.contextPath" name="contextPath" value=cmsConfig.contextPath maxlength="20" help="cmsConfig.contextPath.help"/>
 <@p.text colspan="1" width="50" label="cmsConfig.port" name="port" value=cmsConfig.port class="digits" help="cmsConfig.port.help"/><@p.tr/>
 <#--极少使用，暂时不显示-->

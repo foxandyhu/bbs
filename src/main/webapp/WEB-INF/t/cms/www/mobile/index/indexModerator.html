@@ -25,7 +25,7 @@
 		} else if($.trim(title).length<2) {
 			alert("标题不能小于2个字符");
 		} else  {
-			$.postJson('${base}/jeebbs/TopicTitleUpdate.do', {
+			$.postJson('${base}/jeebbs/TopicTitleUpdate.html', {
 				'topicId' : id,
 				'title' : title
 			}, function(data) {

@@ -16,7 +16,7 @@ $(function() {
 	<div class="clear"></div>
 </div>
 <div class="body-box">
-<@p.form id="jvForm" action="o_message_update.do" labelWidth="15">
+<@p.form id="jvForm" action="o_message_update.html" labelWidth="15">
 <@p.radio width="100" colspan="2" label="cmsConfig.message.report.auto" name="reportMsgAuto"  value=configAttr.reportMsgAuto  list={"true":"global.true","false":"global.false"} required="true" class="required" /><@p.tr/>
 <@p.text colspan="2" width="100" label="cmsConfig.message.report.txt" name="reportMsgTxt" value=configAttr.reportMsgTxt! style="width:200px"  maxlength="100"/><@p.tr/>
 

@@ -17,7 +17,7 @@ suffix：链接后缀。
 <#macro tree root treeId="t" target="rightFrame" showDeep=0 
 	isCheckBox=false checkBoxName="ids" vld="" valueContent=[]
 	childName="child" treeName="treeName" leafName="treeLeaf"
-	url="" durl="" params={} dparams={} prefix="" suffix=".do" isUrl=true>
+	url="" durl="" params={} dparams={} prefix="" suffix=".html" isUrl=true>
 <#assign _tree_params=params/>
 <#assign _tree_dparams=dparams/>
 <#assign _tree_child_name=childName/>

@@ -23,7 +23,7 @@ public class BbsLiveMessageAct {
 	private static final Logger log = LoggerFactory.getLogger(BbsLiveMessageAct.class);
 
 	@RequiresPermissions("liveMsg:v_list")
-	@RequestMapping("/liveMsg/v_list.do")
+	@RequestMapping("/liveMsg/v_list.html")
 	public String list(Integer liveId,Integer pageNo, HttpServletRequest request, ModelMap model) {
 		Pagination pagination = manager.getPage(liveId,cpn(pageNo), CookieUtils
 				.getPageSize(request));
@@ -32,7 +32,7 @@ public class BbsLiveMessageAct {
 	}
 	
 	@RequiresPermissions("liveMsg:v_edit")
-	@RequestMapping("/liveMsg/v_edit.do")
+	@RequestMapping("/liveMsg/v_edit.html")
 	public String edit(Long id, HttpServletRequest request, ModelMap model) {
 		WebErrors errors = validateEdit(id, request);
 		if (errors.hasErrors()) {
@@ -43,7 +43,7 @@ public class BbsLiveMessageAct {
 	}
 
 	@RequiresPermissions("liveMsg:o_update")
-	@RequestMapping("/liveMsg/o_update.do")
+	@RequestMapping("/liveMsg/o_update.html")
 	public String update(Integer liveId,BbsLiveMessage bean, Integer pageNo, HttpServletRequest request,
 			ModelMap model) {
 		WebErrors errors = validateUpdate(bean.getId(), request);
@@ -56,7 +56,7 @@ public class BbsLiveMessageAct {
 	}
 
 	@RequiresPermissions("liveMsg:o_delete")
-	@RequestMapping("/liveMsg/o_delete.do")
+	@RequestMapping("/liveMsg/o_delete.html")
 	public String delete(Long[] ids, Integer liveId,Integer pageNo, HttpServletRequest request,
 			ModelMap model) {
 		WebErrors errors = validateDelete(ids, request);

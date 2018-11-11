@@ -16,11 +16,11 @@ $(function() {
 <div class="rhead">
 	<div class="rpos"><@s.m "global.position"/>: <@s.m "bbsGift.function"/> - <@s.m "global.add"/></div>
 	<form class="ropt">
-		<input type="submit" value="<@s.m "global.backToList"/>" onclick="this.form.action='v_list.do';"/>
+		<input type="submit" value="<@s.m "global.backToList"/>" onclick="this.form.action='v_list.html';"/>
 	</form>
 	<div class="clear"></div>
 </div>
-<@p.form id="jvForm" action="o_save.do">
+<@p.form id="jvForm" action="o_save.html">
 <@p.text label="bbsGift.name" name="name" colspan="2" width="100" required="true" class="required" maxlength="100"/><@p.tr/>
 <@p.td id="picPath" label="bbsGift.picUpload" colspan="1" width="50" noHeight="true">
 <@p.text id="uploadImgPath0" name="picPath" style="width:180px"/> <input type="button" value="<@s.m "imageupload.preview"/>" onclick="previewImg(0);"/><br/>

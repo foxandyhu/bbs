@@ -15,11 +15,11 @@ $(function() {
 <div class="rhead">
 	<div class="rpos"><@s.m "global.position"/>: 版块 - <@s.m "global.add"/></div>
 	<form class="ropt">
-		<input type="submit" value="<@s.m "global.backToList"/>" onclick="this.form.action='v_list.do';"/>
+		<input type="submit" value="<@s.m "global.backToList"/>" onclick="this.form.action='v_list.html';"/>
 	</form>
 	<div class="clear"></div>
 </div>
-<@p.form id="jvForm" action="o_save.do">
+<@p.form id="jvForm" action="o_save.html">
 <@p.text colspan="1" width="50" label="板块名称" size="25" name="title" required="true" class="required" maxlength="150"/>
 <@p.select colspan="1" width="50" label="所属分区" name="categoryId" value=categoryId list=categoryList listKey="id" listValue="title"/>
 <@p.tr/>

@@ -25,7 +25,7 @@ import com.jeecms.bbs.manager.BbsUserMng;
 public class BbsGiftUserAct {
 	
 	@RequiresPermissions("giftUser:v_list")
-	@RequestMapping("/giftUser/v_list.do")
+	@RequestMapping("/giftUser/v_list.html")
 	public String list(Integer giftId,String username,
 			Integer pageNo, HttpServletRequest request, ModelMap model) {
 		Integer userId=null;

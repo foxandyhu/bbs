@@ -37,8 +37,8 @@
 						</div>
 						<!--top-bar通用-->
 						<div class="table-top-bar">
-							<form action="v_list.do">
-								<a href="v_add.do" class="add-Class">添加</a>
+							<form action="v_list.html">
+								<a href="v_add.html" class="add-Class">添加</a>
 								<div class="search-box">
 									<input type="text" name="queryTitle" value="${queryTitle!}" class="top-search" placeholder="输入关键词"/>
 									<input type="submit" class="top-sub"  value="" />
@@ -79,8 +79,8 @@
 											<td><#if cmsAdvertising.startTime??>${cmsAdvertising.startTime?string("yyyy-MM-dd")}</#if></td>
 											<td class="red"><#if cmsAdvertising.endTime??>${cmsAdvertising.endTime?string("yyyy-MM-dd")}</#if></td>
 											<td>
-												<a href="v_edit.do?id=${cmsAdvertising.id}&pageNo=${pageNo!}" class="t-edit iconfont bbs-edit" title="编辑"></a>
-												<a href="o_delete.do?ids=${cmsAdvertising.id}&pageNo=${pageNo!}" class="t-del iconfont bbs-delete" title="删除"></a>
+												<a href="v_edit.html?id=${cmsAdvertising.id}&pageNo=${pageNo!}" class="t-edit iconfont bbs-edit" title="编辑"></a>
+												<a href="o_delete.html?ids=${cmsAdvertising.id}&pageNo=${pageNo!}" class="t-del iconfont bbs-delete" title="删除"></a>
 											</td>
 										</tr>
 									</#list>

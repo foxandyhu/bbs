@@ -17,7 +17,7 @@ function check(){
 		return;
 	}
 	var f = getTableForm();
-	f.action="v_check.do";
+	f.action="v_check.html";
 	f.submit();
 }
 function reback(){
@@ -29,7 +29,7 @@ function reback(){
 		return;
 	}
 	var f = getTableForm();
-	f.action="v_reject.do";
+	f.action="v_reject.html";
 	f.submit();
 }
 function optDelete() {
@@ -41,7 +41,7 @@ function optDelete() {
 		return;
 	}
 	var f = getTableForm();
-	f.action="o_delete.do";
+	f.action="o_delete.html";
 	f.submit();
 }
 function queryModeChange(){
@@ -53,14 +53,14 @@ function queryModeChange(){
 <div class="body-box">
 <div class="rhead">
 	<div class="rpos"><@s.m "global.position"/>: <@s.m "bbsLiveApply.function"/> - <@s.m "global.list"/></div>
-	<form id="queryForm" class="ropt" method="post" action="v_list.do">
+	<form id="queryForm" class="ropt" method="post" action="v_list.html">
 		<select name="queryMode" onchange="queryModeChange()">
 			<option value="0" selected="selected">待审核</option>
 			<option value="1">已审核</option>
 		</select>
 	    用户名：<input type="text" name="username" value="${username!}" size="10"/>
 	    手机号：<input type="text" name="mobile" value="${mobile!}" size="10"/>
-		<input type="submit" value="<@s.m 'global.query'/>" onclick="this.form.action='v_list.do';"/>
+		<input type="submit" value="<@s.m 'global.query'/>" onclick="this.form.action='v_list.html';"/>
 	</form>
 	<div class="clear"></div>
 </div>
@@ -77,8 +77,8 @@ function queryModeChange(){
 	<@p.column title="主播">${bbsLiveApply.applyUser.username}</@p.column><#t/>
 	<@p.column code="bbsLiveApply.applyTime">${bbsLiveApply.applyTime?string("yyyy-MM-dd HH:mm:ss")}</@p.column><#t/>
 	<@p.column code="global.operate" align="center">
-		<a href="v_view.do?id=${bbsLiveApply.id}&pageNo=${pageNo!}"><@s.m "global.view"/></a> | <#rt/>
-		<a href="o_delete.do?ids=${bbsLiveApply.id}&pageNo=${pageNo!}&mobile=${mobile!}&status=${status!}&username=${username!}" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}"><@s.m "global.delete"/></a><#t/>
+		<a href="v_view.html?id=${bbsLiveApply.id}&pageNo=${pageNo!}"><@s.m "global.view"/></a> | <#rt/>
+		<a href="o_delete.html?ids=${bbsLiveApply.id}&pageNo=${pageNo!}&mobile=${mobile!}&status=${status!}&username=${username!}" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}"><@s.m "global.delete"/></a><#t/>
 	</@p.column><#t/>
 </@p.table>
 <div>
