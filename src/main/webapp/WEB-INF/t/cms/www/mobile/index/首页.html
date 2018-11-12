@@ -53,7 +53,7 @@ var first=0;
 var count=10;
 content="";
 function getContent(){
-             $.post("${base}/topic/v_list_json.jspx", {
+             $.post("${base}/topic/v_list_json.html", {
 		first:first,
 		count:count
 	   }, function(data) {

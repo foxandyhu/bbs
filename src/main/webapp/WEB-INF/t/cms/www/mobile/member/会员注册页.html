@@ -20,10 +20,10 @@
     <a href="javascript:history.go(-1)"><img src="/${res}/bbs_forum/img/back.png"></a><span>注册</span>
   </div>
     <div class="clear10"></div>
-    <form id="jvForm" action="register.jspx" method="post">
+    <form id="jvForm" action="register.html" method="post">
     <div class="uesrname"><img src="/${res}/bbs_forum/img/username_pic.png"><input type="text" value="请输入用户名" type="text" onfocus="if(this.value=='请输入用户名')this.value=''" onkeypress="qkeypress()" onblur="if(this.value=='')this.value='请输入用户名'" class="uesrnameCon" size="15" name="username" id="username" /></div>
     <div class="uesrname"><img src="/${res}/bbs_forum/img/password_pic.png"><input type="password" value="请输入密码" type="text" onfocus="if(this.value=='请输入密码')this.value=''" onkeypress="qkeypress()" onblur="if(this.value=='')this.value='请输入密码'" class="uesrnameCon" size="15" name="password" id="password" /></div>
-    <div class="uesrname"><img src="/${res}/bbs_forum/img/e-maill.png"><input type="text" value="请输入邮箱" type="text" onfocus="if(this.value=='请输入邮箱')this.value=''" onkeypress="qkeypress()" onblur="if(this.value=='')this.value='请输入邮箱'" class="uesrnameCon" size="15" name="email" id="email" vld="{remote:'email_unique.jspx',messages:{remote:'email已经被使用！'}}"/></div>
+    <div class="uesrname"><img src="/${res}/bbs_forum/img/e-maill.png"><input type="text" value="请输入邮箱" type="text" onfocus="if(this.value=='请输入邮箱')this.value=''" onkeypress="qkeypress()" onblur="if(this.value=='')this.value='请输入邮箱'" class="uesrnameCon" size="15" name="email" id="email" vld="{remote:'email_unique.html',messages:{remote:'email已经被使用！'}}"/></div>
     <div style="width:100%;">
       <div class="captcha"><img src="/${res}/bbs_forum/img/captcha.png"><input type="text" value="请输入验证码" type="text" onfocus="if(this.value=='请输入验证码')this.value=''" onkeypress="qkeypress()" onblur="if(this.value=='')this.value='请输入验证码'" class="captchaCon" size="15" name="captcha" id="captcha" vld="{required:true}"/></div>
       <img src="${base}/captcha.svl" onclick="this.src='${base}/captcha.svl?d='+new Date()" style="margin-left:10px;"/>

@@ -25,12 +25,12 @@ function optDelete() {
 }
 function doDelete(){
 	var f = getTableForm();
-	f.action="delete.jspx";
+	f.action="delete.html";
 	f.submit();
 }
 function optPriority() {
 	var f = getTableForm();
-	f.action="priority.jspx";
+	f.action="priority.html";
 	f.submit();
 }
 </script>
@@ -46,7 +46,7 @@ $(function() {
 </div>
 <div class="box-positon">
    <form class="ropt">
-	     <a href="add.jspx?cid=${cid!}">添加</a>
+	     <a href="add.html?cid=${cid!}">添加</a>
 	</form>
 
 	<div class="clear"></div>
@@ -61,7 +61,7 @@ $(function() {
 <input type="hidden" name="qtimeBegin" value="${qtimeBegin!}"/>
 <input type="hidden" name="qtimeEnd" value="${qtimeEnd!}"/>
 <#assign params>&pageNo=${pageNo!}&cid=${cid!}&qtitle=${qtitle!}&qusername=${qusername!}&qstatus=${qstatus!}&qtimeBegin=${qtimeBegin!}&qtimeEnd=${qtimeEnd!}</#assign>
-<@p.table listAction="list.jspx" value=pagination;live,i,has_next><#rt/>
+<@p.table listAction="list.html" value=pagination;live,i,has_next><#rt/>
 	<@p.column title="<input type='checkbox' onclick='Pn.checkbox(\"ids\",this.checked)'/>" width="25" align="center">
 		<input type='checkbox' name='ids' value='${live.id}' onclick="Pn.selectCheckBox('${live.id}',this.checked)"/><#t/>
 	</@p.column><#t/>
@@ -78,9 +78,9 @@ $(function() {
 	<@p.column code="live.dayAmount" align="center">${live.dayAmount!}</@p.column><#t/>
 	<@p.column code="live.checkStatus" align="center"><@s.m "live.checkStatus.${live.checkStatus!}"/></@p.column><#t/>
 	<@p.column code="global.operate" align="center">
-		<a href="ticklist.jspx?liveId=${live.id}${params!}" class="pn-opt">参与者</a> | <#rt/>
-		<a href="edit.jspx?id=${live.id}${params!}" class="pn-opt"><@s.m "global.edit"/></a> | <#rt/>
-		<a href="delete.jspx?ids=${live.id}${params!}" class="pn-opt" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}"><@s.m "global.delete"/></a><#t/>
+		<a href="ticklist.html?liveId=${live.id}${params!}" class="pn-opt">参与者</a> | <#rt/>
+		<a href="edit.html?id=${live.id}${params!}" class="pn-opt"><@s.m "global.edit"/></a> | <#rt/>
+		<a href="delete.html?ids=${live.id}${params!}" class="pn-opt" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}"><@s.m "global.delete"/></a><#t/>
 	</@p.column><#t/>
 </@p.table>
 <div style="margin-top:20px;">

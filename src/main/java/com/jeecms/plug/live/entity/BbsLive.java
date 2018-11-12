@@ -348,7 +348,7 @@ public class BbsLive implements Serializable {
 	}
 
 	public String getUrlWhole() {
-		return getSite().getUrlBuffer(true, true, false).append("/live/front/get.jspx?id=").append(getId()).toString();
+		return getSite().getUrlBuffer(true, true, false).append("/live/front/get.html?id=").append(getId()).toString();
 	}
 
 	public boolean isCharge() {

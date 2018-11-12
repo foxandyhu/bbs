@@ -53,7 +53,7 @@ public class ThirdLoginAct {
 	public static final String TPL_BIND = "tpl.member.bind";
 	public static final String TPL_AUTH = "tpl.member.auth";
 
-	@RequestMapping(value = "/public_auth.jspx")
+	@RequestMapping(value = "/public_auth.html")
 	public String auth(String openId,HttpServletRequest request,HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
 		FrontUtils.frontData(request, model, site);
@@ -61,7 +61,7 @@ public class ThirdLoginAct {
 				TPLDIR_MEMBER, TPL_AUTH);
 	}
 	
-	@RequestMapping(value = "/public_auth_login.jspx")
+	@RequestMapping(value = "/public_auth_login.html")
 	public void authLogin(String key,String source,HttpServletRequest request,HttpServletResponse response, ModelMap model) throws JSONException {
 		if(StringUtils.isNotBlank(source)){
 			if(source.equals(BbsThirdAccount.QQ_PLAT)){
@@ -88,7 +88,7 @@ public class ThirdLoginAct {
 		ResponseUtils.renderJson(response, json.toString());
 	}
 	
-	@RequestMapping(value = "/public_bind.jspx",method = RequestMethod.GET)
+	@RequestMapping(value = "/public_bind.html",method = RequestMethod.GET)
 	public String bind_get(HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -97,7 +97,7 @@ public class ThirdLoginAct {
 				TPLDIR_MEMBER, TPL_BIND);
 	}
 	
-	@RequestMapping(value = "/public_bind.jspx",method = RequestMethod.POST)
+	@RequestMapping(value = "/public_bind.html",method = RequestMethod.POST)
 	public String bind_post(String username,String password,HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		boolean usernameExist=unifiedUserMng.usernameExist(username);
@@ -142,7 +142,7 @@ public class ThirdLoginAct {
 		return FrontUtils.getTplPath(request, site,TPLDIR_MEMBER, TPL_BIND);
 	}
 	
-	@RequestMapping(value = "/public_bind_username.jspx")
+	@RequestMapping(value = "/public_bind_username.html")
 	public String bind_username_post(String username,
 			String nickname,Integer sex,String province,
 			String city,String headimgurl,HttpServletRequest request,
@@ -242,13 +242,13 @@ public class ThirdLoginAct {
 		return FrontUtils.getTplPath(request, site,TPLDIR_MEMBER, TPL_BIND);
 	}
 	
-	@RequestMapping(value = "/weixin_login.jspx")
+	@RequestMapping(value = "/weixin_login.html")
 	public String weixinLogin(HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
 		String codeUrl=socialInfoConfig.getWeixin().getAuth().getCodeUrl();
 		CmsConfig config=cmsConfigMng.get();
-		String auth_url="/weixin_auth.jspx";
+		String auth_url="/weixin_auth.html";
 		String redirect_uri=site.getUrlPrefixWithNoDefaultPort();
 		if(StringUtils.isNotBlank(site.getContextPath())){
 			redirect_uri+=site.getContextPath();
@@ -259,7 +259,7 @@ public class ThirdLoginAct {
 		return "redirect:"+codeUrl;
 	}
 	
-	@RequestMapping(value = "/weixin_auth.jspx")
+	@RequestMapping(value = "/weixin_auth.html")
 	public String weixinAuth(String code,HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -328,7 +328,7 @@ public class ThirdLoginAct {
 	}
 	
 	//判断用户是否登录
-	@RequestMapping(value = "/sso/authenticate.jspx")
+	@RequestMapping(value = "/sso/authenticate.html")
 	public void authenticate(String username,String sessionId,HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		BbsUser user= bbsUserMng.findByUsername(username);
@@ -344,7 +344,7 @@ public class ThirdLoginAct {
 		}
 	}
 	
-	@RequestMapping(value = "/sso/login.jspx")
+	@RequestMapping(value = "/sso/login.html")
 	public void loginSso(String username,String sessionId,String ssoLogout,HttpServletRequest request,HttpServletResponse response) {
 		BbsUser user =CmsUtils.getUser(request);
 		if(StringUtils.isNotBlank(username)){

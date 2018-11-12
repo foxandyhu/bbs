@@ -61,10 +61,10 @@ public class WeixinPay {
 		
 		if(StringUtils.isNotBlank(payTarget)&&payTarget.equals(BbsOrder.PAY_TARGET_LIVE)){
 			paramMap.put("notify_url", "http://" + site.getDomain()
-			+ "/live/order/payCallByWeiXin.jspx");
+			+ "/live/order/payCallByWeiXin.html");
 		}else{
 			paramMap.put("notify_url", "http://" + site.getDomain()
-			+ "/order/payCallByWeiXin.jspx");
+			+ "/order/payCallByWeiXin.html");
 		}
 		
 		// 交易类型{取值如下：JSAPI，NATIVE，APP，(JSAPI--公众号支付、NATIVE--原生扫码支付、APP--app支付)}

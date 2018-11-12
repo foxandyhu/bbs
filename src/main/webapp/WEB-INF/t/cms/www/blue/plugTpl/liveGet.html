@@ -15,7 +15,7 @@
     	$(function () {
     			$("#jvForm").validate($.validator.AlertError);
 	$('body').on("click",".buy-gift",function(){
-		   $("#buyBox").load('${base}/live/front/buy.jspx?liveId=${live.id}&self=1',function () {
+		   $("#buyBox").load('${base}/live/front/buy.html?liveId=${live.id}&self=1',function () {
 	   	        showModel('#buyBox');
 	   })
 	})
@@ -119,7 +119,7 @@
 		[/#if]
 	[/#if]
 	[#if live.hasOver]
-	<a href="${base}/live/message/list.jspx?liveId=${live.id}" style="display: none;">查看历史消息</a>
+	<a href="${base}/live/message/list.html?liveId=${live.id}" style="display: none;">查看历史消息</a>
 	[/#if]
 				</div>	
 				
@@ -139,7 +139,7 @@
 					num=1;
 				}
 				$.ajax({
-					url:'${base}/live/front/sendGiftToHost.jspx',
+					url:'${base}/live/front/sendGiftToHost.html',
 					type:"post",
 					data:{
 						liveId:"${live.id}",
@@ -152,7 +152,7 @@
 							alert("您不是live参与者");
 						}else if(data.status==3){
 							//礼物不足
-							$("#giftBuyBox").load("${base}/gift/buy.jspx?giftId="+giftId+"&buyNum="+num+"&self=1&returnUrl=${live.urlWhole!}",function () {
+							$("#giftBuyBox").load("${base}/gift/buy.html?giftId="+giftId+"&buyNum="+num+"&self=1&returnUrl=${live.urlWhole!}",function () {
 		 						showModel('#giftBuyBox');
 							});
 						}
@@ -262,7 +262,7 @@
 				return;
 			}else{
 				$.ajax({
-					url:'${base}/live/message/sayToAll.jspx',
+					url:'${base}/live/message/sayToAll.html',
 					type:"post",
 					data:{
 						liveId:"${live.id}",
@@ -371,14 +371,14 @@
 		<div class="live-left-layout h306">
 			<div  class="live-recom-header">
 				<span>直播推荐</span>
-				<a href="${base}/live/front/index.jspx"><i class="iconfont icon-gengduo"></i></a>
+				<a href="${base}/live/front/index.html"><i class="iconfont icon-gengduo"></i></a>
 			</div>
 			<ul class="recom-lists">
 				[@live_list  orderBy='1' count='3' ]				
 	[#list tag_list as l]
 	[#if l.hasBegin&&!l.hasOver||!l.hasBegin]
 				
-				<li ><a href="${base}/live/front/get.jspx?id=${l.id}">
+				<li ><a href="${base}/live/front/get.html?id=${l.id}">
 					<img src="${l.liveLogo!}" style="background: url(/${res}/bbs_forum/images/zb-zwtp.jpg) no-repeat;background-size: cover;/ >
 					 <p class="recom-title">${l.title!}</p>
 					 <div class="recom-live-info">
@@ -409,7 +409,7 @@
 			  		[/#list]
 			  	</ul>
 [/@live_host_list]
-			  	[#if user??][#if user.liveHost][#else]<a href="${base}/live/host/apply.jspx" class="liver-btn">我要当主播</a>[/#if][/#if]		    	
+			  	[#if user??][#if user.liveHost][#else]<a href="${base}/live/host/apply.html" class="liver-btn">我要当主播</a>[/#if][/#if]
 			  </div>
 	    </div>
 	</div>

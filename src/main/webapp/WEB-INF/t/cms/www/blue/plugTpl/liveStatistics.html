@@ -38,7 +38,7 @@
 						<div class="yu-e">
 							<span>账户余额</span>
 							<span class="money">${liveUserAccount.noPayAmount!}</span>
-							<a href="${base}/live/host/draw.jspx"><img src="/${res}/bbs_member/images/tixian.png"/></a>
+							<a href="${base}/live/host/draw.html"><img src="/${res}/bbs_member/images/tixian.png"/></a>
 						</div>
 						<div class="shouru">
 							今日收入：<span>${liveUserAccount.dayAmount!}</span> &nbsp; &nbsp; | &nbsp; &nbsp; 
@@ -52,10 +52,10 @@
 					<div style="padding: 0 30px;">
 						<ul class="change-card clearfix">
 							<li class="active">
-								<a href="${base}/member/charge_list.jspx">提现列表</a>
+								<a href="${base}/member/charge_list.html">提现列表</a>
 							</li>
 						</ul>
-<form id="tableForm" action="contribute_list.jspx" method="post">
+<form id="tableForm" action="contribute_list.html" method="post">
 	[#if tag_pagination??]
      [#if tag_pagination.list?size gt 0]                     
 						<table border="0" cellspacing="0" cellpadding="0" class="table">
@@ -77,7 +77,7 @@
 									<td>[#if c.applyStatus==0]申请中[#elseif c.applyStatus==1]申请成功等待支付[#elseif c.applyStatus==2]申请失败[#elseif c.applyStatus==3]提现成功[/#if]</td>
 									<td>[#if c.applyType==1]主题[#elseif c.applyType==2]礼物[#else]直播[/#if]</td>
 									<td>${c.applyTime?string('yyyy-MM-dd HH:mm:ss')}</td>
-									<td>[#if c.applyStatus==0||c.applyStatus==2]<a href="${base}/live/host/draw_del.jspx?ids=${c.id}&nextUrl=${base}/live/host/draw_list.jspx">删除</a>[/#if]</td>
+									<td>[#if c.applyStatus==0||c.applyStatus==2]<a href="${base}/live/host/draw_del.html?ids=${c.id}&nextUrl=${base}/live/host/draw_list.html">删除</a>[/#if]</td>
 								</tr>
 								[/#list]
 							</tbody>
@@ -89,7 +89,7 @@
                 try{
                     var tableForm = document.getElementById("tableForm");
                     $("input[name=pageNo]").val(pageNo);
-                    tableForm.action="${base}/live/host/draw_list.jspx";
+                    tableForm.action="${base}/live/host/draw_list.html";
                     tableForm.onsubmit=null;
                     tableForm.submit();
                 } catch(e) {

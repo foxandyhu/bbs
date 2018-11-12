@@ -52,7 +52,7 @@ function checkContent(){
 function createTopicTypeTag(){
 	$("#topicTypeAppend").html("");
 	$("#topicTypeAppend").html("");
-	$.post("${base}/topic/o_generateTags.jspx", 
+	$.post("${base}/topic/o_generateTags.html",
 		{title:$("#title").val()},
 	    function(data){
 			var ids=data.ids;
@@ -237,7 +237,7 @@ background: #fff;
     </div>
     <!--发帖内容-->
      <div class="edit-topic-body">
-		<form id="jvForm" action="${base}/topic/o_save.jspx" method="post" enctype="multipart/form-data" validate="true" >
+		<form id="jvForm" action="${base}/topic/o_save.html" method="post" enctype="multipart/form-data" validate="true" >
 
         <select name="forumId" class="ft-select">
 			[#if user??]

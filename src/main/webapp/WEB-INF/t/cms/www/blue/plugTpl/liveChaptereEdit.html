@@ -34,8 +34,8 @@ $(function() {
 <div class=" right-panel clearfix" style="min-height: 592px;">
 				<div class="tabelbox cjzbbox" style="margin:0;">
 					<input type="hidden" id="root" name="root" value="${chapter.id}"/>
-<div class="zb_add"><a href="add.jspx?root=${chapter.id}" class="btn-primary">添加子章节</a></div>
-					<form id="jvForm" action="update.jspx">
+<div class="zb_add"><a href="add.html?root=${chapter.id}" class="btn-primary">添加子章节</a></div>
+					<form id="jvForm" action="update.html">
 						<table border="0" cellspacing="0" cellpadding="0" style="width: 100%;">
 							<tr>
 								<td width="20%" class="left-td">选择章节：</td>
@@ -53,7 +53,7 @@ $(function() {
 										name="path"
 										value="${chapter.path}" 
 										required="true" 
-										 vld="{required:true,path:true,remote:'v_check_path.jspx?cid=${chapter.id}',messages:{remote:'${chapterPathExist}'}}"
+										 vld="{required:true,path:true,remote:'v_check_path.html?cid=${chapter.id}',messages:{remote:'${chapterPathExist}'}}"
 										/>
 								</td>
 							</tr>

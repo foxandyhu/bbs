@@ -15,7 +15,7 @@
 <link rel="stylesheet" type="text/css" href="/${res}/bbs_forum/css/main.css" />
 </head>
 <body>
-  [#if user??]<div class="fatie"><a href="${base}/topic/v_add${forum.id!}.jspx" data-ajax="false"><img src="/${res}/bbs_forum/img/fatie.png"></a></div>[/#if]
+  [#if user??]<div class="fatie"><a href="${base}/topic/v_add${forum.id!}.html" data-ajax="false"><img src="/${res}/bbs_forum/img/fatie.png"></a></div>[/#if]
 <div class="main" id="wrapper" style="width:100%;overflow-x:hidden;">
 <div   id="scroller">
  [#include "../include/页头.html"/]
@@ -85,7 +85,7 @@ content="";
 var topicTime="${topic.createTime}";
 function getContent(){
         $("#postContainer").html("");
-	$.get("${base}/post/v_list_json.jspx", {
+	$.get("${base}/post/v_list_json.html", {
 		topicId:"${topic.id}",
 		parentId:"${parentId!}",
 		first:first,
@@ -111,7 +111,7 @@ function getContent(){
 			    $("#timeTpl"+postTplId).html(data[i].createTime);
 			    $("#groupTpl"+postTplId).html(data[i].group);
 			    $("#contentTpl"+postTplId).html(data[i].content);
-			    $("#urlTpl"+postTplId).attr("href","${base}/post/v_add${topic.id!}.jspx");
+			    $("#urlTpl"+postTplId).attr("href","${base}/post/v_add${topic.id!}.html");
 			   $("#flotTpl"+postTplId).html(first+i+1+"楼"); 
                       }  
 		}

@@ -76,7 +76,7 @@ public class BbsFrontLiveAct extends AbstractBbsLive{
 	public static final String TPL_LIVE_DISCUSS_TENCENT = "tpl.liveDiscussTencent";
 	
 	//首页
-	@RequestMapping(value = "/live/front/index*.jspx")
+	@RequestMapping(value = "/live/front/index*.html")
 	public String index(HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -87,7 +87,7 @@ public class BbsFrontLiveAct extends AbstractBbsLive{
 	}
 	
 	//进入预览页
-	@RequestMapping(value = "/live/front/get.jspx")
+	@RequestMapping(value = "/live/front/get.html")
 	public String liveGet(Integer id,HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -125,7 +125,7 @@ public class BbsFrontLiveAct extends AbstractBbsLive{
 	}
 	
 	//进入讨论页
-	@RequestMapping(value = "/live/front/discuss.jspx")
+	@RequestMapping(value = "/live/front/discuss.html")
 	public String liveDiscuss(Integer id,HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -162,7 +162,7 @@ public class BbsFrontLiveAct extends AbstractBbsLive{
 						}
 						if(!hasBuy){
 							try {
-								String rediretUrl="/live/front/buy.jspx?liveId="+live.getId();
+								String rediretUrl="/live/front/buy.html?liveId="+live.getId();
 								if(StringUtils.isNotBlank(site.getContextPath())){
 									rediretUrl=site.getContextPath()+rediretUrl;
 								}
@@ -194,7 +194,7 @@ public class BbsFrontLiveAct extends AbstractBbsLive{
 		}
 	}
 	//赠送礼物给主播
-	@RequestMapping(value = "/live/front/sendGiftToHost.jspx")
+	@RequestMapping(value = "/live/front/sendGiftToHost.html")
 	public void sendGiftToHost(Integer liveId,Integer giftId,
 			Integer num,HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
@@ -272,7 +272,7 @@ public class BbsFrontLiveAct extends AbstractBbsLive{
 	 * @param self 1自用  2赠送  默认1
 	 * @param num 购买数量  默认1
 	 */
-	@RequestMapping(value = "/live/front/buy.jspx")
+	@RequestMapping(value = "/live/front/buy.html")
 	public String liveBuy(Integer liveId,Integer self,Integer num,
 			HttpServletRequest request,
 			HttpServletResponse response,ModelMap model) throws JSONException {
@@ -342,7 +342,7 @@ public class BbsFrontLiveAct extends AbstractBbsLive{
 	 * @param num 购买数量  默认1
 	 * @param payMethod 支付方式 1微信扫码 2支付宝即时支付  3微信浏览器打开[微信移动端] 4支付宝扫码5支付宝手机网页
 	 */
-	@RequestMapping(value = "/order/liveSelectPay.jspx")
+	@RequestMapping(value = "/order/liveSelectPay.html")
 	public String liveSelectPay(Integer liveId,String orderNumber,Integer num,
 			Integer payMethod,Integer self,HttpServletRequest request,
 			HttpServletResponse response,ModelMap model) throws JSONException {
@@ -427,7 +427,7 @@ public class BbsFrontLiveAct extends AbstractBbsLive{
 		}
 	}
 	//购买live进入手机支付宝支付页面
-	@RequestMapping(value = "/live/front/alipayInMobile.jspx")
+	@RequestMapping(value = "/live/front/alipayInMobile.html")
 	public String enterAlipayInMobile(Integer liveId,String orderNumber,Integer num,
 			HttpServletRequest request,HttpServletResponse response,ModelMap model) throws JSONException {
 		WebErrors errors=WebErrors.create(request);
@@ -456,7 +456,7 @@ public class BbsFrontLiveAct extends AbstractBbsLive{
 	/**
 	 * 购买live微信支付微信回调
 	 */
-	@RequestMapping(value = "/live/order/payCallByWeiXin.jspx")
+	@RequestMapping(value = "/live/order/payCallByWeiXin.html")
 	public void orderPayCallByWeiXin(String orderNumber,
 			HttpServletRequest request, HttpServletResponse response,
 			ModelMap model) throws JDOMException, IOException, JSONException {
@@ -539,7 +539,7 @@ public class BbsFrontLiveAct extends AbstractBbsLive{
 	
 	//购买live支付宝即时支付回调地址
 	@SuppressWarnings("rawtypes")
-	@RequestMapping(value = "/live/order/payCallByAliPay.jspx")
+	@RequestMapping(value = "/live/order/payCallByAliPay.html")
 	public String payCallByAliPay(HttpServletRequest request,
 			HttpServletResponse response, ModelMap model)
 					throws UnsupportedEncodingException {
@@ -594,7 +594,7 @@ public class BbsFrontLiveAct extends AbstractBbsLive{
 	}
 	
 	//购买live，手机支付宝查询订单状态（扫码支付和手机网页支付均由此处理订单）
-	@RequestMapping(value = "/live/order/orderQuery.jspx")
+	@RequestMapping(value = "/live/order/orderQuery.html")
 	public void aliPayOrderQuery(String orderNumber,HttpServletRequest request,
 			HttpServletResponse response, ModelMap model)
 					throws UnsupportedEncodingException {

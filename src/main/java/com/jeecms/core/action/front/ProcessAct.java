@@ -29,7 +29,7 @@ import com.jeecms.core.manager.AuthenticationMng;
 public class ProcessAct {
 	private static Logger log = LoggerFactory.getLogger(ProcessAct.class);
 
-	@RequestMapping(value = "/process.jspx", method = RequestMethod.GET)
+	@RequestMapping(value = "/process.html", method = RequestMethod.GET)
 	public String process(HttpServletRequest request,
 			HttpServletResponse response) {
 		String returnUrl = RequestUtils.getQueryParam(request,

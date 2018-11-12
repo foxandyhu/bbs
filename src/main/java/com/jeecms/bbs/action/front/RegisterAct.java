@@ -72,7 +72,7 @@ public class RegisterAct {
 	public static final String LOGIN_INPUT = "tpl.loginInput";
 	public static final short REGISTER_CLOSE=0;
 	
-	@RequestMapping(value = "/register.jspx", method = RequestMethod.GET)
+	@RequestMapping(value = "/register.html", method = RequestMethod.GET)
 	public String input(HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -88,7 +88,7 @@ public class RegisterAct {
 				TPLDIR_MEMBER, REGISTER);
 	}
 
-	@RequestMapping(value = "/register.jspx", method = RequestMethod.POST)
+	@RequestMapping(value = "/register.html", method = RequestMethod.POST)
 	public String submit(String username, String email, String password,
 			BbsUserExt userExt, String captcha, String nextUrl,
 			HttpServletRequest request, HttpServletResponse response,
@@ -170,7 +170,7 @@ public class RegisterAct {
 		}
 	}
 	
-	@RequestMapping(value = "/registerAjax.jspx", method = RequestMethod.POST)
+	@RequestMapping(value = "/registerAjax.html", method = RequestMethod.POST)
 	public void submitAjax(String username, String email, String password,
 			BbsUserExt userExt, String captcha, String nextUrl,
 			HttpServletRequest request, HttpServletResponse response,
@@ -248,7 +248,7 @@ public class RegisterAct {
 		ResponseUtils.renderJson(response,json.toString());
 	}
 	
-	@RequestMapping(value = "/appregister.jspx")
+	@RequestMapping(value = "/appregister.html")
 	public void appsubmit(String username, String email, String password,
 			HttpServletRequest request, HttpServletResponse response,
 			ModelMap model) throws JSONException {
@@ -282,7 +282,7 @@ public class RegisterAct {
 	}
 
 	// 激活账号
-	@RequestMapping(value = "/active.jspx", method = RequestMethod.GET)
+	@RequestMapping(value = "/active.html", method = RequestMethod.GET)
 	public String active(String username, String key,
 			HttpServletRequest request, HttpServletResponse response,
 			ModelMap model) throws IOException {
@@ -316,7 +316,7 @@ public class RegisterAct {
 	//	return FrontUtils.getTplPath(request, site,TPLDIR_MEMBER, REGISTER_ACTIVE_SUCCESS);
 	}
 
-	@RequestMapping(value = "/username_unique.jspx")
+	@RequestMapping(value = "/username_unique.html")
 	public void usernameUnique(HttpServletRequest request,
 			HttpServletResponse response) {
 		String username = RequestUtils.getQueryParam(request, "username");
@@ -333,7 +333,7 @@ public class RegisterAct {
 		ResponseUtils.renderJson(response, "true");
 	}
 
-	@RequestMapping(value = "/email_unique.jspx")
+	@RequestMapping(value = "/email_unique.html")
 	public void emailUnique(HttpServletRequest request,
 			HttpServletResponse response) {
 		String email = RequestUtils.getQueryParam(request, "email");
@@ -350,7 +350,7 @@ public class RegisterAct {
 		ResponseUtils.renderJson(response, "true");
 	}
 	
-	@RequestMapping(value = "/username_exist.jspx")
+	@RequestMapping(value = "/username_exist.html")
 	public void usernameExist(HttpServletRequest request,
 			HttpServletResponse response) {
 		String username = RequestUtils.getQueryParam(request, "username");

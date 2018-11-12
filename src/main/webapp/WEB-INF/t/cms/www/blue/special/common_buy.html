@@ -15,14 +15,14 @@
 <script  type="text/javascript">
 $(function() {
   	[#if gift??]
-		$("#wcode").load("${base}/order/giftSelectPay.jspx?giftId=${gift.id!}&buyNum=${buyNum!}&orderNumber=${orderNumber!}&payMethod=1&returnUrl=${returnUrl!}");
-		$("#acode").load("${base}/order/giftSelectPay.jspx?giftId=${gift.id!}&buyNum=${buyNum!}&orderNumber=${orderNumber!}&payMethod=4&returnUrl=${returnUrl!}");
+		$("#wcode").load("${base}/order/giftSelectPay.html?giftId=${gift.id!}&buyNum=${buyNum!}&orderNumber=${orderNumber!}&payMethod=1&returnUrl=${returnUrl!}");
+		$("#acode").load("${base}/order/giftSelectPay.html?giftId=${gift.id!}&buyNum=${buyNum!}&orderNumber=${orderNumber!}&payMethod=4&returnUrl=${returnUrl!}");
 	[#elseif magic??]
-		$("#wcode").load("${base}/order/magicSelectPay.jspx?mid=${magic.identifier!}&buyNum=${buyNum!}&orderNumber=${orderNumber!}&payMethod=1");
-		$("#acode").load("${base}/order/magicSelectPay.jspx?mid=${magic.identifier!}&buyNum=${buyNum!}&orderNumber=${orderNumber!}&payMethod=4");
+		$("#wcode").load("${base}/order/magicSelectPay.html?mid=${magic.identifier!}&buyNum=${buyNum!}&orderNumber=${orderNumber!}&payMethod=1");
+		$("#acode").load("${base}/order/magicSelectPay.html?mid=${magic.identifier!}&buyNum=${buyNum!}&orderNumber=${orderNumber!}&payMethod=4");
 	[#elseif ad??]
-		$("#wcode").load("${base}/order/adSelectPay.jspx?amount=${amount!}&orderNumber=${orderNumber!}&payMethod=1");
-		$("#acode").load("${base}/order/adSelectPay.jspx?amount=${amount!}&orderNumber=${orderNumber!}&payMethod=4");
+		$("#wcode").load("${base}/order/adSelectPay.html?amount=${amount!}&orderNumber=${orderNumber!}&payMethod=1");
+		$("#acode").load("${base}/order/adSelectPay.html?amount=${amount!}&orderNumber=${orderNumber!}&payMethod=4");
 	[/#if]
 });
 </script>
@@ -37,7 +37,7 @@ $(function() {
 </style>
 	</head>
 	<body>
-       [#if !location?contains('/gift/buy.jspx')]
+       [#if !location?contains('/gift/buy.html')]
 		<!--include-header-->
 		[#include "../include/页头.html"/]
 		<!--论坛信息-->
@@ -45,22 +45,22 @@ $(function() {
 		[/#if]
 	  <!--main-->
 	  
-		[#if !location?contains('/gift/buy.jspx')]
+		[#if !location?contains('/gift/buy.html')]
 		<div class="bbs-main clearfix">
 		[/#if]
 			<!--左侧 include-->
-			[#if !location?contains('/gift/buy.jspx')]
+			[#if !location?contains('/gift/buy.html')]
 			<div class="left-main">
 				<!--版块-->
 					[#include "../member/会员中心页_导航.html"/]
 			</div>
 			[/#if]
 			<!--右侧内容-->
-             [#if !location?contains('/gift/buy.jspx')]<div class="right-main clearfix" style="min-height: 592px;">[/#if]
-                     [#if !location?contains('/gift/buy.jspx')]
+             [#if !location?contains('/gift/buy.html')]<div class="right-main clearfix" style="min-height: 592px;">[/#if]
+                     [#if !location?contains('/gift/buy.html')]
 				<div class="right-panel">
                    [/#if]
-                      [#if !location?contains('/gift/buy.jspx')]
+                      [#if !location?contains('/gift/buy.html')]
 					<div class="main-header clearfix">
 						<div class="channl-name">
 							<span>广告</span>
@@ -78,7 +78,7 @@ $(function() {
 					   <div class="reward-pay">支付方式</div>
 					   <div class="reward-paylist"><div><span id="wcode"></span>微信扫码支付</div><div><span id="acode"></span>支付宝扫码支付</div></div>
 					</div>
-                  [#if !location?contains('/gift/buy.jspx')]
+                  [#if !location?contains('/gift/buy.html')]
 				</div>
                   
 			</div>
@@ -86,7 +86,7 @@ $(function() {
 		</div>
 		[/#if]
 		<!--footer-->
-		[#if !location?contains('/gift/buy.jspx')]
+		[#if !location?contains('/gift/buy.html')]
 		[#include "../include/页脚.html"/]
 		[/#if]
 	</body>

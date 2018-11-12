@@ -1,6 +1,6 @@
 <#if isRoot>
 [{
-	"text": "<a href='list.jspx' target='liveRightFrame'><@s.m "chapter.root"/></a>",
+	"text": "<a href='list.html' target='liveRightFrame'><@s.m "chapter.root"/></a>",
 	"classes": "folder"
 	<#if list?size gt 0>,
 	"expanded": true,
@@ -8,7 +8,7 @@
 	<#list list as chapter>
 		{
 		"id": "${chapter.id}",
-		"text": "<a href='list.jspx?cid=${chapter.id}' target='liveRightFrame'>${chapter.name}</a>",
+		"text": "<a href='list.html?cid=${chapter.id}' target='liveRightFrame'>${chapter.name}</a>",
 		"classes": "<#if chapter.child?size gt 0>folder<#else>file</#if>",
 		"hasChildren": <#if chapter.child?size gt 0>true<#else>false</#if>
 		}<#if chapter_has_next>,</#if>
@@ -21,7 +21,7 @@
 	<#list list as chapter>
 		{
 		"id": "${chapter.id}",
-		"text": "<a href='list.jspx?cid=${chapter.id}' target='liveRightFrame'>${chapter.name}</a>",
+		"text": "<a href='list.html?cid=${chapter.id}' target='liveRightFrame'>${chapter.name}</a>",
 		"classes": "<#if chapter.child?size gt 0>folder<#else>file</#if>",
 		"hasChildren": <#if chapter.child?size gt 0>true<#else>false</#if>
 		}<#if chapter_has_next>,</#if>

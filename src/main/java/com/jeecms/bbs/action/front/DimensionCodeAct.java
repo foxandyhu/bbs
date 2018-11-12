@@ -19,7 +19,7 @@ import com.jeecms.common.util.ZXingCode;
 @Controller
 public class DimensionCodeAct {
 
-	@RequestMapping("/special/o_create_dimensioncode.jspx")
+	@RequestMapping("/special/o_create_dimensioncode.html")
 	public void createCodeImg(String content,
 			Integer fontSize,Integer size, 
 			HttpServletRequest request,

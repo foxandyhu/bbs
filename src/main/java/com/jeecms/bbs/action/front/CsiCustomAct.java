@@ -35,7 +35,7 @@ public class CsiCustomAct {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/csi_custom.jspx")
+	@RequestMapping(value = "/csi_custom.html")
 	public String custom(String tpl, HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		log.debug("visit csi custom template: {}", tpl);

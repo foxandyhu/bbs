@@ -9,7 +9,7 @@
 [#--评论输入表单--]
 [#if commentControl=="0" || (commentControl=="1" && user??)]
 <h4>发表评论：</h4>
-<form id="commentForm" action="${base}/comment.jspx" method="post">
+<form id="commentForm" action="${base}/comment.html" method="post">
 <div><textarea name="text" rows="5" cols="70" class="required" maxlength="65535"></textarea></div>
 <div>验证码：<input type="text" class="required" name="captcha"/><img id="commentCaptcha" src="${base}/captcha.svl" onclick="this.src='${base}/captcha.svl?d='+new Date()"/></div>
 <div><input type="hidden" name="contentId" value="${contentId}"/><input type="submit" value="提交"/></div>

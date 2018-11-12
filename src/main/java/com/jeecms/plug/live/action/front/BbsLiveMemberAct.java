@@ -43,7 +43,7 @@ public class BbsLiveMemberAct extends AbstractBbsLive{
 	public static final String TPL_LIVE_MESSAGE_LIST = "tpl.liveMessageList";
 	
 	@SuppressWarnings("unchecked")
-	@RequestMapping(value = "/live/ticket/index*.jspx")
+	@RequestMapping(value = "/live/ticket/index*.html")
 	public String index(HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -68,7 +68,7 @@ public class BbsLiveMemberAct extends AbstractBbsLive{
 		}
 	}
 	
-	@RequestMapping(value = "/live/ticket/userlist*.jspx")
+	@RequestMapping(value = "/live/ticket/userlist*.html")
 	public String ticketUserList(Long orderId,HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -94,7 +94,7 @@ public class BbsLiveMemberAct extends AbstractBbsLive{
 		}
 	}
 	
-	@RequestMapping(value = "/live/ticket/assign.jspx")
+	@RequestMapping(value = "/live/ticket/assign.html")
 	public String ticketUserAssign(String username,Long orderId,
 			HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
@@ -135,7 +135,7 @@ public class BbsLiveMemberAct extends AbstractBbsLive{
 	/**
 	 * 我参与的live
 	 */
-	@RequestMapping(value = "/live/live/mylist*.jspx")
+	@RequestMapping(value = "/live/live/mylist*.html")
 	public String myLives(HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);

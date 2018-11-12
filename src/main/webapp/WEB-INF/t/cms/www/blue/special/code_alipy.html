@@ -7,10 +7,10 @@
 $(function() {
 	setInterval("queryAliStatus()", 5000); 
 });
-var aliQueryUrl="${base}/order/orderQuery.jspx?orderNumber=${orderNumber!}";
+var aliQueryUrl="${base}/order/orderQuery.html?orderNumber=${orderNumber!}";
 [#if payTarget??]
 	[#if payTarget=="live"]
-		aliQueryUrl="${base}/live/order/orderQuery.jspx?orderNumber=${orderNumber!}";
+		aliQueryUrl="${base}/live/order/orderQuery.html?orderNumber=${orderNumber!}";
 	[/#if]
 [/#if]
 function queryAliStatus() {
@@ -34,6 +34,6 @@ function queryAliStatus() {
 </script>
 </head>
 <body>
- <img src="${base}/special/o_create_dimensioncode.jspx?content=${code_url!}&size=100" style="width:150px;height:150px;"/>
+ <img src="${base}/special/o_create_dimensioncode.html?content=${code_url!}&size=100" style="width:150px;height:150px;"/>
 </body>
 </html>

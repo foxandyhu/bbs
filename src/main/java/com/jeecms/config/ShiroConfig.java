@@ -76,17 +76,16 @@ public class ShiroConfig {
 	public ShiroFilterFactoryBean shiroFilter(WebSecurityManager securityManager) {
 		ShiroFilterFactoryBean bean=new ShiroFilterFactoryBean();
 		bean.setSecurityManager(securityManager);
-		bean.setLoginUrl("/login.jspx");
+		bean.setLoginUrl("/login.html");
 		bean.setSuccessUrl("/");
 		bean.setFilterChainDefinitionMap(new HashMap<String,String>(){
 			private static final long serialVersionUID = -4794995092802667876L;
 			{
-				put("*.jspx","anon");
 				put("*.html","anon");
-				put("/member/forgot_password.jspx","anon");
-				put("/member/password_reset.jspx","anon");
-				put("/login.jspx","authc");
-				put("/logout.jspx","logout");
+				put("/member/forgot_password.html","anon");
+				put("/member/password_reset.html","anon");
+				put("/login.html","authc");
+				put("/logout.html","logout");
 				put("/member/**","user");
 			}});
 		return bean;

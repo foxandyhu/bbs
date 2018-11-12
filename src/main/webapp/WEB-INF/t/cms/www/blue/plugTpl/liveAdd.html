@@ -45,14 +45,14 @@ $(function() {
 });
 function getRate(){
 	var num=$("#limitUserNum").val();
-	$.post("getLiveRate.jspx", {
+	$.post("getLiveRate.html", {
 		userNum:num
 	}, function(data) {
 		$("#commissionRate").html(data.rate);
 	}, "json");
 }
 function sendToCheck(){
-	$("#jvForm").prop("action","updateToApply.jspx");
+	$("#jvForm").prop("action","updateToApply.html");
 	$("#jvForm").submit();
 }
 </script>
@@ -65,7 +65,7 @@ function sendToCheck(){
 <div class=" right-panel clearfix" >
 				<div class="tabelbox cjzbbox"  style="margin-top: 0;">
 					[#include "image_upload.html"/]
-					<form id="jvForm" action="save.jspx">
+					<form id="jvForm" action="save.html">
 						<table border="0" cellspacing="0" cellpadding="0" style="width: 100%;">
 							<tr>
 								<td width="20%" class="left-td">选择章节：</td>

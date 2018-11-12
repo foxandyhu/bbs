@@ -37,7 +37,7 @@ function vote(name, tid){
 			count++;
 		}
 	}
-	$.post('${base}/topic/vote.jspx', {
+	$.post('${base}/topic/vote.html', {
 		'itemIds':itemIds,
 		'tid':tid
 	}, function(data) {
@@ -78,7 +78,7 @@ function attent(userId,operate){
 	},"json");
 }
 function forBidden(userId,forumId){
-	$.post("${base}/user/forbidden.jspx",{
+	$.post("${base}/user/forbidden.html",{
 		"userId": userId,
 		"forumId":forumId
 	},function(data){
@@ -99,7 +99,7 @@ $(function(){
 });
 
 function VoteResult(){
-	$.post("${base}/topic/vote_result.jspx",{tid: "${topic.id}"},function(data){
+	$.post("${base}/topic/vote_result.html",{tid: "${topic.id}"},function(data){
 		$(".vote").html(data);
 	});
 }
@@ -193,7 +193,7 @@ function VoteResult(){
                         [#if createrId??]
                         <a href="${topic.url}">显示全部</a>
                         [#else]
-                        <a href="${base}/topic/postListByAuthor.jspx?topicId=${topic.id}&createrId=${topic.firstPost.creater.id}">只看该作者</a>
+                        <a href="${base}/topic/postListByAuthor.html?topicId=${topic.id}&createrId=${topic.firstPost.creater.id}">只看该作者</a>
                         [/#if]
                     </p>
                 </div>
@@ -295,7 +295,7 @@ function VoteResult(){
                         [#if createrId??]
                         <a href="${topic.url}">显示全部</a>
                         [#else]
-                        <a href="${base}/topic/postListByAuthor.jspx?topicId=${topic.id}&createrId=${post.creater.id}">只看该作者</a>
+                        <a href="${base}/topic/postListByAuthor.html?topicId=${topic.id}&createrId=${post.creater.id}">只看该作者</a>
                         [/#if]
                     </p>
                 </div>
@@ -311,7 +311,7 @@ var pageNo=2;
 var count=5;
 	function getContent(){
 		if(pageNo<=totalPage){
-			$("#topicposts").load("${base}/topic/getPostList.jspx",
+			$("#topicposts").load("${base}/topic/getPostList.html",
 		{pageNo: pageNo,topicId:"${topic.id}"}, 
 		function(){
 			$("#topicTable").append($("#topicposts").html());
@@ -345,9 +345,9 @@ $("a[id^='magica']").each(function(){
 	id=$(this).attr("id");
 	strs=id.split("_");
 	if(strs.length>=5){
-		$(this).wBox({title: "使用道具",requestType:"iframe",iframeWH:{width:400,height:200},target:"${base}/magic/getmagicpage.jspx?pid="+strs[1]+"&ppid="+strs[2]+"&mid="+strs[3]+"&username="+strs[4]});
+		$(this).wBox({title: "使用道具",requestType:"iframe",iframeWH:{width:400,height:200},target:"${base}/magic/getmagicpage.html?pid="+strs[1]+"&ppid="+strs[2]+"&mid="+strs[3]+"&username="+strs[4]});
 		}else{
-			$(this).wBox({title: "使用道具",requestType:"iframe",iframeWH:{width:400,height:200},target:"${base}/magic/getmagicpage.jspx?pid="+strs[1]+"&ppid="+strs[2]+"&mid="+strs[3]});
+			$(this).wBox({title: "使用道具",requestType:"iframe",iframeWH:{width:400,height:200},target:"${base}/magic/getmagicpage.html?pid="+strs[1]+"&ppid="+strs[2]+"&mid="+strs[3]});
 			}
 	});
 $("a[id^='msgSendA']").each(function(){
@@ -358,7 +358,7 @@ $("a[id^='msgSendA']").each(function(){
 $("a[id^='reportA']").each(function(){
 	id=$(this).attr("id");
 	strs=id.split("_");
-	$(this).wBox({title: "举报",requestType:"iframe",iframeWH:{width:320,height:50},target:"${base}/getreportpage.jspx?pid="+strs[2]+"&&url="+strs[1]});
+	$(this).wBox({title: "举报",requestType:"iframe",iframeWH:{width:320,height:50},target:"${base}/getreportpage.html?pid="+strs[2]+"&&url="+strs[1]});
 });
 </script>
 

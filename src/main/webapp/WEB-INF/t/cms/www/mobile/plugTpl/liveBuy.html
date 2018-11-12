@@ -21,7 +21,7 @@ $(function() {
     [#if webCatBrowser]
 	[#if !wxopenid??]
 	//获取微信用户openid
-	$.get("${base}/common/getOpenId.jspx", {
+	$.get("${base}/common/getOpenId.html", {
 		rediretUrl:location.href
 	}, function(data) {
 		$("#wxForm").prop("action",data.url);
@@ -39,7 +39,7 @@ $(function() {
 		<form action="" id="wxForm" method="post"  target="wxFrame"></form>
 		<iframe id="wx1Frame" name="wxFrame"  frameborder="0" border="0" style="display:none;width:0px;height:0px;"></iframe>
 		[/#if]
-		<form method="post" action="${base}/order/liveSelectPay.jspx"
+		<form method="post" action="${base}/order/liveSelectPay.html"
 			id="jvForm">
 			<input name="liveId" value="${live.id!}" type="hidden" /> 
 			<input name="self" value="${self!}" type="hidden" /> 

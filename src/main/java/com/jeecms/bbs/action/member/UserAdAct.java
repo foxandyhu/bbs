@@ -36,7 +36,7 @@ public class UserAdAct {
 	public static final String TPL_ADSPACE_LIST = "tpl.adspaceList";
 	public static final String TPL_NO_LOGIN = "tpl.nologin";
 	
-	@RequestMapping(value = "/adspaceList.jspx")
+	@RequestMapping(value = "/adspaceList.html")
 	public String adspaceList(HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -56,7 +56,7 @@ public class UserAdAct {
 	/**
 	 * 我的广告
 	 */
-	@RequestMapping(value = "/member/myAdvertises.jspx")
+	@RequestMapping(value = "/member/myAdvertises.html")
 	public String myAdvertises(Integer pageNo,HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -79,7 +79,7 @@ public class UserAdAct {
 	/**
 	 * 广告账户充值输入页面
 	 */
-	@RequestMapping(value = "/member/adRechargeInput.jspx")
+	@RequestMapping(value = "/member/adRechargeInput.html")
 	public String buyInput(HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);

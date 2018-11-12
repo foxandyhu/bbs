@@ -36,11 +36,11 @@
 	[#if l.hasBegin&&!l.hasOver||!l.hasBegin]
 					<li class="clearfix">
 						<div class="left-img">						
-				<a href="${base}/live/front/get.jspx?id=${l.id}" target="_blank">[#if l.liveLogo??]<img src="${l.liveLogo}"/>[#else]<img src="/${res}/bbs_forum/images/zb-zwtp.jpg" />[/#if]</a>				
+				<a href="${base}/live/front/get.html?id=${l.id}" target="_blank">[#if l.liveLogo??]<img src="${l.liveLogo}"/>[#else]<img src="/${res}/bbs_forum/images/zb-zwtp.jpg" />[/#if]</a>
 						</div>
 						<div class="rightbox">
 							<h3 class="title">
-									<a href="${base}/live/front/get.jspx?id=${l.id}" target="_blank">${l.title!}</a>
+									<a href="${base}/live/front/get.html?id=${l.id}" target="_blank">${l.title!}</a>
 							</h3>
 							<p></p>
 							<div class="bottom-info-bar">
@@ -81,7 +81,7 @@
 			  		[/#list]
 			  	</ul>
 [/@live_host_list]
-			  	[#if user??][#if user.liveHost][#else]<a href="${base}/live/host/apply.jspx" class="liver-btn">我要当主播</a>[/#if][/#if]		    	
+			  	[#if user??][#if user.liveHost][#else]<a href="${base}/live/host/apply.html" class="liver-btn">我要当主播</a>[/#if][/#if]
 			  </div>
 			</div>
 		</div>

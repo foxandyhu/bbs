@@ -47,12 +47,12 @@ public class WeiXinAuthAct {
 	private static final Logger log = LoggerFactory.getLogger(WeiXinAuthAct.class);
 	
 	//进入微信授权登录二维码页面(需要先登陆在进入扫码)
-	@RequestMapping(value = "/member/weixin_auth_enter.jspx", method = RequestMethod.GET)
+	@RequestMapping(value = "/member/weixin_auth_enter.html", method = RequestMethod.GET)
 	public String weixinAuthEnter(HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
 		FrontUtils.frontData(request, model, site);
-		String url="/member/weixin_auth.jspx";
+		String url="/member/weixin_auth.html";
 		if(StringUtils.isNotBlank(site.getContextPath())){
 			url=site.getUrlPrefixWithNoDefaultPort()+site.getContextPath()+url;
 		}else{
@@ -64,7 +64,7 @@ public class WeiXinAuthAct {
 	}
 	
 	//进入微信授权登录二维码页面(需要先登陆在进入扫码)
-	@RequestMapping(value = "/member/weixin_auth.jspx", method = RequestMethod.GET)
+	@RequestMapping(value = "/member/weixin_auth.html", method = RequestMethod.GET)
 	public String weixinAuth(HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -75,7 +75,7 @@ public class WeiXinAuthAct {
 		}
 		String codeUrl=socialInfoConfig.getWeixin().getAuth().getCodeUrl();
 		BbsConfigCharge config=configChargeMng.getDefault();
-		String redirect_uri="/member/weixin_auth_call.jspx";
+		String redirect_uri="/member/weixin_auth_call.html";
 		if(StringUtils.isNotBlank(site.getContextPath())){
 			redirect_uri=site.getUrlPrefixWithNoDefaultPort()+site.getContextPath()+redirect_uri;
 		}else{
@@ -94,7 +94,7 @@ public class WeiXinAuthAct {
 	 * 设置用户账户的微信openid,用于提现，企业打款接口
 	 * @param code
 	 */
-	@RequestMapping(value = "/member/weixin_auth_call.jspx", method = RequestMethod.GET)
+	@RequestMapping(value = "/member/weixin_auth_call.html", method = RequestMethod.GET)
 	public String weixinAuthCall(String code,HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -138,7 +138,7 @@ public class WeiXinAuthAct {
 	
 	
 	//获取微信用户openid
-	@RequestMapping(value = "/common/getOpenId.jspx", method = RequestMethod.GET)
+	@RequestMapping(value = "/common/getOpenId.html", method = RequestMethod.GET)
 	public void getWeixinOpenId(String rediretUrl,
 			HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
@@ -147,7 +147,7 @@ public class WeiXinAuthAct {
 		String codeUrl=socialInfoConfig.getWeixin().getAuth().getCodeUrl();
 		JSONObject json=new JSONObject();
 		BbsConfigCharge config=configChargeMng.getDefault();
-		String redirect_uri="/common/setOpenId.jspx";
+		String redirect_uri="/common/setOpenId.html";
 		if(StringUtils.isNotBlank(site.getContextPath())){
 			redirect_uri=site.getUrlPrefixWithNoDefaultPort()+site.getContextPath()+redirect_uri;
 		}else{
@@ -172,7 +172,7 @@ public class WeiXinAuthAct {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/common/setOpenId.jspx", method = RequestMethod.GET)
+	@RequestMapping(value = "/common/setOpenId.html", method = RequestMethod.GET)
 	public void setOpenId(String code,HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);

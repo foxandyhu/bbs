@@ -16,7 +16,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
  * @author tom
  * 
  */
-@WebFilter(filterName="processTime",urlPatterns={"*.jspx","*.htm","*.jsp"})
+@WebFilter(filterName="processTime",urlPatterns={"*.htm"})
 public class ProcessTimeFilter implements Filter {
 	protected final Logger log = LoggerFactory
 			.getLogger(ProcessTimeFilter.class);
@@ -25,9 +25,11 @@ public class ProcessTimeFilter implements Filter {
 	 */
 	public static final String START_TIME = "_start_time";
 
+	@Override
 	public void destroy() {
 	}
 
+	@Override
 	public void doFilter(ServletRequest req, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
         String s[]=WebApplicationContextUtils.getWebApplicationContext(req.getServletContext()).getBeanDefinitionNames();
@@ -39,6 +41,7 @@ public class ProcessTimeFilter implements Filter {
 		log.debug("process in {} ms: {}", time, request.getRequestURI());
 	}
 
+	@Override
 	public void init(FilterConfig arg0) throws ServletException {
 	}
 }

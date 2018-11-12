@@ -430,7 +430,7 @@ img{
    }
 .pl-content-txt{
    width:100%;
-   overflow:hdden;
+   overflow:hidden;
    }
 .pl-content-txt img{
    max-width:100%;
@@ -439,7 +439,7 @@ img{
    width:80%;
    padding:10px 0 0 50px;
    display:block;
-   overflow:hdden;
+   overflow:hidden;
    }
 .pl-content-txt a{
    text-decoration:underline;
@@ -655,7 +655,7 @@ img{
   padding:11px 0;
   }
 .member-main-list{
-  width:94%
+  width:94%;
   margin:0px auto;
   overflow:hidden;
   }

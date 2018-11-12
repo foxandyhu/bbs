@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
   <head>
-    <title>æ³¨å†Œç»“æœ - ${site.name} - powered by jeebbs</title>
+    <title>×¢²á½á¹û - ${site.name} - powered by jeebbs</title>
     <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
 	<link href="${resSys}/front.css" rel="stylesheet" type="text/css"/>
     <script src="${resSys}/jquery.js" type="text/javascript"></script>
@@ -15,31 +15,31 @@
   </script>
   </head>
   <body>
-    <!--header-->[#include "../include/é¡µå¤´.html"/]<!--/header-->
+    <!--header-->[#include "../include/Ò³Í·.html"/]<!--/header-->
     <div class="main-wrap">
     <div id="main">
     <div class="t z">
     <div class="main" style="height:380px;">
   <table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
     <tr>
-      <td height="40" align="center"><h2>ä¼šå‘˜æ³¨å†Œï¼š</h2></td>
+      <td height="40" align="center"><h2>»áÔ±×¢²á£º</h2></td>
     </tr>
     <tr>
       <td height="200">
-	  <form id="jvForm" action="forgot_password.jspx" method="post">
+	  <form id="jvForm" action="forgot_password.html" method="post">
 		<table width="800" border="0" align="center" cellpadding="0" cellspacing="5">
 			<tr>
 				<td height="300" align="center" valign="middle">
 				[#if status==0]
-				æ­å–œæ‚¨,æ³¨å†ŒæˆåŠŸï¼è¯·åˆ°é‚®ç®±è¿›è¡Œæ¿€æ´»ã€‚
+				¹§Ï²Äú,×¢²á³É¹¦£¡Çëµ½ÓÊÏä½øĞĞ¼¤»î¡£
 				[#elseif status==4]
-				é‚®ä»¶æœåŠ¡å™¨è®¾ç½®ä¸æ­£ç¡®
+				ÓÊ¼ş·şÎñÆ÷ÉèÖÃ²»ÕıÈ·
 				[#elseif status==5]
-				é‚®ä»¶æ¨¡æ¿è®¾ç½®ä¸æ­£ç¡®
+				ÓÊ¼şÄ£°åÉèÖÃ²»ÕıÈ·
 				[#elseif status==100]
-				å‘é€é‚®ä»¶å¼‚å¸¸ï¼š${message!}
+				·¢ËÍÓÊ¼şÒì³££º${message!}
 				[#else]
-				æœªçŸ¥é”™è¯¯
+				Î´Öª´íÎó
 				[/#if]
 				</td>
 			</tr>
@@ -53,7 +53,7 @@
     </div>
     </div>
 	<!--footer--> 
-	[#include "../include/é¡µè„š.html"/]
+	[#include "../include/Ò³½Å.html"/]
 	<!--footer-->
   </body>
 </html>

@@ -14,7 +14,7 @@
 $(function() {
 	$("#jvForm").validate();
 	$("input[name='name']").blur( function () {
-		$.post("v_create_path.jspx", {
+		$.post("v_create_path.html", {
 			name:$(this).val()
 		}, function(data) {
 			$("input[name='path']").val(data);
@@ -34,11 +34,11 @@ $(function() {
 	<div class="clear"></div>
 </div>
 <div class="body-box">
-<@p.form id="jvForm" action="save.jspx" labelWidth="10" class="formDefStyle">
+<@p.form id="jvForm" action="save.html" labelWidth="10" class="formDefStyle">
 <@p.td colspan="1" width="50" label="chapter.parent"><#if parent??>${parent.name}<#else><@s.m "chapter.top"/></#if></@p.td>
 <@p.text required="true" class="required" maxlength="100" size="15" label="chapter.name" name="name" colspan="2" width="100"/><@p.tr/>
 <#assign chapterPathExist><@s.m "error.chapterPathExist"/></#assign>
-<@p.text required="true"  vld="{required:true,path:true,remote:'v_check_path.jspx',messages:{remote:'${chapterPathExist}'}}"  maxlength="30" size="10" label="chapter.path" name="path" colspan="2" width="100"/><@p.tr/>
+<@p.text required="true"  vld="{required:true,path:true,remote:'v_check_path.html',messages:{remote:'${chapterPathExist}'}}"  maxlength="30" size="10" label="chapter.path" name="path" colspan="2" width="100"/><@p.tr/>
 <@p.text value="10" required="true" class="reuqired digits" maxlength="255" size="10" label="chapter.priority" name="priority" colspan="2" width="100"/><@p.tr/>
 <@p.td colspan="2">
 	<input type="hidden" name="root" value="${root!}"/>

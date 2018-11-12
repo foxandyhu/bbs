@@ -111,8 +111,8 @@
     <div class="t3">
     [#if user??]
     <span class="fr"> 	
-    <a href="${base}/topic/v_add${forum.id!}.jspx"><img id="td_post" src="/${res}/bbs_forum/img/post.png" alt="" /></a>
-    <a href="${base}/topic/v_add${forum.id!}.jspx?category=vote"><img id="td_post" src="/${res}/bbs_forum/img/fqtp.png" alt="" /></a>
+    <a href="${base}/topic/v_add${forum.id!}.html"><img id="td_post" src="/${res}/bbs_forum/img/post.png" alt="" /></a>
+    <a href="${base}/topic/v_add${forum.id!}.html?category=vote"><img id="td_post" src="/${res}/bbs_forum/img/fqtp.png" alt="" /></a>
     </span> 
     <!-- 我关注的话题 -->
  	   [#if user.subscribes?size gt 0]我关注的话题：[/#if]
@@ -282,21 +282,21 @@
           <td colspan="4" style="line-height: 23px; text-align: left">
    [#if uptop]
    <input id="checkAll" type="checkbox" onclick="checkall();" value="on" />全选
-  <input class="bta" type="button" onclick="manageTopic('${base}/topic/v_upTopInput.jspx');" value="置顶" />
+  <input class="bta" type="button" onclick="manageTopic('${base}/topic/v_upTopInput.html');" value="置顶" />
   [/#if]
   [#if manager]
-  <input class="bta" type="button" onclick="manageTopic('${base}/topic/v_primeInput.jspx');" value="精华" />
-  <input class="bta" type="button" onclick="manageTopic('${base}/topic/v_highlightInput.jspx');" value="加亮" />
-  <input class="bta" type="button" onclick="manageTopic('${base}/topic/v_lockInput.jspx');" value="锁定/打开" />
-  <input class="bta" type="button" onclick="manageTopic('${base}/topic/v_upordownInput.jspx');" value="提升/下沉" />
+  <input class="bta" type="button" onclick="manageTopic('${base}/topic/v_primeInput.html');" value="精华" />
+  <input class="bta" type="button" onclick="manageTopic('${base}/topic/v_highlightInput.html');" value="加亮" />
+  <input class="bta" type="button" onclick="manageTopic('${base}/topic/v_lockInput.html');" value="锁定/打开" />
+  <input class="bta" type="button" onclick="manageTopic('${base}/topic/v_upordownInput.html');" value="提升/下沉" />
   [/#if]
   [#if sheild]
-  <input class="bta" type="button" onclick="manageTopic('${base}/topic/v_moveInput.jspx');" value="移动" />
-  <input class="bta" type="button" onclick="manageTopic('${base}/topic/v_shieldInput.jspx');" value="屏蔽" />
-  <input class="bta" type="button" onclick="manageTopic('${base}/topic/v_shieldInput.jspx');" value="解除屏蔽" />
+  <input class="bta" type="button" onclick="manageTopic('${base}/topic/v_moveInput.html');" value="移动" />
+  <input class="bta" type="button" onclick="manageTopic('${base}/topic/v_shieldInput.html');" value="屏蔽" />
+  <input class="bta" type="button" onclick="manageTopic('${base}/topic/v_shieldInput.html');" value="解除屏蔽" />
   [/#if]
   [#if moderators]
-  <input class="bta" type="button" onclick="manageTopic('${base}/topic/o_delete.jspx');" value="删除" />
+  <input class="bta" type="button" onclick="manageTopic('${base}/topic/o_delete.html');" value="删除" />
   [/#if]          </td>
 		</tr>		
 		[/#if]
@@ -309,7 +309,7 @@
       <tbody>
         <tr>
           <td height="40">
-          <form action="${base}/topic/searchDayTopic.jspx">
+          <form action="${base}/topic/searchDayTopic.html">
             <input type="hidden" name="forumId" value="${forum.id}"/>
             <select name="day">
             <option value="1">1天内的主题</option>
@@ -331,8 +331,8 @@
     <div class="t3">
 	[#if user??]
 	<span class="fr">
-		<a href="${base}/topic/v_add${forum.id!}.jspx"><img id="td_post1" src="/${res}/bbs_forum/img/post.png" alt="" /></a>
-		<a href="${base}/topic/v_add${forum.id!}.jspx?category=vote"><img id="td_post" src="/${res}/bbs_forum/img/fqtp.png" alt="" /></a>
+		<a href="${base}/topic/v_add${forum.id!}.html"><img id="td_post1" src="/${res}/bbs_forum/img/post.png" alt="" /></a>
+		<a href="${base}/topic/v_add${forum.id!}.html?category=vote"><img id="td_post" src="/${res}/bbs_forum/img/fqtp.png" alt="" /></a>
 	</span>
 	[/#if]
 	<span class="fl">[@topic_page forumId=forum.id findType=type topLevel='0' count='15' tpl='0'][#include "../tag/forumtopic.html"/] [/@topic_page]</span>

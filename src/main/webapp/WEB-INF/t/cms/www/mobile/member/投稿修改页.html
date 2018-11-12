@@ -38,7 +38,7 @@ $(function() {
 <p>欢迎您：${user.username}</p>
 [#include "会员中心页_导航.html"/]
 [#if channelList?size gt 0]
-<form id="jvForm" action="contribute_update.jspx" method="post">
+<form id="jvForm" action="contribute_update.html" method="post">
 <p>标题：<input type="text" name="title" value="${content.title!?html}" maxlength="150" class="required"/></p>
 <p>TAGS：<input type="text" name="tagStr" value="${content.tagStr!?html}" maxlength="255"/> 用,分割</p>
 <p>作者：<input type="text" name="author" value="${content.author!?html}" maxlength="100"/></p>
@@ -65,20 +65,20 @@ txt.Config["ImageBrowser"] = false ;
 txt.Config["FlashBrowser"] = false ;
 txt.Config["MediaBrowser"] = false ;
 
-txt.Config["LinkBrowserURL"] = "${filemanager}?Connector=${base}/fck/connector.jspx" ;
-txt.Config["ImageBrowserURL"] = "${filemanager}?Type=Image&Connector=${base}/fck/connector.jspx" ;
-txt.Config["FlashBrowserURL"] = "${filemanager}?Type=Flash&Connector=${base}/fck/connector.jspx" ;
-txt.Config["MediaBrowserURL"] = "${filemanager}?Type=Media&Connector=${base}/fck/connector.jspx" ;
+txt.Config["LinkBrowserURL"] = "${filemanager}?Connector=${base}/fck/connector.html" ;
+txt.Config["ImageBrowserURL"] = "${filemanager}?Type=Image&Connector=${base}/fck/connector.html" ;
+txt.Config["FlashBrowserURL"] = "${filemanager}?Type=Flash&Connector=${base}/fck/connector.html" ;
+txt.Config["MediaBrowserURL"] = "${filemanager}?Type=Media&Connector=${base}/fck/connector.html" ;
 
 txt.Config["LinkUpload"] = true ;
 txt.Config["ImageUpload"] = true ;
 txt.Config["FlashUpload"] = true ;
 txt.Config["MediaUpload"] = true ;
 
-txt.Config["LinkUploadURL"] = "${base}/fck/upload.jspx" ;
-txt.Config["ImageUploadURL"] = "${base}/fck/upload.jspx?Type=Image" ;
-txt.Config["FlashUploadURL"] = "${base}/fck/upload.jspx?Type=Flash" ;
-txt.Config["MediaUploadURL"] = "${base}/fck/upload.jspx?Type=Media" ;
+txt.Config["LinkUploadURL"] = "${base}/fck/upload.html" ;
+txt.Config["ImageUploadURL"] = "${base}/fck/upload.html?Type=Image" ;
+txt.Config["FlashUploadURL"] = "${base}/fck/upload.html?Type=Flash" ;
+txt.Config["MediaUploadURL"] = "${base}/fck/upload.html?Type=Media" ;
 
 txt.ToolbarSet="My";
 txt.Height=200;
@@ -87,7 +87,7 @@ txt.Create();
 </script>
 </p>
 <p>
-	<input type="hidden" name="nextUrl" value="contribute_list.jspx"/>
+	<input type="hidden" name="nextUrl" value="contribute_list.html"/>
 	<input type="hidden" name="id" value="${content.id}"/>
 	<input type="submit" value="提交"/> <input type="reset" value="重置"/>
 </p>

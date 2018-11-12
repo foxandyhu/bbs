@@ -30,7 +30,7 @@
 	});
 	function setCreditOutValue() {
 		if($("#creditIn").val()!=""&&$("#creditIn").val()!=0&&$("#creditOutType").val()!=$("#creditInType").val()){
-			$.post('${base}/member/getCreditOutValue.jspx', 
+			$.post('${base}/member/getCreditOutValue.html',
 			{
 				creditIn:$("#creditIn").val(),
 				creditInType:$("#creditInType").val(),
@@ -51,7 +51,7 @@
 		}else if($("#password").val()==""){
 			alert("您需要输入密码");
 		}else{
-			$.post('${base}/member/creditExchange.jspx', 
+			$.post('${base}/member/creditExchange.html',
 					{
 						creditIn:$("#creditIn").val(),
 						creditOut:$("#creditOut").val(),
@@ -94,7 +94,7 @@
       </tbody>
     </table>
     </div>
-    <form id="creator" action="${base}/member/update.jspx" method="post" enctype="multipart/form-data" onSubmit="return procheck(this)" name="creator">
+    <form id="creator" action="${base}/member/update.html" method="post" enctype="multipart/form-data" onSubmit="return procheck(this)" name="creator">
       <div class="set-tab-box">
       <div class="dis" id="tbc_11">
       <table class="set-table2" cellspacing="0" cellpadding="0" width="100%" border="0">

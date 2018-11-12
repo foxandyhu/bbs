@@ -56,14 +56,14 @@
      		${magic.name!}&nbsp;
      		${magic.description!}&nbsp;
      		售价：${magic.price!}&nbsp;[#if magic.credit==1]积分[#else]威望[/#if]
-	         [#if magic.num>0]<a href="${base}/magic/getbuymagicpage.jspx?mid=${magic.identifier}"  id="magica_${magic.identifier}">购买</a>[#else]此道具缺货[/#if]
+	         [#if magic.num>0]<a href="${base}/magic/getbuymagicpage.html?mid=${magic.identifier}"  id="magica_${magic.identifier}">购买</a>[#else]此道具缺货[/#if]
      	</td>
      	[#else]
      	<td>
      		${magic.name!}&nbsp;
      		${magic.description!}&nbsp;
      		售价：${magic.price!}&nbsp;[#if magic.credit==1]积分[#else]威望[/#if]
-	        [#if magic.num>0]<a href="${base}/magic/getbuymagicpage.jspx?mid=${magic.identifier}"  id="magica_${magic.identifier}">购买</a>[#else]此道具缺货[/#if]
+	        [#if magic.num>0]<a href="${base}/magic/getbuymagicpage.html?mid=${magic.identifier}"  id="magica_${magic.identifier}">购买</a>[#else]此道具缺货[/#if]
      	</td>
      	</tr>
      	[/#if]
@@ -78,7 +78,7 @@ var strs=new Array();
 $("a[id^='magica']").each(function(){
 	id=$(this).attr("id");
 	strs=id.split("_");
-		$(this).wBox({title: "购买道具",requestType:"iframe",iframeWH:{width:400,height:200},target:"${base}/magic/getbuymagicpage.jspx?mid="+strs[1]});
+		$(this).wBox({title: "购买道具",requestType:"iframe",iframeWH:{width:400,height:200},target:"${base}/magic/getbuymagicpage.html?mid="+strs[1]});
 	});
 </script>
     </div>

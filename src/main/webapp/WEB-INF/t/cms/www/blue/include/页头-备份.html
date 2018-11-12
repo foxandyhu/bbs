@@ -6,7 +6,7 @@
 		//创建发帖编辑器
 		new PnEditor();
        [#if !user??]
-			$('#loadbox').load('${base}/login.jspx');
+			$('#loadbox').load('${base}/login.html');
        [/#if]
 	   topicTypeTpl= $.format($("#topicTypeTpl").val());
 	})
@@ -35,7 +35,7 @@
 	}
 	function createTopicTypeTag(){
 		$("#topicTypeAppend").html("");
-		$.post("${base}/topic/o_generateTags.jspx", 
+		$.post("${base}/topic/o_generateTags.html",
 			{title:$("#topicTypeText").val()},
 			function(data){
 				var ids=data.ids;
@@ -121,9 +121,9 @@
                             </li>
                             <li>
                                 [#if returnUrl?? && returnUrl?length gt 0]
-                                <a href="${base}/logout.jspx?returnUrl=${returnUrl!}">退出登录</a>
+                                <a href="${base}/logout.html?returnUrl=${returnUrl!}">退出登录</a>
                                 [#else]
-                                <a href="${base}/logout.jspx?returnUrl=/">退出登录</a>
+                                <a href="${base}/logout.html?returnUrl=/">退出登录</a>
                                 [/#if]
                             </li>
                         </ul>
@@ -148,8 +148,8 @@
         <a href="#" class="iconfont icon-Delete pull-right" title="关闭"  onclick="closeModel()"></a>
     </div>
     <div class="login-tab clearfix">
-        <span class="pull-left active" onclick="getloginTab(this,'${base}/login.jspx')">登录</span>
-		<span class="pull-right"  onclick="getloginTab(this,'${base}/register.jspx')">注册</span>
+        <span class="pull-left active" onclick="getloginTab(this,'${base}/login.html')">登录</span>
+		<span class="pull-right"  onclick="getloginTab(this,'${base}/register.html')">注册</span>
     </div>
     <div id="loadbox"></div>
 </div>
@@ -161,7 +161,7 @@
     </div>
     <!--发帖内容-->
      <div class="edit-topic-body">
-		<form action="${base}/topic/o_save.jspx" method="post" enctype="multipart/form-data" >
+		<form action="${base}/topic/o_save.html" method="post" enctype="multipart/form-data" >
 		[#if forum??]
 		<input name="forumId" value="${forum.id}" type="hidden"/>
 		[#else]

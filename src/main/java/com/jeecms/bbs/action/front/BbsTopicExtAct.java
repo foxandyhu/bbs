@@ -51,7 +51,7 @@ public class BbsTopicExtAct {
 	 * @param userId 用户Id
 	 * @param operate 操作类型 0点赞 1收藏 2关注  3取消点赞 4取消收藏 5取消关注 
 	 */
-	@RequestMapping(value = "/topic/operate.jspx")
+	@RequestMapping(value = "/topic/operate.html")
 	public void operate(Integer topicId, Integer operate,
 			HttpServletRequest request, HttpServletResponse response,
 			ModelMap model) throws JSONException {
@@ -81,7 +81,7 @@ public class BbsTopicExtAct {
 		ResponseUtils.renderJson(response, object.toString());
 	}
 
-	@RequestMapping(value = "/topic/collect_exist.jspx")
+	@RequestMapping(value = "/topic/collect_exist.html")
 	public void collect_exist(Integer topicId, HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) throws JSONException {
 		CmsSite site = CmsUtils.getSite(request);
@@ -104,7 +104,7 @@ public class BbsTopicExtAct {
 		ResponseUtils.renderJson(response, object.toString());
 	}
 	
-	@RequestMapping(value = "/topic/postListByAuthor*.jspx")
+	@RequestMapping(value = "/topic/postListByAuthor*.html")
 	public String listTopicPostByAuthor(Integer topicId,
 			Integer createrId, HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) throws JSONException {
@@ -120,7 +120,7 @@ public class BbsTopicExtAct {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/topic/setOrderBy.jspx")
+	@RequestMapping(value = "/topic/setOrderBy.html")
 	public String setOrderBy(Integer topicId,Integer orderBy,
 			HttpServletRequest request,
 			HttpServletResponse response, ModelMap model){
@@ -147,7 +147,7 @@ public class BbsTopicExtAct {
 	 * @param topicLevel
 	 * @param pageNo
 	 */
-	@RequestMapping(value = "/topic/getListMore*.jspx")
+	@RequestMapping(value = "/topic/getListMore*.html")
 	public String getListMoreTopic(Integer forumId,Integer topicLevel,
 			Integer topicTypeId,Integer orderBy,Integer pageNo,
 			HttpServletRequest request,
@@ -168,7 +168,7 @@ public class BbsTopicExtAct {
 				TPLDIR_TOPIC, TPL_TOPIC_PAGE);
 	}
 	
-	@RequestMapping(value = "/topic/getPostPage.jspx")
+	@RequestMapping(value = "/topic/getPostPage.html")
 	public String getPostPageByTopic(Integer topicId,Integer orderBy,
 			Integer pageNo, HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) throws JSONException {
@@ -193,7 +193,7 @@ public class BbsTopicExtAct {
 				TPLDIR_TOPIC, TPL_POST_PAGE);
 	}
 	
-	@RequestMapping(value = "/topic/getPostList.jspx")
+	@RequestMapping(value = "/topic/getPostList.html")
 	public String getPostListByTopic(Integer topicId,
 			Integer createrId,Integer option,
 			Integer pageNo, HttpServletRequest request,
@@ -258,7 +258,7 @@ public class BbsTopicExtAct {
 					boolean hasBuy=orderMng.hasBuyTopic(user.getId(), topic.getId());
 					if(!hasBuy){
 						try {
-							String rediretUrl="/topic/buy.jspx?topicId="+topic.getId();
+							String rediretUrl="/topic/buy.html?topicId="+topic.getId();
 							if(StringUtils.isNotBlank(site.getContextPath())){
 								rediretUrl=site.getContextPath()+rediretUrl;
 							}

@@ -38,7 +38,7 @@ content="";
 var keyword="${keywords!}";
 function getContent(){
   if(keyword!=null&&keyword!=""){
-     $.post("${base}/topic/v_list_json.jspx", {
+     $.post("${base}/topic/v_list_json.html", {
                 keywords:keyword,
 		first:first,
 		count:count

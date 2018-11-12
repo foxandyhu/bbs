@@ -29,8 +29,8 @@
     <div class="t3">
     [#if user????&&user.id!=live.user.id]
 	<div>
-		<a href="${base}/live/front/buy.jspx?liveId=${live.id}&self=1">购买</a>
-		<a href="${base}/live/front/buy.jspx?liveId=${live.id}&self=2">赠送</a>
+		<a href="${base}/live/front/buy.html?liveId=${live.id}&self=1">购买</a>
+		<a href="${base}/live/front/buy.html?liveId=${live.id}&self=2">赠送</a>
 	</div> 
 	[/#if]
     </div>
@@ -45,7 +45,7 @@
 	开始时间 :${live.beginTime!?string("yyyy-MM-dd HH:mm")}
 	结束时间 :${live.endTime!?string("yyyy-MM-dd HH:mm")}<br/>
 	[#if live.hasOver]
-	<a href="${base}/live/message/list.jspx?liveId=${live.id}">查看历史消息</a>
+	<a href="${base}/live/message/list.html?liveId=${live.id}">查看历史消息</a>
 	[/#if]
 	<!--live_End-->
     <div class="c"></div>

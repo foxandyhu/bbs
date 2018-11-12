@@ -20,7 +20,7 @@
 	  	 <div id="pullDown">
 			<span class="pullDownIcon"></span>
 		 </div>
-  [#if user??]<div class="fatie"><a href="${base}/topic/v_add${forum.id!}.jspx" data-ajax="false"><img src="/${res}/bbs_forum/img/fatie.png"></a></div>[/#if]
+  [#if user??]<div class="fatie"><a href="${base}/topic/v_add${forum.id!}.html" data-ajax="false"><img src="/${res}/bbs_forum/img/fatie.png"></a></div>[/#if]
   [#include "../include/页头.html"/]
   <div class="zhuti">
    <div class="zhuti-title">
@@ -49,7 +49,7 @@ var first=0;
 var count=10;
 content="";
 function getContent(){
-             $.get("${base}/topic/v_list_json.jspx", {
+             $.get("${base}/topic/v_list_json.html", {
                 forumId:"${forum.id}",
 		first:first,
 		count:count

@@ -32,14 +32,14 @@ $(function() {
 });
 function getRate(){
 	var num=$("#limitUserNum").val();
-	$.post("getLiveRate.jspx", {
+	$.post("getLiveRate.html", {
 		userNum:num
 	}, function(data) {
 		$("#commissionRate").html(data.rate);
 	}, "json");
 }
 function sendToCheck(){
-	$("#jvForm").prop("action","updateToApply.jspx");
+	$("#jvForm").prop("action","updateToApply.html");
 	$("#jvForm").submit();
 }
 </script>
@@ -58,7 +58,7 @@ function sendToCheck(){
 	<div class="clear"></div>
 </div>
 <div class="body-box">
-<@p.form id="jvForm" action="update.jspx" labelWidth="10" class="formDefStyle">
+<@p.form id="jvForm" action="update.html" labelWidth="10" class="formDefStyle">
 <@p.td colspan="2" width="100" label="live.chapter">
 <select id="chapterId" name="chapterId" style="float:left;">
 <#if !chapter??>

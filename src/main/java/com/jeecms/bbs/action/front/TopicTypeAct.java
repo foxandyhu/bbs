@@ -112,7 +112,7 @@ public class TopicTypeAct {
 	 * @param typeId 分类ID
 	 * @param operate 1订阅 0取消订阅
 	 */
-	@RequestMapping(value = "/topicType/subscribe.jspx")
+	@RequestMapping(value = "/topicType/subscribe.html")
 	public void topicTypeSubscribe(
 			Integer typeId,Integer operate,HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {

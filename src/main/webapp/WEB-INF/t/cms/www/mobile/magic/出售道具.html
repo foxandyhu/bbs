@@ -22,7 +22,7 @@ function useMagic(){
 				var name=$("#username").val();
 				if(num>0){
 				if((mid=="money"||mid=="checkonline"||mid=="showip")&&operator==1){
-				$.post('${base}/magic/usemagic.jspx', {
+				$.post('${base}/magic/usemagic.html', {
 					'mid':mid,
 					'name':name
 				}, function(data) {
@@ -42,7 +42,7 @@ function useMagic(){
 					if(!confirm("确认该操作？")) {
 						return;
 					}
-					$.post('${base}/magic/sellmagic.jspx', {
+					$.post('${base}/magic/sellmagic.html', {
 					'mid':mid,
 					'operator':operator,
 					'num':num

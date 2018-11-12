@@ -13,7 +13,7 @@ var adsLen = 0;
 [#list adList as ad]
 [#if ad.category=="image"]
 [#assign html]
-<a href="${(ad.attr.image_link)!}" target="${ad.attr.image_target!}" title="${(ad.attr.image_title)!}" onclick="$.get('${base}/ad_click.jspx?id=${ad.id}');">
+<a href="${(ad.attr.image_link)!}" target="${ad.attr.image_target!}" title="${(ad.attr.image_title)!}" onclick="$.get('${base}/ad_click.html?id=${ad.id}');">
 <img src="${ad.attr.image_url}" border="0"[#if (ad.attr.image_width)??] width="${ad.attr.image_width}"[/#if][#if (ad.attr.image_height)??] height="${ad.attr.image_height}"[/#if]/>
 </a>
 [/#assign]
@@ -34,7 +34,7 @@ ads[adsLen++] = new Ad(${ad.id},"${html?js_string}",null,
 
 [#elseif ad.category=="text"]
 [#assign html]
-<a href="${(ad.attr.text_link)!}" target="${(ad.attr.text_target)!}" onclick="$.get('${base}/ad_click.jspx?id=${ad.id}');">
+<a href="${(ad.attr.text_link)!}" target="${(ad.attr.text_target)!}" onclick="$.get('${base}/ad_click.html?id=${ad.id}');">
 	<span style="[#if (ad.attr.text_color)??]color:${ad.attr.text_color};[/#if][#if (ad.attr.text_font)??]font-size:${ad.attr.text_font};[/#if]">${(ad.attr.text_title)!}</span>
 </a>
 [/#assign]
@@ -70,7 +70,7 @@ if(show.sHtml) {
 } else {
 	show.fCode();
 }
-$.get("${base}/ad_display.jspx?id="+show.iId);
+$.get("${base}/ad_display.html?id="+show.iId);
 })();
 [#else]
 广告版位不存在

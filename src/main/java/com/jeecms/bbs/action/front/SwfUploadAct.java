@@ -24,7 +24,7 @@ public class SwfUploadAct extends CommonUpload {
 	 */
 	public static final String ERROR = "error";
 
-	@RequestMapping(value = "/member/o_swfPicsUpload.jspx", method = RequestMethod.POST)
+	@RequestMapping(value = "/member/o_swfPicsUpload.html", method = RequestMethod.POST)
 		public void swfPicsUpload(
 			String root,
 			Integer uploadNum,
@@ -34,7 +34,7 @@ public class SwfUploadAct extends CommonUpload {
 		super.swfPicsUpload(root, uploadNum, file, request, response, model);
 	}
 	
-	@RequestMapping(value = "/member/o_swfAttachsUpload.jspx", method = RequestMethod.POST)
+	@RequestMapping(value = "/member/o_swfAttachsUpload.html", method = RequestMethod.POST)
 	public void swfAttachsUpload(
 			String root,
 			Integer uploadNum,

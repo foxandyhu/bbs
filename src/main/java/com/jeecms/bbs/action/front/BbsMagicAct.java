@@ -182,7 +182,7 @@ public class BbsMagicAct {
 		return FrontUtils.getTplPath(request, site, TPLDIR_MAGIC, TPL_GIVE_LOG);
 	}
 
-	@RequestMapping("/magic/getsellmagicpage.jspx")
+	@RequestMapping("/magic/getsellmagicpage.html")
 	public String getsellmagicpage(String mid, int operator, Integer pid, HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		BbsUser user = CmsUtils.getUser(request);
@@ -243,7 +243,7 @@ public class BbsMagicAct {
 		return FrontUtils.getTplPath(request, site, TPLDIR_MAGIC, TPL_MAGIC_SELL);
 	}
 
-	@RequestMapping("/magic/getbuymagicpage.jspx")
+	@RequestMapping("/magic/getbuymagicpage.html")
 	public String getbuymagicpage(String mid, HttpServletRequest request, HttpServletResponse response,
 			ModelMap model) {
 		BbsUser user = CmsUtils.getUser(request);
@@ -276,7 +276,7 @@ public class BbsMagicAct {
 		return FrontUtils.getTplPath(request, site, TPLDIR_MAGIC, TPL_MAGIC_BUY);
 	}
 
-	@RequestMapping("/magic/buymagic.jspx")
+	@RequestMapping("/magic/buymagic.html")
 	public void buymagic(String mid, int buynum, HttpServletRequest request, HttpServletResponse response) throws JSONException {
 		BbsUser user = CmsUtils.getUser(request);
 		CmsSite site = CmsUtils.getSite(request);
@@ -342,7 +342,7 @@ public class BbsMagicAct {
 		ResponseUtils.renderJson(response, object.toString());
 	}
 
-	@RequestMapping("/magic/sellmagic.jspx")
+	@RequestMapping("/magic/sellmagic.html")
 	public void sellmagic(String mid, int operator, int num,
 			HttpServletRequest request, HttpServletResponse response,
 			ModelMap model) {
@@ -430,7 +430,7 @@ public class BbsMagicAct {
 		ResponseUtils.renderJson(response, object.toString());
 	}
 
-	@RequestMapping("/magic/getmagicpage.jspx")
+	@RequestMapping("/magic/getmagicpage.html")
 	public String getmagicpage(Integer pid, Integer ppid, String mid,
 			String username, HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
@@ -513,7 +513,7 @@ public class BbsMagicAct {
 	 * @param model
 	 *            使用道具
 	 */
-	@RequestMapping("/magic/usemagic.jspx")
+	@RequestMapping("/magic/usemagic.html")
 	public void usemagic(Integer pid, String mid, String color,
 			Integer userid, String name, Integer ppid,
 			HttpServletRequest request, HttpServletResponse response, ModelMap model) {

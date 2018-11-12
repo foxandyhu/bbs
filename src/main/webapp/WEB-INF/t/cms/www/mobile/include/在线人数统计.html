@@ -16,7 +16,7 @@
 		$("#visitortotal").html(visitorTotal);
 		$("#usertotal").html(total);
 	}else{
-		 $.post("${base}/session/statistic.jspx", {
+		 $.post("${base}/session/statistic.html", {
 			 	member:true
 			}, function(data) {
 				$("#membertotal").html(data.membtertotal);

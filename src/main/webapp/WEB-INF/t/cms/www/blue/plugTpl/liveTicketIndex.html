@@ -30,7 +30,7 @@
 	<!--liveTicket列表_Begin-->	
 		[#list tag_pagination.list as l]
 		[#if l.dataType==3]
-			[#if liveMap??]<a href="${base}/live/front/get.jspx?id=${l.dataId!}" title="${liveMap[l.dataId?string].title?html}" target="_blank">[@text_cut s=liveMap[l.dataId?string].title?html len=15 append="..."/]</a>[/#if]
+			[#if liveMap??]<a href="${base}/live/front/get.html?id=${l.dataId!}" title="${liveMap[l.dataId?string].title?html}" target="_blank">[@text_cut s=liveMap[l.dataId?string].title?html len=15 append="..."/]</a>[/#if]
 		[/#if]
 			订单编号：${l.orderNumber!}
 			开始时间 ${l.buyTime!?string("yyyy-MM-dd HH:mm:ss")}
@@ -38,7 +38,7 @@
 			门票数：${l.liveUserNum!}
 			以获取门票数：${l.liveUsedNum!}
 			剩余票数:${l.liveUserNum-l.liveUsedNum}
-			<a href="${base}/live/ticket/userlist.jspx?orderId=${l.id}" target="_blank">分配情况</a>
+			<a href="${base}/live/ticket/userlist.html?orderId=${l.id}" target="_blank">分配情况</a>
 			<br/>
 		[/#list]
 		[#include "../tag/topic.html"/] 

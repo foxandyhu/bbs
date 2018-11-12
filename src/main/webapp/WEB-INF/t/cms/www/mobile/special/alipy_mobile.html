@@ -11,7 +11,7 @@ $(function() {
 });
 function queryStatus() {
 	$.ajax({
-        url: "${base}/order/orderQuery.jspx?orderNumber=${orderNumber!}",
+        url: "${base}/order/orderQuery.html?orderNumber=${orderNumber!}",
         type: "POST",
         dataType:"json",
         data: "",
@@ -36,16 +36,16 @@ function queryStatus() {
     <#if topic??>
     	<!-- 主题购买或打赏 -->
 	    <#if type??&&type==2>
-	    	<iframe src="${base}/topic/alipayInMobile.jspx?topicId=${topic.id!}&orderNumber=${orderNumber!}&rewardAmount=${rewardAmount!}"  width="0px" height="0px" frameborder="0" scrolling="no"></iframe>
+	    	<iframe src="${base}/topic/alipayInMobile.html?topicId=${topic.id!}&orderNumber=${orderNumber!}&rewardAmount=${rewardAmount!}"  width="0px" height="0px" frameborder="0" scrolling="no"></iframe>
 		 <#else>
-		    <iframe src="${base}/topic/alipayInMobile.jspx?topicId=${topic.id!}&orderNumber=${orderNumber!}"  width="0px" height="0px" frameborder="0" scrolling="no"></iframe>
+		    <iframe src="${base}/topic/alipayInMobile.html?topicId=${topic.id!}&orderNumber=${orderNumber!}"  width="0px" height="0px" frameborder="0" scrolling="no"></iframe>
 		 </#if>
 	 <#elseif magic??>
-	 	<iframe src="${base}/magic/alipayInMobile.jspx?mid=${magic.identifier!}&buyNum=${buyNum!}&orderNumber=${orderNumber!}"  width="0px" height="0px" frameborder="0" scrolling="no"></iframe>
+	 	<iframe src="${base}/magic/alipayInMobile.html?mid=${magic.identifier!}&buyNum=${buyNum!}&orderNumber=${orderNumber!}"  width="0px" height="0px" frameborder="0" scrolling="no"></iframe>
 	 <#elseif gift??>
-	 	<iframe src="${base}/gift/alipayInMobile.jspx?giftId=${gift.id!}&buyNum=${buyNum!}&orderNumber=${orderNumber!}"  width="0px" height="0px" frameborder="0" scrolling="no"></iframe>
+	 	<iframe src="${base}/gift/alipayInMobile.html?giftId=${gift.id!}&buyNum=${buyNum!}&orderNumber=${orderNumber!}"  width="0px" height="0px" frameborder="0" scrolling="no"></iframe>
 	 <#elseif ad??>
-	 	<iframe src="${base}/ad/alipayInMobile.jspx?amount=${amount!}&orderNumber=${orderNumber!}"  width="0px" height="0px" frameborder="0" scrolling="no"></iframe>
+	 	<iframe src="${base}/ad/alipayInMobile.html?amount=${amount!}&orderNumber=${orderNumber!}"  width="0px" height="0px" frameborder="0" scrolling="no"></iframe>
 	 </#if>
 	</div>
 </div>

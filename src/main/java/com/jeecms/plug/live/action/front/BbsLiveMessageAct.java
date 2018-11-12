@@ -42,7 +42,7 @@ public class BbsLiveMessageAct extends AbstractBbsLive{
 	public static final String TPL_LIVE_MESSAGE_LIST = "tpl.liveMessageList";
 	
 	@ResponseBody
-	@RequestMapping(value = "/live/message/sayToAll.jspx", method = RequestMethod.POST)
+	@RequestMapping(value = "/live/message/sayToAll.html", method = RequestMethod.POST)
 	public void sayToAll(String text,Integer liveId,HttpServletRequest request) throws IOException {
 		BbsUser user=CmsUtils.getUser(request);
 		BbsLive live=null;
@@ -80,7 +80,7 @@ public class BbsLiveMessageAct extends AbstractBbsLive{
 	/**
 	 * live消息列表
 	 */
-	@RequestMapping(value = "/live/message/list*.jspx")
+	@RequestMapping(value = "/live/message/list*.html")
 	public String liveMessages(Integer liveId,HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);

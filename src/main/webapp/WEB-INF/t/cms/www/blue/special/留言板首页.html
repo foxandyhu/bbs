@@ -24,7 +24,7 @@
 </ul>
 [/@cms_guestbook_page]
 
-<form id="guestbookForm" action="${base}/guestbook.jspx" method="post">
+<form id="guestbookForm" action="${base}/guestbook.html" method="post">
 <p>验证码：<input type="text" name="captcha" class="required" maxlength="20"/> <img id="guestbookCaptcha" src="${base}/captcha.svl" onclick="this.src='${base}/captcha.svl?d='+new Date()"/></p>
 <p>类别：
 	<select name="ctgId">

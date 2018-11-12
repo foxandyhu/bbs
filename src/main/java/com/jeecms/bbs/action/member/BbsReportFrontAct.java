@@ -30,7 +30,7 @@ public class BbsReportFrontAct {
 	public static final String TPL_REPORT_PAGE = "tpl.reportpage";
 	public static final String ANCHOR = "#pid";
 
-	@RequestMapping("/getreportpage.jspx")
+	@RequestMapping("/getreportpage.html")
 	public String getbuymagicpage(String url,String pid, HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		BbsUser user = CmsUtils.getUser(request);

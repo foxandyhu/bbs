@@ -84,7 +84,7 @@
 									</div>				
 									</div>
 							  [#if user.moderator||user.id==post.creater.id]
-								<a href="${base}/post/v_edit${post.id!}.jspx" class="hover-blue" title="编辑">
+								<a href="${base}/post/v_edit${post.id!}.html" class="hover-blue" title="编辑">
 									<span>编辑</span>
 								</a>
 							  [/#if]
@@ -93,11 +93,11 @@
 								</a>
 							  [#if user.moderator]
 								  [#if !post.shield]
-								  <a href="${base}/post/v_shield${post.id!}_${-1}.jspx" class="hover-blue" title="屏蔽">
+								  <a href="${base}/post/v_shield${post.id!}_${-1}.html" class="hover-blue" title="屏蔽">
 									<span>屏蔽</span>
 								  </a>
 								  [#else]
-								   <a href="${base}/post/v_shield${post.id!}_${0}.jspx" class="hover-blue" title="取消屏蔽">
+								   <a href="${base}/post/v_shield${post.id!}_${0}.html" class="hover-blue" title="取消屏蔽">
 									<span>取消屏蔽</span>
 								  </a>
 								  [/#if]
@@ -108,12 +108,12 @@
 								  [/#if]
 							  [/#if]
 							 [#if user.moderator]
-									<a href="${base}/post/o_delete.jspx?ids=${post.id!}" class="hover-blue" title="删除">
+									<a href="${base}/post/o_delete.html?ids=${post.id!}" class="hover-blue" title="删除">
 										<span>删除</span>
 									</a>
 									[#elseif user.id==post.creater.id]
 										[#if post.replys == 0]
-											<a href="${base}/post/o_delete.jspx?ids=${post.id!}" class="hover-blue" title="删除">
+											<a href="${base}/post/o_delete.html?ids=${post.id!}" class="hover-blue" title="删除">
 												<span>删除</span>
 											</a>
 										[/#if]
@@ -153,11 +153,11 @@ $("a[id^='magica']").each(function(){
 		id=$(this).attr('id');
 		strs = id.split("_");
 		if(strs.length>=5){
-			$("#useMagic").load("${base}/magic/getmagicpage.jspx?pid="+strs[1]+"&ppid="+strs[2]+"&mid="+strs[3]+"&username="+strs[4],function (){
+			$("#useMagic").load("${base}/magic/getmagicpage.html?pid="+strs[1]+"&ppid="+strs[2]+"&mid="+strs[3]+"&username="+strs[4],function (){
 				showModel('#useMagic');
 			});
 		}else{
-			$("#useMagic").load("${base}/magic/getmagicpage.jspx?pid="+strs[1]+"&ppid="+strs[2]+"&mid="+strs[3],function (){
+			$("#useMagic").load("${base}/magic/getmagicpage.html?pid="+strs[1]+"&ppid="+strs[2]+"&mid="+strs[3],function (){
 				showModel('#useMagic');
 			})
 		}

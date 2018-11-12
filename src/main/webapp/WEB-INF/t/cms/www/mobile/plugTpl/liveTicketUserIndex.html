@@ -40,11 +40,11 @@
     <div id="breadCrumb"><img align="absMiddle" src="/${res}/bbs_forum/img/home.gif"/> <a href="${base}/">${site.name}</a> &raquo;  &raquo; </div>
     <div class="c"></div>
    		[#assign usernameExist][@s.m "error.usernameNotExist"/][/#assign]
-		<form id="jvForm" action="assign.jspx">
+		<form id="jvForm" action="assign.html">
 			[#if order??]
 			<input name="orderId" value="${order.id}" type="hidden"/>
 			<span>剩余票数:${order.liveUserNum-order.liveUsedNum}</span>
-			<input name="username" id="username" required="true" maxlength="100" vld="{required:true,username:true,remote:'${base}/username_exist.jspx',messages:{remote:'${usernameExist}'}}"/>
+			<input name="username" id="username" required="true" maxlength="100" vld="{required:true,username:true,remote:'${base}/username_exist.html',messages:{remote:'${usernameExist}'}}"/>
 			<input type="submit" onclick="assignTicket()" [#if order.liveUserNum-order.liveUsedNum<=0]disabled="disabled"[/#if] value="分配用户"/>
 			[/#if]
 		</form><br/>

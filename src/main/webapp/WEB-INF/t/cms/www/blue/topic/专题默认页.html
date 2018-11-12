@@ -147,7 +147,7 @@ function checkContent(){
 									[#if createrId??]
 									<a href="${topic.url}">显示全部</a>
 									[#else]
-									<a href="${base}/topic/postListByAuthor.jspx?topicId=${topic.id}&createrId=${topic.firstPost.creater.id}">只看该作者</a>
+									<a href="${base}/topic/postListByAuthor.html?topicId=${topic.id}&createrId=${topic.firstPost.creater.id}">只看该作者</a>
 									[/#if]
 								</p>
 							</div>
@@ -228,11 +228,11 @@ function checkContent(){
 							<div class="theme-operation">
 								[#if user??]
 								  [#if user.moderator||user.id==topic.creater.id]
-									<a href="${base}/post/v_edit${topic.firstPost.id!}.jspx" class="hover-blue" title="编辑">
+									<a href="${base}/post/v_edit${topic.firstPost.id!}.html" class="hover-blue" title="编辑">
 										<span>编辑</span>
 									</a>
 								  [/#if]
-									<a href="${base}/post/v_quote${topic.firstPost.id!}.jspx" class="hover-blue" title="引用">
+									<a href="${base}/post/v_quote${topic.firstPost.id!}.html" class="hover-blue" title="引用">
 										<span>引用</span>
 									</a>
 									<a  onclick="report('${topic.wholeUrl!}')" class="hover-blue" title="举报">
@@ -240,11 +240,11 @@ function checkContent(){
 									</a>
 								  [#if user.moderator]
 									  [#if !topic.firstPost.shield]
-									  <a href="${base}/post/v_shield${topic.firstPost.id!}_${-1}.jspx" class="hover-blue" title="屏蔽">
+									  <a href="${base}/post/v_shield${topic.firstPost.id!}_${-1}.html" class="hover-blue" title="屏蔽">
 										<span>屏蔽</span>
 									  </a>
 									  [#else]
-									   <a href="${base}/post/v_shield${topic.firstPost.id!}_${0}.jspx" class="hover-blue" title="取消屏蔽">
+									   <a href="${base}/post/v_shield${topic.firstPost.id!}_${0}.html" class="hover-blue" title="取消屏蔽">
 										<span>取消屏蔽</span>
 									  </a>
 									  [/#if]
@@ -253,7 +253,7 @@ function checkContent(){
 									  </a>
 								  [/#if]
 								  [#if user.moderator||user.id==topic.creater.id]
-									<a href="${base}/topic/o_delete.jspx?topicIds=${topic.id!}" class="hover-blue" title="删除">
+									<a href="${base}/topic/o_delete.html?topicIds=${topic.id!}" class="hover-blue" title="删除">
 										<span>删除</span>
 									</a>
 								  [/#if]
@@ -369,11 +369,11 @@ function checkContent(){
 							<div class="theme-operation">
 								[#if user??]
 								  [#if user.moderator||user.id==post.creater.id]
-									<a href="${base}/post/v_edit${post.id!}.jspx" class="hover-blue" title="编辑">
+									<a href="${base}/post/v_edit${post.id!}.html" class="hover-blue" title="编辑">
 										<span>编辑</span>
 									</a>
 								  [/#if]
-									<a href="${base}/post/v_quote${post.id!}.jspx" class="hover-blue" title="引用">
+									<a href="${base}/post/v_quote${post.id!}.html" class="hover-blue" title="引用">
 										<span>引用</span>
 									</a>
 									<a  onclick="report('${post.wholeUrl!}')" class="hover-blue" title="举报">
@@ -381,17 +381,17 @@ function checkContent(){
 									</a>
 								  [#if user.moderator]
 									  [#if !post.shield]
-									  <a href="${base}/post/v_shield${post.id!}_${-1}.jspx" class="hover-blue" title="屏蔽">
+									  <a href="${base}/post/v_shield${post.id!}_${-1}.html" class="hover-blue" title="屏蔽">
 										<span>屏蔽</span>
 									  </a>
 									  [#else]
-									   <a href="${base}/post/v_shield${post.id!}_${0}.jspx" class="hover-blue" title="取消屏蔽">
+									   <a href="${base}/post/v_shield${post.id!}_${0}.html" class="hover-blue" title="取消屏蔽">
 										<span>取消屏蔽</span>
 									  </a>
 									  [/#if]
 								  [/#if]
 								  [#if user.moderator||user.id==post.creater.id]
-									<a href="${base}/post/o_delete.jspx?ids=${post.id!}" class="hover-blue" title="删除">
+									<a href="${base}/post/o_delete.html?ids=${post.id!}" class="hover-blue" title="删除">
 										<span>删除</span>
 									</a>
 								  [/#if]
@@ -410,7 +410,7 @@ function checkContent(){
 									[#if createrId??]
 									<a href="${topic.url}">显示全部</a>
 									[#else]
-									<a href="${base}/topic/postListByAuthor.jspx?topicId=${topic.id}&createrId=${post.creater.id}">只看该作者</a>
+									<a href="${base}/topic/postListByAuthor.html?topicId=${topic.id}&createrId=${post.creater.id}">只看该作者</a>
 									[/#if]
 								</p>
 							</div>
@@ -429,7 +429,7 @@ function checkContent(){
 				var count=5;
 					function getContent(){
 						if(pageNo<=totalPage){
-							$("#topicposts").load("${base}/topic/getPostList.jspx",
+							$("#topicposts").load("${base}/topic/getPostList.html",
 						{pageNo: pageNo,topicId:"${topic.id}",option:2}, 
 						function(){
 							$("#topicTable").append($("#topicposts").html());
@@ -448,7 +448,7 @@ function checkContent(){
 				<div class="reply-box">
 					[#if topic.allayReply]	
 					[#if user??]
-					<form id="jvForm" action="${base}/post/o_save.jspx" method="post" enctype="multipart/form-data" onsubmit="return checkContent();">
+					<form id="jvForm" action="${base}/post/o_save.html" method="post" enctype="multipart/form-data" onsubmit="return checkContent();">
 						<div class="reply-top clearfix">
 							<div class="pull-left reply-read"><img src="/${res}/bbs_forum/images/icon-read.png"/>写下你的回复</div>
 							<div class="pull-right size-chart"></div>
@@ -678,7 +678,7 @@ function checkContent(){
 			
 			//回复首页的帖子
 			function replyPostContent(postId){
-				$.post("${base}/post/o_saveAjax.jspx",{
+				$.post("${base}/post/o_saveAjax.html",{
 					"content": $("#postReplyContent"+postId).val(),
 					"topicId":"${topicId!}",
 					"parentId":postId
@@ -692,7 +692,7 @@ function checkContent(){
 			}
 			//回复帖子详细页的帖子
 			function replyPostChildContent(postId){
-				$.post("${base}/post/o_saveAjax.jspx",{
+				$.post("${base}/post/o_saveAjax.html",{
 					"content": $("#postChildReplyContent"+postId).val(),
 					"topicId":"${topic.id!}",
 					"parentId":postId
@@ -706,7 +706,7 @@ function checkContent(){
 			}
 			//回复主题
 			function replyTopicContent(topicId){
-				$.post("${base}/post/o_saveAjax.jspx",{
+				$.post("${base}/post/o_saveAjax.html",{
 					"content": $("#topicReplyContent"+topicId).val(),
 					"topicId":"${topicId!}"
 				},function(data){
@@ -722,7 +722,7 @@ function checkContent(){
 				if(h!=""){
 					clearPostChildPage(postId);
 				}else{
-					$("#postChildPage"+postId).load("${base}/post/listChild.jspx?orderBy=1&parentId="+postId);
+					$("#postChildPage"+postId).load("${base}/post/listChild.html?orderBy=1&parentId="+postId);
 				}
 			}
 			function clearPostChildPage(postId){
@@ -732,7 +732,7 @@ function checkContent(){
 			 * 帖子点赞 0点赞 3取消点赞 
 			 */
 			function postUp(postId, operate) {
-				$.post("${base}/post/up.jspx", {
+				$.post("${base}/post/up.html", {
 					"postId" : postId,
 					"operate" : operate
 				}, function(data) {
@@ -772,7 +772,7 @@ function checkContent(){
 				}, "json");
 			}
 			function forBidden(userId,forumId){
-				$.post("${base}/user/forbidden.jspx",{
+				$.post("${base}/user/forbidden.html",{
 					"userId": userId,
 					"forumId":forumId
 				},function(data){
@@ -811,7 +811,7 @@ function checkContent(){
 			 * 主题互动 0点赞  2关注  3取消点赞  5取消关注 
 			 */
 			function topicOp(topicId, operate) {
-				$.post("${base}/topic/operate.jspx", {
+				$.post("${base}/topic/operate.html", {
 					"topicId" : topicId,
 					"operate" : operate
 				}, function(data) {
@@ -848,7 +848,7 @@ function checkContent(){
 			  return true;
 			}
 			 function upTopLevel(topicId,forumId){
-				$.post("${base}/topic/o_upTopAjax.jspx",{
+				$.post("${base}/topic/o_upTopAjax.html",{
 					"topicId": topicId,
 					"forumId":forumId
 				},function(data){
@@ -865,7 +865,7 @@ function checkContent(){
 				if(pageNo==null){
 					pageNo=1;
 				}
-				$("#postChildPage"+parentId,window.parent.document).load("${base}/post/listChild.jspx?orderBy=1&parentId="+parentId+"&pageNo="+pageNo);
+				$("#postChildPage"+parentId,window.parent.document).load("${base}/post/listChild.html?orderBy=1&parentId="+parentId+"&pageNo="+pageNo);
 			}
 		</script>
 	</body>

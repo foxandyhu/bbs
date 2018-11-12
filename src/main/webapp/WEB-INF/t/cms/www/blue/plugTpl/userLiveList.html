@@ -11,7 +11,7 @@
 </div>
 <div class="body-box">
 [#list tag_pagination.list as l]
-		<a href="${base}/live/front/get.jspx?id=${l.live.id}" target="_blank">${l.live.title!}</a>
+		<a href="${base}/live/front/get.html?id=${l.live.id}" target="_blank">${l.live.title!}</a>
 		&nbsp;${l.live.beginTime?string("yyyy-MM-dd HH:mm")}&nbsp;
 		&nbsp;${l.buyTime?string("yyyy-MM-dd HH:mm")}&nbsp;
 		&nbsp;${l.live.beginPrice!}&nbsp;

@@ -32,14 +32,14 @@
 								道具
 							</a>
 						</li>
-						<li [#if location?contains('member/charge_list')||location?contains('member/draw.jspx')]class="active"[/#if]>
-							<a href="${base}/member/charge_list.jspx">
+						<li [#if location?contains('member/charge_list')||location?contains('member/draw.html')]class="active"[/#if]>
+							<a href="${base}/member/charge_list.html">
 								<i class="iconfont icon-ccgl-tuihuosunyi-5 font"></i>
 								收益
 							</a>
 						</li>
-						<li [#if location?contains('adspaceList.jspx')||location?contains('adRechargeInput.jspx')||location?contains('buy.jspx')]class="active"[/#if]>
-							<a href="${base}/adspaceList.jspx">
+						<li [#if location?contains('adspaceList.html')||location?contains('adRechargeInput.html')||location?contains('buy.html')]class="active"[/#if]>
+							<a href="${base}/adspaceList.html">
 								<i class="iconfont icon-guanggao font"></i>
 								广告
 							</a>
@@ -54,6 +54,6 @@
 				</div>
 [#if user.liveHost]
 <div class="left-panel cjzb-panel">
-					<a href="${base}/live/host/index.jspx"><img src="/${res}/bbs_member/images/zbrk.png" /></a>
+					<a href="${base}/live/host/index.html"><img src="/${res}/bbs_member/images/zbrk.png" /></a>
 				</div>
 [/#if]

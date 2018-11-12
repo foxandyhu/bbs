@@ -50,7 +50,7 @@ public class UserOrderAct {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/member/buy_list.jspx")
+	@RequestMapping(value = "/member/buy_list.html")
 	public String buyList(String orderNum,Integer pageNo,HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -79,7 +79,7 @@ public class UserOrderAct {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/member/order_list.jspx")
+	@RequestMapping(value = "/member/order_list.html")
 	public String orderList(String orderNum,Integer pageNo,HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -114,7 +114,7 @@ public class UserOrderAct {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/member/charge_list.jspx")
+	@RequestMapping(value = "/member/charge_list.html")
 	public String contentChargeList(Integer orderBy,
 			Integer pageNo,HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {

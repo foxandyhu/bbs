@@ -17,7 +17,7 @@
 </style>
 <script>
     function check(topicId){
-        $.post("${base}/member/checkTopic.jspx", {
+        $.post("${base}/member/checkTopic.html", {
             topicId:topicId
         }, function(data) {
             if(data.status==1){
@@ -26,7 +26,7 @@
         }, "json");
     }
     function reject(topicId){
-    	 $.post("${base}/member/rejectTopic.jspx", {
+    	 $.post("${base}/member/rejectTopic.html", {
              topicId:topicId
          }, function(data) {
              if(data.status==1){

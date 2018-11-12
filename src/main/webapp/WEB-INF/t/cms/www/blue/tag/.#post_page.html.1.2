@@ -125,7 +125,7 @@ function hideMagicUL(){
           		<li>提升卡</li>
           		<li>千斤顶</li>
           		<li>置顶卡</li>
-          		<li><a href="${base}/magic/usemagic.jspx?height=300&width=300&pid=${post.topic.id}&mid=open" title="使用道具" class='thickbox'">喧嚣卡</a></li>
+          		<li><a href="${base}/magic/usemagic.html?height=300&width=300&pid=${post.topic.id}&mid=open" title="使用道具" class='thickbox'">喧嚣卡</a></li>
           		<li>沉默卡</li>
           		<li>抢沙发</li>
           		<li>变色卡</li>
@@ -140,16 +140,16 @@ function hideMagicUL(){
           <div class="fl readbot">
           [#if user??]
           [#if moderators||user.id==creater.id]
-          <a href="${base}/post/v_edit${post.id!}.jspx">编辑</a>
+          <a href="${base}/post/v_edit${post.id!}.html">编辑</a>
           [/#if]
           [#if moderators]
-          [#if !post.shield]<a href="${base}/post/v_shield${post.id!}_${-1}.jspx">屏蔽[#else]<a href="${base}/post/v_shield${post.id!}_${0}.jspx">取消屏蔽[/#if]</a> 
+          [#if !post.shield]<a href="${base}/post/v_shield${post.id!}_${-1}.html">屏蔽[#else]<a href="${base}/post/v_shield${post.id!}_${0}.html">取消屏蔽[/#if]</a>
           [/#if][/#if]
           [#if user??]
-          <a class="r-reply" title="引用此楼" href="${base}/post/v_quote${post.id!}.jspx">引用</a> 
-          <a class="r-reply" title="回复此楼" href="${base}/post/v_reply${post.id!}.jspx">回复</a>
+          <a class="r-reply" title="引用此楼" href="${base}/post/v_quote${post.id!}.html">引用</a>
+          <a class="r-reply" title="回复此楼" href="${base}/post/v_reply${post.id!}.html">回复</a>
           [#if user.id!=creater.id]
-          <a class="r-reply" title="评分此楼" href="${base}/post/v_grade${post.id!}.jspx">评分</a>
+          <a class="r-reply" title="评分此楼" href="${base}/post/v_grade${post.id!}.html">评分</a>
           [/#if]
           [/#if]
           </div>
@@ -165,9 +165,9 @@ function hideMagicUL(){
 <div class="t3">
 [#if user??]
 <span class="fr" style="margin-left: 0.5em">
-    <a href="${base}/topic/v_add${forum.id!}.jspx">
+    <a href="${base}/topic/v_add${forum.id!}.html">
     <img alt="发帖" src="/${res}/bbs_forum/img/post.png" /></a></span>
-	<span class="fr"><a href="${base}/post/v_add${topic.id!}.jspx">
+	<span class="fr"><a href="${base}/post/v_add${topic.id!}.html">
 	<img alt="回复" src="/${res}/bbs_forum/img/reply.png" /></a></span>
 	<span class="fl"></span>
 	[/#if]
@@ -175,7 +175,7 @@ function hideMagicUL(){
     </div>
 	
 [#if user??]
-<form id="jvForm" action="${base}/post/o_save.jspx" method="post" enctype="multipart/form-data" validate="true" onsubmit="return checkContent();">
+<form id="jvForm" action="${base}/post/o_save.html" method="post" enctype="multipart/form-data" validate="true" onsubmit="return checkContent();">
       <div class="t" style="margin-top: 5px">
       <table cellspacing="0" cellpadding="0" width="100%" align="center">
         <tbody>

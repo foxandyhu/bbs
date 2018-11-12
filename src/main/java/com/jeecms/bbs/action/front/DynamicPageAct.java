@@ -195,7 +195,7 @@ public class DynamicPageAct {
 					boolean hasBuy=orderMng.hasBuyTopic(user.getId(), topic.getId());
 					if(!hasBuy){
 						try {
-							String rediretUrl="/topic/buy.jspx?topicId="+topic.getId();
+							String rediretUrl="/topic/buy.html?topicId="+topic.getId();
 							if(StringUtils.isNotBlank(site.getContextPath())){
 								rediretUrl=site.getContextPath()+rediretUrl;
 							}

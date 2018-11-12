@@ -9,8 +9,8 @@
 
 <script  type="text/javascript">
 $(function() {
-	$("#wcode").load("${base}/order/liveSelectPay.jspx?liveId=${live.id!}&orderNumber=${orderNumber!}&payMethod=1&self=${self!}&num=${num!}");
-	$("#acode").load("${base}/order/liveSelectPay.jspx?liveId=${live.id!}&orderNumber=${orderNumber!}&payMethod=4&self=${self!}&num=${num!}");
+	$("#wcode").load("${base}/order/liveSelectPay.html?liveId=${live.id!}&orderNumber=${orderNumber!}&payMethod=1&self=${self!}&num=${num!}");
+	$("#acode").load("${base}/order/liveSelectPay.html?liveId=${live.id!}&orderNumber=${orderNumber!}&payMethod=4&self=${self!}&num=${num!}");
 });
 function changeAmountSubmit(value){
 	$("#rewardAmount").val(value);

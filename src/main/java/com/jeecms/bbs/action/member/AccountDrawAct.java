@@ -42,7 +42,7 @@ public class AccountDrawAct {
 
 	public static final String MEMBER_ACCOUNT_GIFT_DRAW = "tpl.memberAccountGiftDraw";
 
-	@RequestMapping(value = "/member/draw_list.jspx")
+	@RequestMapping(value = "/member/draw_list.html")
 	public String drawList(Integer pageNo,HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -65,7 +65,7 @@ public class AccountDrawAct {
 		return tplPath;
 	}
 	
-	@RequestMapping(value = "/member/draw_del.jspx")
+	@RequestMapping(value = "/member/draw_del.html")
 	public String drawDel(Integer[] ids,Integer pageNo,
 			String nextUrl,HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
@@ -88,7 +88,7 @@ public class AccountDrawAct {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/member/draw.jspx", method = RequestMethod.GET)
+	@RequestMapping(value = "/member/draw.html", method = RequestMethod.GET)
 	public String drawInput(Integer pageNo,HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -99,7 +99,7 @@ public class AccountDrawAct {
 			return FrontUtils.showLogin(request, model, site);
 		}
 		if(StringUtils.isBlank(user.getAccountWeixinOpenId())){
-			return "redirect:weixin_auth_enter.jspx";
+			return "redirect:weixin_auth_enter.html";
 		}
 		if (pageNo==null) {
 			pageNo=1;
@@ -129,7 +129,7 @@ public class AccountDrawAct {
 	 * @return
 	 * @throws IOException
 	 */
-	@RequestMapping(value = "/member/draw.jspx", method = RequestMethod.POST)
+	@RequestMapping(value = "/member/draw.html", method = RequestMethod.POST)
 	public String drawSubmit(Double drawAmout,String applyAcount,
 			String nextUrl,
 			HttpServletRequest request, HttpServletResponse response,
@@ -170,7 +170,7 @@ public class AccountDrawAct {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/member/gift_draw.jspx", method = RequestMethod.GET)
+	@RequestMapping(value = "/member/gift_draw.html", method = RequestMethod.GET)
 	public String giftDrawInput(HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -200,7 +200,7 @@ public class AccountDrawAct {
 	 * @return
 	 * @throws IOException
 	 */
-	@RequestMapping(value = "/member/gift_draw.jspx", method = RequestMethod.POST)
+	@RequestMapping(value = "/member/gift_draw.html", method = RequestMethod.POST)
 	public String giftDrawSubmit(Double drawAmout,String applyAcount,
 			String nextUrl,HttpServletRequest request, HttpServletResponse response,
 			ModelMap model) throws IOException {

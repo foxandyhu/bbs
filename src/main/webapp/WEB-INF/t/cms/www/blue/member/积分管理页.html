@@ -32,7 +32,7 @@ $("#creditInType").on('change',function () {
 	});
 	function setCreditOutValue() {
 		if($("#creditIn").val()!=""&&$("#creditIn").val()!=0&&$("#creditOutType").val()!=$("#creditInType").val()){
-			$.post('${base}/member/getCreditOutValue.jspx', 
+			$.post('${base}/member/getCreditOutValue.html',
 			{
 				creditIn:$("#creditIn").val(),
 				creditInType:$("#creditInType").val(),
@@ -53,7 +53,7 @@ $("#creditInType").on('change',function () {
 		}else if($("#password").val()==""){
 			alert("您需要输入密码");
 		}else{
-			$.post('${base}/member/creditExchange.jspx', 
+			$.post('${base}/member/creditExchange.html',
 					{
 						creditIn:$("#creditIn").val(),
 						creditOut:$("#creditOut").val(),
@@ -97,7 +97,7 @@ $("#creditInType").on('change',function () {
 						<p class="gray">我的威望</p>
 					</div>
 				</div>
-                              <form id="creator" action="${base}/member/update.jspx" method="post" enctype="multipart/form-data" onSubmit="return procheck(this)" name="creator">
+                              <form id="creator" action="${base}/member/update.html" method="post" enctype="multipart/form-data" onSubmit="return procheck(this)" name="creator">
 				<div class="tabelbox" style="margin-bottom: 80px; margin-top: 38px;">
 					 [#if exchangeAvailable]
 						<table border="0" cellspacing="0" cellpadding="0" style="width: 100%;">

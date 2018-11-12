@@ -42,7 +42,7 @@ public class BbsLiveChapterAct extends AbstractBbsLive {
 	public static final String TPL_LIVE_CHAPTER_LOAD = "tpl.liveChapterLoad";
 
 	
-	@RequestMapping("/live/chapter/load.jspx")
+	@RequestMapping("/live/chapter/load.html")
 	public String load(HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -56,7 +56,7 @@ public class BbsLiveChapterAct extends AbstractBbsLive {
 				TPLDIR_PLUG, TPL_LIVE_CHAPTER_LOAD);
 	}
 	
-	@RequestMapping("/live/chapter/main.jspx")
+	@RequestMapping("/live/chapter/main.html")
 	public String chapterMain(HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -70,7 +70,7 @@ public class BbsLiveChapterAct extends AbstractBbsLive {
 				TPLDIR_PLUG, TPL_LIVE_CHAPTER_MAIN);
 	}
 	
-	@RequestMapping("/live/chapter/v_left.jspx")
+	@RequestMapping("/live/chapter/v_left.html")
 	public String chapterLeft(HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -84,7 +84,7 @@ public class BbsLiveChapterAct extends AbstractBbsLive {
 				TPLDIR_PLUG, TPL_LIVE_CHAPTER_LEFT);
 	}
 
-	@RequestMapping(value = "/live/chapter/v_tree.jspx")
+	@RequestMapping(value = "/live/chapter/v_tree.html")
 	public String chapterTree(String root, HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		log.debug("tree path={}", root);
@@ -123,7 +123,7 @@ public class BbsLiveChapterAct extends AbstractBbsLive {
 				TPLDIR_PLUG, TPL_LIVE_CHAPTER_TREE);
 	}
 
-	@RequestMapping(value = "/live/chapter/list.jspx")
+	@RequestMapping(value = "/live/chapter/list.html")
 	public String chapterList(Integer root, HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -147,7 +147,7 @@ public class BbsLiveChapterAct extends AbstractBbsLive {
 				TPLDIR_PLUG, TPL_LIVE_CHAPTER_LIST);
 	}
 	
-	@RequestMapping(value = "/live/chapter/add.jspx")
+	@RequestMapping(value = "/live/chapter/add.html")
 	public String chapterAdd(Integer root,
 			HttpServletRequest request,HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -167,7 +167,7 @@ public class BbsLiveChapterAct extends AbstractBbsLive {
 				TPLDIR_PLUG, TPL_LIVE_CHAPTER_ADD);
 	}
 	
-	@RequestMapping(value = "/live/chapter/edit.jspx")
+	@RequestMapping(value = "/live/chapter/edit.html")
 	public String chapterEdit(Integer id, Integer root,
 			HttpServletRequest request,HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -195,7 +195,7 @@ public class BbsLiveChapterAct extends AbstractBbsLive {
 				TPLDIR_PLUG, TPL_LIVE_CHAPTER_EDIT);
 	}
 	
-	@RequestMapping(value = "/live/chapter/save.jspx")
+	@RequestMapping(value = "/live/chapter/save.html")
 	public String chapterSave(Integer root, BbsLiveChapter bean,
 			HttpServletRequest request,HttpServletResponse response,ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -212,7 +212,7 @@ public class BbsLiveChapterAct extends AbstractBbsLive {
 		return chapterList(root, request, response, model);
 	}
 	
-	@RequestMapping(value = "/live/chapter/update.jspx")
+	@RequestMapping(value = "/live/chapter/update.html")
 	public String chapterUpdate(Integer root,Integer parentId, BbsLiveChapter bean,
 			HttpServletRequest request,HttpServletResponse response,ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -227,7 +227,7 @@ public class BbsLiveChapterAct extends AbstractBbsLive {
 		return chapterList(root, request, response, model);
 	}
 	
-	@RequestMapping("/live/chapter/delete.jspx")
+	@RequestMapping("/live/chapter/delete.html")
 	public String chapterDelete(Integer root, Integer[] ids,
 			HttpServletRequest request,HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -248,7 +248,7 @@ public class BbsLiveChapterAct extends AbstractBbsLive {
 		return chapterList(root, request, response, model);
 	}
 	
-	@RequestMapping("/live/chapter/priority.jspx")
+	@RequestMapping("/live/chapter/priority.html")
 	public String chapterPriority(Integer root, Integer[] wids, Integer[] priority,
 			HttpServletResponse response,HttpServletRequest request, ModelMap model) {
 		WebErrors errors = validatePriority(wids, priority, request);
@@ -268,7 +268,7 @@ public class BbsLiveChapterAct extends AbstractBbsLive {
 		return chapterList(root, request, response, model);
 	}
 	
-	@RequestMapping("/live/chapter/v_create_path.jspx")
+	@RequestMapping("/live/chapter/v_create_path.html")
 	public void createPath(String name,HttpServletRequest request, HttpServletResponse response) {
 		String path;
 		if (StringUtils.isBlank(name)) {
@@ -279,7 +279,7 @@ public class BbsLiveChapterAct extends AbstractBbsLive {
 		ResponseUtils.renderJson(response, path);
 	}
 	
-	@RequestMapping(value = "/live/chapter/v_check_path.jspx")
+	@RequestMapping(value = "/live/chapter/v_check_path.html")
 	public void checkPath(Integer cid,String path,HttpServletRequest request, HttpServletResponse response) {
 		String pass;
 		BbsUser user = CmsUtils.getUser(request);

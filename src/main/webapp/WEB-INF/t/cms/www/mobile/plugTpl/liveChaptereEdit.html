@@ -29,18 +29,18 @@ $(function() {
 </div>
 <div class="box-positon ck">
 	<form class="ropt">
-		<input type="hidden" id="root" name="root" value="${chapter.id}"/><a href="add.jspx?root=${chapter.id}">添加子章节</a>
-&nbsp;	<input type="submit" value="<@s.m "global.backToList"/>" onclick="$('#root').val('${(chapter.parent.id)!}');this.form.action='list.jspx';" class="return-button"/>
+		<input type="hidden" id="root" name="root" value="${chapter.id}"/><a href="add.html?root=${chapter.id}">添加子章节</a>
+&nbsp;	<input type="submit" value="<@s.m "global.backToList"/>" onclick="$('#root').val('${(chapter.parent.id)!}');this.form.action='list.html';" class="return-button"/>
 	</form>
 	<div class="clear"></div>
 </div>
 <div class="body-box">
-<@p.form id="jvForm" action="update.jspx" labelWidth="10" class="formDefStyle">
+<@p.form id="jvForm" action="update.html" labelWidth="10" class="formDefStyle">
 <@p.td colspan="1" width="50" label="chapter.parent">
 <@p.select name="parentId" list=chapterList value=(chapter.parent.id)! listKey="id" listValue="name" listDeep="deep" headerKey="" headerValue="chapter.top"/>
 </@p.td>
 <#assign chapterPathExist><@s.m "error.chapterPathExist"/></#assign>
-<@p.text name="path" value=chapter.path required="true"  vld="{required:true,path:true,remote:'v_check_path.jspx?cid=${chapter.id}',messages:{remote:'${chapterPathExist}'}}"  maxlength="30" size="10" label="chapter.path"  colspan="2" width="100"/><@p.tr/>
+<@p.text name="path" value=chapter.path required="true"  vld="{required:true,path:true,remote:'v_check_path.html?cid=${chapter.id}',messages:{remote:'${chapterPathExist}'}}"  maxlength="30" size="10" label="chapter.path"  colspan="2" width="100"/><@p.tr/>
 <@p.text name="priority" value=chapter.priority  required="true" class="reuqired digits" maxlength="255" size="10" label="chapter.priority" name="priority" colspan="2" width="100"/><@p.tr/>
 <@p.td colspan="2">
 	<input type="hidden" name="root" value="${root!}"/>

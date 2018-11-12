@@ -30,7 +30,7 @@
 	<!--live列表_Begin-->
     [@live_page  orderBy='1' count='10' ]	
 		[#list tag_pagination.list as l]
-			<img src="${l.liveLogo!}"><a href="${base}/live/front/get.jspx?id=${l.id}" target="_blank">${l.title!}</a>
+			<img src="${l.liveLogo!}"><a href="${base}/live/front/get.html?id=${l.id}" target="_blank">${l.title!}</a>
 			${l.user.username!} ${l.joinUserNum!}人   开始时间 ${l.beginTime!?string("yyyy-MM-dd HH:mm")}
 			价格:${l.beginPrice!}
 		[/#list]

@@ -18,7 +18,7 @@ function buyMagic(){
 	var mid=$("#mid").val();
 	var buynum=$("#num").val();
 	[#if magic.credit!=3]
-	$.post('${base}/magic/buymagic.jspx', {
+	$.post('${base}/magic/buymagic.html', {
 		'mid':mid,
 		'buynum':buynum
 	}, function(data) {
@@ -29,7 +29,7 @@ function buyMagic(){
 		}
 	},"json");
 	[#else]
-	window.parent.location="${base}/magic/buy.jspx?mid="+mid+"&buyNum="+buynum;
+	window.parent.location="${base}/magic/buy.html?mid="+mid+"&buyNum="+buynum;
 	[/#if]
 	$("#magicParent").hide();
 	$("#magicBuyParent").show();

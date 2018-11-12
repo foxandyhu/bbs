@@ -26,12 +26,12 @@ function optDelete() {
 }
 function doDelete(){
 	var f = getTableForm();
-	f.action="delete.jspx";
+	f.action="delete.html";
 	f.submit();
 }
 function optPriority() {
 	var f = getTableForm();
-	f.action="priority.jspx";
+	f.action="priority.html";
 	f.submit();
 }
 </script>
@@ -63,7 +63,7 @@ $(function() {
 </style>
 </head>
 <body style="background:#fff">
-	     <div class="zb_add"><a href="add.jspx?root=${root!}" class="btn-primary" >添加</a></div> 
+	     <div class="zb_add"><a href="add.html?root=${root!}" class="btn-primary" >添加</a></div>
 <div class="body-box">
 <form id="tableForm" method="post">
 <input type="hidden" name="root" value="${root!}"/>
@@ -77,8 +77,8 @@ $(function() {
 	<@p.column code="chapter.path" align="center">${chapter.path}</@p.column><#t/>
 	<@p.column code="chapter.priority" align="center"><input type="text" name="priority" value="${chapter.priority}" style="width:40px;"/></@p.column><#t/>
 	<@p.column code="global.operate" align="center">
-		<a href="edit.jspx?id=${chapter.id}" class="pn-opt" style="color:#188ae2;"><@s.m "global.edit"/></a> | <#rt/>
-		<a href="delete.jspx?ids=${chapter.id}&root=${root!}"
+		<a href="edit.html?id=${chapter.id}" class="pn-opt" style="color:#188ae2;"><@s.m "global.edit"/></a> | <#rt/>
+		<a href="delete.html?ids=${chapter.id}&root=${root!}"
 			style="color:#f3431a;"
 			 class="pn-opt" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}"><@s.m "global.delete"/></a><#t/>
 	</@p.column><#t/>

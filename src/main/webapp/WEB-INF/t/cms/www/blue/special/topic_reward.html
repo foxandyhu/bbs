@@ -9,7 +9,7 @@
 
 <script  type="text/javascript">
 function randomReward(){
-	$.get("${base}/reward/random.jspx", {
+	$.get("${base}/reward/random.html", {
 	}, function(data) {
 		$("#rewardAmount").val(data);
 	});
@@ -18,18 +18,18 @@ $(function() {
 	<!--打赏-->
 	[#if type??&&type==2]
 		[#if rewardAmount??]
-			$("#wcode").load("${base}/order/topicSelectPay.jspx?topicId=${topicId!}&orderNumber=${orderNumber!}&payMethod=1&chargeReward=${type!}&rewardAmount=${rewardAmount!}");
-			$("#acode").load("${base}/order/topicSelectPay.jspx?topicId=${topicId!}&orderNumber=${orderNumber!}&payMethod=4&chargeReward=${type!}&rewardAmount=${rewardAmount!}");
+			$("#wcode").load("${base}/order/topicSelectPay.html?topicId=${topicId!}&orderNumber=${orderNumber!}&payMethod=1&chargeReward=${type!}&rewardAmount=${rewardAmount!}");
+			$("#acode").load("${base}/order/topicSelectPay.html?topicId=${topicId!}&orderNumber=${orderNumber!}&payMethod=4&chargeReward=${type!}&rewardAmount=${rewardAmount!}");
 		[#else]
 			<!--随机直接生成二维码或者选择了某项固定值-->
 			[#if !topic.rewardPattern]
-			$("#wcode").load("${base}/order/topicSelectPay.jspx?topicId=${topicId!}&orderNumber=${orderNumber!}&payMethod=1&chargeReward=${type!}&rewardAmount=${randomOne!}");
-			$("#acode").load("${base}/order/topicSelectPay.jspx?topicId=${topicId!}&orderNumber=${orderNumber!}&payMethod=4&chargeReward=${type!}&rewardAmount=${randomOne!}");
+			$("#wcode").load("${base}/order/topicSelectPay.html?topicId=${topicId!}&orderNumber=${orderNumber!}&payMethod=1&chargeReward=${type!}&rewardAmount=${randomOne!}");
+			$("#acode").load("${base}/order/topicSelectPay.html?topicId=${topicId!}&orderNumber=${orderNumber!}&payMethod=4&chargeReward=${type!}&rewardAmount=${randomOne!}");
 			[/#if]
 		[/#if]
 	[#else]
-	$("#wcode").load("${base}/order/topicSelectPay.jspx?topicId=${topicId!}&orderNumber=${orderNumber!}&payMethod=1&chargeReward=${type!}");
-	$("#acode").load("${base}/order/topicSelectPay.jspx?topicId=${topicId!}&orderNumber=${orderNumber!}&payMethod=4&chargeReward=${type!}");
+	$("#wcode").load("${base}/order/topicSelectPay.html?topicId=${topicId!}&orderNumber=${orderNumber!}&payMethod=1&chargeReward=${type!}");
+	$("#acode").load("${base}/order/topicSelectPay.html?topicId=${topicId!}&orderNumber=${orderNumber!}&payMethod=4&chargeReward=${type!}");
 	[/#if]
 });
 function changeAmountSubmit(value){
@@ -49,8 +49,8 @@ function changeAmountSubmit(value){
 <div class="register-box" style="height:366px;"> 
   <div class="register-nav"><span>打赏</span>
     <div class="register-login">
-    [#if topic.chargeModel==2]<a class="tc" href="${base}/topic/orders.jspx?topicId=${topic.id}&type=2">打赏记录 ></a>
-    [#elseif topic.chargeModel==1]<a class="tc" href="${base}/topic/orders.jspx?topicId=${topic.id}&type=1">收费记录 ></a>
+    [#if topic.chargeModel==2]<a class="tc" href="${base}/topic/orders.html?topicId=${topic.id}&type=2">打赏记录 ></a>
+    [#elseif topic.chargeModel==1]<a class="tc" href="${base}/topic/orders.html?topicId=${topic.id}&type=1">收费记录 ></a>
     [/#if]
     </div>
   </div> 
@@ -59,7 +59,7 @@ function changeAmountSubmit(value){
   [#if !rewardAmount??]
 	  [#if topic.rewardPattern]
 	  <!-- 固定 -->
-	  <form method="post" action="${base}/topic/fixSelect.jspx" id="jvForm">
+	  <form method="post" action="${base}/topic/fixSelect.html" id="jvForm">
 		<input name="topicId" value="${topicId!}" type="hidden" /> 
 		<input name="orderNumber" value="${orderNumber!}" type="hidden" /> 
 		<input name="chargeReward" value="${type!}" type="hidden" />

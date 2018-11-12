@@ -320,26 +320,26 @@ function showChild(typeId){
 					<input id="checkAll" onclick="checkall()" type="checkbox" class="check">全选&nbsp;
 				</div>
 				[#if user.moderator]
-					<a id="" onclick="recommendTopic('/topic/o_recommend.jspx')"  class="check-all-item" title="推荐">
+					<a id="" onclick="recommendTopic('/topic/o_recommend.html')"  class="check-all-item" title="推荐">
 						<span><img src="/${res}/bbs_forum/images/check-tj.png" alt="推荐"/></span>
 					</a>
-					<a id="" onclick="manageTopic('/topic/v_primeInput.jspx')"  class="check-all-item" title="精华">
+					<a id="" onclick="manageTopic('/topic/v_primeInput.html')"  class="check-all-item" title="精华">
 							<span><img src="/${res}/bbs_forum/images/check-jh.png" alt="精华"/></span>
 					</a>
-					<a id="" onclick="manageTopic('/topic/v_highlightInput.jspx')"  class="check-all-item" title="加亮">
+					<a id="" onclick="manageTopic('/topic/v_highlightInput.html')"  class="check-all-item" title="加亮">
 					<span><img src="/${res}/bbs_forum/images/check-jl.png" alt="加亮"/></span>
 					</a>
-					<a id="" onclick="manageTopic('/topic/v_lockInput.jspx')"  class="check-all-item" title="锁定/打开" style="display: none;">
+					<a id="" onclick="manageTopic('/topic/v_lockInput.html')"  class="check-all-item" title="锁定/打开" style="display: none;">
 						<span>锁定/打开</span>
 					</a>
-					<a id="" onclick="manageTopic('/topic/v_moveInput.jspx')"  class="check-all-item" title="移动">
+					<a id="" onclick="manageTopic('/topic/v_moveInput.html')"  class="check-all-item" title="移动">
 							<span><img src="/${res}/bbs_forum/images/check-yd.png" alt="移动"/></span>
 					</a>
-					<a id="" onclick="manageTopic('/topic/v_shieldInput.jspx')"  class="check-all-item" title="屏蔽/取消屏蔽">
+					<a id="" onclick="manageTopic('/topic/v_shieldInput.html')"  class="check-all-item" title="屏蔽/取消屏蔽">
 							<span><img src="/${res}/bbs_forum/images/check-pb.png" alt="屏蔽"/></span>
 					</a>
 				[/#if]
-					<a onclick="deleteTopic('/topic/delete_ajax.jspx')" class="check-all-item"  title="删除">
+					<a onclick="deleteTopic('/topic/delete_ajax.html')" class="check-all-item"  title="删除">
 						<span><img src="/${res}/bbs_forum/images/check-sc.png" alt="删除"/></span>
 					</a>
 				

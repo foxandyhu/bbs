@@ -74,7 +74,7 @@ public class UserPostAct {
 				TPLDIR_MEMBER, MEMBER_INFORM);
 	}
 
-	@RequestMapping("/member/update.jspx")
+	@RequestMapping("/member/update.html")
 	public String informationSubmit(Integer id, String email,
 			String newPassword, String signed, String avatar, BbsUserExt ext,
 			HttpServletRequest request, ModelMap model) {
@@ -200,7 +200,7 @@ public class UserPostAct {
 				TPLDIR_MEMBER, TPL_CREDIT);
 	}
 
-	@RequestMapping(value = "/member/getCreditOutValue.jspx")
+	@RequestMapping(value = "/member/getCreditOutValue.html")
 	public void getCreditOutValue(Integer creditIn, Integer creditInType,
 			Integer creditOutType, double exchangetax,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -227,7 +227,7 @@ public class UserPostAct {
 		ResponseUtils.renderJson(response, object.toString());
 	}
 
-	@RequestMapping(value = "/member/creditExchange.jspx")
+	@RequestMapping(value = "/member/creditExchange.html")
 	public void creditExchange(Integer creditIn, Integer creditOut,
 			Integer creditOutType, Integer miniBalance, String password,
 			HttpServletRequest request, HttpServletResponse response) {

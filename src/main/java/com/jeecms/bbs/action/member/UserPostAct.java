@@ -135,7 +135,7 @@ public class UserPostAct {
 		return information(request, model);
 	}
 
-	@RequestMapping("/member/update.jspx")
+	@RequestMapping("/member/update.html")
 	public String informationSubmit(String email,
 			String newPassword, String signed, String avatar, BbsUserExt ext,
 			HttpServletRequest request,HttpServletResponse response, ModelMap model) {
@@ -234,7 +234,7 @@ public class UserPostAct {
 				TPLDIR_MEMBER, MEMBER_REJECT_TOPIC);
 	}
 	
-	@RequestMapping("/member/checkTopic.jspx")
+	@RequestMapping("/member/checkTopic.html")
 	public void checkTopic(Integer topicId,HttpServletRequest request,
 			HttpServletResponse response,ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -264,7 +264,7 @@ public class UserPostAct {
 		ResponseUtils.renderJson(response, json.toString());
 	}
 	
-	@RequestMapping("/member/rejectTopic.jspx")
+	@RequestMapping("/member/rejectTopic.html")
 	public void rejectTopic(Integer topicId,HttpServletRequest request,
 			HttpServletResponse response,ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -294,7 +294,7 @@ public class UserPostAct {
 		ResponseUtils.renderJson(response, json.toString());
 	}
 	
-	@RequestMapping("/member/reCheckTopic.jspx")
+	@RequestMapping("/member/reCheckTopic.html")
 	public void reCheck(Integer topicId,HttpServletRequest request,
 			HttpServletResponse response,ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -324,7 +324,7 @@ public class UserPostAct {
 		ResponseUtils.renderJson(response, json.toString());
 	}
 	
-	@RequestMapping("/member/deleteTopic.jspx")
+	@RequestMapping("/member/deleteTopic.html")
 	public void deleteTopic(Integer topicId,HttpServletRequest request,
 			HttpServletResponse response,ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -391,7 +391,7 @@ public class UserPostAct {
 		return tplPath;
 	}
 	
-	@RequestMapping("/member/checkPost.jspx")
+	@RequestMapping("/member/checkPost.html")
 	public void checkPost(Integer postId,HttpServletRequest request,
 			HttpServletResponse response,ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -501,7 +501,7 @@ public class UserPostAct {
 				TPLDIR_MEMBER, TPL_CREDIT);
 	}
 
-	@RequestMapping(value = "/member/getCreditOutValue.jspx")
+	@RequestMapping(value = "/member/getCreditOutValue.html")
 	public void getCreditOutValue(Integer creditIn, Integer creditInType,
 			Integer creditOutType, Double exchangetax,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -531,7 +531,7 @@ public class UserPostAct {
 		ResponseUtils.renderJson(response, object.toString());
 	}
 
-	@RequestMapping(value = "/member/creditExchange.jspx")
+	@RequestMapping(value = "/member/creditExchange.html")
 	public void creditExchange(Integer creditIn, Integer creditOut,
 			Integer creditOutType,  String password,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -635,7 +635,7 @@ public class UserPostAct {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/member/account.jspx", method = RequestMethod.GET)
+	@RequestMapping(value = "/member/account.html", method = RequestMethod.GET)
 	public String accountInput(HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -649,7 +649,7 @@ public class UserPostAct {
 	}
 	
 	//完善用户账户资料
-	@RequestMapping(value = "/member/account.jspx", method = RequestMethod.POST)
+	@RequestMapping(value = "/member/account.html", method = RequestMethod.POST)
 	public String accountSubmit(String accountWeiXin,String  accountAlipy,
 			Short drawAccount,String nextUrl,HttpServletRequest request, 
 			HttpServletResponse response,ModelMap model) throws IOException {

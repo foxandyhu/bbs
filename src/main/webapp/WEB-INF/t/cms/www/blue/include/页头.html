@@ -3,7 +3,7 @@
 	var topicTypeTpl;
 	$(function () {
        [#if !user??]   
-	    $('#loadbox').load('${base}/login.jspx');
+	    $('#loadbox').load('${base}/login.html');
        [/#if]
 	 topicTypeTpl= $.format($("#topicTypeTpl").val());
 	})
@@ -19,7 +19,7 @@
 		$(this).removeClass('active');
 	   });
        $("#loginSpan").addClass('active');
-	   $('#loadbox').load('${base}/login.jspx');
+	   $('#loadbox').load('${base}/login.html');
 	}
 	function addtopicTypeLine() {
 		$('#topicTypeAppend').append(topicTypeTpl(topicTypeIndex++));
@@ -49,7 +49,7 @@
 	function createTopicTypeTag(){
 		$('.topic-wrapper').addClass('large-wrapper');
 		$("#topicTypeAppend").html("");
-		$.post("${base}/topic/o_generateTags.jspx", 
+		$.post("${base}/topic/o_generateTags.html",
 			{title:$("#topicTypeText").val()},
 			function(data){
 				var ids=data.ids;
@@ -80,7 +80,7 @@
 	}
 </script>
 [#if !user??]
-<script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="${site.config.qqID!}" data-redirecturi="http://${site.domain}/public_auth.jspx" charset="utf-8"></script>
+<script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="${site.config.qqID!}" data-redirecturi="http://${site.domain}/public_auth.html" charset="utf-8"></script>
 [/#if]
 <style>
 .login-box{position:relative;}
@@ -141,9 +141,9 @@
                             </li>
                             <li>
                                 [#if returnUrl?? && returnUrl?length gt 0]
-                                <a href="${base}/logout.jspx?returnUrl=${returnUrl!}">退出登录</a>
+                                <a href="${base}/logout.html?returnUrl=${returnUrl!}">退出登录</a>
                                 [#else]
-                                <a href="${base}/logout.jspx?returnUrl=/">退出登录</a>
+                                <a href="${base}/logout.html?returnUrl=/">退出登录</a>
                                 [/#if]
                             </li>
                         </ul>
@@ -157,7 +157,7 @@
                 [/#if]
                 [#if user??][#if forum??]
                 <li>
-                    <a href="${base}/topic/v_add${forum.id!}.jspx" title="发帖" class="post">发帖</a>
+                    <a href="${base}/topic/v_add${forum.id!}.html" title="发帖" class="post">发帖</a>
                 </li>
                 [/#if][/#if]
             </ul>
@@ -170,8 +170,8 @@
         <a href="#" class="iconfont icon-Delete pull-right" title="关闭"  onclick="closeModel()"></a>
     </div>
     <div class="login-tab clearfix">
-        <span class="pull-left active" id="loginSpan" onclick="getloginTab(this,'${base}/login.jspx')">登录</span>
-		<span class="pull-right"  onclick="getloginTab(this,'${base}/register.jspx')">注册</span>
+        <span class="pull-left active" id="loginSpan" onclick="getloginTab(this,'${base}/login.html')">登录</span>
+		<span class="pull-right"  onclick="getloginTab(this,'${base}/register.html')">注册</span>
     </div>
     <div id="loadbox"></div>
 </div>

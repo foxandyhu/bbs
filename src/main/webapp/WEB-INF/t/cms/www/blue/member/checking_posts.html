@@ -17,7 +17,7 @@
 </style>
 <script>
     function check(postId){
-        $.post("${base}/member/checkPost.jspx", {
+        $.post("${base}/member/checkPost.html", {
             postId:postId
         }, function(data) {
             if(data.status==1){

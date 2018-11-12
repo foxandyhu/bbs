@@ -62,7 +62,7 @@ dl.gb dd.relpy{margin-top:10px;color:#006600;}
 		<div class="comment">
 		  <h2><span>我要留言</span></h2>
 		  <div class="w98">
-		 <form id="guestbookForm" action="${base}/guestbook.jspx" method="post">
+		 <form id="guestbookForm" action="${base}/guestbook.html" method="post">
 		  <table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#EAEAEA">
 			<tr>
 			  <td width="18%" height="30" align="right" bgcolor="#fafafa"><strong>类  别：</strong></td>
@@ -159,8 +159,8 @@ dl.gb dd.relpy{margin-top:10px;color:#006600;}
 		   [@cms_topic_list count='4' descLen='30' append='...']
 		   [#list tag_list as t]
 			<dl class="list[#if t_has_next] line[#else] mt5[/#if] box">
-				<dt><a href="${base}/topic/${t.id}.jspx" target="_blank">${t.name}</a></dt>
-				<dd class="pic"><a href="${base}/topic/${t.id}.jspx"><img src="${t.titleImg!site.defImg}"/></a></dd>
+				<dt><a href="${base}/topic/${t.id}.html" target="_blank">${t.name}</a></dt>
+				<dd class="pic"><a href="${base}/topic/${t.id}.html"><img src="${t.titleImg!site.defImg}"/></a></dd>
 				<dd class="text">[@text_cut s=t.description len=descLen append=append/]</dd>
 			</dl>
 			[/#list]

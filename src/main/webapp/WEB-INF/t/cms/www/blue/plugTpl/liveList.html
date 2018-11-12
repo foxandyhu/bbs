@@ -27,12 +27,12 @@ function optDelete() {
 }
 function doDelete(){
 	var f = getTableForm();
-	f.action="delete.jspx";
+	f.action="delete.html";
 	f.submit();
 }
 function optPriority() {
 	var f = getTableForm();
-	f.action="priority.jspx";
+	f.action="priority.html";
 	f.submit();
 }
 </script>
@@ -59,14 +59,14 @@ $(function() {
 </style>
 </head>
 <body style="background: #fff;">
-	 <div class="zb_add"><a href="add.jspx?cid=${cid!}" class="btn-primary">添加</a></div> 
-<form id="jvForm" action="list.jspx" method="post">
+	 <div class="zb_add"><a href="add.html?cid=${cid!}" class="btn-primary">添加</a></div>
+<form id="jvForm" action="list.html" method="post">
 	<ul class="bbs-content-card">	  
 		[#list pagination.list as live]
 						<li class="zb-list clearfix">
 							<div class="pull-left" style="width: 80%;">
 									<div class="zb-title" style="width: 100%;">
-									<a href="${base}/live/front/get.jspx?id=${live.id}" target="_blank">${live.title}</a>
+									<a href="${base}/live/front/get.html?id=${live.id}" target="_blank">${live.title}</a>
 								</div>
 								<div class="zb-list-info">
 									门票：${live.beginPrice!}   &nbsp;
@@ -85,16 +85,16 @@ $(function() {
 												>复制推流URL</a>
 									        [/#if]	
 									        [#if live.checkStatus!=1]
-								 			<a href="edit.jspx?id=${live.id}${params!}" class="edit"
+								 			<a href="edit.html?id=${live.id}${params!}" class="edit"
 								 					style="color: #188ae2;margin-left: 20px;"
 								 				>修改</a>
-								 		<a href="delete.jspx?ids=${live.id}${params!}" class="del" onclick="if(!confirm('确定要删除吗？')) {return false;}"
+								 		<a href="delete.html?ids=${live.id}${params!}" class="del" onclick="if(!confirm('确定要删除吗？')) {return false;}"
 								 				style="color: #e21818;margin-left: 20px;"
 								 			>删除</a>
 								[/#if]							 		
 								 	</div>
 				<div style="font-size: 12px; text-align: right;">
-			              [#if live.checkStatus==2]<a href="viewReason.jspx?id=${live.id}${params!}" >拒绝原因</a> [/#if]
+			              [#if live.checkStatus==2]<a href="viewReason.html?id=${live.id}${params!}" >拒绝原因</a> [/#if]
 			              [#if live.checkStatus==1]
 			              <span class="zb-pass" style="color: #48be12;">审核通过</span>
 			              [/#if]

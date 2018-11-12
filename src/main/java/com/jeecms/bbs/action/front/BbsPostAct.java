@@ -74,7 +74,7 @@ public class BbsPostAct {
 	public static final String TPL_POST_CHILD = "tpl.postChild";
 	public static final String TPL_POST_CONTENT = "tpl.postContent";
 
-	@RequestMapping("/post/v_add{topicId}.jspx")
+	@RequestMapping("/post/v_add{topicId}.html")
 	public String add(@PathVariable Integer topicId, Integer tid,Integer parentId,
 			HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -120,7 +120,7 @@ public class BbsPostAct {
 				TPLDIR_POST, TPL_POSTADD);
 	}
 
-	@RequestMapping("/post/v_edit{id}.jspx")
+	@RequestMapping("/post/v_edit{id}.html")
 	public String edit(@PathVariable Integer id, Integer pageNo,
 			HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -147,7 +147,7 @@ public class BbsPostAct {
 				TPLDIR_POST, TPL_POSTEDIT);
 	}
 
-	@RequestMapping("/post/o_save.jspx")
+	@RequestMapping("/post/o_save.html")
 	public String save(BbsPost bean, Integer topicId,Integer parentId,
 			String content,
 			@RequestParam(value = "code", required = false) List<String> code,
@@ -217,7 +217,7 @@ public class BbsPostAct {
 		return "redirect:" + bean.getRedirectUrl();
 	}
 	
-	@RequestMapping("/post/o_saveAjax.jspx")
+	@RequestMapping("/post/o_saveAjax.html")
 	public void saveAjax(BbsPost bean, Integer topicId,Integer parentId,
 			String content,
 			@RequestParam(value = "code", required = false) List<String> code,
@@ -285,7 +285,7 @@ public class BbsPostAct {
 		ResponseUtils.renderJson(response, json.toString());
 	}
 
-	@RequestMapping("/post/o_updateAjax.jspx")
+	@RequestMapping("/post/o_updateAjax.html")
 	public void updateAjax(BbsPost bean, Integer postId,
 			String content, Integer pageNo, HttpServletRequest request, HttpServletResponse response,
 			@RequestParam(value = "code", required = false) List<String> code,
@@ -338,7 +338,7 @@ public class BbsPostAct {
 		ResponseUtils.renderJson(response, json.toString());
 	}
 	
-	@RequestMapping("/post/o_update.jspx")
+	@RequestMapping("/post/o_update.html")
 	public String update(BbsPost bean, Integer postId,
 			String content, Integer pageNo, HttpServletRequest request, HttpServletResponse response,
 			@RequestParam(value = "code", required = false) List<String> code,
@@ -384,7 +384,7 @@ public class BbsPostAct {
 		return "redirect:" + bean.getRedirectUrl();
 	}
 
-	@RequestMapping("/post/v_quote{postId}.jspx")
+	@RequestMapping("/post/v_quote{postId}.html")
 	public String quote(@PathVariable Integer postId, Integer pid,
 			HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -417,7 +417,7 @@ public class BbsPostAct {
 				TPLDIR_POST, TPL_POSTADD);
 	}
 
-	@RequestMapping("/post/v_reply{postId}.jspx")
+	@RequestMapping("/post/v_reply{postId}.html")
 	public String reply(@PathVariable Integer postId, Integer pid,
 			HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -452,7 +452,7 @@ public class BbsPostAct {
 				TPLDIR_POST, TPL_POSTADD);
 	}
 
-	@RequestMapping("/post/v_grade{postId}.jspx")
+	@RequestMapping("/post/v_grade{postId}.html")
 	public String grade(@PathVariable Integer postId, Integer pid,
 			HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -481,7 +481,7 @@ public class BbsPostAct {
 				TPLDIR_POST, TPL_POST_GRADE);
 	}
 
-	@RequestMapping("/post/o_grade.jspx")
+	@RequestMapping("/post/o_grade.html")
 	public String gradeSubmit(BbsGrade bean, Integer postId,
 			HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -506,7 +506,7 @@ public class BbsPostAct {
 				TPLDIR_POST, TPL_POSTADD);
 	}
 
-	@RequestMapping("/post/v_shield{postId}_{status}.jspx")
+	@RequestMapping("/post/v_shield{postId}_{status}.html")
 	public String shield(@PathVariable Integer postId, Integer pid,@PathVariable Short status,
 			HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -539,7 +539,7 @@ public class BbsPostAct {
 		return "redirect:" + post.getRedirectUrl();
 	}
 
-	@RequestMapping("/post/o_shield.jspx")
+	@RequestMapping("/post/o_shield.html")
 	public String shieldSubmit(Integer postId, HttpServletRequest request,
 			ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -568,7 +568,7 @@ public class BbsPostAct {
 				TPLDIR_POST, TPL_POSTADD);
 	}
 
-	@RequestMapping("/member/o_prohibit.jspx")
+	@RequestMapping("/member/o_prohibit.html")
 	public String prohibit(Integer postId, Integer userId,
 			HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -590,7 +590,7 @@ public class BbsPostAct {
 		return "redirect:" + post.getRedirectUrl();
 	}
 
-	@RequestMapping("/post/o_delete.jspx")
+	@RequestMapping("/post/o_delete.html")
 	public String delete(Integer[] ids, Integer pageNo,
 			HttpServletRequest request, ModelMap model) {
 		if(ids!=null){
@@ -609,7 +609,7 @@ public class BbsPostAct {
 		
 	}
 	
-	@RequestMapping("/post/v_list_json.jspx")
+	@RequestMapping("/post/v_list_json.html")
 	public void getJsonList(Integer topicId,Integer parentId,
 			Integer first, Integer count,
 			HttpServletRequest request,HttpServletResponse  response) {
@@ -651,7 +651,7 @@ public class BbsPostAct {
 	 * @param postId 
 	 * @param operate 0点赞 3取消点赞
 	 */
-	@RequestMapping(value = "/post/up.jspx")
+	@RequestMapping(value = "/post/up.html")
 	public void postUp(Integer postId, Integer operate,
 			HttpServletRequest request, HttpServletResponse response,
 			ModelMap model) throws JSONException {
@@ -673,7 +673,7 @@ public class BbsPostAct {
 		ResponseUtils.renderJson(response, object.toString());
 	}
 	
-	@RequestMapping(value = "/post/getPost.jspx")
+	@RequestMapping(value = "/post/getPost.html")
 	public String getPost(Integer postId,HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) throws JSONException {
 		CmsSite site = CmsUtils.getSite(request);
@@ -686,7 +686,7 @@ public class BbsPostAct {
 				TPLDIR_POST, TPL_POST_CONTENT);
 	}
 	
-	@RequestMapping(value = "/post/ajaxGetPost.jspx")
+	@RequestMapping(value = "/post/ajaxGetPost.html")
 	public void ajaxGetPost(Integer postId,
 			HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) throws JSONException {
@@ -725,7 +725,7 @@ public class BbsPostAct {
 		ResponseUtils.renderJson(response, json.toString());
 	}
 	
-	@RequestMapping("/post/listChild.jspx")
+	@RequestMapping("/post/listChild.html")
 	public String getChildList(Integer parentId,
 			Integer orderBy,Integer pageNo,HttpServletRequest request, 
 			HttpServletResponse response, ModelMap model) {

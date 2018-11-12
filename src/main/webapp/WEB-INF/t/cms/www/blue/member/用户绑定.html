@@ -49,7 +49,7 @@ $(function() {
           <tr>
           <td>
             <table width="50%" border="0" align="center" cellpadding="0" cellspacing="5">
-            	<form id="bindForm" action="${base}/public_bind.jspx" method="post">	
+            	<form id="bindForm" action="${base}/public_bind.html" method="post">
                 <tr>
 	                 <td width="67" height="30" align="right">登录QQ：</td>
 	                 <td colspan="2"><span id="qqLoginBtn"></span></td>
@@ -71,7 +71,7 @@ $(function() {
  				</form>
             </table>
             <table width="50%" border="0" align="center" cellpadding="0" cellspacing="5">	
- 			 <form id="bindNewForm" action="${base}/public_bind_username.jspx" method="post">
+ 			 <form id="bindNewForm" action="${base}/public_bind_username.html" method="post">
                  <tr>
                    <td height="40" colspan="3"><strong style="font-size:14px;">指定新用户名</strong></td>
                  </tr>	  
@@ -94,7 +94,7 @@ $(function() {
 			</td>
           </tr>
     </table>
- <script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="${site.config.qqID!}" data-redirecturi="http://${site.domain}/public_auth.jspx" charset="utf-8"></script>
+ <script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="${site.config.qqID!}" data-redirecturi="http://${site.domain}/public_auth.html" charset="utf-8"></script>
 			<script type="text/javascript">
 		           //插入按钮的节点qqLoginBtn id
 			    QC.Login({btnId:"qqLoginBtn",size: "A_M"}, function(reqData, opts){//登录成功

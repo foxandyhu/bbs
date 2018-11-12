@@ -40,10 +40,10 @@
 							<span class="money">${userAccount.noPayAmount!}</span>
 						</div>
 						<div class="shouru txje">
-							<form id="jvForm" action="draw.jspx" method="post">
+							<form id="jvForm" action="draw.html" method="post">
 								<span>提现金额:</span> &nbsp;
 							 	<input type="text" name="drawAmout" vld="{required:true,number:true,min:${minDrawAmount!},max:${maxDrawAmount!}}"  maxlength="100" class="input" onpaste="return false"/>
-                                                                <input type="hidden" name="nextUrl" value="draw.jspx"/>
+                                                                <input type="hidden" name="nextUrl" value="draw.html"/>
 								<input type="submit" value="提交" class="btn-chaxun"/>
 							</form>
 						</div>
@@ -74,7 +74,7 @@
 									<td>${c.applyAmount!}</td>
 									<td>${c.applyTime?string('yyyy-MM-dd HH:mm:ss')}</td>
 									<td>[#if c.applyStatus==0]申请中[#elseif c.applyStatus==1]申请成功等待支付[#elseif c.applyStatus==2]申请失败[#elseif c.applyStatus==3]提现成功[/#if]</td>
-									<td>[#if c.applyStatus==0||c.applyStatus==2]<a href="${base}/member/draw_del.jspx?ids=${c.id}&nextUrl=${base}/member/draw_list.jspx"><span class="tabel-del">删除</span></a>[/#if]</td>
+									<td>[#if c.applyStatus==0||c.applyStatus==2]<a href="${base}/member/draw_del.html?ids=${c.id}&nextUrl=${base}/member/draw_list.html"><span class="tabel-del">删除</span></a>[/#if]</td>
 								</tr>
 								[/#list]
 							</tbody>
@@ -86,7 +86,7 @@
                 try{
                     var tableForm = document.getElementById("tableForm");
                     $("input[name=pageNo]").val(pageNo);
-                    tableForm.action="${base}/member/draw_list.jspx";
+                    tableForm.action="${base}/member/draw_list.html";
                     tableForm.onsubmit=null;
                     tableForm.submit();
                 } catch(e) {

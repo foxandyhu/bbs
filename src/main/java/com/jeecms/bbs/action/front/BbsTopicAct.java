@@ -85,7 +85,7 @@ public class BbsTopicAct {
 	public static final String TPL_NO_VIEW = "tpl.noview";
 	public static final String TPL_NO_POSTTYPE = "tpl.noposttype";
 
-	@RequestMapping("/topic/v_add{forumId}.jspx")
+	@RequestMapping("/topic/v_add{forumId}.html")
 	public String add(@PathVariable Integer forumId, String category,
 			Integer fid, HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -117,7 +117,7 @@ public class BbsTopicAct {
 				TPLDIR_TOPIC, TPL_TOPICADD);
 	}
 	
-	@RequestMapping("/topic/o_generateTags.jspx")
+	@RequestMapping("/topic/o_generateTags.html")
 	public void generateTags(String title,HttpServletResponse response) throws JSONException {
 		JSONObject json = new JSONObject();
 		List<Integer> ids=new ArrayList<Integer>();
@@ -135,7 +135,7 @@ public class BbsTopicAct {
 	}
 	
 
-	@RequestMapping("/topic/o_save.jspx")
+	@RequestMapping("/topic/o_save.html")
 	public String save(Integer forumId,  String title,
 			String content, Integer category, Integer categoryType,
 			Integer[] topicTypeIds,String[] name,
@@ -221,7 +221,7 @@ public class BbsTopicAct {
 		}
 	}
 	
-	@RequestMapping("/topic/o_saveAjax.jspx")
+	@RequestMapping("/topic/o_saveAjax.html")
 	public void saveAjax(Integer forumId,  String title,
 			String content, Integer category, Integer categoryType,
 			Integer[] topicTypeIds,String[] name,
@@ -291,7 +291,7 @@ public class BbsTopicAct {
 		ResponseUtils.renderJson(response, json.toString());
 	}
 	
-	@RequestMapping("/topic/v_moveInput.jspx")
+	@RequestMapping("/topic/v_moveInput.html")
 	public String moveInput(String ids ,
 			HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -319,7 +319,7 @@ public class BbsTopicAct {
 				TPLDIR_TOPIC, TPL_TOPIC_MOVE);
 	}
 
-	@RequestMapping("/topic/o_moveSubmit.jspx")
+	@RequestMapping("/topic/o_moveSubmit.html")
 	public String moveSubmit(String ids, Integer moveTo,
 			String url , String reason, HttpServletRequest request,
 			ModelMap model) {
@@ -341,7 +341,7 @@ public class BbsTopicAct {
 		return "redirect:" + url;
 	}
 
-	@RequestMapping("/topic/v_shieldInput.jspx")
+	@RequestMapping("/topic/v_shieldInput.html")
 	public String shieldInput(String ids ,
 			HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -367,7 +367,7 @@ public class BbsTopicAct {
 				TPLDIR_TOPIC, TPL_TOPIC_SHIELD);
 	}
 
-	@RequestMapping("/topic/o_shieldSubmit.jspx")
+	@RequestMapping("/topic/o_shieldSubmit.html")
 	public String shieldSubmit(String ids , String url,
 			boolean shield, String reason, HttpServletRequest request,
 			ModelMap model) {
@@ -390,7 +390,7 @@ public class BbsTopicAct {
 		return "redirect:" + url;
 	}
 
-	@RequestMapping("/topic/v_lockInput.jspx")
+	@RequestMapping("/topic/v_lockInput.html")
 	public String lockInput(String ids ,
 			HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -416,7 +416,7 @@ public class BbsTopicAct {
 				TPLDIR_TOPIC, TPL_TOPIC_LOCK);
 	}
 
-	@RequestMapping("/topic/o_lockSumbit.jspx")
+	@RequestMapping("/topic/o_lockSumbit.html")
 	public String lockSubmit(String ids, String url , boolean lock,
 			String reason, HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -438,7 +438,7 @@ public class BbsTopicAct {
 		return "redirect:" + url;
 	}
 
-	@RequestMapping("/topic/v_upordownInput.jspx")
+	@RequestMapping("/topic/v_upordownInput.html")
 	public String upOrDownInput(String ids ,
 			HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -464,7 +464,7 @@ public class BbsTopicAct {
 				TPLDIR_TOPIC, TPL_TOPIC_UPORDOWN);
 	}
 
-	@RequestMapping("/topic/o_upordownSubmit.jspx")
+	@RequestMapping("/topic/o_upordownSubmit.html")
 	public String upOrDownSubmit(String ids, String url ,
 			Date time, String reason, HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -486,7 +486,7 @@ public class BbsTopicAct {
 		return "redirect:" + url;
 	}
 
-	@RequestMapping("/topic/v_primeInput.jspx")
+	@RequestMapping("/topic/v_primeInput.html")
 	public String primeInput(String ids ,
 			HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -512,7 +512,7 @@ public class BbsTopicAct {
 				TPLDIR_TOPIC, TPL_TOPIC_PRIME);
 	}
 
-	@RequestMapping("/topic/o_primeSubmit.jspx")
+	@RequestMapping("/topic/o_primeSubmit.html")
 	public String primeSubmit(String ids,String url,
 			short primeLevel, String reason, HttpServletRequest request,
 			ModelMap model) {
@@ -535,7 +535,7 @@ public class BbsTopicAct {
 		return "redirect:" + url;
 	}
 
-	@RequestMapping("/topic/v_upTopInput.jspx")
+	@RequestMapping("/topic/v_upTopInput.html")
 	public String upTopInput(String ids,
 			HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -561,7 +561,7 @@ public class BbsTopicAct {
 				TPLDIR_TOPIC, TPL_TOPIC_UPTOP);
 	}
 
-	@RequestMapping("/topic/o_upTopSubmit.jspx")
+	@RequestMapping("/topic/o_upTopSubmit.html")
 	public String upTopSubmit(String ids ,short topLevel, String reason, String url,
 			HttpServletRequest request,ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -583,7 +583,7 @@ public class BbsTopicAct {
 		return "redirect:" +url;
 	}
 	
-	@RequestMapping("/topic/o_upTopAjax.jspx")
+	@RequestMapping("/topic/o_upTopAjax.html")
 	public void upTopAjax(Integer topicId, Integer forumId,
 			 HttpServletRequest request,
 			HttpServletResponse response) {
@@ -614,7 +614,7 @@ public class BbsTopicAct {
 		ResponseUtils.renderJson(response, json.toString());
 	}
 
-	@RequestMapping("/topic/v_highlightInput.jspx")
+	@RequestMapping("/topic/v_highlightInput.html")
 	public String highlightInput(String ids ,
 			HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -640,7 +640,7 @@ public class BbsTopicAct {
 				TPLDIR_TOPIC, TPL_TOPIC_HIGHLIGHT);
 	}
 
-	@RequestMapping("/topic/o_highlightSubmit.jspx")
+	@RequestMapping("/topic/o_highlightSubmit.html")
 	public String highlightSubmit(String ids ,String url,
 			String color, boolean bold, boolean italic, Date time,
 			String reason, HttpServletRequest request, ModelMap model) {
@@ -671,7 +671,7 @@ public class BbsTopicAct {
 	 * @param model
 	 * @throws JSONException 
 	 */
-	@RequestMapping("/topic/o_recommend.jspx")
+	@RequestMapping("/topic/o_recommend.html")
 	public void recommend(String ids,Short status ,HttpServletRequest request,HttpServletResponse response) throws JSONException{
 		JSONObject json = new JSONObject();
 		Integer statu = -1;
@@ -685,7 +685,7 @@ public class BbsTopicAct {
 		ResponseUtils.renderJson(response, json.toString());
 	}
 
-	@RequestMapping("/topic/searchDayTopic*.jspx")
+	@RequestMapping("/topic/searchDayTopic*.html")
 	public String searchByDay(Integer forumId, Integer day,
 			HttpServletRequest request,HttpServletResponse response,
 			ModelMap model) {
@@ -722,7 +722,7 @@ public class BbsTopicAct {
 				TPLDIR_TOPIC, TPL_DAY_TOPIC);
 	}
 
-	@RequestMapping("/topic/o_delete.jspx")
+	@RequestMapping("/topic/o_delete.html")
 	public String delete(Integer[] topicIds, Integer pageNo,
 			HttpServletRequest request, ModelMap model) {
 		if(topicIds!=null){
@@ -737,7 +737,7 @@ public class BbsTopicAct {
 		}
 	}
 	
-	@RequestMapping("/topic/delete_ajax.jspx")
+	@RequestMapping("/topic/delete_ajax.html")
 	public void deleteAjax(String topicIds,String url,
 			HttpServletRequest request,HttpServletResponse response) throws JSONException{
 		Integer status = -1;
@@ -754,7 +754,7 @@ public class BbsTopicAct {
 		ResponseUtils.renderJson(response, json.toString());
 	}
 	
-	@RequestMapping("/topic/delete.jspx")
+	@RequestMapping("/topic/delete.html")
 	public String delete(Integer topicId, Integer pageNo,
 			HttpServletRequest request, ModelMap model) {
 		if(topicId!=null){
@@ -769,7 +769,7 @@ public class BbsTopicAct {
 		}
 	}
 	
-	@RequestMapping("/topic/vote_result.jspx")
+	@RequestMapping("/topic/vote_result.html")
 	public String result(Integer tid, HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -793,7 +793,7 @@ public class BbsTopicAct {
 		}
 	}
 
-	@RequestMapping("/topic/vote.jspx")
+	@RequestMapping("/topic/vote.html")
 	public void vote(Integer tid, Integer[] itemIds,
 			HttpServletRequest request, HttpServletResponse response,
 			ModelMap model) throws JSONException {
@@ -811,7 +811,7 @@ public class BbsTopicAct {
 		ResponseUtils.renderJson(response, json.toString());
 	}
 	
-	@RequestMapping("/topic/v_list_json.jspx")
+	@RequestMapping("/topic/v_list_json.html")
 	public void getJsonList(Short topLevel,Integer forumId,String keywords,
 			Boolean mytopic,Boolean myreply,
 			Integer first, Integer count,

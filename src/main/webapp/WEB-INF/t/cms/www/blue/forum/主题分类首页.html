@@ -11,7 +11,7 @@
 <script type="text/javascript" src="/${res}/bbs_forum/js/base.js"></script>
 <script type="text/javascript">
 	function subscribe(typeId,operate){
-		$.post("${base}/topicType/subscribe.jspx", 
+		$.post("${base}/topicType/subscribe.html",
 			{typeId:typeId,operate:operate},
 		    function(data){
 				var result=data.statu;

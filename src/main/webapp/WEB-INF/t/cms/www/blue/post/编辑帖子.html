@@ -86,7 +86,7 @@ function checkContent(){
     </div>
     <!--发帖内容-->
      <div class="edit-topic-body">
-		<form id="jvForm" action="${base}/post/o_update.jspx" method="post" enctype="multipart/form-data" validate="true">
+		<form id="jvForm" action="${base}/post/o_update.html" method="post" enctype="multipart/form-data" validate="true">
         [#if post.first??]
            <input type="text" placeholder="标题" value="${post.topic.title!}" name="title"  required="true" class="topic-input"/>
         [#else]

@@ -56,7 +56,7 @@
     </table>
     </div>
      <div class="set-tab-box">
-       <div class="member-child"><a href="${base}/member/account.jspx">完善账户资料</a><a href="${base}/member/buy_list.jspx">消费记录</a><a href="${base}/member/order_list.jspx">我的订单</a><a href="${base}/member/charge_list.jspx">收益统计</a><a href="${base}/member/draw_list.jspx" class="on">提现申请</a><a href="${base}/member/weixin_auth_enter.jspx">微信授权</a></div>
+       <div class="member-child"><a href="${base}/member/account.html">完善账户资料</a><a href="${base}/member/buy_list.html">消费记录</a><a href="${base}/member/order_list.html">我的订单</a><a href="${base}/member/charge_list.html">收益统计</a><a href="${base}/member/draw_list.html" class="on">提现申请</a><a href="${base}/member/weixin_auth_enter.html">微信授权</a></div>
         <div class="member-text tggl">
           <div class="txsq">
             <div><span class="zhye">账户余额： <em>${userAccount.noPayAmount!}</em></span></div>
@@ -64,8 +64,8 @@
             <div><span class="txcs">成功提现次数： <em>${userAccount.drawCount!}</em></span><span class="txsj">上次提现时间： <em>${userAccount.lastDrawTime!}</em></span></div>
             <div><span class="gmcs">被购买次数： <em>${userAccount.buyCount!}</em></span>[#if userAccount.lastBuyTime??]<span class="gmsj">最近被购买时间： <em>${userAccount.lastBuyTime?string("yyyy-MM-dd HH:mm:ss")}</em></span>[/#if]</div>
           </div>
-          <div class="txsq-nav"><a href="${base}/member/draw_list.jspx">申请列表</a><a href="${base}/member/draw.jspx" class="on">发起申请</a></div>
-          <form id="jvForm" action="draw.jspx" method="post">
+          <div class="txsq-nav"><a href="${base}/member/draw_list.html">申请列表</a><a href="${base}/member/draw.html" class="on">发起申请</a></div>
+          <form id="jvForm" action="draw.html" method="post">
           <table cellpadding="0" cellspacing="0">
             <tbody>
               [#if userAccount??]
@@ -77,12 +77,12 @@
                 <td style="padding:10px 0 10px 30px; text-align:left;"><input type="text" name="drawAmout" vld="{required:true,number:true,min:${minDrawAmount!},max:${maxDrawAmount!}}"  maxlength="100" class="member-change" style="height:28px;" /></td>
               </tr>
               <tr>
-                <td colspan="2" style="text-align:center; padding:20px 0;"><input type="hidden" name="nextUrl" value="draw_list.jspx"/><input type="submit" class="member-submit" value="提交"><input type="reset" class="member-reset" value="重置"></td>
+                <td colspan="2" style="text-align:center; padding:20px 0;"><input type="hidden" name="nextUrl" value="draw_list.html"/><input type="submit" class="member-submit" value="提交"><input type="reset" class="member-reset" value="重置"></td>
               </tr>
               [#else]
               <tr>
               <td height="25" colspan="2" align="center">
-         	<a href="${base}/member/account.jspx">未找到账户，先完善账户资料</a>
+         	<a href="${base}/member/account.html">未找到账户，先完善账户资料</a>
 	      </td>
               </tr>
               [/#if]

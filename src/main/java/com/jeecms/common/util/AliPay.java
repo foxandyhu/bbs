@@ -201,10 +201,10 @@ public class AliPay {
 		//支付类型
 		String payment_type = "1";//必填，不能修改
 		//服务器异步通知页面路径
-		String notify_url = "http://"+site.getDomain()+"/order/payCallByAliPay.jspx";
+		String notify_url = "http://"+site.getDomain()+"/order/payCallByAliPay.html";
 		if(StringUtils.isNotBlank(payTarget)){
 			if(payTarget.equals(BbsOrder.PAY_TARGET_LIVE)){
-				notify_url = "http://"+site.getDomain()+"/live/order/payCallByAliPay.jspx";
+				notify_url = "http://"+site.getDomain()+"/live/order/payCallByAliPay.html";
 			}
 		}
 		

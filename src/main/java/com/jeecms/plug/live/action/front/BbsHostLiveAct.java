@@ -72,7 +72,7 @@ public class BbsHostLiveAct extends AbstractBbsLive{
 	public static final String TPL_LIVE_STATISTICS = "tpl.liveStatistics";
 	public static final String TPL_LIVE_TICKET_List = "tpl.liveTicketList";
 
-	@RequestMapping("/live/host/index.jspx")
+	@RequestMapping("/live/host/index.html")
 	public String index(HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -86,7 +86,7 @@ public class BbsHostLiveAct extends AbstractBbsLive{
 				TPLDIR_PLUG, TPL_LIVE_INDEX);
 	}
 	
-	@RequestMapping("/live/host/load.jspx")
+	@RequestMapping("/live/host/load.html")
 	public String load(HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -100,7 +100,7 @@ public class BbsHostLiveAct extends AbstractBbsLive{
 				TPLDIR_PLUG, TPL_LIVE_LOAD);
 	}
 	
-	@RequestMapping("/live/host/main.jspx")
+	@RequestMapping("/live/host/main.html")
 	public String main(HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -114,7 +114,7 @@ public class BbsHostLiveAct extends AbstractBbsLive{
 				TPLDIR_PLUG, TPL_LIVE_MAIN);
 	}
 	
-	@RequestMapping("/live/host/v_left.jspx")
+	@RequestMapping("/live/host/v_left.html")
 	public String left(HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -128,7 +128,7 @@ public class BbsHostLiveAct extends AbstractBbsLive{
 				TPLDIR_PLUG, TPL_LIVE_LEFT);
 	}
 
-	@RequestMapping(value = "/live/host/v_tree.jspx")
+	@RequestMapping(value = "/live/host/v_tree.html")
 	public String tree(String root, HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		log.debug("tree path={}", root);
@@ -168,7 +168,7 @@ public class BbsHostLiveAct extends AbstractBbsLive{
 	}
 	
 	@SuppressWarnings("unchecked")
-	@RequestMapping(value = "/live/host/list.jspx")
+	@RequestMapping(value = "/live/host/list.html")
 	public String list(Integer cid,String qtitle,String qusername,
 			Short qstatus,Date qtimeBegin,Date qtimeEnd,
 			Date qFinishTimeBegin,Date qFinishTimeEnd,Integer qorderBy,
@@ -210,7 +210,7 @@ public class BbsHostLiveAct extends AbstractBbsLive{
 				TPLDIR_PLUG, TPL_LIVE_LIST);
 	}
 	
-	@RequestMapping(value = "/live/host/add.jspx")
+	@RequestMapping(value = "/live/host/add.html")
 	public String add(Integer cid,HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -239,7 +239,7 @@ public class BbsHostLiveAct extends AbstractBbsLive{
 				TPLDIR_PLUG, TPL_LIVE_ADD);
 	}
 	
-	@RequestMapping(value = "/live/host/edit.jspx")
+	@RequestMapping(value = "/live/host/edit.html")
 	public String edit(Integer id,Integer cid,String qtitle,String qusername,
 			Short qstatus,Date qtimeBegin,Date qtimeEnd,Integer qorderBy,
 			Integer pageNo,HttpServletRequest request,
@@ -265,7 +265,7 @@ public class BbsHostLiveAct extends AbstractBbsLive{
 				TPLDIR_PLUG, TPL_LIVE_EDIT);
 	}
 	
-	@RequestMapping(value = "/live/host/save.jspx")
+	@RequestMapping(value = "/live/host/save.html")
 	public String save(
 			Integer chapterId,String title,String description,
 			String liveLogo,Date beginTime,Date endTime,
@@ -359,7 +359,7 @@ public class BbsHostLiveAct extends AbstractBbsLive{
 				qorderBy, pageNo, request, response, model);
 	}
 	
-	@RequestMapping(value = "/live/host/update.jspx")
+	@RequestMapping(value = "/live/host/update.html")
 	public String update(
 			Integer id,Integer chapterId,String title,String description,
 			String liveLogo,Date beginTime,Date endTime,
@@ -390,7 +390,7 @@ public class BbsHostLiveAct extends AbstractBbsLive{
 				qorderBy, pageNo, request, response, model);
 	}
 	
-	@RequestMapping(value = "/live/host/updateToApply.jspx")
+	@RequestMapping(value = "/live/host/updateToApply.html")
 	public String updateToApply(
 			Integer id,Integer chapterId,String title,String description,
 			String liveLogo,Date beginTime,Date endTime,
@@ -423,7 +423,7 @@ public class BbsHostLiveAct extends AbstractBbsLive{
 				qorderBy, pageNo, request, response, model);
 	}
 	
-	@RequestMapping("/live/host/delete.jspx")
+	@RequestMapping("/live/host/delete.html")
 	public String delete(Integer[] ids,Integer cid,
 			String qtitle,String qusername,
 			Short qstatus,Date qtimeBegin,Date qtimeEnd,
@@ -450,7 +450,7 @@ public class BbsHostLiveAct extends AbstractBbsLive{
 				qorderBy, pageNo, request, response, model);
 	}
 	
-	@RequestMapping(value = "/live/host/getLiveRate.jspx")
+	@RequestMapping(value = "/live/host/getLiveRate.html")
 	public void getRate(Integer userNum,HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		JSONObject json=new JSONObject();
@@ -468,7 +468,7 @@ public class BbsHostLiveAct extends AbstractBbsLive{
 		ResponseUtils.renderJson(response, json.toString());
 	}
 	
-	@RequestMapping(value = "/live/host/statistic.jspx")
+	@RequestMapping(value = "/live/host/statistic.html")
 	public String statistic(Integer pageNo,HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -490,7 +490,7 @@ public class BbsHostLiveAct extends AbstractBbsLive{
 				TPLDIR_PLUG, TPL_LIVE_STATISTICS);
 	}
 	
-	@RequestMapping(value = "/live/host/ticklist*.jspx")
+	@RequestMapping(value = "/live/host/ticklist*.html")
 	public String liveJoinUserlist(Integer liveId,
 			HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
@@ -523,7 +523,7 @@ public class BbsHostLiveAct extends AbstractBbsLive{
 				TPLDIR_PLUG, TPL_LIVE_TICKET_List);
 	}
 	
-	@RequestMapping(value = "/live/host/viewReason.jspx")
+	@RequestMapping(value = "/live/host/viewReason.html")
 	public String viewReason(Integer id,Integer cid,String qtitle,String qusername,
 			Short qstatus,Date qtimeBegin,Date qtimeEnd,Integer qorderBy,
 			Integer pageNo,HttpServletRequest request,

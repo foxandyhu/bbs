@@ -489,7 +489,7 @@ public class CmsSite implements Serializable {
 		if (StringUtils.isNotBlank(config.getContextPath())) {
 			buff.append(config.getContextPath());
 		}
-		buff.append("/member/myAdvertises.jspx");
+		buff.append("/member/myAdvertises.html");
 		return buff.toString();
 	}
 

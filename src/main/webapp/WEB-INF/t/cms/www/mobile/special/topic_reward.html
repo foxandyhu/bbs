@@ -9,7 +9,7 @@
 <script src="${resSys}/front.js" type="text/javascript"></script>
 <script type="text/javascript">
 function randomReward(){
-	$.get("${base}/reward/random.jspx", {
+	$.get("${base}/reward/random.html", {
 	}, function(data) {
 		$("#rewardAmount").val(data);
 		changeAmountSubmit(data);
@@ -32,7 +32,7 @@ $(function() {
     [#if webCatBrowser]
 	[#if !wxopenid??]
 	//获取微信用户openid
-	$.get("${base}/common/getOpenId.jspx", {
+	$.get("${base}/common/getOpenId.html", {
 		rediretUrl:location.href
 	}, function(data) {
 		$("#wxForm").prop("action",data.url);
@@ -51,7 +51,7 @@ $(function() {
 		<form action="" id="wxForm" method="post"  target="wxFrame"></form>
 		<iframe id="wx1Frame" name="wxFrame"  frameborder="0" border="0" style="display:none;width:0px;height:0px;"></iframe>
 		[/#if]
-		<form method="post" action="${base}/order/topicSelectPay.jspx"
+		<form method="post" action="${base}/order/topicSelectPay.html"
 			id="jvForm">
 			<input name="topicId" value="${topicId!}" type="hidden" /> 
 			<input name="orderNumber" value="${orderNumber!}" type="hidden" /> 

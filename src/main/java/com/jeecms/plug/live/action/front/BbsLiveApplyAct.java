@@ -28,7 +28,7 @@ public class BbsLiveApplyAct {
 
 	public static final String TPL_APPLY_HOST = "tpl.applyHost";
 
-	@RequestMapping(value = "/live/host/apply.jspx", method = RequestMethod.GET)
+	@RequestMapping(value = "/live/host/apply.html", method = RequestMethod.GET)
 	public String hostApplyGet(HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -46,7 +46,7 @@ public class BbsLiveApplyAct {
 				TPLDIR_PLUG, TPL_APPLY_HOST);
 	}
 	
-	@RequestMapping(value = "/live/host/apply.jspx",method = RequestMethod.POST)
+	@RequestMapping(value = "/live/host/apply.html",method = RequestMethod.POST)
 	public String hostApplyPost(String intro,String brief,String experience,
 			String mobile,String address,
 			String[] picPaths, String[] picDescs,String nextUrl,

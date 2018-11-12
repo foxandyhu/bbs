@@ -21,7 +21,7 @@ $(function() {
     [#if webCatBrowser]
 	[#if !wxopenid??]
 	//获取微信用户openid
-	$.get("${base}/common/getOpenId.jspx", {
+	$.get("${base}/common/getOpenId.html", {
 		rediretUrl:location.href
 	}, function(data) {
 		$("#wxForm").prop("action",data.url);
@@ -40,7 +40,7 @@ $(function() {
 		<iframe id="wx1Frame" name="wxFrame"  frameborder="0" border="0" style="display:none;width:0px;height:0px;"></iframe>
 		[/#if]
 		[#if gift??]
-		<form method="post" action="${base}/order/giftSelectPay.jspx"
+		<form method="post" action="${base}/order/giftSelectPay.html"
 			id="jvForm">
 			<input name="giftId" value="${gift.id!}" type="hidden" /> 
 			<input name="orderNumber" value="${orderNumber!}" type="hidden" /> 
@@ -61,7 +61,7 @@ $(function() {
 			</div>
 		</form>
 	    [#elseif magic??]
-		<form method="post" action="${base}/order/magicSelectPay.jspx"
+		<form method="post" action="${base}/order/magicSelectPay.html"
 			id="jvForm">
 			<input name="mid" value="${magic.identifier!}" type="hidden" /> 
 			<input name="orderNumber" value="${orderNumber!}" type="hidden" /> 
@@ -82,7 +82,7 @@ $(function() {
 			</div>
 		</form>
 		[#elseif ad??]
-		<form method="post" action="${base}/order/adSelectPay.jspx"
+		<form method="post" action="${base}/order/adSelectPay.html"
 			id="jvForm">
 			<input name="amount" value="${amount!}" type="hidden" /> 
 			<input name="orderNumber" value="${orderNumber!}" type="hidden" /> 

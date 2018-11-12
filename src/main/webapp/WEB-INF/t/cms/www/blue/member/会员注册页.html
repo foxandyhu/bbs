@@ -14,7 +14,7 @@
     	$("#jvForm").validate();
         $("#submit").click(function () {
 		var options = {
-			url: '${base}/registerAjax.jspx',
+			url: '${base}/registerAjax.html',
 			type: 'post',
 			dataType: 'json',
 			data: $("#jvForm").serialize(),
@@ -42,10 +42,10 @@
 </head>
 <body>
 <div class="reg-box" style="display:block;">
-	<form id="jvForm" action="${base}/register.jspx" method="post">
+	<form id="jvForm" action="${base}/register.html" method="post">
 		<div class="login-body">
 			<div class="form-group">
-               <input type="text" id="username" name="username" placeholder="用户名(3~20个字符)" autocomplete="off" class="input login-input" vld="{required:true,rangelength:[3,20],username:true,remote:'username_unique.jspx',messages:{remote:'用户名已存在！'}}"/>
+               <input type="text" id="username" name="username" placeholder="用户名(3~20个字符)" autocomplete="off" class="input login-input" vld="{required:true,rangelength:[3,20],username:true,remote:'username_unique.html',messages:{remote:'用户名已存在！'}}"/>
 			</div>
 			<div class="form-group">
                 <input type="password" name="password" id="password" placeholder="密码" class="input login-input pwd" />
@@ -58,7 +58,7 @@
                 <i class="eye see-close"></i>
 			</div>
 			<div class="form-group">
-                <input type="text" name="email" placeholder="邮箱" vld="{remote:'email_unique.jspx',messages:{remote:'email已经被使用！'}}" class="input login-input" />
+                <input type="text" name="email" placeholder="邮箱" vld="{remote:'email_unique.html',messages:{remote:'email已经被使用！'}}" class="input login-input" />
 			</div>
 			<div class="form-group clearfix">
                 <input type="text" name="captcha" id="captcha" placeholder="验证码" vld="{required:true}" class="yz-input" />

@@ -45,7 +45,7 @@
     </table>
     </div>
      <div class="set-tab-box">
-     <div class="member-child"><a href="${base}/member/account.jspx">完善账户资料</a><a href="${base}/member/buy_list.jspx">消费记录</a><a href="${base}/member/order_list.jspx">我的订单</a><a href="${base}/member/charge_list.jspx">收益统计</a><a href="${base}/member/draw_list.jspx" class="on">提现申请</a><a href="${base}/member/weixin_auth_enter.jspx">微信授权</a></div>
+     <div class="member-child"><a href="${base}/member/account.html">完善账户资料</a><a href="${base}/member/buy_list.html">消费记录</a><a href="${base}/member/order_list.html">我的订单</a><a href="${base}/member/charge_list.html">收益统计</a><a href="${base}/member/draw_list.html" class="on">提现申请</a><a href="${base}/member/weixin_auth_enter.html">微信授权</a></div>
         <div class="member-text tggl">
           <div class="txsq">
             <div><span class="zhye">账户余额： <em>${userAccount.noPayAmount!}</em></span></div>
@@ -53,8 +53,8 @@
             <div><span class="txcs">成功提现次数： <em>${userAccount.drawCount!}</em></span><span class="txsj">上次提现时间： <em>${userAccount.lastDrawTime!}</em></span></div>
             <div><span class="gmcs">被购买次数： <em>${userAccount.buyCount!}</em></span>[#if userAccount.lastBuyTime??]<span class="gmsj">最近被购买时间： <em>${userAccount.lastBuyTime?string("yyyy-MM-dd HH:mm:ss")}</em></span>[/#if]</div>
           </div>
-          <div class="txsq-nav"><a href="${base}/member/draw_list.jspx" class="on">申请列表</a><a href="${base}/member/draw.jspx">发起申请</a></div>
-          <form id="tableForm" action="contribute_list.jspx" method="post">
+          <div class="txsq-nav"><a href="${base}/member/draw_list.html" class="on">申请列表</a><a href="${base}/member/draw.html">发起申请</a></div>
+          <form id="tableForm" action="contribute_list.html" method="post">
             [#if pagination.list?size gt 0]
           <table cellpadding="0" cellspacing="0">
             <tbody>
@@ -68,7 +68,7 @@
                 <td>[#if c.applyStatus==0]申请中[#elseif c.applyStatus==1]申请成功等待支付[#elseif c.applyStatus==2]申请失败[#elseif c.applyStatus==3]提现成功[/#if]</td>
                 <td>[#if c.applyType==1]主题[#elseif c.applyType==2]礼物[/#if]</td>
                 <td>${c.applyTime?string('yyyy-MM-dd HH:mm:ss')}</td>
-                <td>[#if c.applyStatus==0||c.applyStatus==2]<a href="${base}/member/draw_del.jspx?ids=${c.id}&nextUrl=${base}/member/draw_list.jspx">删除</a>[/#if]</td>
+                <td>[#if c.applyStatus==0||c.applyStatus==2]<a href="${base}/member/draw_del.html?ids=${c.id}&nextUrl=${base}/member/draw_list.html">删除</a>[/#if]</td>
               </tr>
               [/#list]
               <tr>
@@ -95,7 +95,7 @@
                 try{
                     var tableForm = document.getElementById("tableForm");
                     $("input[name=pageNo]").val(pageNo);
-                    tableForm.action="${base}/member/draw_list.jspx";
+                    tableForm.action="${base}/member/draw_list.html";
                     tableForm.onsubmit=null;
                     tableForm.submit();
                 } catch(e) {

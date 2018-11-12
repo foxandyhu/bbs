@@ -55,7 +55,7 @@ public class BbsTopicAct {
 	public static final String TPL_DAY_TOPIC = "tpl.daytopic";
 	public static final String TPL_NO_VIEW = "tpl.noview";
 
-	@RequestMapping("/topic/v_add{forumId}.jspx")
+	@RequestMapping("/topic/v_add{forumId}.html")
 	public String add(@PathVariable Integer forumId, Integer fid,
 			HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -91,7 +91,7 @@ public class BbsTopicAct {
 				TPLDIR_TOPIC, TPL_TOPICADD);
 	}
 
-	@RequestMapping("/topic/o_save.jspx")
+	@RequestMapping("/topic/o_save.html")
 	public String save(Integer forumId,Integer postTypeId, String title, String content,
 			@RequestParam(value = "code", required = false) List<String> code,
 			HttpServletRequest request, ModelMap model) {
@@ -123,7 +123,7 @@ public class BbsTopicAct {
 		return "redirect:" + bean.getRedirectUrl();
 	}
 
-	@RequestMapping("/topic/v_moveInput.jspx")
+	@RequestMapping("/topic/v_moveInput.html")
 	public String moveInput(Integer[] topicIds, Integer forumId,
 			HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -150,7 +150,7 @@ public class BbsTopicAct {
 				TPLDIR_TOPIC, TPL_TOPIC_MOVE);
 	}
 
-	@RequestMapping("/topic/o_moveSubmit.jspx")
+	@RequestMapping("/topic/o_moveSubmit.html")
 	public String moveSubmit(Integer[] topicIds, Integer moveTo,
 			Integer forumId, String reason, HttpServletRequest request,
 			ModelMap model) {
@@ -171,7 +171,7 @@ public class BbsTopicAct {
 		return "redirect:" + forum.getRedirectUrl();
 	}
 
-	@RequestMapping("/topic/v_shieldInput.jspx")
+	@RequestMapping("/topic/v_shieldInput.html")
 	public String shieldInput(Integer[] topicIds, Integer forumId,
 			HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -196,7 +196,7 @@ public class BbsTopicAct {
 				TPLDIR_TOPIC, TPL_TOPIC_SHIELD);
 	}
 
-	@RequestMapping("/topic/o_shieldSubmit.jspx")
+	@RequestMapping("/topic/o_shieldSubmit.html")
 	public String shieldSubmit(Integer[] topicIds, Integer forumId,
 			boolean shield, String reason, HttpServletRequest request,
 			ModelMap model) {
@@ -217,7 +217,7 @@ public class BbsTopicAct {
 		return "redirect:" + forum.getRedirectUrl();
 	}
 
-	@RequestMapping("/topic/v_lockInput.jspx")
+	@RequestMapping("/topic/v_lockInput.html")
 	public String lockInput(Integer[] topicIds, Integer forumId,
 			HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -242,7 +242,7 @@ public class BbsTopicAct {
 				TPLDIR_TOPIC, TPL_TOPIC_LOCK);
 	}
 
-	@RequestMapping("/topic/o_lockSumbit.jspx")
+	@RequestMapping("/topic/o_lockSumbit.html")
 	public String lockSubmit(Integer[] topicIds, Integer forumId, boolean lock,
 			String reason, HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -262,7 +262,7 @@ public class BbsTopicAct {
 		return "redirect:" + forum.getRedirectUrl();
 	}
 
-	@RequestMapping("/topic/v_upordownInput.jspx")
+	@RequestMapping("/topic/v_upordownInput.html")
 	public String upOrDownInput(Integer[] topicIds, Integer forumId,
 			HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -287,7 +287,7 @@ public class BbsTopicAct {
 				TPLDIR_TOPIC, TPL_TOPIC_UPORDOWN);
 	}
 
-	@RequestMapping("/topic/o_upordownSubmit.jspx")
+	@RequestMapping("/topic/o_upordownSubmit.html")
 	public String upOrDownSubmit(Integer[] topicIds, Integer forumId,
 			Date time, String reason, HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -307,7 +307,7 @@ public class BbsTopicAct {
 		return "redirect:" + forum.getRedirectUrl();
 	}
 
-	@RequestMapping("/topic/v_primeInput.jspx")
+	@RequestMapping("/topic/v_primeInput.html")
 	public String primeInput(Integer[] topicIds, Integer forumId,
 			HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -332,7 +332,7 @@ public class BbsTopicAct {
 				TPLDIR_TOPIC, TPL_TOPIC_PRIME);
 	}
 
-	@RequestMapping("/topic/o_primeSubmit.jspx")
+	@RequestMapping("/topic/o_primeSubmit.html")
 	public String primeSubmit(Integer[] topicIds, Integer forumId,
 			short primeLevel, String reason, HttpServletRequest request,
 			ModelMap model) {
@@ -353,7 +353,7 @@ public class BbsTopicAct {
 		return "redirect:" + forum.getRedirectUrl();
 	}
 
-	@RequestMapping("/topic/v_upTopInput.jspx")
+	@RequestMapping("/topic/v_upTopInput.html")
 	public String upTopInput(Integer[] topicIds, Integer forumId,
 			HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -378,7 +378,7 @@ public class BbsTopicAct {
 				TPLDIR_TOPIC, TPL_TOPIC_UPTOP);
 	}
 
-	@RequestMapping("/topic/o_upTopSubmit.jspx")
+	@RequestMapping("/topic/o_upTopSubmit.html")
 	public String upTopSubmit(Integer[] topicIds, Integer forumId,
 			short topLevel, String reason, HttpServletRequest request,
 			ModelMap model) {
@@ -399,7 +399,7 @@ public class BbsTopicAct {
 		return "redirect:" + forum.getRedirectUrl();
 	}
 
-	@RequestMapping("/topic/v_highlightInput.jspx")
+	@RequestMapping("/topic/v_highlightInput.html")
 	public String highlightInput(Integer[] topicIds, Integer forumId,
 			HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -424,7 +424,7 @@ public class BbsTopicAct {
 				TPLDIR_TOPIC, TPL_TOPIC_HIGHLIGHT);
 	}
 
-	@RequestMapping("/topic/o_highlightSubmit.jspx")
+	@RequestMapping("/topic/o_highlightSubmit.html")
 	public String highlightSubmit(Integer[] topicIds, Integer forumId,
 			String color, boolean bold, boolean italic, Date time,
 			String reason, HttpServletRequest request, ModelMap model) {
@@ -445,7 +445,7 @@ public class BbsTopicAct {
 		return "redirect:" + forum.getRedirectUrl();
 	}
 
-	@RequestMapping("/topic/v_searchDayTopic.jspx")
+	@RequestMapping("/topic/v_searchDayTopic.html")
 	public String searchByDay(Integer forumId, Integer day,
 			HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -471,7 +471,7 @@ public class BbsTopicAct {
 				TPLDIR_TOPIC, TPL_DAY_TOPIC);
 	}
 
-	@RequestMapping("/topic/o_delete.jspx")
+	@RequestMapping("/topic/o_delete.html")
 	public String delete(Integer[] topicIds, Integer pageNo,
 			HttpServletRequest request, ModelMap model) {
 		BbsTopic[] beans = manager.deleteByIds(topicIds);

@@ -41,7 +41,7 @@ public class BbsLiveAccountDrawAct {
 	public static final String LIVE_HOST_ACCOUNT_DRAW = "tpl.liveAccountDraw";
 	public static final String LIVE_HOST_ACCOUNT_DRAW_LIST = "tpl.liveAccountDrawList";
 	
-	@RequestMapping(value = "/live/host/draw_list.jspx")
+	@RequestMapping(value = "/live/host/draw_list.html")
 	public String drawList(Integer pageNo,HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -64,7 +64,7 @@ public class BbsLiveAccountDrawAct {
 				TPLDIR_PLUG, LIVE_HOST_ACCOUNT_DRAW_LIST);
 	}
 	
-	@RequestMapping(value = "/live/host/draw_del.jspx")
+	@RequestMapping(value = "/live/host/draw_del.html")
 	public String drawDel(Integer[] ids,Integer pageNo,
 			String nextUrl,HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
@@ -87,7 +87,7 @@ public class BbsLiveAccountDrawAct {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/live/host/draw.jspx", method = RequestMethod.GET)
+	@RequestMapping(value = "/live/host/draw.html", method = RequestMethod.GET)
 	public String drawInput(HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -98,7 +98,7 @@ public class BbsLiveAccountDrawAct {
 			return FrontUtils.showLogin(request, model, site);
 		}
 		if(StringUtils.isBlank(user.getAccountWeixinOpenId())){
-			return "redirect:../../member/weixin_auth_enter.jspx";
+			return "redirect:../../member/weixin_auth_enter.html";
 		}
 		BbsLiveUserAccount liveUserAccount=liveUserAccountMng.findById(user.getId());
 		Double appliedSum=accountDrawMng.getAppliedSum(user.getId(),BbsAccountDraw.APPLY_TYPE_LIVE);
@@ -121,7 +121,7 @@ public class BbsLiveAccountDrawAct {
 	 * @return
 	 * @throws IOException
 	 */
-	@RequestMapping(value = "/live/host/draw.jspx", method = RequestMethod.POST)
+	@RequestMapping(value = "/live/host/draw.html", method = RequestMethod.POST)
 	public String drawSubmit(Double drawAmout,
 			String nextUrl,HttpServletRequest request, HttpServletResponse response,
 			ModelMap model) throws IOException {

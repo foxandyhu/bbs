@@ -19,9 +19,9 @@ Cms.loginSSO('${base}');
     &nbsp;&nbsp;[#if user.group??]【级别：${user.group.name}】[/#if]
     &nbsp;&nbsp;【<a href="${base}/member/index.html">用户中心</a>】
     [#if returnUrl?? && returnUrl?length gt 0]
-    &nbsp;&nbsp;【<a href="${base}/logout.jspx?returnUrl=${returnUrl!}">退出</a>】
+    &nbsp;&nbsp;【<a href="${base}/logout.html?returnUrl=${returnUrl!}">退出</a>】
     [#else]
-    &nbsp;&nbsp;【<a href="${base}/logout.jspx?returnUrl=/">退出</a>】
+    &nbsp;&nbsp;【<a href="${base}/logout.html?returnUrl=/">退出</a>】
     [/#if]
    
     [#else]
@@ -30,7 +30,7 @@ Cms.loginSSO('${base}');
 		$("#jvForm").validate();
 	});
 	</script>
-    <form id="jvForm" action="${base}/login.jspx" method="post">
+    <form id="jvForm" action="${base}/login.html" method="post">
       <table cellspacing="0" cellpadding="0" border="0">
         <tbody>
           <tr>
@@ -46,10 +46,10 @@ Cms.loginSSO('${base}');
               <input type="checkbox" value="true" name="rememberMe"/>&nbsp;下次自动登录
               <input type="submit" name="button" value="登录"  class="loginbutton"  />
               [#if site.config.weixinLoginEnable]
-              	<a href="${base}/weixin_login.jspx">微信登陆</a>
+              	<a href="${base}/weixin_login.html">微信登陆</a>
               [/#if]
               [#if site.config.qqEnable]
-              <script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="${site.config.qqID!}" data-redirecturi="http://${site.domain}/public_auth.jspx" charset="utf-8"></script>
+              <script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="${site.config.qqID!}" data-redirecturi="http://${site.domain}/public_auth.html" charset="utf-8"></script>
 			<span id="qqLoginBtn"></span>
 			<script type="text/javascript">
 				//插入按钮的节点qqLoginBtn id
@@ -79,7 +79,7 @@ Cms.loginSSO('${base}');
 			 </script>
               [/#if]
               </td>
-            <td>&nbsp; <a href="${base}/register.jspx" style="color:red;">注册</a> &nbsp; <a href="${base}/member/forgot_password.jspx" style="color:red;">找回密码</a>
+            <td>&nbsp; <a href="${base}/register.html" style="color:red;">注册</a> &nbsp; <a href="${base}/member/forgot_password.html" style="color:red;">找回密码</a>
             </td>
           </tr>
         </tbody>

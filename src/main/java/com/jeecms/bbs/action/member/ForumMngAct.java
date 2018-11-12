@@ -37,7 +37,7 @@ public class ForumMngAct {
 	 * @param userId 被禁言用户ID
 	 * @param operate  0禁言 1取消禁言
 	 */
-	@RequestMapping(value = "/user/forbidden.jspx")
+	@RequestMapping(value = "/user/forbidden.html")
 	public void userForbidden(Integer forumId, Integer userId,
 			HttpServletRequest request,
 			HttpServletResponse response, ModelMap model)throws JSONException {

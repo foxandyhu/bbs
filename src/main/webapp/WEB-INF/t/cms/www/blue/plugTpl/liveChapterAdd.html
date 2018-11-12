@@ -15,7 +15,7 @@
 $(function() {
 	$("#jvForm").validate();
 	$("input[name='name']").blur( function () {
-		$.post("v_create_path.jspx", {
+		$.post("v_create_path.html", {
 			name:$(this).val()
 		}, function(data) {
 			$("input[name='path']").val(data);
@@ -36,7 +36,7 @@ $(function() {
 
 <div class=" right-panel clearfix" style="min-height: 592px;">
 				<div class="tabelbox cjzbbox" style="margin:0;">
-					<form id="jvForm" action="save.jspx">
+					<form id="jvForm" action="save.html">
 						<table border="0" cellspacing="0" cellpadding="0" style="width: 100%;">
 							<tr>
 								<td width="20%" class="left-td">父章节：</td>
@@ -64,7 +64,7 @@ $(function() {
 										name="path"
 									
 										required="true" 
-										 vld="{required:true,path:true,remote:'v_check_path.jspx',messages:{remote:'${chapterPathExist}'}}"
+										 vld="{required:true,path:true,remote:'v_check_path.html',messages:{remote:'${chapterPathExist}'}}"
 										/>
 								</td>
 							</tr>

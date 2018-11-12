@@ -50,7 +50,7 @@ function vote(name, tid){
 			count++;
 		}
 	}
-	$.post('${base}/topic/vote.jspx', {
+	$.post('${base}/topic/vote.html', {
 		'itemIds':itemIds,
 		'tid':tid
 	}, function(data) {
@@ -86,7 +86,7 @@ $(function(){
 });
 
 function VoteResult(){
-	$.post("${base}/topic/vote_result.jspx",{tid: "${topic.id}"},function(data){
+	$.post("${base}/topic/vote_result.html",{tid: "${topic.id}"},function(data){
 		$(".vote").html(data);
 	});
 }
@@ -276,21 +276,21 @@ function VoteResult(){
 	          	[/#if]
           	[/#if]
           	[/#if]
-          <a href="${base}/getreportpage.jspx?url=${post.url!}" id="reportA_${post.url}_${post.id}">举报</a>
+          <a href="${base}/getreportpage.html?url=${post.url!}" id="reportA_${post.url}_${post.id}">举报</a>
           	&nbsp;&nbsp; <a href="javascript:scroll(0,0)">顶端</a> </span>
           <div class="fl readbot">
           [#if user??]
           [#if moderators||user.id==creater.id]
-          <a href="${base}/post/v_edit${post.id!}.jspx">编辑</a>
+          <a href="${base}/post/v_edit${post.id!}.html">编辑</a>
           [/#if]
           [#if moderators]
-          [#if !post.shield]<a href="${base}/post/v_shield${post.id!}_${-1}.jspx">屏蔽[#else]<a href="${base}/post/v_shield${post.id!}_${0}.jspx">取消屏蔽[/#if]</a> 
+          [#if !post.shield]<a href="${base}/post/v_shield${post.id!}_${-1}.html">屏蔽[#else]<a href="${base}/post/v_shield${post.id!}_${0}.html">取消屏蔽[/#if]</a>
           [/#if][/#if]
           [#if user??]
-          <a class="r-reply" title="引用此楼" href="${base}/post/v_quote${post.id!}.jspx">引用</a> 
-          <a class="r-reply" title="回复此楼" href="${base}/post/v_reply${post.id!}.jspx">回复</a>
+          <a class="r-reply" title="引用此楼" href="${base}/post/v_quote${post.id!}.html">引用</a>
+          <a class="r-reply" title="回复此楼" href="${base}/post/v_reply${post.id!}.html">回复</a>
           [#if user.id!=creater.id]
-          <a class="r-reply" title="评分此楼" href="${base}/post/v_grade${post.id!}.jspx">评分</a>
+          <a class="r-reply" title="评分此楼" href="${base}/post/v_grade${post.id!}.html">评分</a>
           [/#if]
           [/#if]
           </div>
@@ -309,9 +309,9 @@ $("a[id^='magica']").each(function(){
 	id=$(this).attr("id");
 	strs=id.split("_");
 	if(strs.length>=5){
-		$(this).wBox({title: "使用道具",requestType:"iframe",iframeWH:{width:400,height:200},target:"${base}/magic/getmagicpage.jspx?pid="+strs[1]+"&ppid="+strs[2]+"&mid="+strs[3]+"&username="+strs[4]});
+		$(this).wBox({title: "使用道具",requestType:"iframe",iframeWH:{width:400,height:200},target:"${base}/magic/getmagicpage.html?pid="+strs[1]+"&ppid="+strs[2]+"&mid="+strs[3]+"&username="+strs[4]});
 		}else{
-			$(this).wBox({title: "使用道具",requestType:"iframe",iframeWH:{width:400,height:200},target:"${base}/magic/getmagicpage.jspx?pid="+strs[1]+"&ppid="+strs[2]+"&mid="+strs[3]});
+			$(this).wBox({title: "使用道具",requestType:"iframe",iframeWH:{width:400,height:200},target:"${base}/magic/getmagicpage.html?pid="+strs[1]+"&ppid="+strs[2]+"&mid="+strs[3]});
 			}
 	});
 $("a[id^='msgSendA']").each(function(){
@@ -322,17 +322,17 @@ $("a[id^='msgSendA']").each(function(){
 $("a[id^='reportA']").each(function(){
 	id=$(this).attr("id");
 	strs=id.split("_");
-	$(this).wBox({title: "举报",requestType:"iframe",iframeWH:{width:320,height:50},target:"${base}/getreportpage.jspx?pid="+strs[2]+"&&url="+strs[1]});
+	$(this).wBox({title: "举报",requestType:"iframe",iframeWH:{width:320,height:50},target:"${base}/getreportpage.html?pid="+strs[2]+"&&url="+strs[1]});
 });
 </script>
 [#include "../tag/topic.html"/] 
 <div class="t3">
 [#if user??]
 	<span class="fr" style="margin-left: 0.5em">
-	    <a href="${base}/topic/v_add${forum.id!}.jspx">
+	    <a href="${base}/topic/v_add${forum.id!}.html">
 	    <img alt="发帖" src="/${res}/bbs_forum/img/post.png" /></a></span>
 	[#if topic.allayReply]
-	<span class="fr"><a href="${base}/post/v_add${topic.id!}.jspx">
+	<span class="fr"><a href="${base}/post/v_add${topic.id!}.html">
 	<img alt="回复" src="/${res}/bbs_forum/img/reply.png" /></a></span>
 	[/#if]
 	<span class="fl"></span>
@@ -341,7 +341,7 @@ $("a[id^='reportA']").each(function(){
     </div>
 [#if topic.allayReply]	
 [#if user??]
-<form id="jvForm" action="${base}/post/o_save.jspx" method="post" enctype="multipart/form-data" validate="true" onsubmit="return checkContent();">
+<form id="jvForm" action="${base}/post/o_save.html" method="post" enctype="multipart/form-data" validate="true" onsubmit="return checkContent();">
       <div class="t" style="margin-top: 5px">
       <table cellspacing="0" cellpadding="0" width="100%" align="center">
         <tbody>

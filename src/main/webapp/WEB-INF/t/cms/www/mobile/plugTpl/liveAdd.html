@@ -33,7 +33,7 @@ $(function() {
 });
 function getRate(){
 	var num=$("#limitUserNum").val();
-	$.post("getLiveRate.jspx", {
+	$.post("getLiveRate.html", {
 		userNum:num
 	}, function(data) {
 		$("#commissionRate").html(data.rate);
@@ -50,13 +50,13 @@ function getRate(){
 </div>
 <div class="box-positon ck">
 	<form class="ropt">
-		<input type="submit" value="<@s.m "global.backToList"/>" onclick="this.form.action='list.jspx';" class="return-button"/>
+		<input type="submit" value="<@s.m "global.backToList"/>" onclick="this.form.action='list.html';" class="return-button"/>
 	</form>
 	<div class="clear"></div>
 </div>
 <div class="body-box">
 <#include "image_upload.html"/>
-<@p.form id="jvForm" action="save.jspx" labelWidth="10" class="formDefStyle">
+<@p.form id="jvForm" action="save.html" labelWidth="10" class="formDefStyle">
 <@p.td colspan="2" width="100" label="live.chapter">
 <select id="chapterId" name="chapterId" style="float:left;">
 <#if !chapter??>

@@ -150,7 +150,7 @@ Pn.loginSSO=function(base){
 	var ssoLogout=$.cookie('sso_logout');
 	if(username!=null){
 		if(sessionId!=null||(ssoLogout!=null&&ssoLogout=="true")){
-			$.post(base+"/sso/login.jspx", {
+			$.post(base+"/sso/login.html", {
 				 username:username,
 				 sessionId:sessionId,
 				 ssoLogout:ssoLogout

@@ -143,7 +143,7 @@
 									[#if createrId??]
 									<a href="${topic.url}">显示全部</a>
 									[#else]
-									<a href="${base}/topic/postListByAuthor.jspx?topicId=${topic.id}&createrId=${topic.firstPost.creater.id}">只看该作者</a>
+									<a href="${base}/topic/postListByAuthor.html?topicId=${topic.id}&createrId=${topic.firstPost.creater.id}">只看该作者</a>
 									[/#if]
 								</p>
 							</div>
@@ -261,11 +261,11 @@
 									</div>				
 									</div>
 									[#if user.moderator||user.id==topic.creater.id]
-									<a href="${base}/post/v_edit${topic.firstPost.id!}.jspx" class="hover-blue" title="编辑">
+									<a href="${base}/post/v_edit${topic.firstPost.id!}.html" class="hover-blue" title="编辑">
 										<span>编辑</span>
 									</a>
 									[/#if]
-									<a href="${base}/post/v_quote${topic.firstPost.id!}.jspx" class="hover-blue" title="引用">
+									<a href="${base}/post/v_quote${topic.firstPost.id!}.html" class="hover-blue" title="引用">
 										<span>引用</span>
 									</a>
 									<a  onclick="report('${base}','${topic.wholeUrl!}')" class="hover-blue" title="举报">
@@ -273,11 +273,11 @@
 									</a>
 									[#if user.moderator]
 									  [#if !topic.firstPost.shield]
-									  <a href="${base}/post/v_shield${topic.firstPost.id!}_${-1}.jspx" class="hover-blue" title="屏蔽">
+									  <a href="${base}/post/v_shield${topic.firstPost.id!}_${-1}.html" class="hover-blue" title="屏蔽">
 										<span>屏蔽</span>
 									  </a>
 									  [#else]
-									   <a href="${base}/post/v_shield${topic.firstPost.id!}_${0}.jspx" class="hover-blue" title="取消屏蔽">
+									   <a href="${base}/post/v_shield${topic.firstPost.id!}_${0}.html" class="hover-blue" title="取消屏蔽">
 										<span>取消屏蔽</span>
 									  </a>
 									  [/#if]
@@ -288,7 +288,7 @@
 									[#if user.moderator]
 										[#if topic.lastReply??]
 										[#else]
-										<a href="${base}/topic/o_delete.jspx?topicIds=${topic.id!}" class="hover-blue" title="删除">
+										<a href="${base}/topic/o_delete.html?topicIds=${topic.id!}" class="hover-blue" title="删除">
 											<span>删除</span>
 										</a>
 										[/#if]
@@ -356,7 +356,7 @@
 									[#if createrId??]
 									<a href="${topic.url}">显示全部</a>
 									[#else]
-									<a href="${base}/topic/postListByAuthor.jspx?topicId=${topic.id}&createrId=${post.creater.id}">只看该作者</a>
+									<a href="${base}/topic/postListByAuthor.html?topicId=${topic.id}&createrId=${post.creater.id}">只看该作者</a>
 									[/#if]
 								</p>
 							</div>
@@ -451,11 +451,11 @@
 									</div>
 									</div>
 									[#if user.moderator||user.id==post.creater.id]
-									<a href="${base}/post/v_edit${post.id!}.jspx" class="hover-blue" title="编辑">
+									<a href="${base}/post/v_edit${post.id!}.html" class="hover-blue" title="编辑">
 										<span>编辑</span>
 									</a>
 									[/#if]
-									<a href="${base}/post/v_quote${post.id!}.jspx" class="hover-blue" title="引用">
+									<a href="${base}/post/v_quote${post.id!}.html" class="hover-blue" title="引用">
 										<span>引用</span>
 									</a>
 									<a  onclick="report('${base}','${post.wholeUrl!}')" class="hover-blue" title="举报">
@@ -463,22 +463,22 @@
 									</a>
 									[#if user.moderator]
 									  [#if !post.shield]
-									  <a href="${base}/post/v_shield${post.id!}_${-1}.jspx" class="hover-blue" title="屏蔽">
+									  <a href="${base}/post/v_shield${post.id!}_${-1}.html" class="hover-blue" title="屏蔽">
 										<span>屏蔽</span>
 									  </a>
 									  [#else]
-									   <a href="${base}/post/v_shield${post.id!}_${0}.jspx" class="hover-blue" title="取消屏蔽">
+									   <a href="${base}/post/v_shield${post.id!}_${0}.html" class="hover-blue" title="取消屏蔽">
 										<span>取消屏蔽</span>
 									  </a>
 									  [/#if]
 									[/#if]
 									[#if user.moderator]
-									<a href="${base}/post/o_delete.jspx?ids=${post.id!}" class="hover-blue" title="删除">
+									<a href="${base}/post/o_delete.html?ids=${post.id!}" class="hover-blue" title="删除">
 										<span>删除</span>
 									</a>
 									[#elseif user.id==post.creater.id]
 										[#if post.replys == 0]
-											<a href="${base}/post/o_delete.jspx?ids=${post.id!}" class="hover-blue" title="删除">
+											<a href="${base}/post/o_delete.html?ids=${post.id!}" class="hover-blue" title="删除">
 												<span>删除</span>
 											</a>
 										[/#if]
@@ -501,7 +501,7 @@
 				var count=5;
 				function getContent(){ 
 					if(pageNo<=totalPage){
-						$("#topicposts").load("${base}/topic/getPostList.jspx",
+						$("#topicposts").load("${base}/topic/getPostList.html",
 							{pageNo: pageNo,topicId:"${topic.id}",option:2}, 
 							function(){
 								$("#topicTable").append($("#topicposts").html());
@@ -520,7 +520,7 @@
 				<div class="reply-box">
 					[#if topic.allayReply]	
 					[#if user??]
-					<form id="jvForm" action="${base}/post/o_save.jspx" method="post" enctype="multipart/form-data" >
+					<form id="jvForm" action="${base}/post/o_save.html" method="post" enctype="multipart/form-data" >
 						<div class="reply-top clearfix">
 							<div class="pull-left reply-read"><img src="/${res}/bbs_forum/images/icon-read.png"/>写下你的回复</div>
 							<div class="pull-right size-chart"></div>
@@ -750,11 +750,11 @@ $(function() {
 				id=$(this).attr('id');
 				strs = id.split("_");
 				if(strs.length>=5){
-					$("#useMagic").load("${base}/magic/getmagicpage.jspx?pid="+strs[1]+"&ppid="+strs[2]+"&mid="+strs[3]+"&username="+strs[4],function (){
+					$("#useMagic").load("${base}/magic/getmagicpage.html?pid="+strs[1]+"&ppid="+strs[2]+"&mid="+strs[3]+"&username="+strs[4],function (){
 						showModel('#useMagic');
 					});
 				}else{
-					$("#useMagic").load("${base}/magic/getmagicpage.jspx?pid="+strs[1]+"&ppid="+strs[2]+"&mid="+strs[3],function (){
+					$("#useMagic").load("${base}/magic/getmagicpage.html?pid="+strs[1]+"&ppid="+strs[2]+"&mid="+strs[3],function (){
 						showModel('#useMagic');
 					})
 				}

@@ -36,7 +36,7 @@
     <div>
      <div class="set-tab-box">
      <div class="member-text tggl">
-         <form id="tableForm" action="order_list.jspx" method="post">
+         <form id="tableForm" action="order_list.html" method="post">
           [#if pagination.list?size gt 0]
           <table cellpadding="0" cellspacing="0">
             <tbody>
@@ -84,7 +84,7 @@
                 try{
                     var tableForm = document.getElementById("tableForm");
                     $("input[name=pageNo]").val(pageNo);
-                    tableForm.action="order_list.jspx";
+                    tableForm.action="order_list.html";
                     tableForm.submit();
                 } catch(e) {
                     alert('_gotoPage(pageNo)方法出错');

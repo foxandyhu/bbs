@@ -39,7 +39,7 @@
 						<div class="yu-e">
 							<span>账户余额</span>
 							<span class="money">${user.userTotalAmount!}</span>
-							<a href="${base}/member/draw.jspx"><img src="/${res}/bbs_member/images/tixian.png"/></a>
+							<a href="${base}/member/draw.html"><img src="/${res}/bbs_member/images/tixian.png"/></a>
 						</div>
 						<div class="shouru">
 							今日收入：<span>${user.userDayAmount!}</span> &nbsp; &nbsp; | &nbsp; &nbsp; 
@@ -53,16 +53,16 @@
 					<div style="padding: 0 30px;">
 						<ul class="change-card clearfix">
 							<li>
-								<a href="${base}/member/charge_list.jspx">收益统计</a>
+								<a href="${base}/member/charge_list.html">收益统计</a>
 							</li>
 							<li class="active">
-								<a href="${base}/member/order_list.jspx">订单详情</a>
+								<a href="${base}/member/order_list.html">订单详情</a>
 							</li>
 							<li>
-								<a href="${base}/member/buy_list.jspx">消费记录</a>
+								<a href="${base}/member/buy_list.html">消费记录</a>
 							</li>
 						</ul>
-  <form id="tableForm" action="order_list.jspx" method="post">
+  <form id="tableForm" action="order_list.html" method="post">
         [#if tag_pagination.list?size gt 0]
                        
 						<table border="0" cellspacing="0" cellpadding="0" class="table">
@@ -106,7 +106,7 @@
                 try{
                     var tableForm = document.getElementById("tableForm");
                     $("input[name=pageNo]").val(pageNo);
-                    tableForm.action="order_list.jspx";
+                    tableForm.action="order_list.html";
                     tableForm.submit();
                 } catch(e) {
                     alert('_gotoPage(pageNo)方法出错');

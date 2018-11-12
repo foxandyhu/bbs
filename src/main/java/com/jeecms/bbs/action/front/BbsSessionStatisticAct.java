@@ -14,7 +14,7 @@ import com.jeecms.common.web.ResponseUtils;
 
 @Controller
 public class BbsSessionStatisticAct {
-	@RequestMapping(value = "/session/statistic.jspx")
+	@RequestMapping(value = "/session/statistic.html")
 	public void statisticSessionCount(HttpServletRequest request,HttpServletResponse response) {
 		JSONObject json=new JSONObject();
 		Integer membtertotal=bbsSessionMng.total(true);

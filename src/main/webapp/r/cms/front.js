@@ -9,7 +9,7 @@ Cms.viewCount = function(base, contentId, viewId, commentId, downloadId, upId,
 	downloadId = downloadId || "downloads";
 	upId = upId || "ups";
 	downId = downId || "downs";
-	$.getJSON(base + "/content_view.jspx", {
+	$.getJSON(base + "/content_view.html", {
 		contentId : contentId
 	}, function(data) {
 		if (data.length > 0) {
@@ -31,7 +31,7 @@ Cms.up = function(base, contentId, origValue, upId) {
 		return false;
 	}
 	$.cookie("_cms_updown_" + contentId, "1");
-	$.get(base + "/content_up.jspx", {
+	$.get(base + "/content_up.html", {
 		"contentId" : contentId
 	}, function(data) {
 		$("#" + upId).text(origValue + 1);
@@ -48,7 +48,7 @@ Cms.down = function(base, contentId, origValue, downId) {
 		return false;
 	}
 	$.cookie("_cms_updown_" + contentId, "1");
-	$.get(base + "/content_down.jspx", {
+	$.get(base + "/content_down.html", {
 		contentId : contentId
 	}, function(data) {
 		$("#" + downId).text(origValue + 1);
@@ -59,13 +59,13 @@ Cms.down = function(base, contentId, origValue, downId) {
  * 获取附件地址
  */
 Cms.attachment = function(base, contentId, n, prefix) {
-	$.get(base + "/attachment_url.jspx", {
+	$.get(base + "/attachment_url.html", {
 		"cid" : contentId,
 		"n" : n
 	}, function(data) {
 		var url;
 		for (var i = 0;i < n; i++) {
-			url = base + "/attachment.jspx?cid=" + contentId + "&i=" + i
+			url = base + "/attachment.html?cid=" + contentId + "&i=" + i
 					+ data[i];
 			$("#" + prefix + i).attr("href", url);
 		}
@@ -97,14 +97,14 @@ Cms.comment = function(callback, form) {
  */
 Cms.commentList = function(base, c, options) {
 	c = c || "commentListDiv";
-	$("#" + c).load(base + "/comment_list.jspx", options);
+	$("#" + c).load(base + "/comment_list.html", options);
 }
 /**
  * 客户端包含登录
  */
 Cms.loginCsi = function(base, c, options) {
 	c = c || "loginCsiDiv";
-	$("#" + c).load(base + "/login_csi.jspx", options);
+	$("#" + c).load(base + "/login_csi.html", options);
 }
 /**
  * 向上滚动js类
@@ -177,7 +177,7 @@ Cms.loginSSO=function(base){
 	var ssoLogout=$.cookie('sso_logout');
 	if(username!=null){
 		if(sessionId!=null||(ssoLogout!=null&&ssoLogout=="true")){
-			$.post(base+"/sso/login.jspx", {
+			$.post(base+"/sso/login.html", {
 				 username:username,
 				 sessionId:sessionId,
 				 ssoLogout:ssoLogout
@@ -192,7 +192,7 @@ Cms.loginSSO=function(base){
 Cms.loginAdmin=function(base){
 	var sessionKey=localStorage.getItem("sessionKey");
 	if(sessionKey==null||sessionKey==""){
-		$.post(base+"/adminLogin.jspx", {
+		$.post(base+"/adminLogin.html", {
 		}, function(data) {
 			if(data.sessionKey!=""){
 				localStorage.setItem("sessionKey", data.sessionKey); 
@@ -205,7 +205,7 @@ Cms.logoutAdmin=function(base){
 	var sessionKey=localStorage.getItem("sessionKey");
 	var userName=localStorage.getItem("userName");
 	if(sessionKey!=null&&sessionKey!=""&&userName!=""){
-		$.post(base+"/adminLogout.jspx", {
+		$.post(base+"/adminLogout.html", {
 			userName:userName,
 			sessionKey:sessionKey
 		}, function(data) {
@@ -219,7 +219,7 @@ Cms.logoutAdmin=function(base){
  */
 Cms.collect = function(base, topicId, operate,origValue,
 		collectCountId,showSpanId,hideSpanId) {
-	$.post(base + "/topic/operate.jspx", {
+	$.post(base + "/topic/operate.html", {
 		"topicId" : topicId,
 		"operate" : operate
 	}, function(data) {
@@ -240,13 +240,13 @@ Cms.collect = function(base, topicId, operate,origValue,
 }
 Cms.collectCsi = function(base,collectCsiDiv, tpl, topicId) {
 	collectCsiDiv = collectCsiDiv || "collectCsiDiv";
-	$("#"+collectCsiDiv).load(base+"/csi_custom.jspx?tpl="+tpl+"&topicId="+topicId);
+	$("#"+collectCsiDiv).load(base+"/csi_custom.html?tpl="+tpl+"&topicId="+topicId);
 }
 /**
  * 检测是否已经收藏信息
  */
 Cms.collectexist = function(base, topicId,showSpanId,hideSpanId) {
-	$.post(base + "/topic/collect_exist.jspx", {
+	$.post(base + "/topic/collect_exist.html", {
 		"topicId" : topicId
 	}, function(data) {
 		if(data.result){
@@ -263,7 +263,7 @@ Cms.collectexist = function(base, topicId,showSpanId,hideSpanId) {
  */
 Cms.topicOp = function(base, topicId, operate,
 		opCountId,showSpanId,hideSpanId) {
-	$.post(base + "/topic/operate.jspx", {
+	$.post(base + "/topic/operate.html", {
 		"topicId" : topicId,
 		"operate" : operate
 	}, function(data) {
@@ -288,7 +288,7 @@ Cms.topicOp = function(base, topicId, operate,
  */
 Cms.postUp = function(base, postId, operate,
 		opCountId,showSpanId,hideSpanId) {
-	$.post(base + "/post/up.jspx", {
+	$.post(base + "/post/up.html", {
 		"postId" : postId,
 		"operate" : operate
 	}, function(data) {

@@ -100,7 +100,7 @@ function useMagic(uid){
 				color=$(this).val();
 			}
 		});
-	$.post('${base}/magic/usemagic.jspx', {
+	$.post('${base}/magic/usemagic.html', {
 		'pid':pid,
 		'mid':mid,
 		'color':color,
@@ -133,7 +133,7 @@ function buyMagic(uid){
 	var pid=$("#pid").val();
 	var mid=$("#magicname").val();
 	$("#magicParent").show();
-	window.location.href="${base}/magic/buy.jspx?mid="+mid+"&buyNum="+1;
+	window.location.href="${base}/magic/buy.html?mid="+mid+"&buyNum="+1;
 }
 </script>
   </head>

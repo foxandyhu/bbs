@@ -46,7 +46,7 @@ display:inline-block;
                 	[#assign commonmagic=magic.magic/]
 						<li>
                  [#if commonmagic.identifier=="money"||commonmagic.identifier=="showip"||commonmagic.identifier=="checkonline"]
-                <a href="${base}/magic/getsellmagicpage.jspx?mid=${commonmagic.identifier}&&operator=1" id="magica_${commonmagic.identifier}_1" >
+                <a href="${base}/magic/getsellmagicpage.html?mid=${commonmagic.identifier}&&operator=1" id="magica_${commonmagic.identifier}_1" >
                     [#else]
                    [/#if]
 							<img src="images/goldenmoney.jpg"/>

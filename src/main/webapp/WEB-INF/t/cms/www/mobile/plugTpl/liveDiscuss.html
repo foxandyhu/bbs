@@ -33,13 +33,13 @@
     	<!-- 非主持人且未购买 -->
 	    [#if user.id!=live.user.id&&!live.joinUserIds?seq_contains("${user.id}")]
 		<div>
-			<a href="${base}/live/front/buy.jspx?liveId=${live.id}&self=1">购买</a>
-			<a href="${base}/live/front/buy.jspx?liveId=${live.id}&self=2">赠送</a>
+			<a href="${base}/live/front/buy.html?liveId=${live.id}&self=1">购买</a>
+			<a href="${base}/live/front/buy.html?liveId=${live.id}&self=2">赠送</a>
 		</div> 
 		[/#if]
 		<!-- 主持人或已购买 -->
 		[#if user.id==live.user.id|live.joinUserIds?seq_contains("${user.id}")]
-		<a href="${base}/live/front/discuss.jspx?id=${live.id}">讨论</a>
+		<a href="${base}/live/front/discuss.html?id=${live.id}">讨论</a>
 		[/#if]
 	[/#if]
     </div>
@@ -151,7 +151,7 @@
 				return;
 			}else{
 				$.ajax({
-					url:'${base}/live/message/sayToAll.jspx',
+					url:'${base}/live/message/sayToAll.html',
 					type:"post",
 					data:{
 						liveId:"${live.id}",
@@ -273,7 +273,7 @@
 				var giftId=$("input[name='giftId']:checked").val();
 				var num=$("#giftNum").val();
 				$.ajax({
-					url:'${base}/live/front/sendGiftToHost.jspx',
+					url:'${base}/live/front/sendGiftToHost.html',
 					type:"post",
 					data:{
 						liveId:"${live.id}",

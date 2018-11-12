@@ -4,7 +4,7 @@
 	<div class="fr">&nbsp;&nbsp;&nbsp;&nbsp;
 	[@cms_friendlink_list]
 	[#list tag_list as link]
-	<a href="${link.domain}" onclick="$.get('${base}/friendlink_view.jspx?id=${link.id}')" target="_blank">${link.name}</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="${link.domain}" onclick="$.get('${base}/friendlink_view.html?id=${link.id}')" target="_blank">${link.name}</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 	[/#list]
 	[/@cms_friendlink_list]
 	</div>

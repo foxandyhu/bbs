@@ -51,7 +51,7 @@ public class CasLoginAct {
 	 */
 	public static final String CAPTCHA_PARAM = "captcha";
 	
-	@RequestMapping(value = "/login.jspx")
+	@RequestMapping(value = "/login.html")
 	public String login(String returnUrl,HttpServletRequest request,
 			HttpServletResponse response,ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -69,7 +69,7 @@ public class CasLoginAct {
 	}
 
 
-	@RequestMapping(value = "/login.jspx", method = RequestMethod.POST)
+	@RequestMapping(value = "/login.html", method = RequestMethod.POST)
 	public String submit(String username,HttpServletRequest request, 
 			HttpServletResponse response,ModelMap model)  {
 		CmsSite site = CmsUtils.getSite(request);
@@ -83,7 +83,7 @@ public class CasLoginAct {
 		return FrontUtils.getTplPath(request, site, TPLDIR_MEMBER, LOGIN_INPUT);
 	}
 	
-	@RequestMapping(value = "/loginAjax.jspx", method = RequestMethod.POST)
+	@RequestMapping(value = "/loginAjax.html", method = RequestMethod.POST)
 	public void submitAjax(String username,String password,Boolean rememberMe,
 			HttpServletRequest request, 
 			HttpServletResponse response,ModelMap model)  {
@@ -133,7 +133,7 @@ public class CasLoginAct {
 		}
 	}
 	
-	@RequestMapping(value = "/adminLogin.jspx", method = RequestMethod.POST)
+	@RequestMapping(value = "/adminLogin.html", method = RequestMethod.POST)
 	public void adminLogin(HttpServletRequest request, 
 			HttpServletResponse response,ModelMap model)  {
 		BbsUser user=CmsUtils.getUser(request);
@@ -157,7 +157,7 @@ public class CasLoginAct {
 		ResponseUtils.renderJson(response, json.toString());
 	}
 	
-	@RequestMapping(value = "/adminLogout.jspx", method = RequestMethod.POST)
+	@RequestMapping(value = "/adminLogout.html", method = RequestMethod.POST)
 	public void adminLogout(String userName,
 			String sessionKey,HttpServletRequest request, 
 			HttpServletResponse response,ModelMap model)  {

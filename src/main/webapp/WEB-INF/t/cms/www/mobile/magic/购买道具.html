@@ -17,7 +17,7 @@
 function buyMagic(){
 				var mid=$("#mid").val();
 				var buynum=$("#num").val();
-				$.post('${base}/magic/buymagic.jspx', {
+				$.post('${base}/magic/buymagic.html', {
 					'mid':mid,
 					'buynum':buynum
 				}, function(data) {

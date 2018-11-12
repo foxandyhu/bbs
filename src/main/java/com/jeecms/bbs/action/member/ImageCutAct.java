@@ -39,7 +39,7 @@ public class ImageCutAct {
 	 */
 	public static final String ERROR = "error";
 
-	@RequestMapping("/member/v_image_area_select.jspx")
+	@RequestMapping("/member/v_image_area_select.html")
 	public String imageAreaSelect(String uploadBase, String imgSrcPath,
 			Integer zoomWidth, Integer zoomHeight, Integer uploadNum,
 			HttpServletRequest request, ModelMap model) {
@@ -58,7 +58,7 @@ public class ImageCutAct {
 				TPLDIR_MEMBER, IMAGE_SELECT_RESULT);
 	}
 
-	@RequestMapping("/member/o_image_cut.jspx")
+	@RequestMapping("/member/o_image_cut.html")
 	public String imageCut(String imgSrcPath, Integer imgTop, Integer imgLeft,
 			Integer imgWidth, Integer imgHeight, Integer reMinWidth,
 			Integer reMinHeight, Float imgScale, Integer uploadNum,

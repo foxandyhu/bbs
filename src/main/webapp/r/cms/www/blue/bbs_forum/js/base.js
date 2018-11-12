@@ -96,7 +96,7 @@ function cancelPostContent(postId){
 
 //回复首页的帖子
 function replyPostContent(base,topicId,postId){  
-	$.post(base+"/post/o_saveAjax.jspx",{
+	$.post(base+"/post/o_saveAjax.html",{
 		"content": $("#postReplyContent"+postId).val(),
 		"topicId":topicId,
 		"parentId":postId
@@ -117,7 +117,7 @@ function replyPostContent(base,topicId,postId){
 }
 //回复帖子详细页的帖子
 function replyPostChildContent(base,topicId,postId){
-	$.post(base+"/post/o_saveAjax.jspx",{
+	$.post(base+"/post/o_saveAjax.html",{
 		"content": $("#postChildReplyContent"+postId).val(),
 		"topicId":topicId,
 		"parentId":postId
@@ -138,7 +138,7 @@ function replyPostChildContent(base,topicId,postId){
 }
 //回复主题
 function replyTopicContent(base,topicId){  
-	$.post(base+"/post/o_saveAjax.jspx",{
+	$.post(base+"/post/o_saveAjax.html",{
 		"content": $("#topicReplyContent"+topicId).val(),
 		"topicId":topicId
 	},function(data){   
@@ -160,7 +160,7 @@ function getTopicPostInner(base,topicId,pageNo){
 	if(pageNo==null){
 		pageNo=1;
 	}
-	$("#topicposts"+topicId).load(base+"/topic/getPostPage.jspx?orderBy=1&topicId="+topicId+"&pageNo="+pageNo);
+	$("#topicposts"+topicId).load(base+"/topic/getPostPage.html?orderBy=1&topicId="+topicId+"&pageNo="+pageNo);
 }
 
 //获取帖子回复列表
@@ -169,7 +169,7 @@ function getPostChildPage(base,postId){
 	if(h!=""){
 		clearPostChildPage(postId);
 	}else{
-		$("#postChildPage"+postId).load(base+"/post/listChild.jspx?orderBy=1&parentId="+postId);
+		$("#postChildPage"+postId).load(base+"/post/listChild.html?orderBy=1&parentId="+postId);
 	}
 }
 //清空帖子回复列表
@@ -181,13 +181,13 @@ function getPostChildInner(base,parentId,pageNo){
 	if(pageNo==null){
 		pageNo=1;
 	}
-	$("#postChildPage"+parentId).load(base+"/post/listChild.jspx?orderBy=1&parentId="+parentId+"&pageNo="+pageNo);
+	$("#postChildPage"+parentId).load(base+"/post/listChild.html?orderBy=1&parentId="+parentId+"&pageNo="+pageNo);
 }
 /**
  * 帖子点赞 0点赞 3取消点赞 
  */
 function postUp(base,postId, operate) {
-	$.post(base+"/post/up.jspx", {
+	$.post(base+"/post/up.html", {
 		"postId" : postId,
 		"operate" : operate
 	}, function(data) {
@@ -243,7 +243,7 @@ function report(base,url){
 }
 //禁用用户
 function forBidden(base,userId,forumId){
-	$.post(base+"/user/forbidden.jspx",{
+	$.post(base+"/user/forbidden.html",{
 		"userId": userId,
 		"forumId":forumId
 	},function(data){
@@ -288,7 +288,7 @@ function attent(base,userId,operate){
  * 主题互动 0点赞  2关注  3取消点赞  5取消关注 
  */
 function topicOp(base,topicId, operate) {
-	$.post(base+"/topic/operate.jspx", {
+	$.post(base+"/topic/operate.html", {
 		"topicId" : topicId,
 		"operate" : operate
 	}, function(data) {
@@ -328,7 +328,7 @@ function checkContent(){
 }
 //主题置顶
  function upTopLevel(base,topicId,forumId){
-	$.post(base+"/topic/o_upTopAjax.jspx",{
+	$.post(base+"/topic/o_upTopAjax.html",{
 		"topicId": topicId,
 		"forumId":forumId
 	},function(data){
@@ -343,7 +343,7 @@ function checkContent(){
  }
  //阅读全文
  function loadContent(base,postId){
-	$.post(base+"/post/ajaxGetPost.jspx",{
+	$.post(base+"/post/ajaxGetPost.html",{
 		"postId": postId
 	},function(data){
 		$("#topicContentAll"+postId).html(data.content);
@@ -367,7 +367,7 @@ function getTopicPost(base,topicId){
 	if(h!=""){
 		clearTopicPost(topicId);
 	}else{
-		$("#topicposts"+topicId).load(base+"/topic/getPostPage.jspx?orderBy=1&topicId="+topicId);
+		$("#topicposts"+topicId).load(base+"/topic/getPostPage.html?orderBy=1&topicId="+topicId);
 	}
 }
 //清除主题回复

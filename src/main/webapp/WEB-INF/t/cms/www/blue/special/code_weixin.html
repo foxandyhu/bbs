@@ -7,10 +7,10 @@
 $(function() {
 	setInterval("queryWeChatStatus()", 5000); 
 });
-var weChatQueryUrl="${base}/order/payCallByWeiXin.jspx?orderNumber=${orderNumber!}";
+var weChatQueryUrl="${base}/order/payCallByWeiXin.html?orderNumber=${orderNumber!}";
 [#if payTarget??]
 	[#if payTarget=="live"]
-		weChatQueryUrl="${base}/live/order/payCallByWeiXin.jspx?orderNumber=${orderNumber!}";
+		weChatQueryUrl="${base}/live/order/payCallByWeiXin.html?orderNumber=${orderNumber!}";
 	[/#if]
 [/#if]
 function queryWeChatStatus() {
@@ -36,6 +36,6 @@ function queryWeChatStatus() {
 </script>
 </head>
 <body>
- <img src="${base}/special/o_create_dimensioncode.jspx?content=${code_url!}&size=90" style="width:150px;height:150px;"/>
+ <img src="${base}/special/o_create_dimensioncode.html?content=${code_url!}&size=90" style="width:150px;height:150px;"/>
 </body>
 </html>

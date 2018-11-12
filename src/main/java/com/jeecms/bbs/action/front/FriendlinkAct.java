@@ -25,7 +25,7 @@ public class FriendlinkAct {
 	// private static final Logger log = LoggerFactory
 	// .getLogger(FriendlinkAct.class);
 
-	@RequestMapping(value = "/friendlink_view.jspx", method = RequestMethod.GET)
+	@RequestMapping(value = "/friendlink_view.html", method = RequestMethod.GET)
 	public void view(Integer id, HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		if (id != null) {
