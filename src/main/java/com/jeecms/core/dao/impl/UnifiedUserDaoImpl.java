@@ -14,14 +14,18 @@ import com.jeecms.core.entity.UnifiedUser;
 @Repository
 public class UnifiedUserDaoImpl extends HibernateBaseDao<UnifiedUser, Integer>
 		implements UnifiedUserDao {
+
+	@Override
 	public UnifiedUser getByUsername(String username) {
 		return findUniqueByProperty("username", username);
 	}
 
+	@Override
 	public List<UnifiedUser> getByEmail(String email) {
 		return findByProperty("email", email);
 	}
 
+	@Override
 	public int countByEmail(String email) {
 		String hql = "select count(*) from UnifiedUser bean where bean.email=:email";
 		Query query = getSession().createQuery(hql);
@@ -29,22 +33,26 @@ public class UnifiedUserDaoImpl extends HibernateBaseDao<UnifiedUser, Integer>
 		return ((Number) query.iterate().next()).intValue();
 	}
 
+	@Override
 	public Pagination getPage(int pageNo, int pageSize) {
 		Criteria crit = createCriteria();
 		Pagination page = findByCriteria(crit, pageNo, pageSize);
 		return page;
 	}
 
+	@Override
 	public UnifiedUser findById(Integer id) {
 		UnifiedUser entity = get(id);
 		return entity;
 	}
 
+	@Override
 	public UnifiedUser save(UnifiedUser bean) {
 		getSession().save(bean);
 		return bean;
 	}
 
+	@Override
 	public UnifiedUser deleteById(Integer id) {
 		UnifiedUser entity = super.get(id);
 		if (entity != null) {

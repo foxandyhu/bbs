@@ -17,29 +17,43 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * 主题互动记录
+ * @author: andy_hulibo@163.com
+ * @date: 2018/11/12 17:23
+ */
 @Entity
 @Table(name = "bbs_topic_post_operate")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 public class BbsTopicPostOperate implements Serializable {
 
-	/**
-	 * @author andy_hulibo@163.com 2018年10月26日下午3:54:50
-	 */
 	private static final long serialVersionUID = 4180230271497185419L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 
+	/**
+	 * 操作分类(0点赞 1收藏 2关注)
+	 */
 	@Column(name="operate")
 	private Integer operate;
-	
+
+	/**
+	 * 主题或者帖子
+	 */
 	@Column(name="data_id")
 	private Integer dataId;
-	
+
+	/**
+	 * 0主题 1帖子
+	 */
 	@Column(name="data_type")
 	private Short dataType;
-	
+
+	/**
+	 * 操作时间
+	 */
 	@Column(name="op_time")
 	private Date opTime;
 

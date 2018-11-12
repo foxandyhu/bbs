@@ -15,10 +15,12 @@ import org.springframework.stereotype.Component;
  */
 @Component("pwdEncoder")
 public class Md5PwdEncoder implements PwdEncoder {
+	@Override
 	public String encodePassword(String rawPass) {
 		return encodePassword(rawPass, defaultSalt);
 	}
 
+	@Override
 	public String encodePassword(String rawPass, String salt) {
 		String saltedPass = mergePasswordAndSalt(rawPass, salt, false);
 		MessageDigest messageDigest = getMessageDigest();
@@ -31,10 +33,12 @@ public class Md5PwdEncoder implements PwdEncoder {
 		return new String(Hex.encodeHex(digest));
 	}
 
+	@Override
 	public boolean isPasswordValid(String encPass, String rawPass) {
 		return isPasswordValid(encPass, rawPass, defaultSalt);
 	}
 
+	@Override
 	public boolean isPasswordValid(String encPass, String rawPass, String salt) {
 		if (encPass == null) {
 			return false;

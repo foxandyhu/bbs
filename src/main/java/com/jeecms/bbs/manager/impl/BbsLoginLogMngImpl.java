@@ -33,6 +33,8 @@ public class BbsLoginLogMngImpl implements BbsLoginLogMng {
 		dao.save(bean);
 		return bean;
 	}
+
+	@Override
 	public BbsLoginLog loginLog(BbsUser user ,String ip){
 		BbsLoginLog loginLog = new BbsLoginLog();
 		loginLog.setIp(ip);

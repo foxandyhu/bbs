@@ -39,13 +39,16 @@ import com.jeecms.core.entity.UnifiedUser;
 import com.jeecms.core.manager.UnifiedUserMng;
 import com.octo.captcha.service.image.ImageCaptchaService;
 
+/**
+*  @Description: 用户登录Cotroller
+*  @Author: andy_hulibo@163.com
+*  @CreateDate: 2018/11/12 13:53
+*/
 @Controller
 public class CasLoginAct {
 
 	public static final String LOGIN_INPUT = "tpl.loginInput";
-	public static final String LOGIN_STATUS = "tpl.loginStatus";
-	public static final String REGISTER_ACTIVE_SUCCESS = "tpl.registerActiveSuccess";
-	public static final String COOKIE_ERROR_REMAINING = "_error_remaining";
+
 	/**
 	 * 验证码名称
 	 */
@@ -82,13 +85,17 @@ public class CasLoginAct {
 		FrontUtils.frontData(request, model, site);
 		return FrontUtils.getTplPath(request, site, TPLDIR_MEMBER, LOGIN_INPUT);
 	}
-	
+
+	/**
+	 * BBS用戶登录
+	 * @author: andy_hulibo@163.com
+	 * @date: 2018/11/12 16:03
+	 */
 	@RequestMapping(value = "/loginAjax.html", method = RequestMethod.POST)
 	public void submitAjax(String username,String password,Boolean rememberMe,
 			HttpServletRequest request, 
-			HttpServletResponse response,ModelMap model)  {
-		//验证码校验
-		if (isCaptchaRequired(username,request, response)) {
+			HttpServletResponse response)  {
+		if (isCaptchaRequired(username,request)) {
 			String captcha = request.getParameter(CAPTCHA_PARAM);
 			if (captcha != null) {
 				if (!imageCaptchaService.validateResponseForID(session.getSessionId(request, response), captcha)) {
@@ -116,9 +123,9 @@ public class CasLoginAct {
 				loginCookie(username, request, response);
 				String ip = RequestUtils.getIpAddr(request);
 				Date now = new Timestamp(System.currentTimeMillis());
-				String userSessionId = session.getSessionId((HttpServletRequest) request, (HttpServletResponse) response);
+				String userSessionId = session.getSessionId(request,response);
 				bbsUserMng.updateLoginInfo(user.getId(), ip, now, userSessionId);
-				bbsLoginLogMng.loginLog(user, RequestUtils.getIpAddr((HttpServletRequest) request));
+				bbsLoginLogMng.loginLog(user, RequestUtils.getIpAddr(request));
 				unifiedUserMng.updateLoginSuccess(user.getId(), ip);
 				CmsUtils.setUser(request, user);
 			}else{
@@ -182,7 +189,12 @@ public class CasLoginAct {
 		}
 		ResponseUtils.renderJson(response, json.toString());
 	}
-	
+
+	/**
+	 * 登录信息写入Cookie
+	 * @author: andy_hulibo@163.com
+	 * @date: 2018/11/12 16:30
+	 */
 	private void loginCookie(String username, HttpServletRequest request, HttpServletResponse response) {
 		String domain = request.getServerName();
 		if (domain.indexOf(".") > -1) {
@@ -195,22 +207,29 @@ public class CasLoginAct {
 			CookieUtils.addCookie(request, response, "username", URLEncoder.encode(username, "utf-8"), null, domain,
 					"/");
 		} catch (UnsupportedEncodingException e) {
-			// e.printStackTrace();
 		}
 		CookieUtils.addCookie(request, response, "sso_logout", null, 0, domain, "/");
 	}
-	
-	private boolean isCaptchaRequired(String username,HttpServletRequest request,
-			HttpServletResponse response) {
+
+	/**
+	*  @Description: 检查是否需要验证验证码
+	*  @Author: andy_hulibo@163.com
+	*  @CreateDate: 2018/11/12 13:59
+	*/
+	private boolean isCaptchaRequired(String username,HttpServletRequest request) {
 		Integer errorRemaining = unifiedUserMng.errorRemaining(username);
 		String captcha=RequestUtils.getQueryParam(request, CAPTCHA_PARAM);
+
 		// 如果输入了验证码，那么必须验证；如果没有输入验证码，则根据当前用户判断是否需要验证码。
-		if (!StringUtils.isBlank(captcha)|| (errorRemaining != null && errorRemaining < 0)) {
-			return true;
-		}
-		return false;
+		boolean required=!StringUtils.isBlank(captcha)|| (errorRemaining != null && errorRemaining < 0);
+		return required;
 	}
-	
+
+	/**
+	 * 登录失败
+	 * @author: andy_hulibo@163.com
+	 * @date: 2018/11/12 16:02
+	 */
 	private void onLoginFailure(String username,HttpServletRequest request) {
 		String ip = RequestUtils.getIpAddr(request);
 		BbsUser user = bbsUserMng.findByUsername(username);
@@ -219,31 +238,29 @@ public class CasLoginAct {
 		}
 	}
 	
-	//用户禁用返回true 未查找到用户或者非禁用返回false
+	/**
+	 * 用户禁用返回true 未查找到用户或者非禁用返回false
+	 * @author: andy_hulibo@163.com
+	 * @date: 2018/11/12 16:02
+	 */
 	private boolean isDisabled(BbsUser user){
 		if(user!=null){
-			if(user.getDisabled()){
-				return true;
-			}else{
-				return false;
-			}
-		}else{
-			return false;
+			return user.getDisabled();
 		}
+		return false;
 	}
 		
-	//用户激活了返回true 未查找到用户或者非禁用返回false
+	/**
+	 * 用户激活了返回true 未查找到用户或者非禁用返回false
+	 * @author: andy_hulibo@163.com
+	 * @date: 2018/11/12 16:02
+	 */
 	private boolean isActive(BbsUser user){
 		UnifiedUser unifiedUser=unifiedUserMng.findById(user.getId());
 		if(unifiedUser!=null){
-			if(unifiedUser.getActivation()){
-				return true;
-			}else{
-				return false;
-			}
-		}else{
-			return false;
+			return unifiedUser.getActivation();
 		}
+		return false;
 	}
 	
 	@Autowired

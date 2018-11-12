@@ -32,7 +32,7 @@ import com.jeecms.bbs.entity.BbsUser;
  * 2018年11月1日下午4:55:27
  */
 @Entity
-@Table(name = "jc_role")
+@Table(name = "jb_role")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 public class CmsRole implements Serializable {
 

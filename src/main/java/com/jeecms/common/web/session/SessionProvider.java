@@ -7,18 +7,26 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Session提供者
- * 
+ *
  * @author tom
- * 
  */
 public interface SessionProvider {
-	public Serializable getAttribute(HttpServletRequest request, String name);
+    Serializable getAttribute(HttpServletRequest request, String name);
 
-	public void setAttribute(HttpServletRequest request,
-			HttpServletResponse response, String name, Serializable value);
+    void setAttribute(HttpServletRequest request,
+                      HttpServletResponse response, String name, Serializable value);
 
-	public String getSessionId(HttpServletRequest request,
-			HttpServletResponse response);
+    /**
+     * 获得HttpServletRequest Session Id
+     *
+     * @param request
+     * @param response
+     * @return 返回sessionID
+     * @author: andy_hulibo@163.com
+     * @date: 2018/11/12 16:14
+     */
+    String getSessionId(HttpServletRequest request,
+                        HttpServletResponse response);
 
-	public void logout(HttpServletRequest request, HttpServletResponse response);
+    void logout(HttpServletRequest request, HttpServletResponse response);
 }

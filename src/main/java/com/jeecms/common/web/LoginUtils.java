@@ -12,7 +12,11 @@ import org.apache.shiro.util.ThreadContext;
 import org.apache.shiro.web.subject.WebSubject;
 import org.apache.shiro.web.subject.WebSubject.Builder;
 
-
+/**
+ * Shiro登录工具类
+ * @author: andy_hulibo@163.com
+ * @date: 2018/11/12 16:31
+ */
 public class LoginUtils {
 	
 	public static void loginShiro(HttpServletRequest request,
@@ -24,7 +28,12 @@ public class LoginUtils {
 		WebSubject subject = builder.buildWebSubject();  
 		ThreadContext.bind(subject); 
 	}
-	
+
+	/**
+	 * 登录--记住我
+	 * @author: andy_hulibo@163.com
+	 * @date: 2018/11/12 16:32
+	 */
 	public static void loginShiroRemember(HttpServletRequest request,
 			HttpServletResponse response,String username,String password,boolean rememberMe){
 		PrincipalCollection principals = new SimplePrincipalCollection(username, username);
@@ -33,7 +42,7 @@ public class LoginUtils {
 		builder.principals(principals);  
 		builder.authenticated(true);  
 		WebSubject subject = builder.buildWebSubject();  
-		subject.login(token); // 登录  
+		subject.login(token);
 		ThreadContext.bind(subject); 
 	}
 	

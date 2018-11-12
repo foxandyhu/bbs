@@ -31,6 +31,7 @@ public class Config implements Serializable {
 	 */
 	private static final long serialVersionUID = -2909227118886069646L;
 
+	public Config(){}
 	public Config (String id) {
 		this.setId(id);
 	}
@@ -77,7 +78,7 @@ public class Config implements Serializable {
 
 		public Map<String, String> getAttr() {
 			if (attr == null) {
-				attr = new HashMap<String, String>();
+				attr = new HashMap<>(15);
 			}
 			return attr;
 		}
