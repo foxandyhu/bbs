@@ -29,10 +29,6 @@ public class BbsUserOnline implements Serializable{
 	 */
 	private static final long serialVersionUID = 1907276615616703256L;
 
-    @Id
-    @Column(name="user_id")
-	private Integer id;
-
 	@Column(name="online_latest")
 	private Double onlineLatest;
 	
@@ -51,6 +47,7 @@ public class BbsUserOnline implements Serializable{
 	@Column(name="online_total")
 	private Double onlineTotal;
 
+	@Id
 	@OneToOne
 	@JoinColumn(name="user_id")
 	private BbsUser user;
@@ -62,15 +59,6 @@ public class BbsUserOnline implements Serializable{
 		setOnlineWeek(0d);
 		setOnlineYear(0d);
 		setOnlineTotal(0d);
-	}
-	
-	public Integer getId() {
-		return id;
-	}
-
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 
 	public Double getOnlineLatest() {

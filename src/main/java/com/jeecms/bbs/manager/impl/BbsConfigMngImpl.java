@@ -1,11 +1,5 @@
 package com.jeecms.bbs.manager.impl;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.jeecms.bbs.cache.BbsConfigCache;
 import com.jeecms.bbs.dao.BbsConfigDao;
 import com.jeecms.bbs.entity.BbsConfig;
@@ -13,33 +7,44 @@ import com.jeecms.bbs.entity.BbsForum;
 import com.jeecms.bbs.manager.BbsConfigMng;
 import com.jeecms.bbs.manager.BbsForumMng;
 import com.jeecms.common.hibernate4.Updater;
-
 import net.sf.ehcache.Ehcache;
 import net.sf.ehcache.Element;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.ehcache.EhCacheCache;
+import org.springframework.cache.ehcache.EhCacheCacheManager;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
+/**
+ *
+ * @author andy_hulibo@163.com
+ * @date 2018/11/13 17:51
+ */
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class BbsConfigMngImpl implements BbsConfigMng {
 
-	@Transactional(readOnly = true)
+	@Override
+	@Transactional(readOnly = true,rollbackFor = Exception.class)
 	public BbsConfig findById(Integer id) {
-		BbsConfig config = dao.findById(id);
-		return config;
+		return dao.findById(id);
 	}
-	
-	@Transactional(readOnly = true)
+
+	@Override
+	@Transactional(readOnly = true,rollbackFor = Exception.class)
 	public BbsConfig get() {
-		BbsConfig config = dao.findById(1);
-		return config;
+		return dao.findById(1);
 	}
 
+	@Override
 	public BbsConfig update(BbsConfig bean) {
-		BbsConfig entity = findById(bean.getId());
-		Updater<BbsConfig> updater = new Updater<BbsConfig>(bean);
-		entity = dao.updateByUpdater(updater);
-		return entity;
+		Updater<BbsConfig> updater = new Updater<>(bean);
+		return dao.updateByUpdater(updater);
 	}
 
+	@Override
 	public BbsConfig updateConfigForDay(Integer siteId) {
 		List<BbsForum> flist = bbsForumMng.getList(siteId);
 		for (BbsForum forum : flist) {
@@ -66,18 +71,15 @@ public class BbsConfigMngImpl implements BbsConfigMng {
 		return bbsConfig;
 	}
 
+	@Autowired
 	private BbsConfigDao dao;
-	private Ehcache cache;
+	@Autowired
 	private BbsForumMng bbsForumMng;
+	private Ehcache cache;
 
 	@Autowired
-	public void setDao(BbsConfigDao dao) {
-		this.dao = dao;
+	public void setCache(EhCacheCacheManager cacheManager){
+		EhCacheCache ehcache= (EhCacheCache)cacheManager.getCache("beanCache");
+		cache=ehcache.getNativeCache();
 	}
-
-	@Autowired
-	public void setBbsForumMng(BbsForumMng bbsForumMng) {
-		this.bbsForumMng = bbsForumMng;
-	}
-
 }

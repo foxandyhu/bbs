@@ -54,10 +54,6 @@ public class BbsUserExt implements Serializable {
 		}
 	}
 
-	@Id
-    @Column(name="user_id")
-	private Integer id;
-
 	@Column(name="realname")
 	private String realname;
 	
@@ -84,18 +80,10 @@ public class BbsUserExt implements Serializable {
 	
 	@Column(name="moble")
 	private String moble;
-
+	@Id
 	@OneToOne
 	@JoinColumn(name="user_id")
 	private BbsUser user;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	public String getRealname() {
 		return realname;

@@ -21,6 +21,11 @@ import freemarker.core.Environment;
 import freemarker.template.TemplateDirectiveBody;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateModel;
+/**
+ * 
+ * @author: andy_hulibo@163.com
+ * @date: 2018/11/13 14:11
+ */
 @Component("topic_page")
 public class TopicPageDirective extends AbstractTopicPageDirective {
 	public static final String RECOMMEND = "recommend";

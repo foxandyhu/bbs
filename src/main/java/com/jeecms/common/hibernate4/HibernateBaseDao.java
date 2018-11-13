@@ -108,7 +108,6 @@ public abstract class HibernateBaseDao<T, ID extends Serializable> extends
 	public T updateByUpdater(Updater<T> updater) {
 		ClassMetadata cm = getSessionFactory().getClassMetadata(getEntityClass());
 		T bean = updater.getBean();
-		//T po = (T) getSession().get(getEntityClass(),cm.getIdentifier(bean, POJO));
 		T po = (T) getSession().get(getEntityClass(),cm.getIdentifier(bean,(SessionImplementor) getSession()));
 		updaterCopyToPersistentObject(updater, po, cm);
 		return po;

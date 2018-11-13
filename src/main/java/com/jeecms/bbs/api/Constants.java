@@ -1,5 +1,10 @@
 package com.jeecms.bbs.api;
 
+/**
+ * 常量类
+ * @author andy_hulibo@163.com
+ * @date 2018/11/13 17:59
+ */
 public class Constants {
 	
 	public static final String COMMON_PARAM_APPID="appId";

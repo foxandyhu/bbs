@@ -1,33 +1,79 @@
 package com.jeecms.bbs.manager;
 
-import com.jeecms.common.page.Pagination;
 import com.jeecms.bbs.entity.BbsTopic;
 import com.jeecms.bbs.entity.BbsTopicCount;
+import com.jeecms.common.page.Pagination;
 
+/**
+ * 帖子相关数据统计
+ * @author: andy_hulibo@163.com
+ * @date: 2018/11/13 11:38
+ */
 public interface BbsTopicCountMng {
-	public Pagination getPage(int pageNo, int pageSize);
 
-	public BbsTopicCount findById(Integer id);
-	
-	public int topicUp(Integer id);
-	
-	public int topicCollect(Integer id);
-	
-	public int topicReward(Integer id);
-	
-	public int topicAttent(Integer id);
-	
-	public int topicCancelUp(Integer id);
-	
-	public int topicCancelCollect(Integer id);
-	
-	public int topicCancelAttent(Integer id);
+    Pagination getPage(int pageNo, int pageSize);
 
-	public BbsTopicCount save(BbsTopicCount count, BbsTopic topic);
+    BbsTopicCount findById(Integer id);
 
-	public BbsTopicCount update(BbsTopicCount bean);
+    /**
+     * 点赞帖子
+     * @param id
+     * @author: andy_hulibo@163.com
+     * @date: 2018/11/13 11:41
+     * @return
+     */
+    int topicUp(Integer id);
 
-	public BbsTopicCount deleteById(Integer id);
-	
-	public BbsTopicCount[] deleteByIds(Integer[] ids);
+    /**
+     * 收藏帖子
+     * @param id
+     * @author: andy_hulibo@163.com
+     * @date: 2018/11/13 11:41
+     * @return
+     */
+    int topicCollect(Integer id);
+
+    /**
+     * 关注帖子
+     * @param id
+     * @author: andy_hulibo@163.com
+     * @date: 2018/11/13 11:39
+     * @return
+     */
+    int topicAttent(Integer id);
+
+    /**
+     * 取消点赞
+     * @param id
+     * @author: andy_hulibo@163.com
+     * @date: 2018/11/13 11:41
+     * @return
+     */
+    int topicCancelUp(Integer id);
+
+    /**
+     * 取消收藏
+     * @param id
+     * @author: andy_hulibo@163.com
+     * @date: 2018/11/13 11:41
+     * @return
+     */
+    int topicCancelCollect(Integer id);
+
+    /**
+     * 取消关注
+     * @param id
+     * @author: andy_hulibo@163.com
+     * @date: 2018/11/13 11:4
+     * @return
+     */
+    int topicCancelAttent(Integer id);
+
+    BbsTopicCount save(BbsTopicCount count, BbsTopic topic);
+
+    BbsTopicCount update(BbsTopicCount bean);
+
+    BbsTopicCount deleteById(Integer id);
+
+    BbsTopicCount[] deleteByIds(Integer[] ids);
 }

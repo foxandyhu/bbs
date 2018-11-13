@@ -46,7 +46,7 @@ public class BbsConfig implements Serializable{
 	 */
 	public static final short REGISTER_INVITATION = 2;
 
-    @Id
+	@Id
     @Column(name="CONFIG_ID")
 	private Integer id;
 
@@ -125,7 +125,7 @@ public class BbsConfig implements Serializable{
 	@ManyToOne
 	@JoinColumn(name="default_group_id")	
 	private BbsUserGroup defaultGroup;
-	
+
 
 	public Integer getId () {
 		return id;

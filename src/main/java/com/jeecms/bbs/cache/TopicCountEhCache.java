@@ -2,14 +2,18 @@ package com.jeecms.bbs.cache;
 
 import com.jeecms.bbs.entity.BbsTopicCountEnum;
 
+/**
+ * @author andy_hulibo@163.com
+ * @date 2018/11/13 17:55
+ */
 public interface TopicCountEhCache {
 
-	public Long getViewCount(Integer topicId);
-	
-	public Long getViewCount(Integer topicId,BbsTopicCountEnum e);
-	
-	public Long setViewCount(Integer topicId);
+    Long getViewCount(Integer topicId);
 
-	public boolean getLastReply(Integer userId, long time);
+    Long getViewCount(Integer topicId, BbsTopicCountEnum e);
+
+    Long setViewCount(Integer topicId);
+
+    boolean getLastReply(Integer userId, long time);
 
 }

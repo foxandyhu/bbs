@@ -1,27 +1,25 @@
 package com.jeecms.bbs.entity;
 
-import static com.jeecms.bbs.Constants.DAY_MILLIS;
-import static com.jeecms.bbs.Constants.TPLDIR_FORUM;
-import static com.jeecms.bbs.Constants.TPLDIR_TOPIC;
-import static com.jeecms.bbs.Constants.TPL_SUFFIX;
-import static com.jeecms.common.web.Constants.INDEX;
-
-import java.io.Serializable;
-import java.util.Date;
-import java.util.Set;
-
-import javax.persistence.*;
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.commons.lang.StringUtils;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.json.JSONException;
-import org.json.JSONObject;
 import com.jeecms.common.hibernate4.PriorityInterface;
 import com.jeecms.common.util.DateUtils;
 import com.jeecms.common.web.springmvc.MessageResolver;
 import com.jeecms.core.entity.CmsSite;
+import org.apache.commons.lang.StringUtils;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import javax.persistence.*;
+import javax.servlet.http.HttpServletRequest;
+import java.io.Serializable;
+import java.util.Date;
+import java.util.Set;
+
+import static com.jeecms.bbs.Constants.*;
+import static com.jeecms.common.web.Constants.INDEX;
 
 /**
  * 论坛板块
@@ -40,6 +38,7 @@ public class BbsForum implements PriorityInterface, Serializable {
 
 	@Id
 	@Column(name="FORUM_ID")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
 	@Column(name="PATH")
@@ -134,10 +133,12 @@ public class BbsForum implements PriorityInterface, Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name="POST_ID")
+	@NotFound(action= NotFoundAction.IGNORE)
 	private BbsPost lastPost;
 	
 	@ManyToOne
 	@JoinColumn(name="replyer_id")
+	@NotFound(action= NotFoundAction.IGNORE)
 	private BbsUser lastReply;
 
 	@ManyToOne
@@ -159,6 +160,7 @@ public class BbsForum implements PriorityInterface, Serializable {
     @Transient
     private String tplTopic;
 
+    @Override
 	public Integer getId() {
 		return id;
 	}
@@ -215,6 +217,7 @@ public class BbsForum implements PriorityInterface, Serializable {
 		this.topicLockLimit = topicLockLimit;
 	}
 
+	@Override
 	public Integer getPriority() {
 		return priority;
 	}

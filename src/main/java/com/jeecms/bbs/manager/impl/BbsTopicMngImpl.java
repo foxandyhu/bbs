@@ -52,12 +52,16 @@ import com.jeecms.common.util.DateUtils;
 import com.jeecms.core.manager.CmsSiteMng;
 import com.jeecms.core.web.MagicMessage;
 
+/**
+ * 
+ * @author: andy_hulibo@163.com
+ * @date: 2018/11/13 12:06
+ */
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class BbsTopicMngImpl implements BbsTopicMng {
 	
-	public static final String AUTH_KEY = "auth_key";
-	
+	@Override
 	public void move(Integer[] ids, Integer forumId, String reason,
 			BbsUser operator) {
 		BbsTopic topic;
@@ -89,6 +93,7 @@ public class BbsTopicMngImpl implements BbsTopicMng {
 		}
 	}
 
+	@Override
 	public void shieldOrOpen(Integer[] ids, boolean shield, String reason,
 			BbsUser operator) {
 		BbsTopic topic;
@@ -110,12 +115,14 @@ public class BbsTopicMngImpl implements BbsTopicMng {
 			}
 		}
 	}
-	
+
+	@Override
 	public void recommend(Integer[] ids ,short recommend) {
 		BbsTopic topic;
 		for (Integer id : ids) {
 			topic = dao.findById(id);
-			if (recommend==1) {//版主推荐
+			//版主推荐
+			if (recommend==1) {
 				topic.setRecommend(BbsTopic.TOPIC_MODERATOR_RECOMMEND);
 			}else{//取消推荐
 				topic.setRecommend(BbsTopic.TOPIC_NO_RECOMMEND);
@@ -124,6 +131,7 @@ public class BbsTopicMngImpl implements BbsTopicMng {
 		
 	}
 
+	@Override
 	public void lockOrOpen(Integer[] ids, boolean lock, String reason,
 			BbsUser operator) {
 		BbsTopic topic;
@@ -146,6 +154,7 @@ public class BbsTopicMngImpl implements BbsTopicMng {
 		}
 	}
 
+	@Override
 	public void upOrDown(Integer[] ids, Date time, String reason,
 			BbsUser operator) {
 		BbsTopic topic;
@@ -157,6 +166,7 @@ public class BbsTopicMngImpl implements BbsTopicMng {
 		}
 	}
 
+	@Override
 	public void prime(Integer[] ids, short primeLevel, String reason,
 			BbsUser operator) {
 		BbsTopic topic;
@@ -187,6 +197,7 @@ public class BbsTopicMngImpl implements BbsTopicMng {
 		}
 	}
 
+	@Override
 	public void upTop(Integer[] ids, short topLevel, String reason,
 			BbsUser operator) {
 		BbsTopic topic;
@@ -201,6 +212,7 @@ public class BbsTopicMngImpl implements BbsTopicMng {
 		}
 	}
 
+	@Override
 	public void highlight(Integer[] ids, String color, boolean bold,
 			boolean italic, Date time, String reason, BbsUser operator) {
 		BbsTopic topic;
@@ -214,7 +226,8 @@ public class BbsTopicMngImpl implements BbsTopicMng {
 					topic);
 		}
 	}
-	
+
+	@Override
 	public void highlightWithNoLog(Integer[] ids, String color, boolean bold,
 			boolean italic, Date time, String reason, BbsUser operator) {
 		BbsTopic topic;
@@ -227,6 +240,7 @@ public class BbsTopicMngImpl implements BbsTopicMng {
 		}
 	}
 
+	@Override
 	public BbsTopic updateTitle(Integer id, String title, BbsUser editor) {
 		BbsTopic topic = dao.findById(id);
 		topic.setTitle(title);
@@ -243,6 +257,7 @@ public class BbsTopicMngImpl implements BbsTopicMng {
 		return topic;
 	}
 
+	@Override
 	public BbsTopic postTopic(Integer userId, Integer siteId, Integer forumId,
 			String title, String content, String ip,
 			Integer category, Integer categoryType,
@@ -258,11 +273,6 @@ public class BbsTopicMngImpl implements BbsTopicMng {
 		BbsTopic topic = createTopic(category,categoryType);
 		topic.setSite(siteMng.findById(siteId));
 		topic.setForum(forum);
-		/*
-		if (postTypeId != null) {
-			topic.setPostType(bbsPostTypeMng.findById(postTypeId));
-		}
-		*/
 		topic.setCreater(user);
 		topic.setLastReply(user);
 		topic.setTopicText(text);
@@ -309,8 +319,8 @@ public class BbsTopicMngImpl implements BbsTopicMng {
 		forumCountCache.addTopic(forumId);
 		return topic;
 	}
-	
-	
+
+	@Override
 	public BbsTopic postTopic(Integer userId, Integer siteId, Integer forumId,
 			String title,String ip,Short equipSource ) {
 		String topictitle;
@@ -326,11 +336,6 @@ public class BbsTopicMngImpl implements BbsTopicMng {
 		BbsTopic topic = new BbsTopic();
 		topic.setSite(siteMng.findById(siteId));
 		topic.setForum(forum);
-		/*
-		if (postTypeId != null) {
-			topic.setPostType(bbsPostTypeMng.findById(postTypeId));
-		}
-		*/
 		topic.setCreater(user);
 		topic.setLastReply(user);
 		topic.setTopicText(text);
@@ -347,7 +352,8 @@ public class BbsTopicMngImpl implements BbsTopicMng {
 		return topic;
 	}
 
-	@Transactional(readOnly = true)
+	@Override
+	@Transactional(readOnly = true,rollbackFor = Exception.class)
 	public Pagination getForTag(Integer siteId, Integer forumId,Integer parentPostTypeId,Integer postTypeId, Short status,
 			Short primeLevel, String keyWords, String creater,
 			Integer createrId, Short topLevel,Integer topicTypeId,Integer excludeId,
@@ -356,8 +362,9 @@ public class BbsTopicMngImpl implements BbsTopicMng {
 				creater, createrId, topLevel, topicTypeId,excludeId,
 				checkStatus, pageNo,pageSize, jinghua,orderBy,recommend);
 	}
-	
-	@Transactional(readOnly = true)
+
+	@Override
+	@Transactional(readOnly = true,rollbackFor = Exception.class)
 	public List<BbsTopic> getListForTag(Integer siteId, Integer forumId,
 			Integer parentPostTypeId, Integer postTypeId, Short status,
 			Short primeLevel, String keyWords, String creater,
@@ -368,42 +375,47 @@ public class BbsTopicMngImpl implements BbsTopicMng {
 				topLevel, topicTypeId,excludeId,checkStatus, first,count,jinghua, orderBy,recommend);
 	}
 
-	@Transactional(readOnly = true)
+	@Override
+	@Transactional(readOnly = true,rollbackFor = Exception.class)
 	public Pagination getMemberTopic(Integer webId, Integer memberId,
 			int pageNo, int pageSize) {
 		return dao.getMemberTopic(webId, memberId, pageNo, pageSize);
 	}
 
-	@Transactional(readOnly = true)
+	@Transactional(readOnly = true,rollbackFor = Exception.class)
 	public List<BbsTopic> getTopTopic(Integer webId, Integer ctgId,
 			Integer forumId) {
 		return dao.getTopTopic(webId, ctgId, forumId);
 	}
 
-	@Transactional(readOnly = true)
+	@Override
+	@Transactional(readOnly = true,rollbackFor = Exception.class)
 	public Pagination getMemberReply(Integer webId, Integer memberId,
 			int pageNo, int pageSize) {
 		return dao.getMemberReply(webId, memberId, pageNo, pageSize);
 	}
-	
-	@Transactional(readOnly = true)
+
+	@Override
+	@Transactional(readOnly = true,rollbackFor = Exception.class)
 	public List<BbsTopic> getMemberReply(Integer siteId, Integer userId,
 			Integer first,Integer count) {
 		return dao.getMemberReply(siteId, userId, first, count);
 	}
 
-	@Transactional(readOnly = true)
+	@Transactional(readOnly = true,rollbackFor = Exception.class)
 	public Pagination getTopicByTime(Integer webId, int pageNo, int pageSize) {
 		return dao.getTopicByTime(webId, pageNo, pageSize);
 	}
 
-	@Transactional(readOnly = true)
+	@Override
+	@Transactional(readOnly = true,rollbackFor = Exception.class)
 	public Pagination getForSearchDate(Integer siteId, Integer forumId,
 			Short primeLevel, Integer day, int pageNo, int pageSize) {
 		return dao.getForSearchDate(siteId, forumId, primeLevel, day, pageNo,
 				pageSize);
 	}
 
+	@Override
 	public BbsTopic save(BbsTopic topic) {
 		initTopic(topic);
 		dao.save(topic);
@@ -422,12 +434,14 @@ public class BbsTopicMngImpl implements BbsTopicMng {
 		return entity;
 	}
 
+	@Override
 	public BbsTopic update(BbsTopic bean) {
-		Updater<BbsTopic> updater = new Updater<BbsTopic>(bean);
+		Updater<BbsTopic> updater = new Updater<>(bean);
 		bean = dao.updateByUpdater(updater);
 		return bean;
 	}
 
+	@Override
 	public BbsTopic deleteById(Integer id) {
 		BbsTopic bean =null;
 		if(id!=null){
@@ -457,7 +471,7 @@ public class BbsTopicMngImpl implements BbsTopicMng {
 				List<BbsTopicPostOperate>list=topicPostOperateMng.getList(bean.getId(), 
 						BbsTopicPostOperate.DATA_TYPE_TOPIC,null, null,0,Integer.MAX_VALUE);
 				for(BbsTopicPostOperate p:list){
-					topicPostOperateMng.deleteById(p.getId());
+					topicPostOperateMng.deleteByIds(p.getId());
 				}
 				dao.deleteById(id);
 			}
@@ -465,6 +479,7 @@ public class BbsTopicMngImpl implements BbsTopicMng {
 		return bean;
 	}
 
+	@Override
 	public BbsTopic[] deleteByIds(Integer[] ids) {
 		BbsTopic[] beans = new BbsTopic[ids.length];
 		for (int i = 0, len = ids.length; i < len; i++) {
@@ -518,26 +533,33 @@ public class BbsTopicMngImpl implements BbsTopicMng {
 		user.setPostToday(user.getPostToday() + 1);
 	}
 
+	@Override
 	public List<BbsTopic> getList(Integer forumId,String keywords,Integer userId,
 			Short topLevel,Integer first,Integer count) {
 		return dao.getList(forumId,keywords,userId,topLevel,first,count);
 	}
 
+	@Override
 	public List<BbsTopic> getNewList(Short topLevel,Integer first,Integer count,Integer orderby) {
 		return dao.getNewList(topLevel,first,count,orderby);
 	}
-	
+
+	@Override
 	public List<BbsTopic> getTopList(Short topLevel,Integer count,Integer orderby){
 		return dao.getTopList(topLevel, count, orderby);
 	}
-	
+
+	@Override
 	public List<BbsTopic> getTopicList(){
 		return dao.getTopicList();
 	}
+
+	@Override
 	public void updateAllTopicCount(BbsTopicCountEnum e){
 		dao.updateAllTopicCount(e);
 	}
-	
+
+	@Override
 	public void updateAllTopTime() {
 		dao.updateAllTopTime();
 	}
@@ -545,6 +567,7 @@ public class BbsTopicMngImpl implements BbsTopicMng {
 	/**
 	 *  使用道具
 	 */
+	@Override
 	public String useMagic(HttpServletRequest request,Integer siteId,Integer tid,
 			Integer postId,String magicName,Integer userId,
 			String ip,String color,Integer postCreaterId){
@@ -768,10 +791,11 @@ public class BbsTopicMngImpl implements BbsTopicMng {
 	                return temp + a;
 	            }
 	    }
-	
+
+	@Override
 	public List<BbsTopic> getTopicList(Integer userId,Integer bigId,Integer smallId,Integer count){
 		return dao.getTopicList(userId, bigId, smallId, count);
-		
+
 	}
 
 	@Autowired

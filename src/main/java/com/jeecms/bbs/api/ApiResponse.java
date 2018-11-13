@@ -1,5 +1,10 @@
 package com.jeecms.bbs.api;
 
+/**
+ * 
+ * @author andy_hulibo@163.com
+ * @date 2018/11/13 17:58
+ */
 public class ApiResponse {
 
 	public ApiResponse(String body, String message, String status, String code) {

@@ -32,10 +32,6 @@ public class BbsForumExt implements Serializable {
 		blankToNull();
 	}
 
-    @Id
-    @Column(name="FORUM_ID")
-	private Integer id;
-
 	@Column(name="tpl_forum")
 	private String tplForum;
 	
@@ -47,19 +43,11 @@ public class BbsForumExt implements Serializable {
 	
 	@Column(name="tpl_mobile_topic")
 	private String tplMobileTopic;
-
+	@Id
 	@OneToOne
 	@JoinColumn(name = "FORUM_ID")
 	private BbsForum forum;
 
-	
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	public String getTplForum() {
 		return tplForum;

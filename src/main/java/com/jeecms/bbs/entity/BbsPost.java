@@ -65,11 +65,6 @@ public class BbsPost implements Serializable {
 	 */
 	public static final Integer OPT_TO_AUTHOR = 2;
 	
-
-	/**
-	 * @author andy_hulibo@163.com
-	 * 2018年10月26日下午3:57:01
-	 */
 	private static final long serialVersionUID = 7386412084173390279L;
 
 	@Id
@@ -77,48 +72,93 @@ public class BbsPost implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 
+	/**
+	 * 标题
+	 */
 	@Transient
 	private String title;
-	
+
+	/**
+	 * 发贴时间
+	 */
 	@Column(name="CREATE_TIME")
 	private Date createTime;
-	
+
+	/**
+	 * 发贴IP
+	 */
 	@Column(name="POSTER_IP")
 	private String posterIp;
-	
+
+	/**
+	 * 编辑时间
+	 */
 	@Column(name="EDIT_TIME")
 	private Date editTime;
-	
+
+	/**
+	 * 编辑者IP
+	 */
 	@Column(name="EDITER_IP")
 	private String editerIp;
-	
+
+	/**
+	 * 编辑次数
+	 */
 	@Column(name="EDIT_COUNT")
 	private Integer editCount;
-	
+
+	/**
+	 * 第几楼
+	 */
 	@Column(name="INDEX_COUNT")
 	private Integer indexCount;
-	
+
+	/**
+	 * 状态
+	 */
 	@Column(name="STATUS")
 	private Short status;
-	
+
+	/**
+	 * 是否上传附件
+	 */
 	@Column(name="IS_AFFIX")
 	private Boolean affix;
-	
+
+	/**
+	 * 是否有隐藏内容
+	 */
 	@Column(name="IS_HIDDEN")
 	private Boolean hidden;
-	
+
+	/**
+	 * 是否匿名
+	 */
 	@Column(name="ANONYMOUS")
 	private Boolean anonymous;
-	
+
+	/**
+	 * 发帖来源：1 PC  2手机  3平板
+	 */
 	@Column(name="post_source")
 	private Short postSource;
-	
+
+	/**
+	 * 发帖时纬度
+	 */
 	@Column(name="post_latitude")
 	private Float postLatitude;
-	
+
+	/**
+	 * 发帖时经度
+	 */
 	@Column(name="post_longitude")
 	private Float postLongitude;
 	
+	/**
+	 * 是否已审核
+	 */
 	@Column(name="check_status")
 	private Boolean checkStatus;
 

@@ -1,11 +1,15 @@
 package com.jeecms.bbs.cache;
 
+import com.jeecms.bbs.entity.BbsUser;
+
 import java.io.Serializable;
 import java.util.Date;
 
-import com.jeecms.bbs.entity.BbsUser;
-
-@SuppressWarnings("serial")
+/**
+ * 
+ * @author andy_hulibo@163.com
+ * @date 2018/11/13 17:51
+ */
 public class BbsConfigCache implements Serializable {
 
 	private int postToday;

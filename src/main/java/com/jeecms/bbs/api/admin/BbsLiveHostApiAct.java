@@ -110,7 +110,7 @@ public class BbsLiveHostApiAct {
 				Integer[] idArray = StrUtils.getInts(ids);
 				BbsLiveUserAccount[] deleteByIds = manager.deleteByIds(idArray);
 				for (int i = 0; i < deleteByIds.length; i++) {
-					log.info("delete BbsLiveUserAccount id={}",deleteByIds[i].getId());
+					log.info("delete BbsLiveUserAccount id={}",deleteByIds[i].getUser().getId());
 				}
 				status=Constants.API_STATUS_SUCCESS;
 				message=Constants.API_MESSAGE_SUCCESS;
@@ -139,7 +139,7 @@ public class BbsLiveHostApiAct {
 			if (idArray.length==priorityArray.length) {
 				BbsLiveUserAccount[] updatePriority = manager.updatePriority(idArray, priorityArray);
 				for (int i = 0; i < updatePriority.length; i++) {
-					log.info("update BbsLiveUserAccount priority id={}",updatePriority[i].getId());
+					log.info("update BbsLiveUserAccount priority id={}",updatePriority[i].getUser().getId());
 				}
 				status=Constants.API_STATUS_SUCCESS;
 				message=Constants.API_MESSAGE_SUCCESS;

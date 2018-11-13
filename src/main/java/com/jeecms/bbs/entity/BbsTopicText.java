@@ -1,16 +1,10 @@
 package com.jeecms.bbs.entity;
 
-import java.io.Serializable;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * 论坛主题内容
@@ -27,24 +21,13 @@ public class BbsTopicText implements Serializable{
 	 */
 	private static final long serialVersionUID = -6615323672306064639L;
 
-	@Id
-    @Column(name = "TOPIC_ID")
-	private Integer id;
-
 	@Column(name="TITLE")
 	private String title;
 
+	@Id
 	@OneToOne
 	@JoinColumn(name="TOPIC_ID")
 	private BbsTopic topic;
-
-	public Integer getId () {
-		return id;
-	}
-
-	public void setId (Integer id) {
-		this.id = id;
-	}
 
 	public String getTitle () {
 		return title;

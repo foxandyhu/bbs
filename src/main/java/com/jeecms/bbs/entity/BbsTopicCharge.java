@@ -39,10 +39,6 @@ public class BbsTopicCharge implements Serializable{
 	 */
 	private static final long serialVersionUID = 3845915293067492808L;
 
-    @Id
-    @Column(name="topic_id")
-	private Integer id;
-
 	@Column(name="charge_amount")
 	private Double chargeAmount;
 	
@@ -73,17 +69,10 @@ public class BbsTopicCharge implements Serializable{
 	@Column(name="reward_pattern")
 	private Boolean rewardPattern;
 
+	@Id
 	@JoinColumn(name="topic_id")
 	@OneToOne(cascade=CascadeType.ALL)
 	private BbsTopic topic;
-
-	public Integer getId () {
-		return id;
-	}
-
-	public void setId (Integer id) {
-		this.id = id;
-	}
 
 	public Double getChargeAmount () {
 		return chargeAmount;
@@ -176,7 +165,7 @@ public class BbsTopicCharge implements Serializable{
 	public JSONObject convertToJson() 
 			throws JSONException{
 		JSONObject json=new JSONObject();
-		json.put("id", getId());
+		json.put("id", getTopic().getId());
 		if (getChargeAmount()!=null) {
 			json.put("chargeAmount", getChargeAmount());
 		}else{

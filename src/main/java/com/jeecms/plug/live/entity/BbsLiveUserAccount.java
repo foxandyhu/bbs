@@ -34,10 +34,6 @@ public class BbsLiveUserAccount implements Serializable {
 	 */
 	private static final long serialVersionUID = -1594260021077691667L;
 
-	@Id
-	@Column(name = "user_id")
-	private Integer id;
-
 	@Column(name = "total_amount")
 	private Double totalAmount;
 
@@ -77,17 +73,10 @@ public class BbsLiveUserAccount implements Serializable {
 	@Column(name = "check_time")
 	private Date checkTime;
 
+	@Id
 	@OneToOne
 	@JoinColumn(name = "user_id")
 	private BbsUser user;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	public Double getTotalAmount() {
 		return totalAmount;
@@ -236,8 +225,8 @@ public class BbsLiveUserAccount implements Serializable {
 
 	public JSONObject convertToJson() throws JSONException {
 		JSONObject json = new JSONObject();
-		if (getId() != null) {
-			json.put("id", getId());
+		if (getUser() != null) {
+			json.put("id", getUser().getId());
 		} else {
 			json.put("id", "");
 		}

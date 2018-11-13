@@ -47,10 +47,16 @@ import com.jeecms.common.upload.FileRepository;
 import com.jeecms.common.util.CheckMobile;
 import com.jeecms.core.manager.CmsSiteMng;
 
+/**
+ * 
+ * @author: andy_hulibo@163.com
+ * @date: 2018/11/13 12:02
+ */
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class BbsPostMngImpl implements BbsPostMng {
 
+	@Override
 	public BbsPost shield(Integer id, String reason, BbsUser operator,Short status) {
 		BbsPost post = dao.findById(id);
 		post.setStatus(status);
@@ -63,6 +69,7 @@ public class BbsPostMngImpl implements BbsPostMng {
 		return post;
 	}
 
+	@Override
 	public BbsPost updatePost(Integer id, String content,
 			BbsUser editor, String ip) {
 		// 修改BbsPost
@@ -86,6 +93,7 @@ public class BbsPostMngImpl implements BbsPostMng {
 		return post;
 	}
 	
+	@Override
 	public BbsPost updatePost(Integer id, String content,
 			BbsUser editor, String ip, List<MultipartFile> file,
 			List<String> code,Boolean hasAttach) {
@@ -114,6 +122,7 @@ public class BbsPostMngImpl implements BbsPostMng {
 		return post;
 	}
 
+	@Override
 	public BbsPost post(Integer userId, Integer siteId, Integer topicId,
 			String content, String ip, List<MultipartFile> file,
 			Boolean hasAttach,List<String> code,Short equipSource,Float postLatitude,Float postLongitude) {
@@ -124,11 +133,6 @@ public class BbsPostMngImpl implements BbsPostMng {
 		post.setSite(siteMng.findById(siteId));
 		post.setConfig(bbsConfigMng.findById(siteId));
 		post.setTopic(topic);
-		/*
-		if(postTypeId!=null){
-			post.setPostType(bbsPostTypeMng.findById(postTypeId));
-		}
-		*/
 		post.setCreater(creater);
 		if ((file != null && file.size() > 0)||(hasAttach != null && hasAttach)) {
 			post.setAffix(true);
@@ -172,7 +176,8 @@ public class BbsPostMngImpl implements BbsPostMng {
 		forumCountCache.addPost(topic.getForum().getId());
 		return post;
 	}
-	
+
+	@Override
 	public BbsPost post(Integer userId, Integer siteId, Integer topicId,
 			String content, String ip,Short equipSource) {
 		BbsPostText text = new BbsPostText();
@@ -181,11 +186,6 @@ public class BbsPostMngImpl implements BbsPostMng {
 		post.setSite(siteMng.findById(siteId));
 		post.setConfig(bbsConfigMng.findById(siteId));
 		post.setTopic(topic);
-		/*
-		if(postTypeId!=null){
-			post.setPostType(bbsPostTypeMng.findById(postTypeId));
-		}
-		*/
 		post.setCreater(bbsUserMng.findById(userId));
 		if (findHidden(content)) {
 			post.setHidden(true);
@@ -216,12 +216,12 @@ public class BbsPostMngImpl implements BbsPostMng {
 		return post;
 	}
 
-
+	@Override
 	public List<BbsPost> getPostByTopic(Integer topicId) {
 		return dao.getPostByTopic(topicId);
 	}
-	
-	
+
+	@Override
 	public List<BbsPost> getPostByTopic(Integer topicId,Integer parentId,
 			Integer userId,Boolean checkStatus,Integer first, int count){
 		return dao.getPostByTopic(topicId,parentId,userId,checkStatus,first, count);
@@ -233,6 +233,7 @@ public class BbsPostMngImpl implements BbsPostMng {
 		return dao.getPostPageByTopic(topicId, parentId, userId, checkStatus, pageNo, pageSize);
 	}
 
+	@Override
 	public BbsPost reply(Integer userId, Integer siteId, Integer topicId,Integer parentId,
 			String content, String ip, List<MultipartFile> file,
 			Boolean hasAttach,List<String> code,
@@ -251,7 +252,7 @@ public class BbsPostMngImpl implements BbsPostMng {
 		return post;
 	}
 
-	public String uploadImg(String content, List<MultipartFile> file,
+	private String uploadImg(String content, List<MultipartFile> file,
 			List<String> code, Integer siteId, BbsPost post) {
 		List<String> list = findImgUrl(content);
 		for (int i = 0; i < code.size(); i++) {
@@ -297,7 +298,7 @@ public class BbsPostMngImpl implements BbsPostMng {
 	private List<String> findImgUrl(String content) {
 		String ems = "\\[localimg]([0-9]+)\\[/localimg]";
 		Matcher matcher = Pattern.compile(ems).matcher(content);
-		List<String> list = new ArrayList<String>();
+		List<String> list = new ArrayList<>();
 		while (matcher.find()) {
 			String url = matcher.group(1);
 			list.add(url);
@@ -314,15 +315,17 @@ public class BbsPostMngImpl implements BbsPostMng {
 		return false;
 	}
 
-	@Transactional(readOnly = true)
+	@Override
+	@Transactional(readOnly = true,rollbackFor = Exception.class)
 	public Pagination getForTag(Integer siteId, Integer topicId,Integer parentId,
 			Integer userId, Boolean checkStatus,Integer option,
 			Integer orderBy, int pageNo, int pageSize) {
 		return dao.getForTag(siteId, topicId,parentId, userId, 
 				checkStatus, option,orderBy,pageNo, pageSize);
 	}
-	
-	@Transactional(readOnly = true)
+
+	@Override
+	@Transactional(readOnly = true,rollbackFor = Exception.class)
 	public List<BbsPost> getListForTag(Integer siteId, Integer topicId,
 			Integer parentId,Integer userId, Boolean checkStatus, 
 			Integer option,Integer orderBy,int first, int count){
@@ -330,11 +333,13 @@ public class BbsPostMngImpl implements BbsPostMng {
 				userId, checkStatus,option,orderBy, first, count);
 	}
 
+	@Override
 	public BbsPost getLastPost(Integer forumId, Integer topicId) {
 		return dao.getLastPost(forumId, topicId);
 	}
 
-	@Transactional(readOnly = true)
+	@Override
+	@Transactional(readOnly = true,rollbackFor = Exception.class)
 	public Pagination getMemberReply(Integer webId, Integer memberId,
 			int pageNo, int pageSize) {
 		int count = dao.getMemberReplyCount(webId, memberId);
@@ -349,7 +354,7 @@ public class BbsPostMngImpl implements BbsPostMng {
 		}
 		List<Number> list = dao.getMemberReply(webId, memberId, (pageNo - 1)
 				* pageSize, pageSize);
-		List<BbsPost> l = new ArrayList<BbsPost>();
+		List<BbsPost> l = new ArrayList<>();
 		Pagination p = new Pagination();
 		for (Number b : list) {
 			BbsPost bbspost = dao.findById(b.intValue());
@@ -362,39 +367,44 @@ public class BbsPostMngImpl implements BbsPostMng {
 		return p;
 	}
 
-	@Transactional(readOnly = true)
+	@Override
+	@Transactional(readOnly = true,rollbackFor = Exception.class)
 	public int getMemberReplyCount(Integer webId, Integer memberId) {
 		return dao.getMemberReplyCount(webId, memberId);
 	}
 
-	@Transactional(readOnly = true)
+	@Override
+	@Transactional(readOnly = true,rollbackFor = Exception.class)
 	public int getIndexCount(Integer topicId) {
 		return dao.getIndexCount(topicId);
 	}
 
-	@Transactional(readOnly = true)
+	@Override
+	@Transactional(readOnly = true,rollbackFor = Exception.class)
 	public Pagination getPage(int pageNo, int pageSize) {
-		Pagination page = dao.getPage(pageNo, pageSize);
-		return page;
+		return dao.getPage(pageNo, pageSize);
 	}
 
-	@Transactional(readOnly = true)
+	@Override
+	@Transactional(readOnly = true,rollbackFor = Exception.class)
 	public BbsPost findById(Integer id) {
-		BbsPost entity = dao.findById(id);
-		return entity;
+		return dao.findById(id);
 	}
 
+	@Override
 	public BbsPost save(BbsPost bean) {
 		dao.save(bean);
 		return bean;
 	}
 
+	@Override
 	public BbsPost update(BbsPost bean) {
-		Updater<BbsPost> updater = new Updater<BbsPost>(bean);
+		Updater<BbsPost> updater = new Updater<>(bean);
 		bean = dao.updateByUpdater(updater);
 		return bean;
 	}
 
+	@Override
 	public BbsPost deleteById(Integer id) {
 		BbsPost bean=findById(id);
 		if(bean!=null){
@@ -405,7 +415,8 @@ public class BbsPostMngImpl implements BbsPostMng {
 			if(topic.getLastPost()!=null&&topic.getLastPost().equals(bean)){
 				topic.setLastPost(null);
 			}
-			if (topic.getReplyCount()>0) {//减去话题的回复数量
+			//减去话题的回复数量
+			if (topic.getReplyCount()>0) {
 				topic.setReplyCount(topic.getReplyCount()-1);
 			}else{
 				topic.setReplyCount(0);
@@ -413,7 +424,7 @@ public class BbsPostMngImpl implements BbsPostMng {
 			List<BbsTopicPostOperate>list=topicPostOperateMng.getList(bean.getId(), BbsTopicPostOperate.DATA_TYPE_POST, 
 					null, null,0,Integer.MAX_VALUE);
 			for(BbsTopicPostOperate p:list){
-				topicPostOperateMng.deleteById(p.getId());
+				topicPostOperateMng.deleteByIds(p.getId());
 			}
 			dao.deleteById(id);
 			bbsTopicMng.update(topic);
@@ -421,6 +432,7 @@ public class BbsPostMngImpl implements BbsPostMng {
 		return bean;
 	}
 
+	@Override
 	public BbsPost[] deleteByIds(Integer[] ids) {
 		BbsPost[] beans = new BbsPost[ids.length];
 		for (int i = 0, len = ids.length; i < len; i++) {
@@ -428,10 +440,11 @@ public class BbsPostMngImpl implements BbsPostMng {
 		}
 		return beans;
 	}
-	
+
+	@Override
 	public List<BbsPost> getList(int count, int orderby) {
 		List<Integer>postIds= dao.getList(count,orderby);
-		List<BbsPost>results=new ArrayList<BbsPost>();
+		List<BbsPost>results=new ArrayList<>();
 		if(postIds!=null&&postIds.size()>0){
 			for(Integer postId:postIds){
 				results.add(findById(postId));
@@ -457,7 +470,7 @@ public class BbsPostMngImpl implements BbsPostMng {
 		}
 	}
 
-	public void updatePostCount(BbsPost post, BbsUser user) {
+	private void updatePostCount(BbsPost post, BbsUser user) {
 		BbsTopic topic = post.getTopic();
 		BbsForum forum = topic.getForum();
 		forum.setLastPost(post);
@@ -483,20 +496,30 @@ public class BbsPostMngImpl implements BbsPostMng {
 		user.setPostToday(user.getPostToday() + 1);
 		user.setReplyCount(user.getReplyCount() + 1);
 	}
-	
+
+	@Override
 	public List<BbsPost> getByTopicList(Integer topicId,Integer first,Integer count){
 		return dao.getByTopicList(topicId,first,count);
 		
 	}
 
+	@Autowired
 	private BbsOperationMng bbsOperationMng;
+	@Autowired
 	private BbsConfigMng bbsConfigMng;
+	@Autowired
 	private CmsSiteMng siteMng;
+	@Autowired
 	private BbsTopicMng bbsTopicMng;
+	@Autowired
 	private BbsUserMng bbsUserMng;
+	@Autowired
 	private BbsConfigEhCache bbsConfigEhCache;
+	@Autowired
 	private AttachmentMng attachmentMng;
+	@Autowired
 	private FileRepository fileRepository;
+	@Autowired
 	private BbsPostDao dao;
 	@Autowired
 	private BbsPostCountMng postCountMng;
@@ -506,49 +529,4 @@ public class BbsPostMngImpl implements BbsPostMng {
 	private BbsTopicPostOperateMng topicPostOperateMng;
 	@Autowired
 	private ForumCountCache forumCountCache;
-
-	@Autowired
-	public void setDao(BbsPostDao dao) {
-		this.dao = dao;
-	}
-
-	@Autowired
-	public void setBbsConfigMng(BbsConfigMng bbsConfigMng) {
-		this.bbsConfigMng = bbsConfigMng;
-	}
-
-	@Autowired
-	public void setSiteMng(CmsSiteMng siteMng) {
-		this.siteMng = siteMng;
-	}
-
-	@Autowired
-	public void setBbsUserMng(BbsUserMng bbsUserMng) {
-		this.bbsUserMng = bbsUserMng;
-	}
-
-	@Autowired
-	public void setBbsOperationMng(BbsOperationMng bbsOperationMng) {
-		this.bbsOperationMng = bbsOperationMng;
-	}
-
-	@Autowired
-	public void setBbsTopicMng(BbsTopicMng bbsTopicMng) {
-		this.bbsTopicMng = bbsTopicMng;
-	}
-
-	@Autowired
-	public void setBbsConfigEhCache(BbsConfigEhCache bbsConfigEhCache) {
-		this.bbsConfigEhCache = bbsConfigEhCache;
-	}
-
-	@Autowired
-	public void setAttachmentMng(AttachmentMng attachmentMng) {
-		this.attachmentMng = attachmentMng;
-	}
-
-	@Autowired
-	public void setFileRepository(FileRepository fileRepository) {
-		this.fileRepository = fileRepository;
-	}
 }

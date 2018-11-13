@@ -22,27 +22,16 @@ public class BbsPostCount implements Serializable{
 	 */
 	private static final long serialVersionUID = -1146829397435164234L;
 
-    @Id
-    @Column(name="POST_ID")
-	private Integer id;
-
 	@Column(name="replys")
 	private Integer replys;
 
 	@Column(name="ups")
 	private Integer ups;
 
+	@Id
 	@OneToOne
 	@JoinColumn(name="POST_ID")
 	private BbsPost post;
-
-	public Integer getId () {
-		return id;
-	}
-
-	public void setId (Integer id) {
-		this.id = id;
-	}
 
 	public Integer getReplys () {
 		return replys;

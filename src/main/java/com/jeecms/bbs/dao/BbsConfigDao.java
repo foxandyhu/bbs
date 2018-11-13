@@ -3,17 +3,22 @@ package com.jeecms.bbs.dao;
 import com.jeecms.bbs.entity.BbsConfig;
 import com.jeecms.common.hibernate4.Updater;
 
+/**
+ * 论坛配置数据接口
+ * @author: andy_hulibo@163.com
+ * @date: 2018/11/13 17:40
+ */
 public interface BbsConfigDao {
-	/**
-	 * 清理当日数据
-	 */
-	public void clearTodayData();
-	
-	public BbsConfig findById(Integer id);
+    /**
+     * 清理当日数据
+     */
+    void clearTodayData();
 
-	public BbsConfig save(BbsConfig bean);
+    BbsConfig findById(Integer id);
 
-	public BbsConfig updateByUpdater(Updater<BbsConfig> updater);
+    BbsConfig save(BbsConfig bean);
 
-	public BbsConfig deleteById(Integer id);
+    BbsConfig updateByUpdater(Updater<BbsConfig> updater);
+
+    BbsConfig deleteById(Integer id);
 }

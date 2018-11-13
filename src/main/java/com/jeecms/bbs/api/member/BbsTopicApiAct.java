@@ -603,8 +603,6 @@ public class BbsTopicApiAct {
 	 * 主题操作
 	 * @param topicId 主题Id
 	 * @param operate 操作类型 0点赞 1收藏 2关注  3取消点赞 4取消收藏 5取消关注 
-	 * @param appId      appid  必选
-	 * @param sessionKey 用户会话  必选
 	 */
 	@RequestMapping(value = "/topic/operate")
 	public void topicOperate(Integer topicId,Integer operate,

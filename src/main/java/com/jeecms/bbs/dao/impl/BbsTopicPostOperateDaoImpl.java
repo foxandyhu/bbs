@@ -13,6 +13,8 @@ import com.jeecms.common.page.Pagination;
 @Repository
 public class BbsTopicPostOperateDaoImpl extends HibernateBaseDao<BbsTopicPostOperate, Long>
 implements BbsTopicPostOperateDao {
+
+	@Override
 	public Pagination getPage(Short dataType,
 			Integer userId,Integer operate,int pageNo, int pageSize) {
 		String hql="from BbsTopicPostOperate bean where 1=1 ";
@@ -30,7 +32,7 @@ implements BbsTopicPostOperateDao {
 		return page;
 	}
 	
-	@SuppressWarnings("unchecked")
+	@Override
 	public List<BbsTopicPostOperate> getList(Integer dataId,Short dataType,
 			Integer userId,Integer operate,Integer first,Integer count){
 		String hql="from BbsTopicPostOperate bean where 1=1 ";
@@ -56,16 +58,19 @@ implements BbsTopicPostOperateDao {
 		return find(f);
 	}
 
+	@Override
 	public BbsTopicPostOperate findById(Long id) {
 		BbsTopicPostOperate entity = get(id);
 		return entity;
 	}
 
+	@Override
 	public BbsTopicPostOperate save(BbsTopicPostOperate bean) {
 		getSession().save(bean);
 		return bean;
 	}
 
+	@Override
 	public BbsTopicPostOperate deleteById(Long id) {
 		BbsTopicPostOperate entity = super.get(id);
 		if (entity != null) {

@@ -113,32 +113,6 @@ public class BbsAdvertisingAct {
 		return "advertising/edit";
 	}
 
-	/*
-	@RequiresPermissions("advertising:o_save")
-	@RequestMapping("/advertising/o_save.html")
-	public String save(BbsAdvertising bean, Integer adspaceId,
-			HttpServletRequest request, ModelMap model) {
-		WebErrors errors = validateSave(bean, request);
-		if (errors.hasErrors()) {
-			return errors.showErrorPage(model);
-		}
-		Map<String, String> attr = RequestUtils.getRequestMap(request, "attr_");
-		// 去除为空串的属性
-		Set<String> toRemove = new HashSet<String>();
-		for (Entry<String, String> entry : attr.entrySet()) {
-			if (StringUtils.isBlank(entry.getValue())) {
-				toRemove.add(entry.getKey());
-			}
-		}
-		for (String key : toRemove) {
-			attr.remove(key);
-		}
-		bean = manager.save(bean, adspaceId, attr);
-		log.info("save BbsAdvertising id={}", bean.getId());
-		return "redirect:v_list.html";
-	}
-	*/
-	
 	@RequiresPermissions("advertising:o_save")
 	@RequestMapping("/advertising/o_save.html")
 	public String save(BbsAdvertising bean, Integer adspaceId,

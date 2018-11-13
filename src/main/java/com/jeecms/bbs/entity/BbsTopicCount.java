@@ -1,60 +1,54 @@
 package com.jeecms.bbs.entity;
 
-import java.io.Serializable;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+import javax.persistence.*;
+import java.io.Serializable;
+
 /**
-*  @Description: 主题数据
-*  @Author: andy_hulibo@163.com
-*  @CreateDate: 2018/11/9 14:29
-*/
+ * 主题数据
+ * @author: andy_hulibo@163.com
+ * @date: 2018/11/13 11:46
+ */
 @Entity
 @Table(name="bbs_topic_count")
 @Cache(usage=CacheConcurrencyStrategy.READ_WRITE,region = "beanCache")
 public class BbsTopicCount implements Serializable {
 
-	/**
-	 * @author andy_hulibo@163.com
-	 * 2018年10月26日下午3:55:05
-	 */
 	private static final long serialVersionUID = -6424118666399519003L;
 
-	@Id
-	@Column(name = "topic_id")
-	private int id;
-
+	/**
+	 * 点赞数
+	 */
 	@Column(name="ups")
 	private Integer ups;
 	
+	/**
+	 * 收藏数
+	 */
 	@Column(name="collections")
 	private Integer collections;
 	
+	/**
+	 * 打赏数
+	 */
 	@Column(name="rewards")
 	private Integer rewards;
 	
+	/**
+	 * 关注数
+	 */
 	@Column(name="attentions")
 	private Integer attentions;
 
+	/**
+	 * 关联的帖子
+	 */
+	@Id
 	@OneToOne
 	@JoinColumn(name="topic_id")
 	private BbsTopic topic;
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public Integer getUps () {
 		return ups;

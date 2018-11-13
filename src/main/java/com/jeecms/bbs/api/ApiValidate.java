@@ -13,6 +13,11 @@ import com.jeecms.common.util.PayUtil;
 import com.jeecms.common.web.RequestUtils;
 import com.jeecms.core.web.WebErrors;
 
+/**
+ * 
+ * @author andy_hulibo@163.com
+ * @date 2018/11/13 17:59
+ */
 public class ApiValidate {
 	private static final Logger log = LoggerFactory.getLogger(ApiValidate.class);
 	

@@ -11,6 +11,7 @@ import org.springframework.context.annotation.FilterType;
 import org.springframework.core.Ordered;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.HttpRequestHandler;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.HandlerMapping;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
@@ -76,10 +77,10 @@ public class FrontContextConfig extends WebMvcConfigurerAdapter{
 	private List<String> suffixs;
 
 	/**
-	*  @Description: 手动开启Servlet容器默认的Servlet对静态资源的处理
-	*  @Author: andy_hulibo@163.com
-	*  @CreateDate: 2018/11/9 14:19
-	*/
+	 * 手动开启Servlet容器默认的Servlet对静态资源的处理
+	 * @author: andy_hulibo@163.com
+	 * @date: 2018/11/13 15:01
+	 */
 	@Bean
 	public HandlerMapping defaultServletHandlerMapping(ServletContext ctx) {
 		DefaultServletHttpRequestHandler handler=new DefaultServletHttpRequestHandler();
@@ -92,5 +93,16 @@ public class FrontContextConfig extends WebMvcConfigurerAdapter{
 		handlerMapping.setOrder(Integer.MIN_VALUE);
 		handlerMapping.setUrlMap(urlMap);
 		return handlerMapping;
+	}
+
+	/**
+	 * 当前端表单提交类型是enctype="multipart/form-data"时 HttpServletRequest
+	 * 获取不到数据，启用该bean即可
+	 * @author: andy_hulibo@163.com
+	 * @date: 2018/11/13 16:03
+	 */
+	@Bean
+	public CommonsMultipartResolver multipartResolver(){
+		return new CommonsMultipartResolver();
 	}
 }

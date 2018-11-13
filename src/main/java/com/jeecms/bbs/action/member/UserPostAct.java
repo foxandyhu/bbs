@@ -123,7 +123,7 @@ public class UserPostAct {
 			return FrontUtils.getTplPath(request, site,
 					TPLDIR_TOPIC, TPL_NO_LOGIN);
 		}
-		if(!user.getId().equals(ext.getId())){
+		if(!user.getId().equals(ext.getUser().getId())){
 			model.put("msg", "更新错误");
 			return FrontUtils.getTplPath(request, site,
 					TPLDIR_TOPIC, TPL_NO_VIEW);
@@ -147,7 +147,7 @@ public class UserPostAct {
 			return FrontUtils.getTplPath(request, site,
 					TPLDIR_TOPIC, TPL_NO_LOGIN);
 		}
-		if(!user.getId().equals(ext.getId())){
+		if(!user.getId().equals(ext.getUser().getId())){
 			model.put("msg", "更新错误");
 			return FrontUtils.getTplPath(request, site,
 					TPLDIR_TOPIC, TPL_NO_VIEW);

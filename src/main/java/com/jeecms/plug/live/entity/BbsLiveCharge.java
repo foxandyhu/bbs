@@ -27,10 +27,6 @@ public class BbsLiveCharge implements Serializable {
 	 */
 	private static final long serialVersionUID = 6953620611365481927L;
 
-	@Id
-	@Column(name="live_id")
-	private Integer id;
-
 	@Column(name="total_amount")
 	private Double totalAmount;
 	
@@ -52,21 +48,11 @@ public class BbsLiveCharge implements Serializable {
 	@Column(name="gift_num")
 	private Integer giftNum;
 
+	@Id
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="live_id")
 	private BbsLive live;
 
-	
-	public Integer getId() {
-		return id;
-	}
-
-	
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	
 	public Double getTotalAmount() {
 		return totalAmount;
 	}

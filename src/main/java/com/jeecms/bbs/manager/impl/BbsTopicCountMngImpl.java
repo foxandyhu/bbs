@@ -1,31 +1,37 @@
 package com.jeecms.bbs.manager.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import com.jeecms.common.hibernate4.Updater;
-import com.jeecms.common.page.Pagination;
 import com.jeecms.bbs.dao.BbsTopicCountDao;
 import com.jeecms.bbs.entity.BbsTopic;
 import com.jeecms.bbs.entity.BbsTopicCount;
 import com.jeecms.bbs.manager.BbsTopicCountMng;
+import com.jeecms.common.hibernate4.Updater;
+import com.jeecms.common.page.Pagination;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * 
+ * @author: andy_hulibo@163.com
+ * @date: 2018/11/13 11:44
+ */
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class BbsTopicCountMngImpl implements BbsTopicCountMng {
-	@Transactional(readOnly = true)
+
+	@Override
+	@Transactional(readOnly = true,rollbackFor = Exception.class)
 	public Pagination getPage(int pageNo, int pageSize) {
-		Pagination page = dao.getPage(pageNo, pageSize);
-		return page;
+		return dao.getPage(pageNo, pageSize);
 	}
 
-	@Transactional(readOnly = true)
+	@Override
+	@Transactional(readOnly = true,rollbackFor = Exception.class)
 	public BbsTopicCount findById(Integer id) {
-		BbsTopicCount entity = dao.findById(id);
-		return entity;
+		return dao.findById(id);
 	}
-	
+
+	@Override
 	public int topicUp(Integer id) {
 		BbsTopicCount c = dao.findById(id);
 		if (c == null) {
@@ -35,7 +41,8 @@ public class BbsTopicCountMngImpl implements BbsTopicCountMng {
 		c.setUps(count);
 		return count;
 	}
-	
+
+	@Override
 	public int topicCancelUp(Integer id) {
 		BbsTopicCount c = dao.findById(id);
 		if (c == null||c.getUps()<=0) {
@@ -45,7 +52,8 @@ public class BbsTopicCountMngImpl implements BbsTopicCountMng {
 		c.setUps(count);
 		return count;
 	}
-	
+
+	@Override
 	public int topicCollect(Integer id) {
 		BbsTopicCount c = dao.findById(id);
 		if (c == null) {
@@ -55,7 +63,8 @@ public class BbsTopicCountMngImpl implements BbsTopicCountMng {
 		c.setCollections(count);
 		return count;
 	}
-	
+
+	@Override
 	public int topicCancelCollect(Integer id) {
 		BbsTopicCount c = dao.findById(id);
 		if (c == null||c.getCollections()<=0) {
@@ -65,17 +74,8 @@ public class BbsTopicCountMngImpl implements BbsTopicCountMng {
 		c.setCollections(count);
 		return count;
 	}
-	
-	public int topicReward(Integer id) {
-		BbsTopicCount c = dao.findById(id);
-		if (c == null) {
-			return 0;
-		}
-		int count = c.getRewards() + 1;
-		c.setRewards(count);
-		return count;
-	}
-	
+
+	@Override
 	public int topicAttent(Integer id) {
 		BbsTopicCount c = dao.findById(id);
 		if (c == null) {
@@ -85,7 +85,8 @@ public class BbsTopicCountMngImpl implements BbsTopicCountMng {
 		c.setAttentions(count);
 		return count;
 	}
-	
+
+	@Override
 	public int topicCancelAttent(Integer id) {
 		BbsTopicCount c = dao.findById(id);
 		if (c == null||c.getAttentions()<=0) {
@@ -95,7 +96,8 @@ public class BbsTopicCountMngImpl implements BbsTopicCountMng {
 		c.setAttentions(count);
 		return count;
 	}
-	
+
+	@Override
 	public BbsTopicCount save(BbsTopicCount count, BbsTopic topic) {
 		count.setTopic(topic);
 		count.init();
@@ -104,17 +106,18 @@ public class BbsTopicCountMngImpl implements BbsTopicCountMng {
 		return count;
 	}
 
+	@Override
 	public BbsTopicCount update(BbsTopicCount bean) {
-		Updater<BbsTopicCount> updater = new Updater<BbsTopicCount>(bean);
-		BbsTopicCount entity = dao.updateByUpdater(updater);
-		return entity;
+		Updater<BbsTopicCount> updater = new Updater<>(bean);
+		return dao.updateByUpdater(updater);
 	}
 
+	@Override
 	public BbsTopicCount deleteById(Integer id) {
-		BbsTopicCount bean = dao.deleteById(id);
-		return bean;
+		return dao.deleteById(id);
 	}
-	
+
+	@Override
 	public BbsTopicCount[] deleteByIds(Integer[] ids) {
 		BbsTopicCount[] beans = new BbsTopicCount[ids.length];
 		for (int i = 0,len = ids.length; i < len; i++) {
@@ -123,10 +126,6 @@ public class BbsTopicCountMngImpl implements BbsTopicCountMng {
 		return beans;
 	}
 
-	private BbsTopicCountDao dao;
-
 	@Autowired
-	public void setDao(BbsTopicCountDao dao) {
-		this.dao = dao;
-	}
+	private BbsTopicCountDao dao;
 }

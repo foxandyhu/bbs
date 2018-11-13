@@ -14,6 +14,11 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * 
+ * @author andy_hulibo@163.com
+ * @date 2018/11/13 17:52
+ */
 @Service
 public class BbsConfigEhCacheImpl implements BbsConfigEhCache, DisposableBean {
 
@@ -87,8 +92,7 @@ public class BbsConfigEhCacheImpl implements BbsConfigEhCache, DisposableBean {
 	public BbsConfigCache getBbsConfigCache(Integer siteId) {
 		Element e = cache.get(siteId);
 		if (e != null) {
-			BbsConfigCache configCache = (BbsConfigCache) e.getObjectValue();
-			return configCache;
+			return (BbsConfigCache) e.getObjectValue();
 		} else {
 			BbsConfig bbsConfig = bbsConfigMng.findById(siteId);
 			BbsConfigCache configCache = new BbsConfigCache();
@@ -168,10 +172,17 @@ public class BbsConfigEhCacheImpl implements BbsConfigEhCache, DisposableBean {
 		}
 	}
 
-	// 间隔时间
-	private int interval = 60 * 60 * 1000; // 1个小时
-	// 最后刷新时间
+	/**
+	 * 间隔时间1个小时
+	 */
+	private int interval = 60 * 60 * 1000;
+
+	/**
+	 * 最后刷新时间
+	 */
 	private long refreshTime = System.currentTimeMillis();
+
+	@Autowired
 	private BbsConfigMng bbsConfigMng;
 	private Ehcache cache;
 
@@ -180,10 +191,4 @@ public class BbsConfigEhCacheImpl implements BbsConfigEhCache, DisposableBean {
 		EhCacheCache ehcache= (EhCacheCache)cacheManager.getCache("bbsConfigCountCache");
 		cache=ehcache.getNativeCache();
 	}
-
-	@Autowired
-	public void setBbsConfigMng(BbsConfigMng bbsConfigMng) {
-		this.bbsConfigMng = bbsConfigMng;
-	}
-
 }

@@ -36,10 +36,6 @@ public class BbsUserAccount implements Serializable {
 
 	public static final byte DRAW_ALIPY = 1;
 
-    @Id
-    @Column(name="user_id")
-	private Integer id;
-
 	@Column(name="account_weixin")
 	private String accountWeixin;
 	
@@ -106,19 +102,10 @@ public class BbsUserAccount implements Serializable {
 	@Column(name="ad_account_mount_total")
 	private Double adAccountMountTotal;
 
+	@Id
 	@OneToOne
 	@JoinColumn(name = "user_id")
 	private BbsUser user;
-
-	public Integer getId() {
-		return id;
-	}
-
-	
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
 
 	public String getAccountWeixin() {
 		return accountWeixin;
@@ -329,8 +316,8 @@ public class BbsUserAccount implements Serializable {
 
 	public JSONObject convertToJson() throws JSONException {
 		JSONObject json = new JSONObject();
-		if (getId() != null) {
-			json.put("id", getId());
+		if (getUser() != null) {
+			json.put("id", getUser().getId());
 		} else {
 			json.put("id", "");
 		}

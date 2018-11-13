@@ -17,9 +17,10 @@ import org.springframework.stereotype.Service;
 
 import com.jeecms.bbs.manager.BbsSessionMng;
 
-
 /**
  * 用户访问最后活动时间缓存实现
+ * @author andy_hulibo@163.com
+ * @date 2018/11/13 17:56
  */
 @Service
 public class BbsUserCacheImpl implements BbsUserCache, DisposableBean {

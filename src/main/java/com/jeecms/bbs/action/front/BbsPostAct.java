@@ -23,6 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -147,7 +148,7 @@ public class BbsPostAct {
 				TPLDIR_POST, TPL_POSTEDIT);
 	}
 
-	@RequestMapping("/post/o_save.html")
+	@PostMapping("/post/o_save.html")
 	public String save(BbsPost bean, Integer topicId,Integer parentId,
 			String content,
 			@RequestParam(value = "code", required = false) List<String> code,
@@ -173,19 +174,6 @@ public class BbsPostAct {
 			return FrontUtils.getTplPath(request, site,
 					TPLDIR_TOPIC, TPL_GUANSHUI);
 		}
-		/*
-		if(postTypeId==null){
-			postTypeId= bean.getTopic().getPostType().getId();
-		}
-		if(postTypeId==null){
-			postTypeId= ((BbsPostType)postTypeMng.getList(site.getId(), null, null).get(0)).getId();
-		}
-		if(postTypeId==null){
-			return FrontUtils.getTplPath(request, site,
-					TPLDIR_TOPIC, TPL_NO_POSTTYPE);
-		}
-		*/
-		//content=filterUserInputContent(content);
 		WebErrors errors=WebErrors.create(request);
 		if(StringUtils.isBlank(content)){
 			errors.addErrorCode("operate.faile");
@@ -590,9 +578,13 @@ public class BbsPostAct {
 		return "redirect:" + post.getRedirectUrl();
 	}
 
+	/**
+	 * 删除帖子
+	 * @author: andy_hulibo@163.com
+	 * @date: 2018/11/13 15:40
+	 */
 	@RequestMapping("/post/o_delete.html")
-	public String delete(Integer[] ids, Integer pageNo,
-			HttpServletRequest request, ModelMap model) {
+	public String delete(Integer[] ids) {
 		if(ids!=null){
 			BbsPost[] beans = manager.deleteByIds(ids);
 			for (BbsPost bean : beans) {

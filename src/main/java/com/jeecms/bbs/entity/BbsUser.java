@@ -999,11 +999,7 @@ public class BbsUser implements PriorityInterface, Serializable {
     }
 
     public Boolean getModerator() {
-        if (getGroup().getType().equals(BbsUserGroup.SYSTEM)) {
-            return true;
-        } else {
-            return false;
-        }
+       return getGroup().getType().equals(BbsUserGroup.SYSTEM);
     }
 
     public String getRealname() {
@@ -1706,7 +1702,7 @@ public class BbsUser implements PriorityInterface, Serializable {
         if (set == null) {
             return null;
         }
-        List<BbsTopicPostOperate> idList = new ArrayList<BbsTopicPostOperate>();
+        List<BbsTopicPostOperate> idList = new ArrayList<>();
         int i = 0;
         for (BbsTopicPostOperate u : set) {
             if (u.getDataType().equals(BbsTopicPostOperate.DATA_TYPE_TOPIC) && operate.equals(u.getOperate())) {
@@ -1745,7 +1741,7 @@ public class BbsUser implements PriorityInterface, Serializable {
         if (set == null) {
             return null;
         }
-        List<BbsTopicPostOperate> idList = new ArrayList<BbsTopicPostOperate>();
+        List<BbsTopicPostOperate> idList = new ArrayList<>();
         int i = 0;
         for (BbsTopicPostOperate u : set) {
             if (u.getDataType().equals(BbsTopicPostOperate.DATA_TYPE_POST) && operate.equals(u.getOperate())) {
@@ -1907,7 +1903,7 @@ public class BbsUser implements PriorityInterface, Serializable {
             return null;
         }
         boolean isSuper = false;
-        Set<String> allPerms = new HashSet<String>();
+        Set<String> allPerms = new HashSet<>();
         for (CmsRole role : getRoles()) {
             if (role.getAll()) {
                 isSuper = true;
